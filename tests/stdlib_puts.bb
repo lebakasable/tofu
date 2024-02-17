@@ -1,0 +1,15 @@
+# Description:Standard library - puts
+# Exit code:0
+# Stdout:Hello world!!!!\n
+# Stderr:
+
+import lib.std
+
+to start: ptr argv, int argc -> int
+    "H"     puts
+    "el"    puts
+    "lo "   puts
+    "worl"  puts
+    "d!!!!" puts
+    "\n"    puts
+    0

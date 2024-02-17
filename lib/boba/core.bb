@@ -1,0 +1,105 @@
+# Core functions
+# This file is automatically included to the compiled file.
+
+
+to strlen: ptr s -> int
+    # Returns the length of a given zero-terminated string
+    0  # Counter
+    while dup s + derefc 0 castc !=
+        1 +
+
+
+buffer _itos 21
+
+to itos: int i -> ptr
+    # Converts an integer to string
+    # Please note that the _itos buffer is overwritten every time itos is executed, so
+    # make sure you copy the string to a different memory buffer if you want it to be
+    # persistent.
+    # TODO: Support negative numbers
+    i 0 = if
+        "0"
+    else
+        i           # restartder
+        _itos 19 +  # index
+        while over 0 > over _itos >= and
+            # Get right-most digit
+            over 10 %
+
+            # Convert to character
+            '0' casti + castc
+
+            # Place at index
+            over setc
+
+            # Move left one character and divide restartder by 10
+            1 - swap 10 / swap
+
+        1 +
+
+        # Cleanup stack
+        swap drop
+
+
+to traceback: ptr message -> void
+    # Prints the call stack and exits with exit code 1
+    2           # STDERR
+    message     # Pointer to string
+    dup strlen  # String length
+    1           # SYS_WRITE
+    syscall 3
+
+    2                 # STDERR
+    "\nTraceback:\n"  # Pointer to string
+    dup strlen        # String length
+    1                 # SYS_WRITE
+    syscall 3
+
+    while __get_arg 16 bool
+        # Print function call
+        2           # STDERR
+        __get_arg 40 ptr
+        dup strlen  # String length
+        1           # SYS_WRITE
+        syscall 3
+        drop
+
+        2           # STDERR
+        ", line "   # String
+        7           # String length
+        1           # SYS_WRITE
+        syscall 3
+        drop
+
+        2           # STDERR
+        __get_arg 32 int itos
+        dup strlen  # String length
+        1           # SYS_WRITE
+        syscall 3
+        drop
+
+        2           # STDERR
+        " in "      # String
+        4           # String length
+        1           # SYS_WRITE
+        syscall 3
+        drop
+
+        2           # STDERR
+        __get_arg 24 ptr
+        dup strlen  # String length
+        1           # SYS_WRITE
+        syscall 3
+        drop
+
+        2           # STDERR
+        "\n"        # String
+        1           # String length
+        1           # SYS_WRITE
+        syscall 3
+        drop
+
+        # Move to previous frame
+        __restore_frame
+
+    1 60 syscall 1

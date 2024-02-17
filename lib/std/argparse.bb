@@ -1,0 +1,179 @@
+import lib.std
+import lib.std.list
+import lib.std.dict
+
+
+# ARGS
+# Contains a list with positional arguments and a dictionary of optional keyword
+# arguments/flags.
+
+
+const ARG_TYPE_POSITIONAL 0
+const ARG_TYPE_FLAG       1
+const ARG_TYPE_OPTIONAL   2
+
+const arg.type            0  # int; ARG_TYPE_*
+const arg.value           8  # ptr; string
+const arg.description     16 # ptr; string
+const ARG_SIZE            24
+
+const args.posargs        0  # ptr; list
+const args.kwargs         8  # ptr; dict
+const args.filename       16 # ptr; string
+const ARGS_SIZE           24
+
+
+buffer _args    8  # ptr; args
+buffer _posargs 8  # ptr; list
+buffer _kwargs  8  # ptr; list
+buffer _flags   8  # ptr; list
+
+
+to argparse_init: -> void
+    # Initialize args object
+    ARGS_SIZE malloc
+    PTR_SIZE new_list over args.posargs + setp
+    new_dict          over args.kwargs + setp
+    "UNKNOWN"         over args.filename + setp
+    _args setp
+
+    PTR_SIZE new_list _posargs setp
+    PTR_SIZE new_list _kwargs setp
+    PTR_SIZE new_list _flags setp
+
+
+to get_argument: ptr argv, int n, int argc -> ptr
+    # Takes an array of arguments argv and returns the n'th argument
+    n argc >= if
+        "Could not parse arguments due to index error\n" raise
+
+    argv 0 while dup n <
+        swap dup strlen + 1 + swap
+        1 +
+    drop
+
+
+to argparse_add_argument: ptr name, int arg_type, ptr description -> void
+    # Adds an argument and sets it value to NULL
+    ARG_SIZE malloc
+    arg_type    over arg.type + seti
+    NULL        over arg.value + setp
+    description over arg.description + setp
+
+    name
+    over
+    _args derefp args.kwargs + derefp
+    dict_insert
+    _args derefp args.kwargs + setp
+
+    arg_type ARG_TYPE_OPTIONAL = if
+        name _kwargs derefp list_append_ptr _kwargs setp
+    elif arg_type ARG_TYPE_FLAG =
+        name _flags derefp list_append_ptr _flags setp
+    elif arg_type ARG_TYPE_POSITIONAL =
+        name _posargs derefp list_append_ptr _posargs setp
+    else
+        "Unknown argument type\n" raise
+
+
+to argparse_print_help: -> void
+    # Prints the help/usage and exits with exit code 0
+    # Print usage
+    "Usage: "                           puts
+    _args derefp args.filename + derefp puts
+    " [OPTIONS]"                        puts
+
+    0
+    while dup _posargs derefp list.len + derefi <
+        " " puts dup _posargs derefp list_fetch_ptr puts
+        1 +
+    drop
+    "\n\n" puts
+
+    # Print positional argument descriptions
+    _posargs derefp list.len + derefi 0 > if
+        "Positional arguments:\n" puts
+
+    0
+    while dup _posargs derefp list.len + derefi <
+        dup _posargs derefp list_fetch_ptr
+        "    " puts dup puts "\n" puts
+
+        _args derefp args.kwargs + derefp dict_fetch
+        "        " puts arg.description + derefp puts "\n\n" puts
+
+        1 +
+    drop
+
+    # Print optional argument descriptions
+    _kwargs derefp list.len + derefi 0 > if
+        "Optional arguments:\n" puts
+
+    0
+    while dup _kwargs derefp list.len + derefi <
+        dup _kwargs derefp list_fetch_ptr
+        "    " puts dup puts "\n" puts
+
+        _args derefp args.kwargs + derefp dict_fetch
+        "        " puts arg.description + derefp puts "\n\n" puts
+
+        1 +
+    drop
+
+    # Print flag descriptions
+    _flags derefp list.len + derefi 0 > if
+        "Flags:\n" puts
+
+    0
+    while dup _flags derefp list.len + derefi <
+        dup _flags derefp list_fetch_ptr
+        "    " puts dup puts "\n" puts
+
+        _args derefp args.kwargs + derefp dict_fetch
+        "        " puts arg.description + derefp puts "\n\n" puts
+
+        1 +
+    drop
+
+    0 exit
+
+
+to argparse_parse_args: ptr argv, int argc -> ptr
+    # Parses arguments and returns an args object
+    argv 0 argc get_argument _args derefp args.filename + setp
+
+    # Parse arguments
+    1
+    while dup argc <
+        argv over argc get_argument
+
+        dup "-" startswith if
+            dup "--help" streq
+            over "-h" streq or if
+                argparse_print_help
+
+            dup _args derefp args.kwargs + derefp dict_fetch
+            dup NULL = if
+                argparse_print_help
+
+            swap drop
+
+            dup arg.type + derefi ARG_TYPE_OPTIONAL = if
+                swap 1 +
+                argv over argc get_argument
+                rot arg.value + setp
+            elif dup arg.type + derefi ARG_TYPE_FLAG =
+                "SET" swap arg.value + setp
+            else
+                drop
+        else
+            _args derefp args.posargs + derefp
+            list_append_ptr
+            _args derefp args.posargs + setp
+        1 +
+
+    _args derefp
+
+    dup args.posargs + derefp list.len + derefi
+    _posargs derefp list.len + derefi != if
+        argparse_print_help

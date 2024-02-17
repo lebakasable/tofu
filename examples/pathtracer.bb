@@ -1,0 +1,194 @@
+import lib.std
+import lib.std.math
+
+
+const WIDTH   160
+const HEIGHT  90
+
+const FOCAL_LENGTH 90
+
+buffer ray_origin     24
+buffer ray_direction  24
+buffer ray_color      24
+
+
+buffer _sphere_dist_buffer 24
+
+to sphere_dist: int center_x, int center_y, int center_z, int radius -> int
+    # Returns the distance of the current ray to a given sphere
+    center_x _sphere_dist_buffer vec.x + seti
+    center_y _sphere_dist_buffer vec.y + seti
+    center_z _sphere_dist_buffer vec.z + seti
+
+    _sphere_dist_buffer ray_origin _sphere_dist_buffer vec_sub
+    _sphere_dist_buffer ray_direction _sphere_dist_buffer vec_sub
+
+    _sphere_dist_buffer vec_len radius -
+
+
+to generate_camera_ray: int x, int y -> void
+    # Set ray origin to (0, 0, 0)
+    0 ray_origin vec.x + seti
+    0 ray_origin vec.y + seti
+    0 ray_origin vec.z + seti
+
+    # Set the ray direction:
+    x WIDTH 2 div -  ray_direction vec.x + seti
+    HEIGHT 2 div y - ray_direction vec.y + seti
+    0 FOCAL_LENGTH - ray_direction vec.z + seti
+
+    # Normalize vector
+    ray_direction dup vec_unit
+
+
+buffer closest_object_distance 8  # int
+buffer closest_object_material 8  # int
+buffer normal_vector 24
+
+const MATERIAL_SKY 0
+const MATERIAL_RED 1
+const MATERIAL_GREEN 2
+const MATERIAL_BLUE 3
+
+to check_sphere: int center_x, int center_y, int center_z, int radius, int material -> void
+    # Check if a given sphere is closest and update globals accordingly
+    center_x center_y center_z radius sphere_dist
+    dup closest_object_distance derefi < if
+        dup closest_object_distance seti
+        material closest_object_material seti
+
+        center_x 8 - center_y center_z radius sphere_dist
+        center_x 8 + center_y center_z radius sphere_dist - normal_vector vec.x + seti
+        center_x center_y 8 - center_z radius sphere_dist
+        center_x center_y 8 + center_z radius sphere_dist - normal_vector vec.y + seti
+        center_x center_y center_z 8 - radius sphere_dist
+        center_x center_y center_z 8 + radius sphere_dist - normal_vector vec.z + seti
+        normal_vector dup vec_unit
+
+
+to find_closest_object: -> void
+    10000         closest_object_distance seti
+    MATERIAL_SKY  closest_object_material seti
+
+    # x       y         z         radius  material
+    0         0 50000 - 0 4200 -  50000   MATERIAL_GREEN  check_sphere
+    0 1000 -  500       0 4200 -  500     MATERIAL_RED    check_sphere
+    1000      500       0 4200 -  500     MATERIAL_BLUE   check_sphere
+
+
+buffer hit 1
+buffer steps 8
+buffer _march_buffer 24
+
+to update_ray_color: -> void
+    hit derefb false = closest_object_material derefi MATERIAL_SKY = or if
+        ray_color vec.x + derefi 255 + 2 div ray_color vec.x + seti
+        ray_color vec.y + derefi 255 + 2 div ray_color vec.y + seti
+        ray_color vec.z + derefi 255 + 2 div ray_color vec.z + seti
+    elif closest_object_material derefi MATERIAL_RED =
+        ray_color vec.x + derefi 255 + 2 div ray_color vec.x + seti
+        ray_color vec.y + derefi 2 div ray_color vec.y + seti
+        ray_color vec.z + derefi 2 div ray_color vec.z + seti
+    elif closest_object_material derefi MATERIAL_GREEN =
+        ray_color vec.x + derefi 2 div ray_color vec.x + seti
+        ray_color vec.y + derefi 255 + 2 div ray_color vec.y + seti
+        ray_color vec.z + derefi 2 div ray_color vec.z + seti
+    elif closest_object_material derefi MATERIAL_BLUE =
+        ray_color vec.x + derefi 2 div ray_color vec.x + seti
+        ray_color vec.y + derefi 2 div ray_color vec.y + seti
+        ray_color vec.z + derefi 255 + 2 div ray_color vec.z + seti
+    else
+        "Unknown material!" raise
+
+
+buffer _reflect_ray_buffer 24
+
+to reflect_ray: -> void
+    normal_vector
+    dup ray_direction vec_dot 500 div
+    _reflect_ray_buffer
+    vec_mul
+
+    ray_direction _reflect_ray_buffer ray_direction vec_sub
+    ray_direction ray_direction vec_unit
+
+
+to march: int bounce -> void
+    # Will raymarch until something is hit or z is less than -20000
+    # Sets a new ray when something is hit.
+
+    false hit setb
+    0 steps seti
+
+    while hit derefb false = \
+          ray_origin vec.z + derefi 0 20000 - > and \
+          steps derefi 1000 < and
+        # Increment steps
+        steps derefi 1 + steps seti
+
+        # Fetch closest object
+        find_closest_object
+
+        # Check for hit
+        closest_object_distance derefi 10 < if
+            true hit setb
+        else
+            # Update ray origin
+            ray_direction closest_object_distance derefi _march_buffer vec_mul
+            _march_buffer 1000 _march_buffer vec_div
+            ray_origin _march_buffer ray_origin vec_add
+
+    update_ray_color
+    hit derefb if
+        reflect_ray
+
+        bounce 0 > if
+            bounce 1 - march
+
+
+to scale_color: int c -> int
+    c 0 < if
+        0
+    elif c 255 >
+        255
+    else
+        c
+
+
+to print_ray_color: -> void
+    ray_color vec.x + derefi scale_color itos puts " " puts
+    ray_color vec.y + derefi scale_color itos puts " " puts
+    ray_color vec.z + derefi scale_color itos puts " " puts
+
+
+to draw_pixel: int x, int y -> void
+    x y generate_camera_ray
+
+    # Set initial color
+    0 ray_color vec.x + seti
+    0 ray_color vec.y + seti
+    0 ray_color vec.z + seti
+
+    1 march
+    print_ray_color
+
+
+to start: ptr argv, int argc -> int
+    # Print PPM metadata
+    "P3 " puts
+    WIDTH itos puts " " puts
+    HEIGHT itos puts " " puts
+    "256\n" puts
+
+    # Render image
+    0
+    while dup HEIGHT <
+        0
+        while dup WIDTH <
+            over over swap draw_pixel
+            1 +
+        drop
+        1 +
+
+        "\n" puts
+    0

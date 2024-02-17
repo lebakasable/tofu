@@ -1,0 +1,93 @@
+import lib.std
+
+
+to div: int a, int b -> int
+    # Returns a / b, where a and b are signed integers
+    # TODO: This should obviously be what `/` should be, but the previous
+    # implementation contained weird bugs which I was unable to fix. For more
+    # info, see commits `a70ed1a` and `9fcc313`.
+    b 0 != "Can't divide by zero" assert
+
+    a 0 < b 0 < and if
+        0 a - 0 b - /
+    elif a 0 < b 0 >= and
+        0 0 a - b / -
+    elif a 0 >= b 0 < and
+        0 a 0 b - / -
+    else
+        a b /
+
+
+to usqrt: int x -> int
+    # Returns the square root of a given unsigned integer
+    0 x
+    while over over - dup 1 > swap 0 swap - 1 > or
+        swap drop dup
+        x over div + 2 div
+
+
+to sqrt: int x -> int
+    # Returns the square root of a given signed integer
+    x 0 < if
+        0 0 x - usqrt -
+    else
+        x usqrt
+
+
+const vec.x 0
+const vec.y 8
+const vec.z 16
+const VEC_SIZE 24
+
+to vec_add: ptr a, ptr b, ptr c -> void
+    # Adds vector a to vector b and saves the result to vector c
+    a vec.x + derefi b vec.x + derefi + c vec.x + seti
+    a vec.y + derefi b vec.y + derefi + c vec.y + seti
+    a vec.z + derefi b vec.z + derefi + c vec.z + seti
+
+to vec_sub: ptr a, ptr b, ptr c -> void
+    # Subtracts vector a from vector b and saves the result to vector c
+    a vec.x + derefi b vec.x + derefi - c vec.x + seti
+    a vec.y + derefi b vec.y + derefi - c vec.y + seti
+    a vec.z + derefi b vec.z + derefi - c vec.z + seti
+
+to vec_negate: ptr src, ptr dest -> void
+    # Inverts the vector at src and saves it to dest
+    0 src vec.x + derefi - dest vec.x + seti
+    0 src vec.y + derefi - dest vec.y + seti
+    0 src vec.z + derefi - dest vec.z + seti
+
+to vec_mul: ptr src, int m, ptr dest -> void
+    # Scales vector src up by m and saves it to dest
+    src vec.x + derefi m * dest vec.x + seti
+    src vec.y + derefi m * dest vec.y + seti
+    src vec.z + derefi m * dest vec.z + seti
+
+to vec_div: ptr src, int m, ptr dest -> void
+    # Scales vector src down by m and saves it to dest
+    src vec.x + derefi m div dest vec.x + seti
+    src vec.y + derefi m div dest vec.y + seti
+    src vec.z + derefi m div dest vec.z + seti
+
+to vec_len_squared: ptr a -> int
+    # Calculates the square of the length of vector a
+    a vec.x + derefi dup *
+    a vec.y + derefi dup * +
+    a vec.z + derefi dup * +
+
+to vec_len: ptr a -> int
+    # Calculates the square of the length of vector a
+    a vec_len_squared sqrt
+
+buffer _vec_unit_buffer 24
+
+to vec_unit: ptr src, ptr dest -> void
+    # Takes a vector src and saves its "unit" vector with length 1000 into dest
+    src 1000 _vec_unit_buffer vec_mul
+    _vec_unit_buffer src vec_len dest vec_div
+
+to vec_dot: ptr a, ptr b -> int
+    # Returns a dot b
+    a vec.x + derefi b vec.x + derefi *
+    a vec.y + derefi b vec.y + derefi * +
+    a vec.z + derefi b vec.z + derefi * +

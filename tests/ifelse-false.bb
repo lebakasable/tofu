@@ -1,0 +1,20 @@
+# Description:If/else-statement false
+# Exit code:0
+# Stdout:Yay!
+# Stderr:
+
+to start: int argc, ptr argv -> int
+    1 2 + 2 = if
+      1             # File descriptor
+      "Huh?"        # String
+      4             # String length
+      1             # Syscall no. (write)
+      syscall 3
+    else
+      1             # File descriptor
+      "Yay!"        # String
+      4             # String length
+      1             # Syscall no. (write)
+      syscall 3
+
+    0               # Exit code

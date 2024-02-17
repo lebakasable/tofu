@@ -1,0 +1,42 @@
+import lib.std
+
+
+const TYPE_UNKNOWN  0
+const TYPE_BOOL     1
+const TYPE_CHAR     2
+const TYPE_INT      3
+const TYPE_PTR      4
+const TYPE_VOID     5
+
+
+to type_to_str: int type -> ptr
+    # Returns the string representation of a given type
+    type TYPE_BOOL = if
+        "BOOL"
+    elif type TYPE_CHAR =
+        "CHAR"
+    elif type TYPE_INT =
+        "INT"
+    elif type TYPE_PTR =
+        "PTR"
+    elif type TYPE_VOID =
+        "VOID"
+    else
+        "Unknown type" raise "UNKNOWN"
+
+
+to str_to_type: ptr type -> int
+    # Converts a string to a type constant
+    type "bool" streq type "BOOL" streq or if
+        TYPE_BOOL
+    elif type "char" streq type "CHAR" streq or
+        TYPE_CHAR
+    elif type "int" streq type "INT" streq or
+        TYPE_INT
+    elif type "ptr" streq type "PTR" streq or
+        TYPE_PTR
+    elif type "void" streq type "VOID" streq or
+        TYPE_VOID
+    else
+        "Unknown type: " type concat raise
+        TYPE_UNKNOWN

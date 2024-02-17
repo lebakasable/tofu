@@ -1,0 +1,576 @@
+import lib.std.linux
+
+
+const BOOL_SIZE 1
+const CHAR_SIZE 1
+const INT_SIZE  8
+const PTR_SIZE  8
+
+
+to NULL: -> ptr
+    # Returns a null-pointer
+    0 castp
+
+
+to itohex: int x, ptr buf -> void
+    # Converts a given 64-bit integer to its hexadecimal representation
+    buf
+    dup '0' swap setc 1 +
+    dup 'x' swap setc 1 +
+
+    60  # offset
+    while dup 0 >=
+        dup
+        15 swap shl
+        x and
+        swap dup rot swap shr
+
+        dup 0 = if
+            rot dup '0' swap setc rot rot
+        elif dup 1 =
+            rot dup '1' swap setc rot rot
+        elif dup 2 =
+            rot dup '2' swap setc rot rot
+        elif dup 3 =
+            rot dup '3' swap setc rot rot
+        elif dup 4 =
+            rot dup '4' swap setc rot rot
+        elif dup 5 =
+            rot dup '5' swap setc rot rot
+        elif dup 6 =
+            rot dup '6' swap setc rot rot
+        elif dup 7 =
+            rot dup '7' swap setc rot rot
+        elif dup 8 =
+            rot dup '8' swap setc rot rot
+        elif dup 9 =
+            rot dup '9' swap setc rot rot
+        elif dup 10 =
+            rot dup 'a' swap setc rot rot
+        elif dup 11 =
+            rot dup 'b' swap setc rot rot
+        elif dup 12 =
+            rot dup 'c' swap setc rot rot
+        elif dup 13 =
+            rot dup 'd' swap setc rot rot
+        elif dup 14 =
+            rot dup 'e' swap setc rot rot
+        elif dup 15 =
+            rot dup 'f' swap setc rot rot
+        drop 4 - swap 1 + swap
+    drop 0 castc swap setc
+
+
+to max: int x, int y -> int
+    # Returns the largest number
+    x y > if
+        x
+    else
+        y
+
+
+to strcpy: ptr src, ptr dest -> ptr
+    # Copies a string from src to dest and returns a pointer to dest
+    0  # index
+    while dup src + derefc 0 castc !=
+        dup src + derefc over dest + setc
+        1 +
+    dest + 0 castc swap setc
+    dest
+
+
+to replace: ptr s, char q, char r -> ptr
+    # Replaces each instance of char q in str s with char r
+    s
+    while dup derefc 0 castc !=
+        dup derefc q = if
+            dup r swap setc
+        1 +
+    s
+
+
+to startswith: ptr s, ptr q -> bool
+    # Returns true if str s starts with substring q
+    0
+    while dup s + derefc over q + derefc = over q + derefc 0 castc != and
+        1 +
+    q + derefc 0 castc =
+
+
+to streq: ptr s, ptr q -> bool
+    # Returns true if str s is equal to string q
+    s NULL = q NULL = and if
+        true
+    elif s NULL = q NULL = or
+        false
+    elif q strlen s strlen =
+        false # found_difference
+        0     # index
+        while dup q + derefc 0 castc !=
+            dup q + derefc
+            over s + derefc !=
+            rot or swap
+            1 +
+        drop
+        false =
+    else
+        false
+
+
+const page.next          0   # ptr
+const page.prev          8   # ptr
+const page.size          16  # int
+const page.blocks        24  # ptr
+const PAGE_METADATA_SIZE 24
+
+const PAGE_SIZE          4096
+
+const block.next          0   # ptr
+const block.prev          8   # ptr
+const block.size          16  # integer
+const block.free          24  # boolean
+const block.file          25  # ptr
+const block.line          33  # int
+const block.data          41  # data
+const BLOCK_METADATA_SIZE 41
+
+buffer current_page 8
+buffer root_page    8
+
+
+buffer VERIFY_MEMORY 1  # Set to true to verify memory
+buffer DUMP_MEMORY   1  # Set to true to dump dynamically allocated memory
+
+buffer _vm_buf 19
+
+to verify_memory: -> void
+    # Checks all the dynamically allocated memory for invalid metadata
+    VERIFY_MEMORY derefb if
+        DUMP_MEMORY derefb if
+            "Verifying memory..\n" puts
+
+        root_page
+        while dup page.next + derefp NULL !=
+            dup page.next + derefp
+
+            DUMP_MEMORY derefb if
+                "* Page: "                          puts
+                dup casti _vm_buf itohex _vm_buf  puts
+                "\n"                                puts
+
+                "  * prev: "                                    puts
+                dup page.prev + derefi _vm_buf itohex _vm_buf puts
+                "\n"                                            puts
+
+                "  * next: "                                    puts
+                dup page.next + derefi _vm_buf itohex _vm_buf puts
+                "\n"                                            puts
+
+                "  * size: "                                    puts
+                dup page.size + derefi _vm_buf itohex _vm_buf puts
+                "\n"                                            puts
+
+            swap over page.prev + derefp = \
+                "Pointer to previous page should be valid\n" assert
+            dup page.size + derefi PAGE_SIZE >= \
+                "Page size should be at least the default value\n" assert
+
+            dup page.size + derefi PAGE_METADATA_SIZE -  # Save page size to stack
+            over page.blocks +
+
+            dup  block.next + derefp NULL =
+            over block.prev + derefp NULL = and
+            over block.free + derefb true = and false = \
+                "Page without blocks should be unmapped" assert
+
+            while dup NULL !=
+                DUMP_MEMORY derefb if
+                    "  * block: "                                   puts
+                    dup casti _vm_buf itohex _vm_buf                puts
+                    "\n"                                            puts
+
+                    "    * file: "                                  puts
+                    dup block.file + derefp                         puts
+                    "\n"                                            puts
+
+                    "    * line: "                                  puts
+                    dup block.line + derefi itos                    puts
+                    "\n"                                            puts
+
+                    "    * size: "                                  puts
+                    dup block.size + derefi _vm_buf itohex _vm_buf  puts
+                    "\n"                                            puts
+
+                    "    * next: "                                  puts
+                    dup block.next + derefi _vm_buf itohex _vm_buf  puts
+                    "\n"                                            puts
+
+                    "    * prev: "                                  puts
+                    dup block.prev + derefi _vm_buf itohex _vm_buf  puts
+                    "\n"                                            puts
+
+                    "    * free: " puts
+                    dup block.free + derefb if
+                        "true\n" puts
+                    else
+                        "false\n" puts
+
+                dup block.size + derefi BLOCK_METADATA_SIZE +
+                rot swap -
+                dup 0 >= "Blocks should not overflow page memory\n" assert
+                swap
+
+                dup block.next + derefp NULL =
+                over dup block.next + derefp swap casti - casti PAGE_SIZE <= or
+                "Next block should be in the same page\n" assert
+
+                dup block.prev + derefp NULL =
+                over dup block.prev + derefi - casti PAGE_SIZE <= or
+                "Previous block should be in the same page\n" assert
+
+                dup block.next + derefp NULL != if
+                    dup block.next + derefp
+                    over block.size + derefi -
+                    BLOCK_METADATA_SIZE -
+                    over = "Next block should be directly after this one\n" assert
+
+                dup block.prev + derefp NULL != if
+                    dup block.prev + derefp
+                    dup block.size + derefi +
+                    BLOCK_METADATA_SIZE +
+                    over = "Previous block should be directly before this one\n" assert
+
+                block.next + derefp
+            drop
+
+            dup 0 > if
+                DUMP_MEMORY derefb if
+                    "  * unused bytes: "          puts
+                    dup _vm_buf itohex _vm_buf  puts
+                    "\n"                          puts
+                false "Block sizes should sum up to page size\n" assert
+            drop
+
+        drop
+        DUMP_MEMORY derefb if
+            "Memory OK\n" puts
+
+
+to _malloc_get_next_page: ptr page, int size -> ptr
+    # Returns the next page, creates a new page if there are none
+    size PAGE_SIZE >= "Page size should be at least the default size\n" assert
+
+    page page.next + derefp NULL = if
+        NULL                          # addr; kernel chooses position in memory
+        size                          # length; (common page size is 4k)
+        PROT_READ PROT_WRITE or       # prot; allow read and write
+        MAP_PRIVATE MAP_ANONYMOUS or  # flags
+        0 1 -                         # fd; -1 is needed for MAP_ANONYMOUS
+        0                             # offset; should be 0 for MAP_ANONYMOUS
+        SYS_MMAP
+        syscall 6
+
+        dup 0 < if
+            "Unable to allocate memory page\n" raise
+
+        castp
+
+        # Initialize page
+        dup page.next +                               NULL swap setp
+        dup page.prev +                               page swap setp
+        dup page.size +                               size swap seti
+
+        # Initialize block
+        dup page.blocks +
+        dup block.free +                              true swap setb
+        dup block.next +                              NULL swap setp
+        dup block.prev +                              NULL swap setp
+        dup block.file +                              ""   swap setp
+        dup block.line +                              0    swap seti
+        dup block.size + size PAGE_METADATA_SIZE - \
+                         BLOCK_METADATA_SIZE -             swap seti
+        drop
+
+        page page.next + setp
+
+    # Return next page
+    page page.next + derefp
+
+    dup NULL != "Next page should not be NULL\n" assert
+
+
+to _malloc_split_block: ptr block, int old_size, int size -> ptr
+    # Splits a free block into a taken and a free block and returns a pointer to the
+    # first, taken block.
+    block block.free + derefb "Splitted block should be free\n" assert
+
+    block block.next + derefp  # Save pointer to next block on the stack
+
+    false  block block.free + setb
+
+    # Calculate restarting size of free block
+    old_size BLOCK_METADATA_SIZE - size -
+
+    dup 0 > if
+        # Only set block size if split actually occurs
+        size block block.size + seti
+
+        block BLOCK_METADATA_SIZE + size + block block.next + setp
+
+        true     block block.next + derefp block.free + setb
+        block    block block.next + derefp block.prev + setp
+        dup      block block.next + derefp block.size + seti
+        over     block block.next + derefp block.next + setp
+        ""       block block.next + derefp block.file + setp
+        0        block block.next + derefp block.line + seti
+
+        block block.next + derefp block.next + derefp NULL != if
+            block block.next + derefp dup block.next + derefp block.prev + setp
+
+    block
+
+
+to _malloc_block_is_available_or_NULL: ptr block, int size -> bool
+    # Returns true if given block is free and has enough space, or it's a NULL pointer
+    block NULL = if
+        true
+    else
+        block block.free + derefb
+        block block.size + derefi size >= and
+
+
+to malloc: int size -> ptr
+    # Allocates a memory block of given size and returns its address
+
+    # Set current page to root if this is the initial malloc
+    current_page derefp NULL = if
+        root_page current_page setp
+
+    size 0 = if
+        "Size should be greater than zero\n" raise
+
+    # Find the next available block
+    NULL  # available_block
+    while dup NULL =
+        drop
+
+        # Fetch next page
+        current_page derefp
+        size PAGE_METADATA_SIZE + BLOCK_METADATA_SIZE + \
+            PAGE_SIZE max _malloc_get_next_page
+        dup current_page setp
+
+        root_page page.next + derefp NULL != "First page should be set\n" assert
+        dup root_page != "Page should not be root page\n" assert
+        dup NULL != "Next page should be set\n" assert
+
+        # Find available block
+        page.blocks +
+
+        dup block.size + derefi 0 != "Block size should be greater than zero\n" assert
+
+        # Find next available block or NULL (no available blocks in this page)
+        while dup size _malloc_block_is_available_or_NULL false =
+            block.next + derefp
+
+    dup NULL != "Pointer to found block should be non-NULL\n" assert
+    dup block.free + derefb "Found block should be free\n" assert
+
+    DUMP_MEMORY derefb if
+        __get_arg 16 bool if
+            # Save filename
+            __get_arg 40 ptr
+            over block.file + setp
+
+            # Save line number
+            __get_arg 32 int
+            over block.line + seti
+
+    dup block.size + derefi size = if
+        # The block is a perfect fit
+        dup block.free + false swap setb
+    else
+        # The block not is a perfect fit, split into a taken and a free block
+        dup block.size + derefi size _malloc_split_block
+
+    # Set current page to root page if it's the last page
+    current_page derefp page.next + derefp NULL = if
+        root_page current_page setp
+    else
+        current_page derefp page.prev + derefp current_page setp
+
+    block.data +
+    verify_memory
+
+
+to zalloc: int size -> ptr
+    # Allocates a zero-initialized memory block of given size and returns its address
+    size malloc # buf
+    0           # index
+    while dup size <
+        over over + 0 castc swap setc
+        1 +
+    drop
+
+
+to memcpy: ptr src, ptr dest, int num -> void
+    # Copies a given amount of bytes from src to dest
+    0
+    while dup num <
+        dup src + derefc
+        over dest + setc
+        1 +
+    verify_memory
+
+
+to merge_blocks: ptr a, ptr b -> void
+    # Merges two freed blocks
+
+    a block.free + derefb b block.free + derefb and "Blocks should be free" assert
+
+    # Add b.size and sizeof(metadata) to a.size
+    a block.size + derefi
+    b block.size + derefi +
+    BLOCK_METADATA_SIZE +
+    a block.size + seti
+
+    # Set b.next.prev to a
+    b block.next + derefp NULL != if
+        a
+        b block.next + derefp block.prev + setp
+
+    # Set a.next to b.next
+    b block.next + derefp
+    a block.next + setp
+
+
+to free: ptr block_data -> void
+    # Frees a given block
+
+    block_data block.data -
+
+    dup block.free + derefb if
+        "Trying to free already freed data\n" raise
+
+    dup block.free + true swap setb
+
+    dup block.next + derefp NULL != if
+        dup block.next + derefp block.free + derefb if
+            # Next block is free; merge
+            dup dup block.next + derefp merge_blocks
+
+    dup block.prev + derefp NULL != if
+        dup block.prev + derefp block.free + derefb if
+            # Previous block is free; merge
+            dup block.prev + derefp over merge_blocks
+
+    # Find the first block
+    while dup block.prev + derefp NULL !=
+        dup block.prev + derefp over < "Previous block should be earlier\n" assert
+        dup dup block.prev + derefi - PAGE_SIZE castp < \
+            "Previous block should be within the same page\n" assert
+
+        block.prev + derefp
+
+    dup block.next + derefp NULL = if
+        # This page only has one free block; free/munmap it
+        PAGE_METADATA_SIZE -
+        dup page.next + derefp
+        swap dup rot swap page.prev + derefp page.next + setp
+
+        dup page.next + derefp NULL != if
+            dup page.prev + derefp
+            swap dup rot swap page.next + derefp page.prev + setp
+
+        dup                    # addr; kernel chooses position in memory
+        dup page.size + derefi # length; (common page size is 4k)
+        SYS_MUNMAP
+        syscall 2
+
+        0 < if
+            "Unable to free memory page\n" raise
+
+    verify_memory
+
+
+to puti: int i -> void
+    # Prints a number to STDOUT
+    i itos puts
+
+
+to errori: int i -> void
+    # Prints a number to STDERR
+    i itos error
+
+
+to _concat: ptr a, int a_len, ptr b, int b_len -> ptr
+    # Takes two string and returns them after being concatenated.
+    # Note that this mallocs, so don't forget to free!
+    a_len b_len + 1 + malloc
+    a swap strcpy
+    dup a_len + b swap strcpy drop
+
+
+to concat: ptr a, ptr b -> ptr
+    # Wrapper around _concat
+    a a strlen b b strlen _concat
+
+
+to concatfl: ptr a, ptr b -> ptr
+    # Concatenates two strings and frees the first
+    a b concat
+    a free
+
+
+to concatfr: ptr a, ptr b -> ptr
+    # Concatenates two strings and frees the second
+    a b concat
+    b free
+
+
+to concatf: ptr a, ptr b -> ptr
+    # Concatenates two strings and frees them
+    a b concat
+    a free
+    b free
+
+
+to stoi: ptr s -> int
+    # Converts a string to an integer
+    s 0
+    while over derefc 0 castc !=
+        10 *
+        over derefc
+
+        dup '0' < over '9' > or if
+            "Unable to convert string to integer: " s concat "\n" concat raise
+
+        casti '0' casti - +
+        swap 1 + swap
+
+
+buffer _read_file_buffer 513
+
+to read_file: ptr filename -> ptr
+    # Returns the contents of a given file
+    1 malloc
+    dup 0 castc swap setc
+    filename 'r' open
+
+    1 while dup 0 >
+        drop
+        dup _read_file_buffer 512 read
+        dup _read_file_buffer + 0 castc swap setc
+        dup 0 > if
+            rot dup _read_file_buffer concat
+            swap free
+            rot rot
+    drop drop
+
+
+to substring: ptr s, int n -> ptr
+    # Creates a null-terminated substring of the first n bytes of s.
+    # Note that this function mallocs, so don't forget to free the result.
+    n 1 + malloc
+    s over n memcpy
+    dup n + 0 castc swap setc

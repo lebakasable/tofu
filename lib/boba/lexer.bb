@@ -1,0 +1,374 @@
+import lib.std
+import lib.std.list
+import lib.boba.tokens
+import lib.boba.helpers
+
+
+buffer _indent_stack 8  # ptr
+buffer _at_start     1  # bool
+
+
+to _tokenize: ptr source, ptr tokens -> ptr
+    # Tokenizes a given source code and returns a pointer to the list of tokens
+
+    # Initialize variables
+    TOKEN_SIZE new_list tokens setp
+
+    _indent_stack derefp NULL != if
+        _indent_stack derefp free
+    0 INT_SIZE new_list list_append_int _indent_stack setp
+
+    true _at_start setb
+
+    # Tokenize source code
+    1       # line
+    source  # current_char
+
+    while dup derefc 0 castc !=
+        # Count indenting and create block begin/end tokens if necessary
+        _indent_stack derefp list.len + derefi 0 > \
+            "Indent stack should have items\n" assert
+
+        dup count_indent
+        _at_start derefb if
+            false _at_start setb
+
+            dup _indent_stack derefp list_peek_int > if
+                dup _indent_stack derefp list_append_int _indent_stack setp
+                rot dup TOKEN_BLOCK_START NULL
+                tokens derefp create_token tokens setp
+                rot rot
+            dup _indent_stack derefp list_peek_int < if
+                while dup _indent_stack derefp list_pop_int !=
+                    _indent_stack derefp list.len + derefi 0 = if
+                        rot dup "Unexpexted indenting" syntax_error rot rot
+                    rot dup TOKEN_BLOCK_END NULL
+                    tokens derefp create_token tokens setp
+                    rot rot
+                dup _indent_stack derefp list_append_int _indent_stack setp
+        +
+
+        dup derefc '#' = if
+            while dup derefc 10 castc != over derefc 0 castc != and
+                1 +
+        elif dup derefc '\\' =
+            while dup derefc 10 castc != over derefc 0 castc != and
+                1 +
+            1 + swap 1 + swap
+        elif dup derefc is_int
+            dup
+
+            # Count length of integer
+            0 swap
+            while dup derefc is_int
+                1 + swap 1 + swap
+            drop
+
+            # Get token value
+            over swap substring
+
+            # Create token
+            rot dup rot dup strlen rot rot TOKEN_INT swap
+            tokens derefp create_token tokens setp
+
+            # Shift source
+            rot +
+        elif dup derefc '\'' =
+            1 +
+            dup derefc '\\' = if
+                1 +
+            dup 1 + derefc '\'' != if
+                swap "Character should be a single character" syntax_error 0 swap
+            dup 1 substring rot dup rot TOKEN_CHAR swap
+            tokens derefp create_token tokens setp
+            swap 2 +
+        elif dup derefc '"' =
+            1 +
+
+            # Find length of string
+            0
+            over
+            while dup derefc '"' !=
+                dup derefc '\\' = if
+                    1 + swap 1 + swap
+                1 + swap 1 + swap
+
+            # Separate string
+            # TODO: Unescape the string here and escape the string again in the code
+            # generator.
+            rot rot substring
+
+            # Create token
+            rot dup rot TOKEN_STRING swap
+            tokens derefp create_token tokens setp
+            swap
+            1 +
+        elif dup "->" startswith
+            over TOKEN_ARROW NULL
+            tokens derefp create_token tokens setp
+            2 +
+        elif dup derefc '+' =
+            over TOKEN_ARITHMETIC "+"
+            tokens derefp create_token tokens setp
+            1 +
+        elif dup derefc '-' =
+            over TOKEN_ARITHMETIC "-"
+            tokens derefp create_token tokens setp
+            1 +
+        elif dup derefc '*' =
+            over TOKEN_ARITHMETIC "*"
+            tokens derefp create_token tokens setp
+            1 +
+        elif dup derefc '/' =
+            over TOKEN_ARITHMETIC "/"
+            tokens derefp create_token tokens setp
+            1 +
+        elif dup derefc '%' =
+            over TOKEN_ARITHMETIC "%"
+            tokens derefp create_token tokens setp
+            1 +
+        elif dup "and" is_word
+            over TOKEN_ARITHMETIC "and"
+            tokens derefp create_token tokens setp
+            3 +
+        elif dup "or" is_word
+            over TOKEN_ARITHMETIC "or"
+            tokens derefp create_token tokens setp
+            2 +
+        elif dup "shl" is_word
+            over TOKEN_ARITHMETIC "shl"
+            tokens derefp create_token tokens setp
+            3 +
+        elif dup "shr" is_word
+            over TOKEN_ARITHMETIC "shr"
+            tokens derefp create_token tokens setp
+            3 +
+        elif dup "true" is_word
+            over TOKEN_BOOL "1"
+            tokens derefp create_token tokens setp
+            4 +
+        elif dup "false" is_word
+            over TOKEN_BOOL "0"
+            tokens derefp create_token tokens setp
+            5 +
+        elif dup derefc ':' =
+            over TOKEN_COLON NULL
+            tokens derefp create_token tokens setp
+            1 +
+        elif dup derefc ',' =
+            over TOKEN_COMMA NULL
+            tokens derefp create_token tokens setp
+            1 +
+        elif dup "!=" startswith
+            over TOKEN_COMPARISON "!="
+            tokens derefp create_token tokens setp
+            2 +
+        elif dup ">=" startswith
+            over TOKEN_COMPARISON ">="
+            tokens derefp create_token tokens setp
+            2 +
+        elif dup "<=" startswith
+            over TOKEN_COMPARISON "<="
+            tokens derefp create_token tokens setp
+            2 +
+        elif dup derefc '=' =
+            over TOKEN_COMPARISON "="
+            tokens derefp create_token tokens setp
+            1 +
+        elif dup derefc '<' =
+            over TOKEN_COMPARISON "<"
+            tokens derefp create_token tokens setp
+            1 +
+        elif dup derefc '>' =
+            over TOKEN_COMPARISON ">"
+            tokens derefp create_token tokens setp
+            1 +
+        elif dup "buffer" is_word
+            over TOKEN_KEYWORD "buffer"
+            tokens derefp create_token tokens setp
+            6 +
+        elif dup "castb" is_word
+            over TOKEN_KEYWORD "castb"
+            tokens derefp create_token tokens setp
+            5 +
+        elif dup "castc" is_word
+            over TOKEN_KEYWORD "castc"
+            tokens derefp create_token tokens setp
+            5 +
+        elif dup "casti" is_word
+            over TOKEN_KEYWORD "casti"
+            tokens derefp create_token tokens setp
+            5 +
+        elif dup "castp" is_word
+            over TOKEN_KEYWORD "castp"
+            tokens derefp create_token tokens setp
+            5 +
+        elif dup "const" is_word
+            over TOKEN_KEYWORD "const"
+            tokens derefp create_token tokens setp
+            5 +
+        elif dup "debug" is_word
+            over TOKEN_KEYWORD "debug"
+            tokens derefp create_token tokens setp
+            5 +
+        elif dup "to" is_word
+            over TOKEN_KEYWORD "to"
+            tokens derefp create_token tokens setp
+            2 +
+        elif dup "inline" is_word
+            over TOKEN_KEYWORD "inline"
+            tokens derefp create_token tokens setp
+            6 +
+        elif dup "derefb" is_word
+            over TOKEN_KEYWORD "derefb"
+            tokens derefp create_token tokens setp
+            6 +
+        elif dup "derefc" is_word
+            over TOKEN_KEYWORD "derefc"
+            tokens derefp create_token tokens setp
+            6 +
+        elif dup "derefi" is_word
+            over TOKEN_KEYWORD "derefi"
+            tokens derefp create_token tokens setp
+            6 +
+        elif dup "derefp" is_word
+            over TOKEN_KEYWORD "derefp"
+            tokens derefp create_token tokens setp
+            6 +
+        elif dup "drop" is_word
+            over TOKEN_KEYWORD "drop"
+            tokens derefp create_token tokens setp
+            4 +
+        elif dup "dup" is_word
+            over TOKEN_KEYWORD "dup"
+            tokens derefp create_token tokens setp
+            3 +
+        elif dup "elif" is_word
+            over TOKEN_KEYWORD "elif"
+            tokens derefp create_token tokens setp
+            4 +
+        elif dup "else" is_word
+            over TOKEN_KEYWORD "else"
+            tokens derefp create_token tokens setp
+            4 +
+        elif dup "if" is_word
+            over TOKEN_KEYWORD "if"
+            tokens derefp create_token tokens setp
+            2 +
+        elif dup "import" is_word
+            over TOKEN_KEYWORD "import"
+            tokens derefp create_token tokens setp
+            6 +
+        elif dup "location" is_word
+            over TOKEN_KEYWORD "location"
+            tokens derefp create_token tokens setp
+            8 +
+        elif dup "over" is_word
+            over TOKEN_KEYWORD "over"
+            tokens derefp create_token tokens setp
+            4 +
+        elif dup "rot" is_word
+            over TOKEN_KEYWORD "rot"
+            tokens derefp create_token tokens setp
+            3 +
+        elif dup "setb" is_word
+            over TOKEN_KEYWORD "setb"
+            tokens derefp create_token tokens setp
+            4 +
+        elif dup "setc" is_word
+            over TOKEN_KEYWORD "setc"
+            tokens derefp create_token tokens setp
+            4 +
+        elif dup "seti" is_word
+            over TOKEN_KEYWORD "seti"
+            tokens derefp create_token tokens setp
+            4 +
+        elif dup "setp" is_word
+            over TOKEN_KEYWORD "setp"
+            tokens derefp create_token tokens setp
+            4 +
+        elif dup "swap" is_word
+            over TOKEN_KEYWORD "swap"
+            tokens derefp create_token tokens setp
+            4 +
+        elif dup "syscall" is_word
+            over TOKEN_KEYWORD "syscall"
+            tokens derefp create_token tokens setp
+            7 +
+        elif dup "reff" is_word
+            over TOKEN_KEYWORD "reff"
+            tokens derefp create_token tokens setp
+            4 +
+        elif dup "bool" is_word
+            over TOKEN_TYPE "bool"
+            tokens derefp create_token tokens setp
+            4 +
+        elif dup "char" is_word
+            over TOKEN_TYPE "char"
+            tokens derefp create_token tokens setp
+            4 +
+        elif dup "int" is_word
+            over TOKEN_TYPE "int"
+            tokens derefp create_token tokens setp
+            3 +
+        elif dup "ptr" is_word
+            over TOKEN_TYPE "ptr"
+            tokens derefp create_token tokens setp
+            3 +
+        elif dup "void" is_word
+            over TOKEN_TYPE "void"
+            tokens derefp create_token tokens setp
+            4 +
+        elif dup "while" is_word
+            over TOKEN_KEYWORD "while"
+            tokens derefp create_token tokens setp
+            5 +
+        elif dup "__get_arg" is_word
+            over TOKEN_KEYWORD "__get_arg"
+            tokens derefp create_token tokens setp
+            9 +
+        elif dup "__restore_frame" is_word
+            over TOKEN_KEYWORD "__restore_frame"
+            tokens derefp create_token tokens setp
+            15 +
+        elif dup derefc is_alphabet
+            dup
+
+            # Count length of identifier
+            0 swap
+            while dup derefc is_alphabet over derefc is_int or
+                1 + swap 1 + swap
+            drop
+
+            # Get token value
+            over swap substring
+
+            # Create token
+            rot dup rot dup strlen rot rot TOKEN_IDENTIFIER swap
+            tokens derefp create_token tokens setp
+
+            # Shift source
+            rot +
+        elif dup derefc 10 castc =
+            while dup derefc 10 castc =
+                swap 1 + swap 1 +
+            true _at_start setb
+        else
+            over NULL syntax_error
+    drop
+
+    while _indent_stack derefp list_peek_int 0 !=
+        _indent_stack derefp list_pop_int drop
+        dup TOKEN_BLOCK_END NULL
+        tokens derefp create_token tokens setp
+
+    dup TOKEN_END NULL tokens derefp create_token tokens setp
+
+    # Return a pointer to the list of tokens
+    tokens derefp
+    tokens free
+
+
+to tokenize: ptr source -> ptr
+    # Convenience wrapper for the _tokenize function
+    source PTR_SIZE malloc _tokenize

@@ -1,0 +1,456 @@
+import lib.std
+import lib.std.dict
+import lib.std.list
+import lib.std.textbuffer
+import lib.boba.opcodes
+import lib.boba.parser
+
+
+buffer _text          8     # ptr
+buffer _data          8     # ptr
+buffer _bss           8     # ptr
+buffer _string_index  8     # int
+buffer _textbuffer    8     # ptr
+buffer _string_labels 8     # ptr
+buffer _format_buffer 1024  # array of characters
+
+
+to _format: ptr l, ptr r -> ptr
+    # Formats a line of assembly code into two columns
+    l _format_buffer strcpy drop
+    l strlen
+    ' ' over _format_buffer + setc
+    1 +
+    while dup 10 <
+        ' ' over _format_buffer + setc
+        1 +
+    r over _format_buffer + strcpy drop
+    r strlen + _format_buffer +
+    10 castc over setc
+    0 castc over 1 + setc
+    _format_buffer
+
+
+to _append: ptr l, ptr r, ptr buf -> void
+    # Append to a given buffer
+    l r _format
+    buf derefp textbuffer_append buf setp
+
+
+to _append_opcode_info: int line, int opcode -> void
+    # Print comment with opcode info
+    _textbuffer derefp textbuffer_clear
+    "; "                  swap textbuffer_append
+    line itos             swap textbuffer_append
+    " "                   swap textbuffer_append
+    opcode opcode_to_str  swap textbuffer_append
+    "" over textbuffer.content + _text _append
+    _textbuffer setp
+
+
+to generate_code_x86_64_linux: ptr opcodes -> void
+    # Takes a list of opcodes and converts it into x86_64 NASM assembly
+
+    # Initialize buffers
+    512000 textbuffer_create _text setp
+    512000 textbuffer_create _data setp
+    new_textbuffer _bss setp
+    new_textbuffer _textbuffer setp
+    0 _string_index seti
+    new_dict _string_labels setp
+
+    "" "global _start"      _text _append
+    "" "section .text"      _text _append
+    "" "section .data"      _data _append
+    "" "section .bss"       _bss _append
+
+    # Generate assembly
+    0
+    while dup opcodes list.len + derefi <
+        dup opcodes list_fetch
+
+        # Add opcode info comment
+        dup opcode.line + derefi
+        over opcode.opcode + derefi
+        _append_opcode_info
+
+        dup opcode.opcode + derefi OPCODE_DUP = if
+            "" "pop rax"  _text _append
+            "" "push rax" _text _append
+            "" "push rax" _text _append
+        elif dup opcode.opcode + derefi OPCODE_DROP =
+            "" "pop rax" _text _append
+        elif dup opcode.opcode + derefi OPCODE_SWAP =
+            "" "pop rax"  _text _append
+            "" "pop rbx"  _text _append
+            "" "push rax" _text _append
+            "" "push rbx" _text _append
+        elif dup opcode.opcode + derefi OPCODE_OVER =
+            "" "pop rax"  _text _append
+            "" "pop rbx"  _text _append
+            "" "push rbx" _text _append
+            "" "push rax" _text _append
+            "" "push rbx" _text _append
+        elif dup opcode.opcode + derefi OPCODE_ROT =
+            "" "pop rax"  _text _append
+            "" "pop rbx"  _text _append
+            "" "pop rcx"  _text _append
+            "" "push rbx" _text _append
+            "" "push rax" _text _append
+            "" "push rcx" _text _append
+        elif dup opcode.opcode + derefi OPCODE_PUSH_INT =
+            _textbuffer derefp textbuffer_clear
+            "mov rax, "                   swap textbuffer_append
+            over opcode.operand + derefp  swap textbuffer_append
+            "" over textbuffer.content +  _text _append
+            "" "push rax"                 _text _append
+            _textbuffer setp
+        elif dup opcode.opcode + derefi OPCODE_PUSH_BOOL =
+            _textbuffer derefp textbuffer_clear
+            "mov rax, "                   swap textbuffer_append
+            over opcode.operand + derefp  swap textbuffer_append
+            "" over textbuffer.content +  _text _append
+            "" "push rax"                 _text _append
+            _textbuffer setp
+        elif dup opcode.opcode + derefi OPCODE_PUSH_CHAR =
+            _textbuffer derefp textbuffer_clear
+            "mov rax, " swap textbuffer_append
+            over opcode.operand + derefp derefc casti itos swap textbuffer_append
+            "" over textbuffer.content +  _text _append
+            "" "push rax"                 _text _append
+            _textbuffer setp
+        elif dup opcode.opcode + derefi OPCODE_PUSH_STRING =
+            # Lookup string label, or create if new
+            dup opcode.operand + derefp _string_labels derefp dict_fetch
+            NULL = if
+                # Increment string index
+                _string_index derefi
+                1 + dup _string_index seti
+
+                # Create label
+                itos
+                dup strlen 3 + malloc
+                "s_" over strcpy drop
+                over over 2 + strcpy drop
+                swap drop
+
+                over opcode.operand + derefp swap
+                _string_labels derefp dict_insert _string_labels setp
+
+                # Define string
+                _textbuffer derefp textbuffer_clear
+                over opcode.operand + derefp
+                _string_labels derefp dict_fetch  swap textbuffer_append
+                ": db \`"                         swap textbuffer_append
+                over opcode.operand + derefp      swap textbuffer_append
+
+                # over
+                # dup opcode.operand + strlen
+
+                # # opcode textbuf opcode.operand[i] 
+                # 0
+                # while swap over swap <
+                #     swap opcode.operand + over 1 + substring over + derefp derefc casti itos swap rot
+                #     textbuffer_append
+                #     swap
+                #     1 +
+                # drop
+
+                "\`, 0"                           swap textbuffer_append
+                dup textbuffer.content + "" _data _append
+                _textbuffer setp
+
+            dup opcode.operand + derefp _string_labels derefp dict_fetch NULL != \
+                "String should have label" assert
+
+            _textbuffer derefp textbuffer_clear
+            "mov rax, "                       swap textbuffer_append
+            over opcode.operand + derefp
+            _string_labels derefp dict_fetch  swap textbuffer_append
+            "" over textbuffer.content +      _text _append
+            "" "push rax"                     _text _append
+            _textbuffer setp
+        elif dup opcode.opcode + derefi OPCODE_FUNCTION =
+            _textbuffer derefp textbuffer_clear
+            over opcode.operand + derefp  swap textbuffer_append
+            ":"                           swap textbuffer_append
+            dup textbuffer.content + ""   _text _append
+            "" "push rbp"                 _text _append
+            "" "mov rbp, rsp"             _text _append
+            _textbuffer setp
+        elif dup opcode.opcode + derefi OPCODE_CALL =
+            _textbuffer derefp textbuffer_clear
+            "call "                       swap textbuffer_append
+            over opcode.operand + derefp  swap textbuffer_append
+            "" over textbuffer.content +  _text _append
+            _textbuffer setp
+
+            dup opcode.operand + derefp functions derefp dict_fetch
+            0
+            while over function.args + derefp list.len + derefi 4 + over >
+                "" "pop rbx" _text _append
+                1 +
+            drop
+            function.return_type + derefi TYPE_VOID != if
+                "" "push rax" _text _append
+        elif dup opcode.opcode + derefi OPCODE_GET_ARG =
+            "" "mov rax, rbp"                                       _text _append
+            _textbuffer derefp textbuffer_clear
+            "add rax, "                   swap textbuffer_append
+            over opcode.operand + derefp  swap textbuffer_append
+            "" over textbuffer.content +                            _text _append
+            _textbuffer setp
+            "" "mov rbx, [rax]"                                     _text _append
+            "" "push rbx"                                           _text _append
+        elif dup opcode.opcode + derefi OPCODE_ADD =
+            "" "pop rax"      _text _append
+            "" "pop rbx"      _text _append
+            "" "add rbx, rax" _text _append
+            "" "push rbx"     _text _append
+        elif dup opcode.opcode + derefi OPCODE_SUBTRACT =
+            "" "pop rax"      _text _append
+            "" "pop rbx"      _text _append
+            "" "sub rbx, rax" _text _append
+            "" "push rbx"     _text _append
+        elif dup opcode.opcode + derefi OPCODE_MULTIPLY =
+            "" "pop rax"        _text _append
+            "" "pop rbx"        _text _append
+            "" "imul rbx, rax"  _text _append
+            "" "push rbx"       _text _append
+        elif dup opcode.opcode + derefi OPCODE_DIVIDE =
+            "" "xor rdx, rdx"   _text _append
+            "" "pop rbx"        _text _append
+            "" "pop rax"        _text _append
+            "" "div rbx"        _text _append
+            "" "push rax"       _text _append
+        elif dup opcode.opcode + derefi OPCODE_MOD =
+            "" "xor rdx, rdx"   _text _append
+            "" "pop rbx"        _text _append
+            "" "pop rax"        _text _append
+            "" "div rbx"        _text _append
+            "" "push rdx"       _text _append
+        elif dup opcode.opcode + derefi OPCODE_RESTORE_FRAME =
+            "" "pop rax"      _text _append
+            "" "mov rsp, rbp" _text _append
+            "" "pop rbp"      _text _append
+        elif dup opcode.opcode + derefi OPCODE_RETURN =
+            "" "ret"          _text _append
+        elif dup opcode.opcode + derefi OPCODE_BITWISE_AND =
+            "" "pop rax"      _text _append
+            "" "pop rbx"      _text _append
+            "" "and rbx, rax" _text _append
+            "" "push rbx"     _text _append
+        elif dup opcode.opcode + derefi OPCODE_BITWISE_OR =
+            "" "pop rax"      _text _append
+            "" "pop rbx"      _text _append
+            "" "or rbx, rax" _text _append
+            "" "push rbx"     _text _append
+        elif dup opcode.opcode + derefi OPCODE_GET_BUFFER =
+            _textbuffer derefp textbuffer_clear
+            "mov rax, "                   swap textbuffer_append
+            over opcode.operand + derefp  swap textbuffer_append
+            "" over textbuffer.content +  _text _append
+            "" "push rax"                 _text _append
+            _textbuffer setp
+        elif dup opcode.opcode + derefi OPCODE_CREATE_BUFFER =
+            _textbuffer derefp textbuffer_clear
+            over opcode.operand + derefp buffer_operand_buffer_name + derefp \
+                      swap textbuffer_append
+            ": resb " swap textbuffer_append
+            over opcode.operand + derefp buffer_operand_buffer_size + derefp \
+                      swap textbuffer_append
+
+            dup textbuffer.content + "" _bss _append
+            _textbuffer setp
+        elif dup opcode.opcode + derefi OPCODE_IS_EQUAL =
+            "" "mov rax, 0"     _text _append
+            "" "mov rbx, 1"     _text _append
+            "" "pop rcx"        _text _append
+            "" "pop rdx"        _text _append
+            "" "cmp rdx, rcx"   _text _append
+            "" "cmove rax, rbx" _text _append
+            "" "push rax"       _text _append
+        elif dup opcode.opcode + derefi OPCODE_IS_NOT_EQUAL =
+            "" "mov rax, 0"       _text _append
+            "" "mov rbx, 1"       _text _append
+            "" "pop rcx"          _text _append
+            "" "pop rdx"          _text _append
+            "" "cmp rdx, rcx"     _text _append
+            "" "cmovne rax, rbx"  _text _append
+            "" "push rax"         _text _append
+        elif dup opcode.opcode + derefi OPCODE_IS_GREATER_OR_EQUAL =
+            "" "mov rax, 0"       _text _append
+            "" "mov rbx, 1"       _text _append
+            "" "pop rcx"          _text _append
+            "" "pop rdx"          _text _append
+            "" "cmp rdx, rcx"     _text _append
+            "" "cmovge rax, rbx"  _text _append
+            "" "push rax"         _text _append
+        elif dup opcode.opcode + derefi OPCODE_IS_GREATER =
+            "" "mov rax, 0"     _text _append
+            "" "mov rbx, 1"     _text _append
+            "" "pop rcx"        _text _append
+            "" "pop rdx"        _text _append
+            "" "cmp rdx, rcx"   _text _append
+            "" "cmovg rax, rbx" _text _append
+            "" "push rax"       _text _append
+        elif dup opcode.opcode + derefi OPCODE_IS_LESS_OR_EQUAL =
+            "" "mov rax, 0"       _text _append
+            "" "mov rbx, 1"       _text _append
+            "" "pop rcx"          _text _append
+            "" "pop rdx"          _text _append
+            "" "cmp rdx, rcx"     _text _append
+            "" "cmovle rax, rbx"  _text _append
+            "" "push rax"         _text _append
+        elif dup opcode.opcode + derefi OPCODE_IS_LESS =
+            "" "mov rax, 0"     _text _append
+            "" "mov rbx, 1"     _text _append
+            "" "pop rcx"        _text _append
+            "" "pop rdx"        _text _append
+            "" "cmp rdx, rcx"   _text _append
+            "" "cmovl rax, rbx" _text _append
+            "" "push rax"       _text _append
+        elif dup opcode.opcode + derefi OPCODE_IF =
+            "" "pop rax"                                      _text _append
+            "" "test rax, rax"                                _text _append
+            _textbuffer derefp textbuffer_clear
+            "jz "                         swap textbuffer_append
+            over opcode.operand + derefp  swap textbuffer_append
+            "" over textbuffer.content +  _text _append
+            _textbuffer setp
+        elif dup opcode.opcode + derefi OPCODE_LABEL =
+            _textbuffer derefp textbuffer_clear
+            over opcode.operand + derefp  swap textbuffer_append
+            ":"                           swap textbuffer_append
+            dup textbuffer.content + ""   _text _append
+            _textbuffer setp
+        elif dup opcode.opcode + derefi OPCODE_JUMP =
+            _textbuffer derefp textbuffer_clear
+            "jmp "                        swap textbuffer_append
+            over opcode.operand + derefp  swap textbuffer_append
+            "" over textbuffer.content +  _text _append
+            _textbuffer setp
+        elif dup opcode.opcode + derefi OPCODE_SYSCALL =
+            "" "pop rax" _text _append
+            dup opcode.operand + derefp stoi
+            dup 6 > if
+                "Syscall should have 1-6 arguments" raise
+            dup 5 > if
+                "" "pop r9" _text _append
+            dup 4 > if
+                "" "pop r8" _text _append
+            dup 3 > if
+                "" "pop r10" _text _append
+            dup 2 > if
+                "" "pop rdx" _text _append
+            dup 1 > if
+                "" "pop rsi" _text _append
+            dup 0 > if
+                "" "pop rdi"  _text _append
+            drop
+            "" "syscall"  _text _append
+            "" "push rax" _text _append
+        elif dup opcode.opcode + derefi OPCODE_REF_F =
+            _textbuffer derefp textbuffer_clear
+            "mov rax, "                   swap textbuffer_append
+            over opcode.operand + derefp  swap textbuffer_append
+            "" over textbuffer.content +  _text _append
+            "" "push rax"                 _text _append
+            _textbuffer setp
+        elif dup opcode.opcode + derefi OPCODE_DEREF_B =
+            "" "pop rax"        _text _append
+            "" "xor rbx, rbx"   _text _append
+            "" "mov bl, [rax]"  _text _append
+            "" "push rbx"       _text _append
+        elif dup opcode.opcode + derefi OPCODE_DEREF_C =
+            "" "pop rax"        _text _append
+            "" "xor rbx, rbx"   _text _append
+            "" "mov bl, [rax]"  _text _append
+            "" "push rbx"       _text _append
+        elif dup opcode.opcode + derefi OPCODE_DEREF_I =
+            "" "pop rax"        _text _append
+            "" "mov rbx, [rax]" _text _append
+            "" "push rbx"       _text _append
+        elif dup opcode.opcode + derefi OPCODE_DEREF_P =
+            "" "pop rax"        _text _append
+            "" "mov rbx, [rax]" _text _append
+            "" "push rbx"       _text _append
+        elif dup opcode.opcode + derefi OPCODE_SET_B =
+            "" "pop rax"        _text _append
+            "" "pop rbx"        _text _append
+            "" "mov [rax], bl"  _text _append
+        elif dup opcode.opcode + derefi OPCODE_SET_C =
+            "" "pop rax"        _text _append
+            "" "pop rbx"        _text _append
+            "" "mov [rax], bl"  _text _append
+        elif dup opcode.opcode + derefi OPCODE_SET_I =
+            "" "pop rax"        _text _append
+            "" "pop rbx"        _text _append
+            "" "mov [rax], rbx" _text _append
+        elif dup opcode.opcode + derefi OPCODE_SET_P =
+            "" "pop rax"        _text _append
+            "" "pop rbx"        _text _append
+            "" "mov [rax], rbx" _text _append
+        elif dup opcode.opcode + derefi OPCODE_SHIFT_LEFT =
+            "" "pop rcx"      _text _append
+            "" "pop rax"      _text _append
+            "" "shl rax, cl"  _text _append
+            "" "push rax"     _text _append
+        elif dup opcode.opcode + derefi OPCODE_SHIFT_RIGHT =
+            "" "pop rcx"      _text _append
+            "" "pop rax"      _text _append
+            "" "shr rax, cl"  _text _append
+            "" "push rax"     _text _append
+        elif dup opcode.opcode + derefi OPCODE_WHILE_START =
+            "" "pop rax"        _text _append
+            "" "test rax, rax"  _text _append
+            _textbuffer derefp textbuffer_clear
+            "jz "                         swap textbuffer_append
+            over opcode.operand + derefp  swap textbuffer_append
+            "_end"                        swap textbuffer_append
+            "" over textbuffer.content +  _text _append
+            _textbuffer setp
+        elif dup opcode.opcode + derefi OPCODE_WHILE_END =
+            _textbuffer derefp textbuffer_clear
+            "jmp "                        swap textbuffer_append
+            over opcode.operand + derefp  swap textbuffer_append
+            "" over textbuffer.content +  _text _append
+            textbuffer_clear
+
+            over opcode.operand + derefp  swap textbuffer_append
+            "_end:"                       swap textbuffer_append
+            dup textbuffer.content + ""   _text _append
+            _textbuffer setp
+        else
+            _textbuffer derefp textbuffer_clear
+            "Unknown opcode: "                        swap textbuffer_append
+            over opcode.opcode + derefi opcode_to_str swap textbuffer_append
+            "\n"                                      swap textbuffer_append
+            dup textbuffer.content + raise
+            _textbuffer setp
+
+        drop
+        1 +
+
+    # Add entrypoint
+    "_start:" ""        _text _append
+    "" "xor rax, rax"   _text _append
+    "" "push rax"       _text _append
+    "" "push rax"       _text _append
+    "" "push rax"       _text _append
+    "" "push rax"       _text _append
+    "" "call start"      _text _append
+    "_end:" ""          _text _append
+    "" "mov rdi, rax"   _text _append
+    "" "mov rax, 60"    _text _append
+    "" "syscall"        _text _append
+
+    # Output buffers
+    _text derefp
+    dup textbuffer.content + puts
+
+    _data derefp
+    dup textbuffer.content + puts
+
+    _bss derefp
+    dup textbuffer.content + puts

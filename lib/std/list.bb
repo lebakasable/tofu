@@ -1,0 +1,268 @@
+import lib.std
+
+
+# LIST
+# A dynamic list with O(n) time complexity (appending an item)[1]. It has a capacity of
+# 2^N items (starting at 2^0 = 1) and when an item needs to be appended and the list is
+# full, it's capacity is doubled.
+#
+# Note that this means that expanding lists means their location in the memory is likely
+# to change!
+#
+# [1] The Simple and Elegant Idea behind Efficient Dynamic Arrays
+#     https://youtu.be/Ij7NQ-0mIVA
+
+const list.capacity       0  # int
+const list.len            8  # int
+const list.item_size      16 # int
+const list.items          24 # ptr
+const LIST_METADATA_SIZE  24
+
+
+to list_create: int capacity, int item_size -> ptr
+    # Initializes an empty list with a given capacity and returns its pointer
+    capacity item_size * LIST_METADATA_SIZE + malloc
+    dup list.capacity  + capacity  swap seti
+    dup list.item_size + item_size swap seti
+    dup list.len       + 0         swap seti
+
+
+to new_list: int item_size -> ptr
+    # Returns a pointer to an empty list
+    50 item_size list_create
+
+
+to list_copy: ptr src -> ptr
+    # Creates a copy of a list and returns its pointer
+    src list.capacity + derefi
+    src list.item_size + derefi *
+    LIST_METADATA_SIZE +
+    dup malloc
+    dup rot src rot rot memcpy
+
+
+to list_eq: ptr a, ptr b -> bool
+    # Returns true if two lists have the same content
+    a list.len + derefi b list.len + derefi =
+    a list.item_size + derefi b list.item_size + derefi = and if
+        true
+        LIST_METADATA_SIZE
+        while dup a list.len + derefi a list.item_size + derefi * LIST_METADATA_SIZE + <
+            dup a + derefc over b + derefc != if
+                swap drop false swap
+            1 +
+        drop
+    else
+        false
+
+
+to list_fetch: int index, ptr list -> ptr
+    # Returns a pointer to a certain index in a given list
+    index list list.len + derefi >= if
+        "List index out of bounds\n" raise
+    list LIST_METADATA_SIZE + index list list.item_size + derefi * +
+
+
+to list_fetch_int: int index, ptr list -> int
+    # Returns the value of a certain index in a given list
+    list list.item_size + derefi INT_SIZE != if
+        "Can't call integer-specific method for list with non-integer items\n" raise
+
+    index list list.len + derefi >= if
+        "List index out of bounds\n" raise
+
+    list LIST_METADATA_SIZE + index list list.item_size + derefi * + derefi
+
+
+to list_fetch_ptr: int index, ptr list -> ptr
+    # Returns the value of a certain index in a given list
+    list list.item_size + derefi PTR_SIZE != if
+        "Can't call pointer-specific method for list with non-pointer items\n" raise
+
+    index list list.len + derefi >= if
+        "List index out of bounds\n" raise
+
+    list LIST_METADATA_SIZE + index list list.item_size + derefi * + derefp
+
+
+to list_contains_string: ptr s, ptr list -> bool
+    # Returns true when the list contains a given string
+    list list.item_size + derefi PTR_SIZE != if
+        "Can't call pointer-specific method for list with non-pointer items\n" raise
+
+    false # value
+    0     # index
+    while dup list list.len + derefi <
+        dup list list_fetch_ptr s streq if
+            swap drop true swap
+        1 +
+    drop
+
+
+to list_pop: ptr list -> ptr
+    # Copies, removes and returns the last item of a given list
+    # The returned data is malloc'ed, so don't forget to free!
+    list list.len + derefi 0 = if
+        "Can't pop from an empty list\n" raise
+
+    # Get index of last item
+    list list.len + derefi 1 -
+
+    # Get pointer to item
+    dup list list_fetch
+
+    # Decrease list.len
+    over list list.len + seti
+
+    # Copy
+    list list.item_size + derefi malloc
+    dup rot swap
+    list list.item_size + derefi memcpy
+
+
+to list_pop_int: ptr list -> int
+    # Removes and returns the last value of a given list
+    list list.item_size + derefi INT_SIZE != if
+        "Can't call integer-specific method for list with non-integer items\n" raise
+
+    list list.len + derefi 0 = if
+        "Can't pop from an empty list\n" raise
+
+    list list.len + derefi 1 -
+    dup list list.len + seti
+    list list.item_size + derefi * list + LIST_METADATA_SIZE + derefi
+
+
+to list_pop_ptr: ptr list -> ptr
+    # Removes and returns the last value of a given list
+    list list.item_size + derefi PTR_SIZE != if
+        "Can't call pointer-specific method for list with non-pointer items\n" raise
+
+    list list.len + derefi 0 = if
+        "Can't pop from an empty list\n" raise
+
+    list list.len + derefi 1 -
+    dup list list.len + seti
+    list list.item_size + derefi * list + LIST_METADATA_SIZE + derefp
+
+
+to list_peek: ptr list -> ptr
+    # Returns a pointer to the last item of a given list
+    list list.len + derefi 0 = if
+        "Can't peek in an empty list\n" raise
+
+    list dup list.len + derefi 1 - swap list_fetch
+
+
+to list_peek_int: ptr list -> int
+    # Returns the last value of a given list
+    list list.item_size + derefi INT_SIZE != if
+        "Can't call integer-specific method for list with non-integer items\n" raise
+
+    list list.len + derefi 0 = if
+        "Can't peek in an empty list\n" raise
+
+    list dup list.len + derefi 1 - swap list_fetch_int
+
+
+to list_peek_ptr: ptr list -> ptr
+    # Returns the last value of a given list
+    list list.item_size + derefi PTR_SIZE != if
+        "Can't call pointer-specific method for list with non-pointer items\n" raise
+
+    list list.len + derefi 0 = if
+        "Can't peek in an empty list\n" raise
+
+    list dup list.len + derefi 1 - swap list_fetch_ptr
+
+
+to list_append: ptr item, ptr list -> ptr
+    # Appends an item to a given list and return a pointer to the list
+    list list.len + derefi
+    list list.capacity + derefi = if
+        # Create a list with double the capacity
+        list list.capacity + derefi 2 * list list.item_size + derefi list_create
+
+        # Copy items
+        list list.items +
+        over list.items +
+        list list.len + derefi list list.item_size + derefi *
+        memcpy
+
+        # Update metadata
+        list list.len + derefi
+        over list.len + seti
+
+        # Free old list
+        list free
+    else
+        list
+
+    # Append item to list
+    dup list.len + derefi over list.item_size + derefi * LIST_METADATA_SIZE + over +
+    over list.item_size + derefi
+    item rot rot memcpy
+
+    dup list.len + derefi 1 + over list.len + seti
+
+
+to list_append_int: int item, ptr list -> ptr
+    # Appends an item to a given list and return a pointer to the list
+    list list.item_size + derefi INT_SIZE != if
+        "Can't call integer-specific method for list with non-integer items\n" raise
+
+    list list.len + derefi
+    list list.capacity + derefi = if
+        # Create a list with double the capacity
+        list list.capacity + derefi 2 * list list.item_size + derefi list_create
+
+        # Copy items
+        list list.items +
+        over list.items +
+        list list.len + derefi list list.item_size + derefi *
+        memcpy
+
+        # Update metadata
+        list list.len + derefi
+        over list.len + seti
+
+        # Free old list
+        list free
+    else
+        list
+
+    # Append item to list
+    dup list.len + derefi
+    dup 1 + rot dup rot swap list.len + seti swap
+    over list.item_size + derefi * LIST_METADATA_SIZE + over + item swap seti
+
+
+to list_append_ptr: ptr item, ptr list -> ptr
+    # Appends an item to a given list and return a pointer to the list
+    list list.item_size + derefi PTR_SIZE != if
+        "Can't call pointer-specific method for list with non-pointer items\n" raise
+
+    list list.len + derefi
+    list list.capacity + derefi = if
+        # Create a list with double the capacity
+        list list.capacity + derefi 2 * list list.item_size + derefi list_create
+
+        # Copy items
+        list list.items +
+        over list.items +
+        list list.len + derefi list list.item_size + derefi *
+        memcpy
+
+        # Update metadata
+        list list.len + derefi
+        over list.len + seti
+
+        # Free old list
+        list free
+    else
+        list
+
+    # Append item to list
+    dup list.len + derefi
+    dup 1 + rot dup rot swap list.len + seti swap
+    list list.item_size + derefi * LIST_METADATA_SIZE + over + item swap setp

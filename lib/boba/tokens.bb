@@ -1,0 +1,108 @@
+import lib.std
+
+
+## Constants
+
+const TOKEN_NOOP        0
+const TOKEN_ARITHMETIC  1
+const TOKEN_ARROW       2
+const TOKEN_BLOCK_START 3
+const TOKEN_BLOCK_END   4
+const TOKEN_BOOL        5
+const TOKEN_CHAR        6
+const TOKEN_COLON       7
+const TOKEN_COMMA       8
+const TOKEN_COMPARISON  9
+const TOKEN_IDENTIFIER  10
+const TOKEN_INT         11
+const TOKEN_KEYWORD     12
+const TOKEN_STRING      13
+const TOKEN_TYPE        14
+
+const TOKEN_END         99
+
+
+to token_to_str: int token -> ptr
+    # Returns the string representation of a given token
+    token TOKEN_NOOP = if
+        "NOOP"
+    elif token TOKEN_ARITHMETIC =
+        "ARITHMETIC"
+    elif token TOKEN_ARROW =
+        "ARROW"
+    elif token TOKEN_BLOCK_START =
+        "BLOCK_START"
+    elif token TOKEN_BLOCK_END =
+        "BLOCK_END"
+    elif token TOKEN_BOOL =
+        "BOOL"
+    elif token TOKEN_CHAR =
+        "CHAR"
+    elif token TOKEN_COLON =
+        "COLON"
+    elif token TOKEN_COMMA =
+        "COMMA"
+    elif token TOKEN_COMPARISON =
+        "COMPARISON"
+    elif token TOKEN_IDENTIFIER =
+        "IDENTIFIER"
+    elif token TOKEN_INT =
+        "INT"
+    elif token TOKEN_KEYWORD =
+        "KEYWORD"
+    elif token TOKEN_STRING =
+        "STRING"
+    elif token TOKEN_TYPE =
+        "TYPE"
+    elif token TOKEN_END =
+        "END"
+    else
+        "Unknown token type" raise NULL
+
+
+## Structs
+
+# TOKEN
+# A token is a string with an identified type. It also carries its line number for
+# debugging purposes.
+const token.type  0  # int
+const token.value 8  # ptr
+const token.line  16 # int
+const TOKEN_SIZE  24
+
+buffer _token 24
+
+
+to create_token: int line, int type, ptr value, ptr list -> ptr
+    # Appends a token to a list and returns a pointer to the list
+    line  _token token.line  + seti
+    type  _token token.type  + seti
+    value _token token.value + setp
+    _token list list_append
+
+to dump_tokens: ptr tokens -> void
+    # Prints the contents of a given list to STDOUT
+    "Number of tokens: "      puts
+    tokens list.len + derefi  puti
+    "\n"                      puts
+
+    "Tokens:\n" puts
+    0
+    while dup tokens list.len + derefi <
+        "* " puts
+        dup TOKEN_SIZE *
+        tokens list.items + +
+        token.type + derefi token_to_str puts " " puts
+        dup TOKEN_SIZE *
+        tokens list.items + +
+        token.value + derefp
+        dup NULL != if
+            puts " " puts
+        else
+            drop
+        dup TOKEN_SIZE *
+        tokens list.items + +
+        token.line + derefi puti " " puts
+        "\n" puts
+        1 +
+    drop

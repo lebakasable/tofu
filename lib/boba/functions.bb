@@ -1,0 +1,73 @@
+import lib.std
+import lib.boba.types
+
+
+## Structs
+
+# FUNCTION
+# A function signature containing information about its arguments and return type.
+
+const function.name         0   # ptr
+const function.args         8   # ptr to list of arguments
+const function.return_type  16  # int
+const FUNCTION_SIZE         24
+
+
+# ARGUMENT
+# Contains information about an argument.
+
+const argument.name  0  # ptr
+const argument.type  8  # int
+const argument.index 16 # int
+const ARGUMENT_SIZE  24
+
+buffer _argument 24
+
+
+to create_function: ptr name -> ptr
+    # Creates a function and returns its pointer
+    FUNCTION_SIZE malloc
+    name                    over function.name +        setp
+    ARGUMENT_SIZE new_list  over function.args +        setp
+    TYPE_VOID               over function.return_type + seti
+
+
+to function_add_argument: int type, ptr name, ptr func -> void
+    # Adds an argument to a function
+    name                                          _argument argument.name + setp
+    type                                          _argument argument.type + seti
+    func function.args + derefp list.len + derefi _argument argument.index + seti
+
+    _argument
+    func function.args + derefp list_append
+    func function.args + setp
+
+
+to function_set_return_type: int type, ptr func -> void
+    # Sets a function's return type
+    type func function.return_type + seti
+
+
+to function_get_arg: ptr name, ptr func -> ptr
+    # Returns a given argument, returns NULL if not found
+    NULL  # argument
+    0     # index
+    while dup func function.args + derefp list.len + derefi <
+        dup func function.args + derefp list_fetch
+        dup argument.name + derefp name streq if
+            rot drop swap over
+        drop
+        1 +
+    drop
+
+
+to function_get_arg_offset: ptr name, ptr func -> int
+    # Returns the memory offset of a given argument, returns -1 if not found
+    name func function_get_arg
+    dup NULL = if
+        0 1 -
+    else
+        func function.args + derefp list.len + derefi
+        over argument.index + derefi -
+        5 +
+        8 *

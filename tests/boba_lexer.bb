@@ -1,0 +1,74 @@
+# Description:boba.lexer - Tokenizing source code
+# Exit code:0
+# Stdout:
+# Stderr:
+
+import lib.std
+import lib.std.list
+import lib.boba.lexer
+
+
+to start: int argc, ptr argv -> int
+    "to foo: int -> bool_"
+    "    # This is a function_"   concat
+    "    true if_"                concat
+    "        \"Yeah baby\"_"      concat
+    "const constant 123"          concat
+
+    # TODO: Unescape characters
+    dup 20 + 10 castc swap setc
+    dup 45 + 10 castc swap setc
+    dup 57 + 10 castc swap setc
+    dup 77 + 10 castc swap setc
+
+    tokenize
+    list.items +
+
+    dup token.type + derefi TOKEN_KEYWORD =     "Token 1 should be keyword" assert
+    dup token.line + derefi 1 =                 "Token 1 should be on line 1" assert
+    TOKEN_SIZE +
+    dup token.type + derefi TOKEN_IDENTIFIER =  "Token 2 should be identifier" assert
+    dup token.line + derefi 1 =                 "Token 2 should be on line 1" assert
+    TOKEN_SIZE +
+    dup token.type + derefi TOKEN_COLON =       "Token 3 should be colon" assert
+    dup token.line + derefi 1 =                 "Token 3 should be on line 1" assert
+    TOKEN_SIZE +
+    dup token.type + derefi TOKEN_TYPE =        "Token 4 should be type" assert
+    dup token.line + derefi 1 =                 "Token 4 should be on line 1" assert
+    TOKEN_SIZE +
+    dup token.type + derefi TOKEN_ARROW =       "Token 5 should be arrow" assert
+    dup token.line + derefi 1 =                 "Token 5 should be on line 1" assert
+    TOKEN_SIZE +
+    dup token.type + derefi TOKEN_TYPE =        "Token 6 should be type" assert
+    dup token.line + derefi 1 =                 "Token 6 should be on line 1" assert
+    TOKEN_SIZE +
+    dup token.type + derefi TOKEN_BLOCK_START = "Token 7 should be block start" assert
+    dup token.line + derefi 2 =                 "Token 7 should be on line 2" assert
+    TOKEN_SIZE +
+    dup token.type + derefi TOKEN_BOOL =        "Token 8 should be boolean" assert
+    dup token.line + derefi 3 =                 "Token 8 should be on line 3" assert
+    TOKEN_SIZE +
+    dup token.type + derefi TOKEN_KEYWORD =     "Token 9 should be keyword" assert
+    dup token.line + derefi 3 =                 "Token 9 should be on line 3" assert
+    TOKEN_SIZE +
+    dup token.type + derefi TOKEN_BLOCK_START = "Token 10 should be block start" assert
+    dup token.line + derefi 4 =                 "Token 10 should be on line 4" assert
+    TOKEN_SIZE +
+    dup token.type + derefi TOKEN_STRING =      "Token 11 should be string" assert
+    dup token.line + derefi 4 =                 "Token 11 should be on line 4" assert
+    TOKEN_SIZE +
+    dup token.type + derefi TOKEN_BLOCK_END =   "Token 12 should be block end" assert
+    dup token.line + derefi 5 =                 "Token 12 should be on line 5" assert
+    TOKEN_SIZE +
+    dup token.type + derefi TOKEN_BLOCK_END =   "Token 13 should be block end" assert
+    dup token.line + derefi 5 =                 "Token 13 should be on line 5" assert
+    TOKEN_SIZE +
+    dup token.type + derefi TOKEN_KEYWORD   =   "Token 14 should be keyword" assert
+    dup token.line + derefi 5 =                 "Token 14 should be on line 5" assert
+    TOKEN_SIZE +
+    dup token.type + derefi TOKEN_IDENTIFIER =  "Token 15 should be identifier" assert
+    dup token.line + derefi 5 =                 "Token 15 should be on line 5" assert
+    TOKEN_SIZE +
+    dup token.type + derefi TOKEN_INT =         "Token 16 should be integer" assert
+    dup token.line + derefi 5 =                 "Token 16 should be on line 5" assert
+    0
