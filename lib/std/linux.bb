@@ -170,3 +170,26 @@ to exec: ptr file, ptr args -> void
         syscall 3 drop
     elif dup 0 >
         dup 0 castp 0 0 castp SYS_WAIT4 syscall 4 drop
+
+
+to exec_silent: ptr file, ptr args -> void
+    SYS_FORK syscall 0
+
+    dup 0 = if
+        "/dev/null" 'r' open
+        STDOUT
+        33 syscall 2
+        drop
+
+        "/dev/null" 'r' open
+        STDERR
+        33 syscall 2
+        drop
+        
+        file
+        args
+        0 castp
+        SYS_EXECVE
+        syscall 3 drop
+    elif dup 0 >
+        dup 0 castp 0 0 castp SYS_WAIT4 syscall 4 drop

@@ -110,7 +110,7 @@ to start: ptr argv, int argc -> int
         input_file derefp ".asm" concat swap list_append_ptr
         NULL swap list_append_ptr
         list.items +
-        exec
+        exec_silent
 
         SHOULD_RUN derefb if
             input_file derefp
