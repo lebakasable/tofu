@@ -7,7 +7,7 @@ echo "[INFO] $(sha1sum $BOBA)"
 for file in $(find tests/*.bb -maxdepth 1 -not -type d); do
   # Compile
   echo -n "[TEST] $(sha1sum $file).. "
-  $BOBA --verify-memory $file
+  $BOBA --verify-memory $file > /dev/null
 
   # Get metadata
   DESCRIPTION="$(grep '^# Description:' $file | cut -d: -f2-)"

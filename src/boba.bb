@@ -99,36 +99,22 @@ to start: ptr argv, int argc -> int
         input_file derefp ".asm" concat 'w' open
         generate_code_x86_64_linux
 
-        "/usr/bin/nasm"
+        "/usr/bin/fasm"
         8 new_list
-        "nasm"     swap list_append_ptr
-        "-felf64"  swap list_append_ptr
-        "-o"       swap list_append_ptr
-        input_file derefp ".o" concat swap list_append_ptr
+        "fasm"     swap list_append_ptr
         input_file derefp ".asm" concat swap list_append_ptr
         NULL swap list_append_ptr
         list.items +
         exec
 
-        "/usr/bin/ld"
-        8 new_list
-        "ld"     swap list_append_ptr
-        "-o"     swap list_append_ptr
-        input_file derefp swap list_append_ptr
-        input_file derefp ".o" concat swap list_append_ptr
-        NULL swap list_append_ptr
-        list.items +
-        exec
-
-        "/usr/bin/rm"
-        8 new_list
-        "rm"     swap list_append_ptr
         KEEP_ASSEMBLY derefb false = if
+            "/usr/bin/rm"
+            8 new_list
+            "rm"                            swap list_append_ptr
             input_file derefp ".asm" concat swap list_append_ptr
-        input_file derefp ".o" concat swap list_append_ptr
-        NULL swap list_append_ptr
-        list.items +
-        exec
+            NULL swap list_append_ptr
+            list.items +
+            exec
     else
         drop "Unknown format\n" raise
 

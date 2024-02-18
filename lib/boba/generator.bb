@@ -49,7 +49,7 @@ to _append_opcode_info: int line, int opcode -> void
 
 
 to generate_code_x86_64_linux: ptr opcodes, int fd -> void
-    # Takes a list of opcodes and converts it into x86_64 NASM assembly
+    # Takes a list of opcodes and converts it into x86_64 FASM assembly
 
     # Initialize buffers
     512000 textbuffer_create _text setp
@@ -59,10 +59,11 @@ to generate_code_x86_64_linux: ptr opcodes, int fd -> void
     0 _string_index seti
     new_dict _string_labels setp
 
-    "" "global _start"      _text _append
-    "" "section .text"      _text _append
-    "" "section .data"      _data _append
-    "" "section .bss"       _bss _append
+    "" "format ELF64 executable"      _text _append
+    "" "entry _start"                 _text _append
+    "" "segment readable executable"  _text _append
+    "" "segment readable writeable"   _data _append
+    "" "segment readable writeable"   _bss _append
 
     # Generate assembly
     0
@@ -141,22 +142,25 @@ to generate_code_x86_64_linux: ptr opcodes, int fd -> void
                 _textbuffer derefp textbuffer_clear
                 over opcode.operand + derefp
                 _string_labels derefp dict_fetch  swap textbuffer_append
-                ": db \`"                         swap textbuffer_append
-                over opcode.operand + derefp      swap textbuffer_append
+                ": db "                           swap textbuffer_append
 
-                # over
-                # dup opcode.operand + strlen
+                _textbuffer setp
+                dup opcode.operand + derefp
 
-                # # opcode textbuf opcode.operand[i] 
-                # 0
-                # while swap over swap <
-                #     swap opcode.operand + over 1 + substring over + derefp derefc casti itos swap rot
-                #     textbuffer_append
-                #     swap
-                #     1 +
-                # drop
+                0 while over strlen over swap <
+                    dup 0 > if
+                        ", " _textbuffer derefp textbuffer_append _textbuffer setp
+                    over over + derefc casti itos _textbuffer derefp textbuffer_append _textbuffer setp
+                    1 +
+                swap drop
 
-                "\`, 0"                           swap textbuffer_append
+                _textbuffer derefp
+
+                swap 0 > if
+                    ", 0"                           swap textbuffer_append
+                else
+                    "0"                           swap textbuffer_append
+
                 dup textbuffer.content + "" _data _append
                 _textbuffer setp
 
@@ -172,6 +176,7 @@ to generate_code_x86_64_linux: ptr opcodes, int fd -> void
             _textbuffer setp
         elif dup opcode.opcode + derefi OPCODE_FUNCTION =
             _textbuffer derefp textbuffer_clear
+            "fn_"                           swap textbuffer_append
             over opcode.operand + derefp  swap textbuffer_append
             ":"                           swap textbuffer_append
             dup textbuffer.content + ""   _text _append
@@ -180,7 +185,7 @@ to generate_code_x86_64_linux: ptr opcodes, int fd -> void
             _textbuffer setp
         elif dup opcode.opcode + derefi OPCODE_CALL =
             _textbuffer derefp textbuffer_clear
-            "call "                       swap textbuffer_append
+            "call fn_"                       swap textbuffer_append
             over opcode.operand + derefp  swap textbuffer_append
             "" over textbuffer.content +  _text _append
             _textbuffer setp
@@ -247,16 +252,17 @@ to generate_code_x86_64_linux: ptr opcodes, int fd -> void
             "" "push rbx"     _text _append
         elif dup opcode.opcode + derefi OPCODE_GET_BUFFER =
             _textbuffer derefp textbuffer_clear
-            "mov rax, "                   swap textbuffer_append
+            "mov rax, buf_"               swap textbuffer_append
             over opcode.operand + derefp  swap textbuffer_append
             "" over textbuffer.content +  _text _append
             "" "push rax"                 _text _append
             _textbuffer setp
         elif dup opcode.opcode + derefi OPCODE_CREATE_BUFFER =
             _textbuffer derefp textbuffer_clear
+            "buf_"   swap textbuffer_append
             over opcode.operand + derefp buffer_operand_buffer_name + derefp \
                       swap textbuffer_append
-            ": resb " swap textbuffer_append
+            ": rb "   swap textbuffer_append
             over opcode.operand + derefp buffer_operand_buffer_size + derefp \
                       swap textbuffer_append
 
@@ -439,7 +445,7 @@ to generate_code_x86_64_linux: ptr opcodes, int fd -> void
     "" "push rax"       _text _append
     "" "push rax"       _text _append
     "" "push rax"       _text _append
-    "" "call start"      _text _append
+    "" "call fn_start"  _text _append
     "_end:" ""          _text _append
     "" "mov rdi, rax"   _text _append
     "" "mov rax, 60"    _text _append
