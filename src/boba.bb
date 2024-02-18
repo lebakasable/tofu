@@ -86,8 +86,6 @@ to start: ptr argv, int argc -> int
     elif FORMAT derefi FORMAT_LINUX_X86_64 =
         # Generate code
         generate_code_x86_64_linux
-    elif FORMAT derefi FORMAT_MAC_AARCH64 =
-        drop "AArch64 format is not implemented yet\n" raise
     else
         drop "Unknown format\n" raise
 
