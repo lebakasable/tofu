@@ -9,6 +9,7 @@ const SYS_MMAP          9
 const SYS_MUNMAP        11
 const SYS_RT_SIGACTION  13
 const SYS_RT_SIGRETURN  15
+const SYS_DUP2          33
 const SYS_SETITIMER     38
 const SYS_FORK          57
 const SYS_EXECVE        59
@@ -178,12 +179,12 @@ to exec_silent: ptr file, ptr args -> void
     dup 0 = if
         "/dev/null" 'r' open
         STDOUT
-        33 syscall 2
+        SYS_DUP2 syscall 2
         drop
 
         "/dev/null" 'r' open
         STDERR
-        33 syscall 2
+        SYS_DUP2 syscall 2
         drop
         
         file
