@@ -7,6 +7,7 @@ import lib.boba.lexer
 import lib.boba.parser
 
 
+buffer SHOULD_RUN       1  # bool
 buffer DUMP_TOKENS      1  # bool
 buffer DUMP_OPCODES     1  # bool
 buffer ENABLE_PROFILER  1  # bool
@@ -20,6 +21,8 @@ to parse_arguments: ptr argv, int argc -> ptr
     # Returns an args object
     argparse_init
 
+    "--run" ARG_TYPE_FLAG "Run the generated executable"
+    argparse_add_argument
     "--format" ARG_TYPE_OPTIONAL "Set the output format (default: linux_x86_64)"
     argparse_add_argument
     "--profiler" ARG_TYPE_FLAG "Enable the profiler"
@@ -50,6 +53,8 @@ to start: ptr argv, int argc -> int
     else
         str_to_format FORMAT seti
 
+    "--run" over args.kwargs + derefp dict_fetch arg.value + derefp NULL != \
+        SHOULD_RUN setb
     "--profiler" over args.kwargs + derefp dict_fetch arg.value + derefp NULL != \
         ENABLE_PROFILER setb
     "--verify-memory" over args.kwargs + derefp dict_fetch arg.value + derefp NULL != \
@@ -106,6 +111,14 @@ to start: ptr argv, int argc -> int
         NULL swap list_append_ptr
         list.items +
         exec
+
+        SHOULD_RUN derefb if
+            input_file derefp
+            8 new_list
+            "./" input_file derefp concat swap list_append_ptr
+            NULL swap list_append_ptr
+            list.items +
+            exec
 
         KEEP_ASSEMBLY derefb false = if
             "/usr/bin/rm"

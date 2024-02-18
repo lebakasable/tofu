@@ -157,9 +157,9 @@ to generate_code_x86_64_linux: ptr opcodes, int fd -> void
                 _textbuffer derefp
 
                 swap 0 > if
-                    ", 0"                           swap textbuffer_append
+                    ", 0"  swap textbuffer_append
                 else
-                    "0"                           swap textbuffer_append
+                    "0"    swap textbuffer_append
 
                 dup textbuffer.content + "" _data _append
                 _textbuffer setp
