@@ -10,5 +10,5 @@ A low-level concatenative programming language.
 
 ```bash
 $ ./build.sh
-$ ./build/boba
+$ ./bin/boba
 ```
