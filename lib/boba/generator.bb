@@ -48,7 +48,7 @@ to _append_opcode_info: int line, int opcode -> void
     _textbuffer setp
 
 
-to generate_code_x86_64_linux: ptr opcodes -> void
+to generate_code_x86_64_linux: ptr opcodes, int fd -> void
     # Takes a list of opcodes and converts it into x86_64 NASM assembly
 
     # Initialize buffers
@@ -447,10 +447,10 @@ to generate_code_x86_64_linux: ptr opcodes -> void
 
     # Output buffers
     _text derefp
-    dup textbuffer.content + puts
+    dup textbuffer.content + fd swap write
 
     _data derefp
-    dup textbuffer.content + puts
+    dup textbuffer.content + fd swap write
 
     _bss derefp
-    dup textbuffer.content + puts
+    dup textbuffer.content + fd swap write

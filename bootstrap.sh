@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 set -xe
-./build/boba src/boba.bb > bootstrap/boba.asm
-./build.sh
+./src/boba src/boba.bb --keep-assembly
+mv src/boba.asm bootstrap/boba.asm
+mv src/boba bin/boba

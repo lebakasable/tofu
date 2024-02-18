@@ -10,10 +10,14 @@ const SYS_MUNMAP        11
 const SYS_RT_SIGACTION  13
 const SYS_RT_SIGRETURN  15
 const SYS_SETITIMER     38
+const SYS_FORK          57
+const SYS_EXECVE        59
 const SYS_EXIT          60
+const SYS_WAIT4         61
 
 const O_RDONLY      0
 const O_WRONLY      1
+const O_CREAT       64
 const PROT_READ     1
 const PROT_WRITE    2
 const MAP_PRIVATE   2
@@ -25,22 +29,27 @@ const SA_SIGINFO    4
 const SA_RESTORER   67108864  # 0x04000000
 
 
-to puts: ptr s -> void
-    # Prints a string and returns the write syscall exit-code
-    STDOUT     # File descriptor
+to write: int fd, ptr s -> void
+    # Prints a string to fd and returns the write syscall exit-code
+    fd         # File descriptor
     s          # Pointer to string
     s strlen   # String length
     SYS_WRITE
     syscall 3
+
+
+to puts: ptr s -> void
+    # Prints a string and returns the write syscall exit-code
+    STDOUT     # File descriptor
+    s          # Pointer to string
+    write
 
 
 to error: ptr s -> void
     # Prints an error and returns the write syscall exit-code
     STDERR     # File descriptor
     s          # Pointer to string
-    s strlen   # String length
-    SYS_WRITE
-    syscall 3
+    write
 
 
 to exit: int code -> void
@@ -67,9 +76,9 @@ to open: ptr filename, char mode -> int
     mode 'r' = if
         O_RDONLY or
     mode 'w' = if
-        O_WRONLY or
+        O_WRONLY or O_CREAT or
 
-    0
+    511
     SYS_OPEN
     syscall 3
 
@@ -148,3 +157,16 @@ to set_timer: int inter_secs, int inter_usecs, int val_secs, int val_usecs -> in
     inter_usecs _itimerval itimerval.value + timeval.usec + seti
 
     ITIMER_REAL _itimerval 0 castp setitimer
+
+
+to exec: ptr file, ptr args -> void
+    SYS_FORK syscall 0
+
+    dup 0 = if
+        file
+        args
+        0 castp
+        SYS_EXECVE
+        syscall 3 drop
+    elif dup 0 >
+        dup 0 castp 0 0 castp SYS_WAIT4 syscall 4 drop

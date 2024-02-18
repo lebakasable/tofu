@@ -11,6 +11,9 @@ buffer DUMP_TOKENS      1  # bool
 buffer DUMP_OPCODES     1  # bool
 buffer ENABLE_PROFILER  1  # bool
 buffer FORMAT           8  # int
+buffer KEEP_ASSEMBLY    1  # bool
+
+buffer input_file 8 # ptr
 
 
 to parse_arguments: ptr argv, int argc -> ptr
@@ -28,6 +31,8 @@ to parse_arguments: ptr argv, int argc -> ptr
     "--dump-tokens" ARG_TYPE_FLAG "Print the tokens"
     argparse_add_argument
     "--dump-opcodes" ARG_TYPE_FLAG "Print the opcodes"
+    argparse_add_argument
+    "--keep-assembly" ARG_TYPE_FLAG "Keep the generated assembly code"
     argparse_add_argument
     "filename" ARG_TYPE_POSITIONAL "Source code filename"
     argparse_add_argument
@@ -55,6 +60,8 @@ to start: ptr argv, int argc -> int
         DUMP_TOKENS setb
     "--dump-opcodes" over args.kwargs + derefp dict_fetch arg.value + derefp NULL != \
         DUMP_OPCODES setb
+    "--keep-assembly" over args.kwargs + derefp dict_fetch arg.value + derefp NULL != \
+        KEEP_ASSEMBLY setb
 
     ENABLE_PROFILER derefb if
         # Initialize profiler
@@ -74,7 +81,11 @@ to start: ptr argv, int argc -> int
         dup dump_tokens
 
     # Parse tokens
-    parse
+    dup parse
+
+    swap
+    dup strlen 3 - substring
+    input_file setp
 
     DUMP_OPCODES derefb if
         dup dump_opcodes
@@ -85,7 +96,39 @@ to start: ptr argv, int argc -> int
         profiler_dump
     elif FORMAT derefi FORMAT_LINUX_X86_64 =
         # Generate code
+        input_file derefp ".asm" concat 'w' open
         generate_code_x86_64_linux
+
+        "/usr/bin/nasm"
+        8 new_list
+        "nasm"     swap list_append_ptr
+        "-felf64"  swap list_append_ptr
+        "-o"       swap list_append_ptr
+        input_file derefp ".o" concat swap list_append_ptr
+        input_file derefp ".asm" concat swap list_append_ptr
+        NULL swap list_append_ptr
+        list.items +
+        exec
+
+        "/usr/bin/ld"
+        8 new_list
+        "ld"     swap list_append_ptr
+        "-o"     swap list_append_ptr
+        input_file derefp swap list_append_ptr
+        input_file derefp ".o" concat swap list_append_ptr
+        NULL swap list_append_ptr
+        list.items +
+        exec
+
+        "/usr/bin/rm"
+        8 new_list
+        "rm"     swap list_append_ptr
+        KEEP_ASSEMBLY derefb false = if
+            input_file derefp ".asm" concat swap list_append_ptr
+        input_file derefp ".o" concat swap list_append_ptr
+        NULL swap list_append_ptr
+        list.items +
+        exec
     else
         drop "Unknown format\n" raise
 
