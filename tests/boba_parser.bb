@@ -47,9 +47,9 @@ to start: int argc, ptr argv -> int
     "else_"           dup 4  + 10  castc swap setc concat
     "    3_"          dup 5  + 10  castc swap setc concat
     "to o: int x -> bool_" \
-                      dup 20 + 10  castc swap setc concat
+                      dup 19 + 10  castc swap setc concat
     "    x 1 =_"      dup 9  + 10  castc swap setc concat
-    "to p: -> void_" dup 14 + 10  castc swap setc concat
+    "to p: -> void_"  dup 13 + 10  castc swap setc concat
     "    1 o_"        dup 7  + 10  castc swap setc concat
 
     tokenize

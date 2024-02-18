@@ -81,7 +81,7 @@ to start: ptr argv, int argc -> int
         dup dump_tokens
 
     # Parse tokens
-    dup parse
+    over swap parse
 
     swap
     dup strlen 3 - substring

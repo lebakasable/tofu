@@ -1,15 +1,13 @@
 #!/usr/bin/env bash
 
-BOBA="./build/boba"
+BOBA="./bin/boba"
 
 echo "[INFO] $(sha1sum $BOBA)"
 
 for file in $(find tests/*.bb -maxdepth 1 -not -type d); do
   # Compile
   echo -n "[TEST] $(sha1sum $file).. "
-  $BOBA --verify-memory $file > test.asm
-  nasm -felf64 test.asm -o test.o
-  ld -o test test.o
+  $BOBA --verify-memory $file
 
   # Get metadata
   DESCRIPTION="$(grep '^# Description:' $file | cut -d: -f2-)"
@@ -24,10 +22,12 @@ for file in $(find tests/*.bb -maxdepth 1 -not -type d); do
     printf "%b" "$(grep '^# Stderr:' $file | cut -d: -f2-)"
   )"
 
+  OUTPUT_FILE="./${file//.bb/}"
+
   # Run test
-  EXIT_CODE="$(./test $ARGS > /dev/null 2>&1; echo $?)"
-  STDOUT="$(./test $ARGS 2>/dev/null)"
-  STDERR="$(./test $ARGS 2>&1 1>/dev/null)"
+  EXIT_CODE="$($OUTPUT_FILE $ARGS > /dev/null 2>&1; echo $?)"
+  STDOUT="$($OUTPUT_FILE $ARGS 2>/dev/null)"
+  STDERR="$($OUTPUT_FILE $ARGS 2>&1 1>/dev/null)"
 
   # Verify results
   SUCCESS=1
@@ -51,7 +51,7 @@ for file in $(find tests/*.bb -maxdepth 1 -not -type d); do
   fi
 
   # Cleanup
-  rm test test.o test.asm
+  rm $OUTPUT_FILE
 
   if [[ "$SUCCESS" -eq 0 ]]; then
     echo "Test failed!"

@@ -16,10 +16,10 @@ to start: int argc, ptr argv -> int
     "const constant 123"          concat
 
     # TODO: Unescape characters
-    dup 20 + 10 castc swap setc
-    dup 45 + 10 castc swap setc
-    dup 57 + 10 castc swap setc
-    dup 77 + 10 castc swap setc
+    dup 19 + 10 castc swap setc
+    dup 44 + 10 castc swap setc
+    dup 56 + 10 castc swap setc
+    dup 76 + 10 castc swap setc
 
     tokenize
     list.items +

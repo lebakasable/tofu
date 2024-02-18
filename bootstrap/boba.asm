@@ -67066,10 +67066,17 @@ end_0x00000000000001c7:
 if_0x00000000000001c8: 
           ; 81 label
 end_0x00000000000001c8: 
-          ; 84 duplicate
+          ; 84 over
           pop rax
+          pop rbx
+          push rbx
           push rax
+          push rbx
+          ; 84 swap
+          pop rax
+          pop rbx
           push rax
+          push rbx
           ; 84 push string
           mov rax, s_461
           push rax
