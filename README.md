@@ -1,10 +1,13 @@
 <div align="center">
   <img src="assets/logo.svg" width="200" />
 
-# boba
+  <h1>boba</h1>
 
-A low-level concatenative programming language.
+  A low-level concatenative programming language.
 </div>
+
+> ![WARNING]
+> This language is a work in progress. Anything can change at any moment without any notice. Use it at your own risk!
 
 ## Quick Start
 
