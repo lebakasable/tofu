@@ -1,4 +1,4 @@
-boba
+/boba
 tests/*
 !tests/*.bb
 !tests/*.txt
