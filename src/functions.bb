@@ -1,5 +1,5 @@
 import lib.std
-import lib.boba.types
+import src.types
 
 
 ## Structs

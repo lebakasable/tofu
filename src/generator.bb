@@ -2,8 +2,8 @@ import lib.std
 import lib.std.dict
 import lib.std.list
 import lib.std.textbuffer
-import lib.boba.opcodes
-import lib.boba.parser
+import src.opcodes
+import src.parser
 
 
 buffer _text          8     # ptr

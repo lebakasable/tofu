@@ -1,12 +1,12 @@
 import lib.std
 import lib.std.dict
 import lib.std.list
-import lib.boba.functions
-import lib.boba.helpers
-import lib.boba.lexer
-import lib.boba.opcodes
-import lib.boba.tokens
-import lib.boba.types
+import src.functions
+import src.helpers
+import src.lexer
+import src.opcodes
+import src.tokens
+import src.types
 
 
 buffer functions            8  # ptr
@@ -977,7 +977,7 @@ int return_on -> ptr
 
 to _parse_core_functions: -> void
     # Parse the core functions
-    "lib/boba/core.bb" dup
+    "lib/core.bb" dup
     read_file
     tokenize
     8 malloc dup 0 swap seti

@@ -69181,30 +69181,6 @@ if_0x00000000000001d7:
           pop rax
           mov rbx, [rax]
           push rbx
-          ; 110 push string
-          mov rax, s_497
-          push rax
-          ; 110 push string
-          mov rax, s_476
-          push rax
-          ; 110 push integer
-          mov rax, 110
-          push rax
-          ; 110 push string
-          mov rax, s_496
-          push rax
-          ; 110 push boolean
-          mov rax, 1
-          push rax
-          ; 110 call
-          call fn_concat
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
           ; 110 swap
           pop rax
           pop rbx
@@ -69304,28 +69280,40 @@ if_0x00000000000001d7:
           pop rbx
           pop rbx
           pop rbx
-          ; 115 get pointer to buffer
-          mov rax, buf_SHOULD_RUN
+          ; 115 push string
+          mov rax, s_500
           push rax
-          ; 115 dereference boolean
-          pop rax
-          xor rbx, rbx
-          mov bl, [rax]
-          push rbx
-          ; 115 start of if-block
-          pop rax
-          test rax, rax
-          jz if_0x00000000000001d9
-          ; 116 get pointer to buffer
-          mov rax, buf_input_file
-          push rax
-          ; 116 dereference pointer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 117 push integer
+          ; 116 push integer
           mov rax, 8
           push rax
+          ; 116 push string
+          mov rax, s_476
+          push rax
+          ; 116 push integer
+          mov rax, 116
+          push rax
+          ; 116 push string
+          mov rax, s_496
+          push rax
+          ; 116 push boolean
+          mov rax, 1
+          push rax
+          ; 116 call
+          call fn_new_list
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 117 push string
+          mov rax, s_501
+          push rax
+          ; 117 swap
+          pop rax
+          pop rbx
+          push rax
+          push rbx
           ; 117 push string
           mov rax, s_476
           push rax
@@ -69339,15 +69327,13 @@ if_0x00000000000001d7:
           mov rax, 1
           push rax
           ; 117 call
-          call fn_new_list
+          call fn_list_append_ptr
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
-          push rax
-          ; 118 push string
-          mov rax, s_500
+          pop rbx
           push rax
           ; 118 get pointer to buffer
           mov rax, buf_input_file
@@ -69356,6 +69342,9 @@ if_0x00000000000001d7:
           pop rax
           mov rbx, [rax]
           push rbx
+          ; 118 push string
+          mov rax, s_497
+          push rax
           ; 118 push string
           mov rax, s_476
           push rax
@@ -69469,45 +69458,32 @@ if_0x00000000000001d7:
           mov rax, 1
           push rax
           ; 121 call
-          call fn_exec
+          call fn_exec_silent
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
-          ; 116 jump
-          jmp end_0x00000000000001d9
-          ; 116 label
-if_0x00000000000001d9: 
-          ; 116 label
-end_0x00000000000001d9: 
           ; 123 get pointer to buffer
-          mov rax, buf_KEEP_ASSEMBLY
+          mov rax, buf_SHOULD_RUN
           push rax
           ; 123 dereference boolean
           pop rax
           xor rbx, rbx
           mov bl, [rax]
           push rbx
-          ; 123 push boolean
-          mov rax, 0
-          push rax
-          ; 123 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
-          push rax
           ; 123 start of if-block
           pop rax
           test rax, rax
-          jz if_0x00000000000001da
-          ; 124 push string
-          mov rax, s_501
+          jz if_0x00000000000001d9
+          ; 124 get pointer to buffer
+          mov rax, buf_input_file
           push rax
+          ; 124 dereference pointer
+          pop rax
+          mov rbx, [rax]
+          push rbx
           ; 125 push integer
           mov rax, 8
           push rax
@@ -69533,6 +69509,34 @@ end_0x00000000000001d9:
           push rax
           ; 126 push string
           mov rax, s_502
+          push rax
+          ; 126 get pointer to buffer
+          mov rax, buf_input_file
+          push rax
+          ; 126 dereference pointer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 126 push string
+          mov rax, s_476
+          push rax
+          ; 126 push integer
+          mov rax, 126
+          push rax
+          ; 126 push string
+          mov rax, s_496
+          push rax
+          ; 126 push boolean
+          mov rax, 1
+          push rax
+          ; 126 call
+          call fn_concat
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
           push rax
           ; 126 swap
           pop rax
@@ -69560,16 +69564,6 @@ end_0x00000000000001d9:
           pop rbx
           pop rbx
           push rax
-          ; 127 get pointer to buffer
-          mov rax, buf_input_file
-          push rax
-          ; 127 dereference pointer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 127 push string
-          mov rax, s_497
-          push rax
           ; 127 push string
           mov rax, s_476
           push rax
@@ -69583,9 +69577,7 @@ end_0x00000000000001d9:
           mov rax, 1
           push rax
           ; 127 call
-          call fn_concat
-          pop rbx
-          pop rbx
+          call fn_NULL
           pop rbx
           pop rbx
           pop rbx
@@ -69617,72 +69609,27 @@ end_0x00000000000001d9:
           pop rbx
           pop rbx
           push rax
-          ; 128 push string
-          mov rax, s_476
-          push rax
           ; 128 push integer
-          mov rax, 128
-          push rax
-          ; 128 push string
-          mov rax, s_496
-          push rax
-          ; 128 push boolean
-          mov rax, 1
-          push rax
-          ; 128 call
-          call fn_NULL
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 128 swap
-          pop rax
-          pop rbx
-          push rax
-          push rbx
-          ; 128 push string
-          mov rax, s_476
-          push rax
-          ; 128 push integer
-          mov rax, 128
-          push rax
-          ; 128 push string
-          mov rax, s_496
-          push rax
-          ; 128 push boolean
-          mov rax, 1
-          push rax
-          ; 128 call
-          call fn_list_append_ptr
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 129 push integer
           mov rax, 24
           push rax
-          ; 129 add
+          ; 128 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 130 push string
+          ; 129 push string
           mov rax, s_476
           push rax
-          ; 130 push integer
-          mov rax, 130
+          ; 129 push integer
+          mov rax, 129
           push rax
-          ; 130 push string
+          ; 129 push string
           mov rax, s_496
           push rax
-          ; 130 push boolean
+          ; 129 push boolean
           mov rax, 1
           push rax
-          ; 130 call
+          ; 129 call
           call fn_exec
           pop rbx
           pop rbx
@@ -69691,42 +69638,256 @@ end_0x00000000000001d9:
           pop rbx
           pop rbx
           ; 124 jump
+          jmp end_0x00000000000001d9
+          ; 124 label
+if_0x00000000000001d9: 
+          ; 124 label
+end_0x00000000000001d9: 
+          ; 131 get pointer to buffer
+          mov rax, buf_KEEP_ASSEMBLY
+          push rax
+          ; 131 dereference boolean
+          pop rax
+          xor rbx, rbx
+          mov bl, [rax]
+          push rbx
+          ; 131 push boolean
+          mov rax, 0
+          push rax
+          ; 131 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
+          push rax
+          ; 131 start of if-block
+          pop rax
+          test rax, rax
+          jz if_0x00000000000001da
+          ; 132 push string
+          mov rax, s_498
+          push rax
+          ; 133 push integer
+          mov rax, 8
+          push rax
+          ; 133 push string
+          mov rax, s_476
+          push rax
+          ; 133 push integer
+          mov rax, 133
+          push rax
+          ; 133 push string
+          mov rax, s_496
+          push rax
+          ; 133 push boolean
+          mov rax, 1
+          push rax
+          ; 133 call
+          call fn_new_list
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 134 push string
+          mov rax, s_499
+          push rax
+          ; 134 swap
+          pop rax
+          pop rbx
+          push rax
+          push rbx
+          ; 134 push string
+          mov rax, s_476
+          push rax
+          ; 134 push integer
+          mov rax, 134
+          push rax
+          ; 134 push string
+          mov rax, s_496
+          push rax
+          ; 134 push boolean
+          mov rax, 1
+          push rax
+          ; 134 call
+          call fn_list_append_ptr
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 135 get pointer to buffer
+          mov rax, buf_input_file
+          push rax
+          ; 135 dereference pointer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 135 push string
+          mov rax, s_497
+          push rax
+          ; 135 push string
+          mov rax, s_476
+          push rax
+          ; 135 push integer
+          mov rax, 135
+          push rax
+          ; 135 push string
+          mov rax, s_496
+          push rax
+          ; 135 push boolean
+          mov rax, 1
+          push rax
+          ; 135 call
+          call fn_concat
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 135 swap
+          pop rax
+          pop rbx
+          push rax
+          push rbx
+          ; 135 push string
+          mov rax, s_476
+          push rax
+          ; 135 push integer
+          mov rax, 135
+          push rax
+          ; 135 push string
+          mov rax, s_496
+          push rax
+          ; 135 push boolean
+          mov rax, 1
+          push rax
+          ; 135 call
+          call fn_list_append_ptr
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 136 push string
+          mov rax, s_476
+          push rax
+          ; 136 push integer
+          mov rax, 136
+          push rax
+          ; 136 push string
+          mov rax, s_496
+          push rax
+          ; 136 push boolean
+          mov rax, 1
+          push rax
+          ; 136 call
+          call fn_NULL
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 136 swap
+          pop rax
+          pop rbx
+          push rax
+          push rbx
+          ; 136 push string
+          mov rax, s_476
+          push rax
+          ; 136 push integer
+          mov rax, 136
+          push rax
+          ; 136 push string
+          mov rax, s_496
+          push rax
+          ; 136 push boolean
+          mov rax, 1
+          push rax
+          ; 136 call
+          call fn_list_append_ptr
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 137 push integer
+          mov rax, 24
+          push rax
+          ; 137 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 138 push string
+          mov rax, s_476
+          push rax
+          ; 138 push integer
+          mov rax, 138
+          push rax
+          ; 138 push string
+          mov rax, s_496
+          push rax
+          ; 138 push boolean
+          mov rax, 1
+          push rax
+          ; 138 call
+          call fn_exec
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          ; 132 jump
           jmp end_0x00000000000001da
-          ; 124 label
+          ; 132 label
 if_0x00000000000001da: 
-          ; 124 label
+          ; 132 label
 end_0x00000000000001da: 
           ; 102 jump
           jmp end_0x00000000000001d7
           ; 102 label
 elif_0x00000000000001d8: 
-          ; 132 drop
+          ; 140 drop
           pop rax
-          ; 132 push string
+          ; 140 push string
           mov rax, s_503
           push rax
-          ; 132 push string
+          ; 140 push string
           mov rax, s_476
           push rax
-          ; 132 push integer
-          mov rax, 132
+          ; 140 push integer
+          mov rax, 140
           push rax
-          ; 132 push string
+          ; 140 push string
           mov rax, s_496
           push rax
-          ; 132 push boolean
+          ; 140 push boolean
           mov rax, 1
           push rax
-          ; 132 call
+          ; 140 call
           call fn_raise
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
-          ; 132 label
+          ; 140 label
 end_0x00000000000001d7: 
-          ; 134 push integer
+          ; 142 push integer
           mov rax, 0
           push rax
           ; 47 restore frame
@@ -69748,7 +69909,7 @@ _end:
           syscall
           segment readable writeable
 s_1: db 48, 0 
-s_2: db 108, 105, 98, 47, 98, 111, 98, 97, 47, 99, 111, 114, 101, 46, 98, 98, 0 
+s_2: db 108, 105, 98, 47, 99, 111, 114, 101, 46, 98, 98, 0 
 s_3: db 116, 114, 97, 99, 101, 98, 97, 99, 107, 0 
 s_4: db 10, 84, 114, 97, 99, 101, 98, 97, 99, 107, 58, 10, 0 
 s_5: db 44, 32, 108, 105, 110, 101, 32, 0 
@@ -69900,7 +70061,7 @@ s_150: db 95, 115, 116, 97, 114, 116, 0
 s_151: db 112, 114, 111, 102, 105, 108, 101, 114, 95, 105, 110, 105, 116, 0 
 s_152: db 76, 105, 110, 117, 120, 32, 120, 56, 54, 45, 54, 52, 0 
 s_153: db 85, 110, 107, 110, 111, 119, 110, 32, 102, 111, 114, 109, 97, 116, 0 
-s_154: db 108, 105, 98, 47, 98, 111, 98, 97, 47, 102, 111, 114, 109, 97, 116, 115, 46, 98, 98, 0 
+s_154: db 115, 114, 99, 47, 102, 111, 114, 109, 97, 116, 115, 46, 98, 98, 0 
 s_155: db 102, 111, 114, 109, 97, 116, 95, 116, 111, 95, 115, 116, 114, 0 
 s_156: db 108, 105, 110, 117, 120, 95, 120, 56, 54, 95, 54, 52, 0 
 s_157: db 115, 116, 114, 95, 116, 111, 95, 102, 111, 114, 109, 97, 116, 0 
@@ -69958,7 +70119,7 @@ s_208: db 115, 121, 115, 99, 97, 108, 108, 0
 s_209: db 101, 110, 100, 32, 111, 102, 32, 119, 104, 105, 108, 101, 45, 108, 111, 111, 112, 0 
 s_210: db 115, 116, 97, 114, 116, 32, 111, 102, 32, 119, 104, 105, 108, 101, 45, 108, 111, 111, 112, 0 
 s_211: db 85, 110, 107, 110, 111, 119, 110, 32, 111, 112, 99, 111, 100, 101, 0 
-s_212: db 108, 105, 98, 47, 98, 111, 98, 97, 47, 111, 112, 99, 111, 100, 101, 115, 46, 98, 98, 0 
+s_212: db 115, 114, 99, 47, 111, 112, 99, 111, 100, 101, 115, 46, 98, 98, 0 
 s_213: db 111, 112, 99, 111, 100, 101, 95, 116, 111, 95, 115, 116, 114, 0 
 s_214: db 99, 114, 101, 97, 116, 101, 95, 111, 112, 99, 111, 100, 101, 0 
 s_215: db 78, 117, 109, 98, 101, 114, 32, 111, 102, 32, 111, 112, 99, 111, 100, 101, 115, 58, 32, 0 
@@ -69971,7 +70132,7 @@ s_221: db 73, 78, 84, 0
 s_222: db 80, 84, 82, 0 
 s_223: db 86, 79, 73, 68, 0 
 s_224: db 85, 110, 107, 110, 111, 119, 110, 32, 116, 121, 112, 101, 0 
-s_225: db 108, 105, 98, 47, 98, 111, 98, 97, 47, 116, 121, 112, 101, 115, 46, 98, 98, 0 
+s_225: db 115, 114, 99, 47, 116, 121, 112, 101, 115, 46, 98, 98, 0 
 s_226: db 116, 121, 112, 101, 95, 116, 111, 95, 115, 116, 114, 0 
 s_227: db 98, 111, 111, 108, 0 
 s_228: db 115, 116, 114, 95, 116, 111, 95, 116, 121, 112, 101, 0 
@@ -69980,13 +70141,13 @@ s_230: db 105, 110, 116, 0
 s_231: db 112, 116, 114, 0 
 s_232: db 118, 111, 105, 100, 0 
 s_233: db 85, 110, 107, 110, 111, 119, 110, 32, 116, 121, 112, 101, 58, 32, 0 
-s_234: db 108, 105, 98, 47, 98, 111, 98, 97, 47, 102, 117, 110, 99, 116, 105, 111, 110, 115, 46, 98, 98, 0 
+s_234: db 115, 114, 99, 47, 102, 117, 110, 99, 116, 105, 111, 110, 115, 46, 98, 98, 0 
 s_235: db 99, 114, 101, 97, 116, 101, 95, 102, 117, 110, 99, 116, 105, 111, 110, 0 
 s_236: db 102, 117, 110, 99, 116, 105, 111, 110, 95, 97, 100, 100, 95, 97, 114, 103, 117, 109, 101, 110, 116, 0 
 s_237: db 102, 117, 110, 99, 116, 105, 111, 110, 95, 103, 101, 116, 95, 97, 114, 103, 0 
 s_238: db 102, 117, 110, 99, 116, 105, 111, 110, 95, 103, 101, 116, 95, 97, 114, 103, 95, 111, 102, 102, 115, 101, 116, 0 
 s_239: db 83, 121, 110, 116, 97, 120, 32, 101, 114, 114, 111, 114, 32, 97, 116, 32, 108, 105, 110, 101, 32, 0 
-s_240: db 108, 105, 98, 47, 98, 111, 98, 97, 47, 104, 101, 108, 112, 101, 114, 115, 46, 98, 98, 0 
+s_240: db 115, 114, 99, 47, 104, 101, 108, 112, 101, 114, 115, 46, 98, 98, 0 
 s_241: db 115, 121, 110, 116, 97, 120, 95, 101, 114, 114, 111, 114, 0 
 s_242: db 58, 32, 0 
 s_243: db 105, 115, 95, 97, 108, 112, 104, 97, 110, 117, 109, 101, 114, 105, 99, 0 
@@ -70005,13 +70166,13 @@ s_255: db 83, 84, 82, 73, 78, 71, 0
 s_256: db 84, 89, 80, 69, 0 
 s_257: db 69, 78, 68, 0 
 s_258: db 85, 110, 107, 110, 111, 119, 110, 32, 116, 111, 107, 101, 110, 32, 116, 121, 112, 101, 0 
-s_259: db 108, 105, 98, 47, 98, 111, 98, 97, 47, 116, 111, 107, 101, 110, 115, 46, 98, 98, 0 
+s_259: db 115, 114, 99, 47, 116, 111, 107, 101, 110, 115, 46, 98, 98, 0 
 s_260: db 116, 111, 107, 101, 110, 95, 116, 111, 95, 115, 116, 114, 0 
 s_261: db 99, 114, 101, 97, 116, 101, 95, 116, 111, 107, 101, 110, 0 
 s_262: db 78, 117, 109, 98, 101, 114, 32, 111, 102, 32, 116, 111, 107, 101, 110, 115, 58, 32, 0 
 s_263: db 100, 117, 109, 112, 95, 116, 111, 107, 101, 110, 115, 0 
 s_264: db 84, 111, 107, 101, 110, 115, 58, 10, 0 
-s_265: db 108, 105, 98, 47, 98, 111, 98, 97, 47, 108, 101, 120, 101, 114, 46, 98, 98, 0 
+s_265: db 115, 114, 99, 47, 108, 101, 120, 101, 114, 46, 98, 98, 0 
 s_266: db 95, 116, 111, 107, 101, 110, 105, 122, 101, 0 
 s_267: db 73, 110, 100, 101, 110, 116, 32, 115, 116, 97, 99, 107, 32, 115, 104, 111, 117, 108, 100, 32, 104, 97, 118, 101, 32, 105, 116, 101, 109, 115, 10, 0 
 s_268: db 85, 110, 101, 120, 112, 101, 120, 116, 101, 100, 32, 105, 110, 100, 101, 110, 116, 105, 110, 103, 0 
@@ -70062,7 +70223,7 @@ s_312: db 119, 104, 105, 108, 101, 0
 s_313: db 95, 95, 103, 101, 116, 95, 97, 114, 103, 0 
 s_314: db 95, 95, 114, 101, 115, 116, 111, 114, 101, 95, 102, 114, 97, 109, 101, 0 
 s_315: db 116, 111, 107, 101, 110, 105, 122, 101, 0 
-s_316: db 108, 105, 98, 47, 98, 111, 98, 97, 47, 112, 97, 114, 115, 101, 114, 46, 98, 98, 0 
+s_316: db 115, 114, 99, 47, 112, 97, 114, 115, 101, 114, 46, 98, 98, 0 
 s_317: db 95, 99, 117, 114, 114, 101, 110, 116, 95, 102, 117, 110, 99, 116, 105, 111, 110, 95, 99, 111, 110, 116, 97, 105, 110, 115, 95, 97, 114, 103, 0 
 s_318: db 95, 112, 101, 101, 107, 95, 110, 101, 120, 116, 95, 116, 111, 107, 101, 110, 0 
 s_319: db 95, 103, 101, 116, 95, 110, 101, 120, 116, 95, 116, 111, 107, 101, 110, 0 
@@ -70140,7 +70301,7 @@ s_390: db 85, 110, 101, 120, 112, 101, 99, 116, 101, 100, 32, 101, 110, 100, 32,
 s_391: db 76, 97, 115, 116, 32, 116, 111, 107, 101, 110, 32, 115, 104, 111, 117, 108, 100, 32, 98, 101, 32, 114, 101, 116, 117, 114, 110, 95, 111, 110, 0 
 s_392: db 95, 112, 97, 114, 115, 101, 95, 99, 111, 114, 101, 95, 102, 117, 110, 99, 116, 105, 111, 110, 115, 0 
 s_393: db 112, 97, 114, 115, 101, 0 
-s_394: db 108, 105, 98, 47, 98, 111, 98, 97, 47, 103, 101, 110, 101, 114, 97, 116, 111, 114, 46, 98, 98, 0 
+s_394: db 115, 114, 99, 47, 103, 101, 110, 101, 114, 97, 116, 111, 114, 46, 98, 98, 0 
 s_395: db 95, 102, 111, 114, 109, 97, 116, 0 
 s_396: db 95, 97, 112, 112, 101, 110, 100, 0 
 s_397: db 95, 97, 112, 112, 101, 110, 100, 95, 111, 112, 99, 111, 100, 101, 95, 105, 110, 102, 111, 0 
@@ -70222,7 +70383,7 @@ s_472: db 120, 111, 114, 32, 114, 97, 120, 44, 32, 114, 97, 120, 0
 s_473: db 99, 97, 108, 108, 32, 102, 110, 95, 115, 116, 97, 114, 116, 0 
 s_474: db 109, 111, 118, 32, 114, 100, 105, 44, 32, 114, 97, 120, 0 
 s_475: db 109, 111, 118, 32, 114, 97, 120, 44, 32, 54, 48, 0 
-s_476: db 115, 114, 99, 47, 98, 111, 98, 97, 46, 98, 98, 0 
+s_476: db 98, 111, 98, 97, 46, 98, 98, 0 
 s_477: db 112, 97, 114, 115, 101, 95, 97, 114, 103, 117, 109, 101, 110, 116, 115, 0 
 s_478: db 45, 45, 114, 117, 110, 0 
 s_479: db 82, 117, 110, 32, 116, 104, 101, 32, 103, 101, 110, 101, 114, 97, 116, 101, 100, 32, 101, 120, 101, 99, 117, 116, 97, 98, 108, 101, 0 
@@ -70244,11 +70405,11 @@ s_494: db 102, 105, 108, 101, 110, 97, 109, 101, 0
 s_495: db 83, 111, 117, 114, 99, 101, 32, 99, 111, 100, 101, 32, 102, 105, 108, 101, 110, 97, 109, 101, 0 
 s_496: db 115, 116, 97, 114, 116, 0 
 s_497: db 46, 97, 115, 109, 0 
-s_498: db 47, 117, 115, 114, 47, 98, 105, 110, 47, 102, 97, 115, 109, 0 
-s_499: db 102, 97, 115, 109, 0 
-s_500: db 46, 47, 0 
-s_501: db 47, 117, 115, 114, 47, 98, 105, 110, 47, 114, 109, 0 
-s_502: db 114, 109, 0 
+s_498: db 47, 117, 115, 114, 47, 98, 105, 110, 47, 114, 109, 0 
+s_499: db 114, 109, 0 
+s_500: db 47, 117, 115, 114, 47, 98, 105, 110, 47, 102, 97, 115, 109, 0 
+s_501: db 102, 97, 115, 109, 0 
+s_502: db 46, 47, 0 
 s_503: db 85, 110, 107, 110, 111, 119, 110, 32, 102, 111, 114, 109, 97, 116, 10, 0 
           segment readable writeable
 buf__itos: rb 21 

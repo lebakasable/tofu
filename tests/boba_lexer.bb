@@ -1,6 +1,6 @@
 import lib.std
 import lib.std.list
-import lib.boba.lexer
+import src.lexer
 
 
 to start: int argc, ptr argv -> int

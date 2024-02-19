@@ -75,7 +75,7 @@ For more info see `./test.py help`.
 
 If you wanna use the Boba compiler separately from its codebase, you only need two things:
 - `boba` native executable - the compiler itself (see [Bootstrapping](#bootstrapping) for more info on how to get it),
-- [lib/std/](./lib/std/) and std.bb - the standard library.
+- [lib/](./lib/) - the standard library.
 
 
 ### Editor Support

@@ -1,10 +1,10 @@
 import lib.std
 import lib.std.argparse
 import lib.std.profiler
-import lib.boba.formats
-import lib.boba.generator
-import lib.boba.lexer
-import lib.boba.parser
+import src.formats
+import src.generator
+import src.lexer
+import src.parser
 
 
 buffer SHOULD_RUN       1  # bool

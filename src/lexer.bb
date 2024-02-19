@@ -1,7 +1,7 @@
 import lib.std
 import lib.std.list
-import lib.boba.tokens
-import lib.boba.helpers
+import src.tokens
+import src.helpers
 
 
 buffer _indent_stack 8  # ptr

@@ -1,7 +1,7 @@
 import lib.std
 import lib.std.list
-import lib.boba.functions
-import lib.boba.types
+import src.functions
+import src.types
 
 
 buffer _function 8  # ptr
