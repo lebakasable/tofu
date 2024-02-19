@@ -7,6 +7,7 @@ jobs:
     name: Run tests
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - name: Setup FASM
         uses: stevenwdv/setup-fasm@v1.4.0
       - name: Bootstrap with FASM
