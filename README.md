@@ -165,7 +165,7 @@ This program pushes a character onto the stack and converts it into the integer 
 | `shr` | `int int -> int` | right bit shift. |
 | `shl` | `int int -> int` | left bit shift.  |
 | `or`  | `int int -> int` | bit `or`         |
-| `and  | `int int -> int` | bit `and`        |
+| `and` | `int int -> int` | bit `and`        |
 
 #### Memory
 
