@@ -1,8 +1,3 @@
-# Description:Standard library - Dictionary
-# Exit code:0
-# Stdout:
-# Stderr:
-
 import lib.std.dict
 
 

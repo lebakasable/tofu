@@ -1,0 +1,12 @@
+:i argc 0
+:b stdin 0
+
+:i returncode 0
+:b stdout 0
+
+:b stderr 99
+Foo bar baz
+Traceback:
+lib/std/linux.bb, line 73 in raise
+./tests/stdlib_raise.bb, line 4 in start
+

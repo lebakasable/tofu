@@ -1,8 +1,3 @@
-# Description:Standard library - list of structs
-# Exit code:0
-# Stdout:
-# Stderr:
-
 import lib.std.list
 
 const foo.a    0  # int

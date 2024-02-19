@@ -1,10 +1,5 @@
-# Description:Standard library - Argument parser
-# Exit code:0
-# Args:foo bar --asdf --qwerty baz
-# Stdout:
-# Stderr:
-
 import lib.std.argparse
+
 
 to start: ptr argv, int argc -> int
     argparse_init

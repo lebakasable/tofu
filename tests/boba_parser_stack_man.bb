@@ -1,8 +1,3 @@
-# Description:boba.parser - Parse, stack manipulation
-# Exit code:0
-# Stdout:Stack: INT INT INT CHAR BOOL INT CHAR INT INT CHAR INT 
-# Stderr:
-
 import lib.std
 import lib.boba.lexer
 import lib.boba.parser

@@ -1,8 +1,3 @@
-# Description:Data structure - Linked list
-# Exit code:4
-# Stdout:
-# Stderr:
-
 buffer list 96  # 4 items, 24 bytes per item
 
 const item.prev  0  # ptr

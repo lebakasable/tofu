@@ -1,8 +1,3 @@
-# Description:Standard library - substring
-# Exit code:0
-# Stdout:Hello
-# Stderr:
-
 import lib.std
 
 to start: ptr argv, int argc -> int

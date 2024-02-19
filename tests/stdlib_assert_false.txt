@@ -1,0 +1,12 @@
+:i argc 0
+:b stdin 0
+
+:i returncode 0
+:b stdout 0
+
+:b stderr 98
+OK
+Traceback:
+lib/std/linux.bb, line 79 in assert
+./tests/stdlib_assert_false.bb, line 4 in start
+

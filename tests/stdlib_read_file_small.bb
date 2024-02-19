@@ -1,8 +1,3 @@
-# Description:Standard library - read_file, small
-# Exit code:0
-# Stdout:foobarbaz
-# Stderr:
-
 import lib.std
 
 

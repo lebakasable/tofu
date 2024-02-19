@@ -1,8 +1,3 @@
-# Description:boba.lexer - Tokenizing source code
-# Exit code:0
-# Stdout:
-# Stderr:
-
 import lib.std
 import lib.std.list
 import lib.boba.lexer

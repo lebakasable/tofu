@@ -1,8 +1,3 @@
-# Description:Standard library - streq
-# Exit code:0
-# Stdout:
-# Stderr:
-
 import lib.std
 
 to start: ptr argv, int argc -> int

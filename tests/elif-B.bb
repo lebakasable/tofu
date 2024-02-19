@@ -1,8 +1,3 @@
-# Description:If/elif/else-statement B
-# Exit code:0
-# Stdout:B
-# Stderr:
-
 to start: -> int
     false if
       1 "A" 1 1 syscall 3

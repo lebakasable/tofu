@@ -1,8 +1,3 @@
-# Description:Standard library - malloc, single, small
-# Exit code:0
-# Stdout:Hi!\n
-# Stderr:
-
 import lib.std
 
 to start: ptr argv, int argc -> int

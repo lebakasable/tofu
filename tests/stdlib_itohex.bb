@@ -1,8 +1,3 @@
-# Description:Standard library - itohex
-# Exit code:0
-# Stdout:0xf0f0f0f0f0f0f0f0
-# Stderr:
-
 import lib.std
 
 buffer string 19

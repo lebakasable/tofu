@@ -1,8 +1,3 @@
-# Description:Argument order
-# Exit code:1
-# Stdout:
-# Stderr:
-
 to first: int x, int y -> int
     x
 

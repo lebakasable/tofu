@@ -1,0 +1,9 @@
+:i argc 0
+:b stdin 0
+
+:i returncode 0
+:b stdout 56
+Stack: INT INT INT CHAR BOOL INT CHAR INT INT CHAR INT 
+
+:b stderr 0
+

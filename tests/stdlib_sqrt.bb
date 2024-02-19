@@ -1,8 +1,3 @@
-# Description:Standard library - square root
-# Exit code:0
-# Stdout:
-# Stderr:
-
 import lib.std.math
 
 to start: ptr argv, int argc -> int

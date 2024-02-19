@@ -1,8 +1,3 @@
-# Description:Standard library - list, copy
-# Exit code:0
-# Stdout:
-# Stderr:
-
 import lib.std.list
 
 to start: ptr argv, int argc -> int

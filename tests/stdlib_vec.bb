@@ -1,8 +1,3 @@
-# Description:Standard library - vectors
-# Exit code:0
-# Stdout:
-# Stderr:
-
 import lib.std.math
 
 buffer vec_a 24

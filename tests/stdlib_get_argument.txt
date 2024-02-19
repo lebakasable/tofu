@@ -1,0 +1,14 @@
+:i argc 0
+:b stdin 0
+
+:i returncode 0
+:b stdout 0
+
+:b stderr 185
+Could not parse arguments due to index error
+
+Traceback:
+lib/std/linux.bb, line 73 in raise
+lib/std/argparse.bb, line 48 in get_argument
+./tests/stdlib_get_argument.bb, line 4 in start
+

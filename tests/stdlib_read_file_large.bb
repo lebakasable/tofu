@@ -1,8 +1,3 @@
-# Description:Standard library - read_file, large
-# Exit code:0
-# Stdout:
-# Stderr:
-
 import lib.std
 
 

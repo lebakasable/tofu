@@ -1,8 +1,3 @@
-# Description:Standard library - malloc, many
-# Exit code:164
-# Stdout:
-# Stderr:
-
 import lib.std
 
 

@@ -1,8 +1,3 @@
-# Description:Print "Hello, world!\n"
-# Exit code:11
-# Stdout:Hello, world!\n
-# Stderr:
-
 to start: int argc, ptr argv -> int
     1                   # File descriptor
     "Hello, world!\n"   # String

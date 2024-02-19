@@ -1,8 +1,3 @@
-# Description:Comparisons
-# Exit code:6
-# Stdout:
-# Stderr:
-
 to start: ptr argv, int argc -> int
     0
     3 3 =          casti +

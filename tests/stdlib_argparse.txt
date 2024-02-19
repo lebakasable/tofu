@@ -1,0 +1,28 @@
+:i argc 0
+:b stdin 0
+
+:i returncode 0
+:b stdout 222
+Usage: ././tests/stdlib_argparse [OPTIONS] foo bar
+
+Positional arguments:
+    foo
+        foo
+
+    bar
+        bar
+
+Optional arguments:
+    --qwerty
+        Ipsum
+
+    --null
+        NULL
+
+Flags:
+    --asdf
+        Lorem
+
+
+:b stderr 0
+

@@ -1,8 +1,3 @@
-# Description:Standard library - stoi
-# Exit code:0
-# Stdout:
-# Stderr:
-
 import lib.std
 
 to start: ptr argv, int argc -> int

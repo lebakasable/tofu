@@ -1,8 +1,3 @@
-# Description:Standard library - memcpy
-# Exit code:0
-# Stdout:walo
-# Stderr:
-
 import lib.std
 
 buffer foo 5

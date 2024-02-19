@@ -1,8 +1,3 @@
-# Description:Standard library - strcpy
-# Exit code:0
-# Stdout:Hello! world!Hello, world!
-# Stderr:
-
 import lib.std
 
 buffer a 20

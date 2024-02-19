@@ -1,8 +1,3 @@
-# Description:If-statement false
-# Exit code:0
-# Stdout: Yay!
-# Stderr:
-
 to start: int argc, ptr argv -> int
     false if
       1             # File descriptor

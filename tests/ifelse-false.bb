@@ -1,8 +1,3 @@
-# Description:If/else-statement false
-# Exit code:0
-# Stdout:Yay!
-# Stderr:
-
 to start: int argc, ptr argv -> int
     1 2 + 2 = if
       1             # File descriptor

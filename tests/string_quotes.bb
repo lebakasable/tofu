@@ -1,8 +1,3 @@
-# Description:String literal with escaped quotes
-# Exit code:28
-# Stdout:Yeah.. "sure"
-# Stderr:
-
 to start: int argc, ptr argv -> int
     1                   # File descriptor
     "Yeah.. \"sure\""   # String

@@ -1,8 +1,3 @@
-# Description:Standard library - free, many
-# Exit code:0
-# Stdout:
-# Stderr:
-
 import lib.std
 
 const N 10000

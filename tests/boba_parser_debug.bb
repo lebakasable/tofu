@@ -1,8 +1,3 @@
-# Description:boba.parser - Parse debug keyword
-# Exit code:0
-# Stdout:Stack: PTR INT BOOL CHAR 
-# Stderr:
-
 import lib.std
 import lib.boba.lexer
 import lib.boba.parser

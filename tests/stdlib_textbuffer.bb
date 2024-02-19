@@ -1,8 +1,3 @@
-# Description:Standard library - Textbuffer
-# Exit code:0
-# Stdout:Hello, world!
-# Stderr:
-
 import lib.std
 import lib.std.textbuffer
 

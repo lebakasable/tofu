@@ -1,8 +1,3 @@
-# Description:Function call
-# Exit code:42
-# Stdout:
-# Stderr:
-
 to foo: int x, int y -> int
     x y +
 

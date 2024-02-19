@@ -1,8 +1,3 @@
-# Description:Get/set integer
-# Exit code:1
-# Stdout:
-# Stderr:
-
 buffer foo 8
 
 to start: int argc, ptr argv -> int

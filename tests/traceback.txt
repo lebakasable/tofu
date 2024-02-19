@@ -1,0 +1,14 @@
+:i argc 0
+:b stdin 0
+
+:i returncode 0
+:b stdout 0
+
+:b stderr 179
+Something went wrong
+Traceback:
+./tests/traceback.bb, line 2 in baz
+./tests/traceback.bb, line 5 in bar
+./tests/traceback.bb, line 8 in foo
+./tests/traceback.bb, line 11 in start
+
