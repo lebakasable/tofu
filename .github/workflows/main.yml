@@ -1,0 +1,17 @@
+name: main
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup FASM
+        uses: stevenwdv/setup-fasm@v1.4.0
+      - name: Bootstrap with FASM
+        run: 'fasm bootstrap/boba.asm boba'
+      - name: Bootstrap with Boba
+        run: './boba boba.bb'
+      - name: Run tests
+        run: './test.py'
