@@ -161,6 +161,8 @@ to generate_code_x86_64_linux: ptr opcodes, int fd -> void
                             "92" _textbuffer derefp textbuffer_append _textbuffer setp
                         elif dup '0' =
                             "0" _textbuffer derefp textbuffer_append _textbuffer setp
+                        elif dup '"' =
+                            "34" _textbuffer derefp textbuffer_append _textbuffer setp
                         else
                             "Unknown escape sequence" raise
                         drop
@@ -374,7 +376,7 @@ to generate_code_x86_64_linux: ptr opcodes, int fd -> void
             "" "push rax" _text _append
         elif dup opcode.opcode + derefi OPCODE_REF_F =
             _textbuffer derefp textbuffer_clear
-            "mov rax, "                   swap textbuffer_append
+            "mov rax, fn_"                   swap textbuffer_append
             over opcode.operand + derefp  swap textbuffer_append
             "" over textbuffer.content +  _text _append
             "" "push rax"                 _text _append

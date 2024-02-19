@@ -790,7 +790,9 @@ int return_on -> ptr
                 _is_inline derefb if
                     dup token.line + derefi
                     OPCODE_LABEL
+                    "fn_"
                     _current_function derefp function.name + derefp
+                    concat
                     rot
                     _opcodes derefp create_opcode _opcodes setp
                 else
