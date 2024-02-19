@@ -115,7 +115,7 @@ to streq: ptr s, ptr q -> bool
         false =
     else
         false
-
+        
 
 const page.next          0   # ptr
 const page.prev          8   # ptr
@@ -574,3 +574,33 @@ to substring: ptr s, int n -> ptr
     n 1 + malloc
     s over n memcpy
     dup n + 0 castc swap setc
+
+
+to chop_first: ptr str, char delim -> ptr
+    0
+    str strlen while dup 0 >
+        str over + derefc delim = if
+            swap drop dup
+        1 -
+    drop
+    str swap substring
+
+
+to chop_before: ptr str, char delim -> ptr
+    0
+    str strlen while dup 0 >
+        str over + derefc delim = if
+            swap drop dup
+        1 -
+    drop
+    str swap + 1 +
+
+
+to chop_after: ptr str, char delim -> ptr
+    0
+    0 while dup str strlen <
+        str over + derefc delim = if
+            swap drop dup
+        1 +
+    drop
+    str swap substring

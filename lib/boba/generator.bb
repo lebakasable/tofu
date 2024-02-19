@@ -116,7 +116,7 @@ to generate_code_x86_64_linux: ptr opcodes, int fd -> void
         elif dup opcode.opcode + derefi OPCODE_PUSH_CHAR =
             _textbuffer derefp textbuffer_clear
             "mov rax, " swap textbuffer_append
-            over opcode.operand + derefp derefc casti itos swap textbuffer_append
+            over opcode.operand + derefp derefc casti itos swap textbuffer_append            "" over textbuffer.content +  _text _append
             "" over textbuffer.content +  _text _append
             "" "push rax"                 _text _append
             _textbuffer setp
@@ -146,11 +146,27 @@ to generate_code_x86_64_linux: ptr opcodes, int fd -> void
 
                 _textbuffer setp
                 dup opcode.operand + derefp
-
+                
                 0 while over strlen over swap <
                     dup 0 > if
                         ", " _textbuffer derefp textbuffer_append _textbuffer setp
-                    over over + derefc casti itos _textbuffer derefp textbuffer_append _textbuffer setp
+                    over over +
+                    dup derefc '\\' = if
+                        1 + derefc
+                        dup 'n' = if
+                            "10" _textbuffer derefp textbuffer_append _textbuffer setp
+                        elif dup 'r' =
+                            "13" _textbuffer derefp textbuffer_append _textbuffer setp
+                        elif dup '\\' =
+                            "92" _textbuffer derefp textbuffer_append _textbuffer setp
+                        elif dup '0' =
+                            "0" _textbuffer derefp textbuffer_append _textbuffer setp
+                        else
+                            "Unknown escape sequence" raise
+                        drop
+                        1 +
+                    else
+                        derefc casti itos _textbuffer derefp textbuffer_append _textbuffer setp
                     1 +
                 swap drop
 
@@ -453,10 +469,10 @@ to generate_code_x86_64_linux: ptr opcodes, int fd -> void
 
     # Output buffers
     _text derefp
-    dup textbuffer.content + fd swap write
+    textbuffer.content + 
 
     _data derefp
-    dup textbuffer.content + fd swap write
+    textbuffer.content + concat
 
     _bss derefp
-    dup textbuffer.content + fd swap write
+    textbuffer.content + concat fd swap write

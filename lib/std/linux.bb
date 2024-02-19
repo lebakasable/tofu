@@ -5,12 +5,17 @@ const STDERR 2
 const SYS_READ          0
 const SYS_WRITE         1
 const SYS_OPEN          2
+const SYS_CLOSE         3
 const SYS_MMAP          9
 const SYS_MUNMAP        11
 const SYS_RT_SIGACTION  13
 const SYS_RT_SIGRETURN  15
 const SYS_DUP2          33
 const SYS_SETITIMER     38
+const SYS_SOCKET        41
+const SYS_ACCEPT        43
+const SYS_BIND          49
+const SYS_LISTEN        50
 const SYS_FORK          57
 const SYS_EXECVE        59
 const SYS_EXIT          60
@@ -23,6 +28,11 @@ const PROT_READ     1
 const PROT_WRITE    2
 const MAP_PRIVATE   2
 const MAP_ANONYMOUS 32
+
+const PORT          6969
+const AF_INET       2
+const SOCK_STREAM   1
+const INADDR_LOCAL  16777343
 
 const ITIMER_REAL   0
 const SIGALRM       14
@@ -86,6 +96,8 @@ to open: ptr filename, char mode -> int
     dup 0 < if
         "Could not open file\n" raise
 
+to close: int fd -> void
+    fd SYS_CLOSE syscall 1 drop
 
 to read: int fd, ptr buf, int count -> int
     # Reads from a file descriptor and returns the number of bytes read or zero if EOF
@@ -182,11 +194,6 @@ to exec_silent: ptr file, ptr args -> void
         SYS_DUP2 syscall 2
         drop
 
-        "/dev/null" 'r' open
-        STDERR
-        SYS_DUP2 syscall 2
-        drop
-        
         file
         args
         0 castp
@@ -194,3 +201,26 @@ to exec_silent: ptr file, ptr args -> void
         syscall 3 drop
     elif dup 0 >
         dup 0 castp 0 0 castp SYS_WAIT4 syscall 4 drop
+
+
+const sockaddr_in.sin_family 0
+const sockaddr_in.sin_port 2
+const sockaddr_in.sin_addr 4
+const SOCKADDR_SIZE 16
+
+to socket: int domain, int type, int protocol -> int
+    domain type protocol SYS_SOCKET syscall 3
+
+to accept: int fd, ptr addr, ptr addr_len -> int
+    fd addr addr_len SYS_ACCEPT syscall 3
+
+to bind: int fd, ptr addr, int addr_len -> int
+    fd addr addr_len SYS_BIND syscall 3
+
+to listen: int fd, int backlog -> int
+    fd backlog SYS_LISTEN syscall 2
+
+to htons: int x -> int
+    x       255 and 8 shl
+    x 8 shr 255 and
+    or
