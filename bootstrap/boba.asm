@@ -1,4 +1,4 @@
-          format ELF64 executable
+format ELF64 executable 
           entry _start
           segment readable executable
           ; 5 function definition
@@ -56046,10 +56046,10 @@ fn_generate_code_x86_64_linux:
           pop rbx
           mov [rax], rbx
           ; 62 push string
-          mov rax, s_59
+          mov rax, s_399
           push rax
           ; 62 push string
-          mov rax, s_399
+          mov rax, s_59
           push rax
           ; 62 get pointer to buffer
           mov rax, buf__text
