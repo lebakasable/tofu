@@ -71,6 +71,18 @@ Hello, World
 
 For more info see `./test.py help`.
 
+### Usage
+
+If you wanna use the Boba compiler separately from its codebase, you only need two things:
+- `boba` native executable - the compiler itself (see [Bootstrapping](#bootstrapping) for more info on how to get it),
+- [std/](./std/) - the standard library.
+
+
+### Editor Support
+
+For now, these editors have support for Boba:
+- [Tree-Sitter](https://tree-sitter.github.io/) - [https://github.com/lebakasable/tree-sitter-boba](https://github.com/lebakasable/tree-sitter-boba/).
+
 ## Language Reference
 
 This is what the language supports so far. **Since the language is a work in progress everything in this section is the subject to change.**
