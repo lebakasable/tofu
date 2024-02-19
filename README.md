@@ -1,7 +1,7 @@
 <div align="center">
   <img src="assets/logo.svg" width="200" />
 
-  <h1>boba</h1>
+  <h1><p>boba</p></h1>
 
   A low-level concatenative programming language.
 </div>
