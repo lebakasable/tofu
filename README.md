@@ -2,8 +2,7 @@
   <img src="assets/logo.svg" width="200" />
 
   <h1>
-    boba
-
+    <strong>boba</strong>
     <p>A low-level concatenative programming language.</p>
   </h1>
 </div>
