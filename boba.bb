@@ -104,6 +104,14 @@ to start: ptr argv, int argc -> int
         input_file derefp ".asm" concat 'w' open
         generate_code_x86_64_linux
 
+        "/usr/bin/rm"
+        8 new_list
+        "rm"     swap list_append_ptr
+        input_file derefp swap list_append_ptr
+        NULL swap list_append_ptr
+        list.items +
+        exec_silent
+
         "/usr/bin/fasm"
         8 new_list
         "fasm"     swap list_append_ptr
