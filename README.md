@@ -6,7 +6,7 @@
   A low-level concatenative programming language.
 </div>
 
-> ![WARNING]
+> [!WARNING]
 > This language is a work in progress. Anything can change at any moment without any notice. Use it at your own risk!
 
 ## Quick Start
