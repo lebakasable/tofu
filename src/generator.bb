@@ -8,7 +8,6 @@ import src.parser
 
 buffer _text          8     # ptr
 buffer _data          8     # ptr
-buffer _bss           8     # ptr
 buffer _string_index  8     # int
 buffer _textbuffer    8     # ptr
 buffer _string_labels 8     # ptr
@@ -54,7 +53,6 @@ to generate_code_x86_64_linux: ptr opcodes, int fd -> void
     # Initialize buffers
     512000 textbuffer_create _text setp
     512000 textbuffer_create _data setp
-    new_textbuffer _bss setp
     new_textbuffer _textbuffer setp
     0 _string_index seti
     new_dict _string_labels setp
@@ -63,7 +61,6 @@ to generate_code_x86_64_linux: ptr opcodes, int fd -> void
     "" "entry _start"                 _text _append
     "" "segment readable executable"  _text _append
     "" "segment readable writeable"   _data _append
-    "" "segment readable writeable"   _bss _append
 
     # Generate assembly
     0
@@ -284,7 +281,7 @@ to generate_code_x86_64_linux: ptr opcodes, int fd -> void
             over opcode.operand + derefp buffer_operand_buffer_size + derefp \
                       swap textbuffer_append
 
-            dup textbuffer.content + "" _bss _append
+            dup textbuffer.content + "" _data _append
             _textbuffer setp
         elif dup opcode.opcode + derefi OPCODE_IS_EQUAL =
             "" "mov rax, 0"     _text _append
@@ -474,7 +471,4 @@ to generate_code_x86_64_linux: ptr opcodes, int fd -> void
     textbuffer.content + 
 
     _data derefp
-    textbuffer.content + concat
-
-    _bss derefp
     textbuffer.content + concat fd swap write

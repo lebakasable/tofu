@@ -55364,19 +55364,46 @@ end_0x0000000000000193:
           ; 12 create buffer
           ; 13 create buffer
           ; 14 create buffer
-          ; 15 create buffer
-          ; 18 function definition
+          ; 17 function definition
 fn__format: 
           push rbp
           mov rbp, rsp
+          ; 19 get argument
+          mov rax, rbp
+          add rax, 56
+          mov rbx, [rax]
+          push rbx
+          ; 19 get pointer to buffer
+          mov rax, buf__format_buffer
+          push rax
+          ; 19 push string
+          mov rax, s_395
+          push rax
+          ; 19 push integer
+          mov rax, 19
+          push rax
+          ; 19 push string
+          mov rax, s_396
+          push rax
+          ; 19 push boolean
+          mov rax, 1
+          push rax
+          ; 19 call
+          call fn_strcpy
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 19 drop
+          pop rax
           ; 20 get argument
           mov rax, rbp
           add rax, 56
           mov rbx, [rax]
           push rbx
-          ; 20 get pointer to buffer
-          mov rax, buf__format_buffer
-          push rax
           ; 20 push string
           mov rax, s_395
           push rax
@@ -55390,6 +55417,129 @@ fn__format:
           mov rax, 1
           push rax
           ; 20 call
+          call fn_strlen
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 21 push character
+          mov rax, 32
+          mov rax, 32
+          push rax
+          ; 21 over
+          pop rax
+          pop rbx
+          push rbx
+          push rax
+          push rbx
+          ; 21 get pointer to buffer
+          mov rax, buf__format_buffer
+          push rax
+          ; 21 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 21 set character value
+          pop rax
+          pop rbx
+          mov [rax], bl
+          ; 22 push integer
+          mov rax, 1
+          push rax
+          ; 22 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 23 label
+while_0x0000000000000037: 
+          ; 23 duplicate
+          pop rax
+          push rax
+          push rax
+          ; 23 push integer
+          mov rax, 10
+          push rax
+          ; 23 is less?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmovl rax, rbx
+          push rax
+          ; 23 start of while-loop
+          pop rax
+          test rax, rax
+          jz while_0x0000000000000037_end
+          ; 24 push character
+          mov rax, 32
+          mov rax, 32
+          push rax
+          ; 24 over
+          pop rax
+          pop rbx
+          push rbx
+          push rax
+          push rbx
+          ; 24 get pointer to buffer
+          mov rax, buf__format_buffer
+          push rax
+          ; 24 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 24 set character value
+          pop rax
+          pop rbx
+          mov [rax], bl
+          ; 25 push integer
+          mov rax, 1
+          push rax
+          ; 25 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 23 end of while-loop
+          jmp while_0x0000000000000037
+while_0x0000000000000037_end: 
+          ; 26 get argument
+          mov rax, rbp
+          add rax, 48
+          mov rbx, [rax]
+          push rbx
+          ; 26 over
+          pop rax
+          pop rbx
+          push rbx
+          push rax
+          push rbx
+          ; 26 get pointer to buffer
+          mov rax, buf__format_buffer
+          push rax
+          ; 26 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 26 push string
+          mov rax, s_395
+          push rax
+          ; 26 push integer
+          mov rax, 26
+          push rax
+          ; 26 push string
+          mov rax, s_396
+          push rax
+          ; 26 push boolean
+          mov rax, 1
+          push rax
+          ; 26 call
           call fn_strcpy
           pop rbx
           pop rbx
@@ -55398,135 +55548,12 @@ fn__format:
           pop rbx
           pop rbx
           push rax
-          ; 20 drop
+          ; 26 drop
           pop rax
-          ; 21 get argument
-          mov rax, rbp
-          add rax, 56
-          mov rbx, [rax]
-          push rbx
-          ; 21 push string
-          mov rax, s_395
-          push rax
-          ; 21 push integer
-          mov rax, 21
-          push rax
-          ; 21 push string
-          mov rax, s_396
-          push rax
-          ; 21 push boolean
-          mov rax, 1
-          push rax
-          ; 21 call
-          call fn_strlen
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 22 push character
-          mov rax, 32
-          mov rax, 32
-          push rax
-          ; 22 over
-          pop rax
-          pop rbx
-          push rbx
-          push rax
-          push rbx
-          ; 22 get pointer to buffer
-          mov rax, buf__format_buffer
-          push rax
-          ; 22 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 22 set character value
-          pop rax
-          pop rbx
-          mov [rax], bl
-          ; 23 push integer
-          mov rax, 1
-          push rax
-          ; 23 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 24 label
-while_0x0000000000000037: 
-          ; 24 duplicate
-          pop rax
-          push rax
-          push rax
-          ; 24 push integer
-          mov rax, 10
-          push rax
-          ; 24 is less?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmovl rax, rbx
-          push rax
-          ; 24 start of while-loop
-          pop rax
-          test rax, rax
-          jz while_0x0000000000000037_end
-          ; 25 push character
-          mov rax, 32
-          mov rax, 32
-          push rax
-          ; 25 over
-          pop rax
-          pop rbx
-          push rbx
-          push rax
-          push rbx
-          ; 25 get pointer to buffer
-          mov rax, buf__format_buffer
-          push rax
-          ; 25 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 25 set character value
-          pop rax
-          pop rbx
-          mov [rax], bl
-          ; 26 push integer
-          mov rax, 1
-          push rax
-          ; 26 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 24 end of while-loop
-          jmp while_0x0000000000000037
-while_0x0000000000000037_end: 
           ; 27 get argument
           mov rax, rbp
           add rax, 48
           mov rbx, [rax]
-          push rbx
-          ; 27 over
-          pop rax
-          pop rbx
-          push rbx
-          push rax
-          push rbx
-          ; 27 get pointer to buffer
-          mov rax, buf__format_buffer
-          push rax
-          ; 27 add
-          pop rax
-          pop rbx
-          add rbx, rax
           push rbx
           ; 27 push string
           mov rax, s_395
@@ -55541,34 +55568,6 @@ while_0x0000000000000037_end:
           mov rax, 1
           push rax
           ; 27 call
-          call fn_strcpy
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 27 drop
-          pop rax
-          ; 28 get argument
-          mov rax, rbp
-          add rax, 48
-          mov rbx, [rax]
-          push rbx
-          ; 28 push string
-          mov rax, s_395
-          push rax
-          ; 28 push integer
-          mov rax, 28
-          push rax
-          ; 28 push string
-          mov rax, s_396
-          push rax
-          ; 28 push boolean
-          mov rax, 1
-          push rax
-          ; 28 call
           call fn_strlen
           pop rbx
           pop rbx
@@ -55576,21 +55575,34 @@ while_0x0000000000000037_end:
           pop rbx
           pop rbx
           push rax
-          ; 28 add
+          ; 27 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 28 get pointer to buffer
+          ; 27 get pointer to buffer
           mov rax, buf__format_buffer
           push rax
-          ; 28 add
+          ; 27 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 29 push integer
+          ; 28 push integer
           mov rax, 10
+          push rax
+          ; 28 over
+          pop rax
+          pop rbx
+          push rbx
+          push rax
+          push rbx
+          ; 28 set character value
+          pop rax
+          pop rbx
+          mov [rax], bl
+          ; 29 push integer
+          mov rax, 0
           push rax
           ; 29 over
           pop rax
@@ -55598,52 +55610,69 @@ while_0x0000000000000037_end:
           push rbx
           push rax
           push rbx
-          ; 29 set character value
-          pop rax
-          pop rbx
-          mov [rax], bl
-          ; 30 push integer
-          mov rax, 0
-          push rax
-          ; 30 over
-          pop rax
-          pop rbx
-          push rbx
-          push rax
-          push rbx
-          ; 30 push integer
+          ; 29 push integer
           mov rax, 1
           push rax
-          ; 30 add
+          ; 29 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 30 set character value
+          ; 29 set character value
           pop rax
           pop rbx
           mov [rax], bl
-          ; 31 get pointer to buffer
+          ; 30 get pointer to buffer
           mov rax, buf__format_buffer
           push rax
-          ; 19 restore frame
+          ; 18 restore frame
           pop rax
           mov rsp, rbp
           pop rbp
-          ; 19 return
+          ; 18 return
           ret
-          ; 34 function definition
+          ; 33 function definition
 fn__append: 
           push rbp
           mov rbp, rsp
-          ; 36 get argument
+          ; 35 get argument
           mov rax, rbp
           add rax, 64
           mov rbx, [rax]
           push rbx
-          ; 36 get argument
+          ; 35 get argument
           mov rax, rbp
           add rax, 56
+          mov rbx, [rax]
+          push rbx
+          ; 35 push string
+          mov rax, s_395
+          push rax
+          ; 35 push integer
+          mov rax, 35
+          push rax
+          ; 35 push string
+          mov rax, s_397
+          push rax
+          ; 35 push boolean
+          mov rax, 1
+          push rax
+          ; 35 call
+          call fn__format
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 36 get argument
+          mov rax, rbp
+          add rax, 48
+          mov rbx, [rax]
+          push rbx
+          ; 36 dereference pointer
+          pop rax
           mov rbx, [rax]
           push rbx
           ; 36 push string
@@ -55659,36 +55688,6 @@ fn__append:
           mov rax, 1
           push rax
           ; 36 call
-          call fn__format
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 37 get argument
-          mov rax, rbp
-          add rax, 48
-          mov rbx, [rax]
-          push rbx
-          ; 37 dereference pointer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 37 push string
-          mov rax, s_395
-          push rax
-          ; 37 push integer
-          mov rax, 37
-          push rax
-          ; 37 push string
-          mov rax, s_397
-          push rax
-          ; 37 push boolean
-          mov rax, 1
-          push rax
-          ; 37 call
           call fn_textbuffer_append
           pop rbx
           pop rbx
@@ -55697,31 +55696,59 @@ fn__append:
           pop rbx
           pop rbx
           push rax
-          ; 37 get argument
+          ; 36 get argument
           mov rax, rbp
           add rax, 48
           mov rbx, [rax]
           push rbx
-          ; 37 set pointer value
+          ; 36 set pointer value
           pop rax
           pop rbx
           mov [rax], rbx
-          ; 35 restore frame
+          ; 34 restore frame
           pop rax
           mov rsp, rbp
           pop rbp
-          ; 35 return
+          ; 34 return
           ret
-          ; 40 function definition
+          ; 39 function definition
 fn__append_opcode_info: 
           push rbp
           mov rbp, rsp
-          ; 42 get pointer to buffer
+          ; 41 get pointer to buffer
           mov rax, buf__textbuffer
           push rax
-          ; 42 dereference pointer
+          ; 41 dereference pointer
           pop rax
           mov rbx, [rax]
+          push rbx
+          ; 41 push string
+          mov rax, s_395
+          push rax
+          ; 41 push integer
+          mov rax, 41
+          push rax
+          ; 41 push string
+          mov rax, s_398
+          push rax
+          ; 41 push boolean
+          mov rax, 1
+          push rax
+          ; 41 call
+          call fn_textbuffer_clear
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 42 push string
+          mov rax, s_399
+          push rax
+          ; 42 swap
+          pop rax
+          pop rbx
+          push rax
           push rbx
           ; 42 push string
           mov rax, s_395
@@ -55736,15 +55763,38 @@ fn__append_opcode_info:
           mov rax, 1
           push rax
           ; 42 call
-          call fn_textbuffer_clear
+          call fn_textbuffer_append
+          pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           push rax
+          ; 43 get argument
+          mov rax, rbp
+          add rax, 56
+          mov rbx, [rax]
+          push rbx
           ; 43 push string
-          mov rax, s_399
+          mov rax, s_395
+          push rax
+          ; 43 push integer
+          mov rax, 43
+          push rax
+          ; 43 push string
+          mov rax, s_398
+          push rax
+          ; 43 push boolean
+          mov rax, 1
+          push rax
+          ; 43 call
+          call fn_itos
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
           push rax
           ; 43 swap
           pop rax
@@ -55772,30 +55822,8 @@ fn__append_opcode_info:
           pop rbx
           pop rbx
           push rax
-          ; 44 get argument
-          mov rax, rbp
-          add rax, 56
-          mov rbx, [rax]
-          push rbx
           ; 44 push string
-          mov rax, s_395
-          push rax
-          ; 44 push integer
-          mov rax, 44
-          push rax
-          ; 44 push string
-          mov rax, s_398
-          push rax
-          ; 44 push boolean
-          mov rax, 1
-          push rax
-          ; 44 call
-          call fn_itos
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
+          mov rax, s_134
           push rax
           ; 44 swap
           pop rax
@@ -55823,8 +55851,30 @@ fn__append_opcode_info:
           pop rbx
           pop rbx
           push rax
+          ; 45 get argument
+          mov rax, rbp
+          add rax, 48
+          mov rbx, [rax]
+          push rbx
           ; 45 push string
-          mov rax, s_134
+          mov rax, s_395
+          push rax
+          ; 45 push integer
+          mov rax, 45
+          push rax
+          ; 45 push string
+          mov rax, s_398
+          push rax
+          ; 45 push boolean
+          mov rax, 1
+          push rax
+          ; 45 call
+          call fn_opcode_to_str
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
           push rax
           ; 45 swap
           pop rax
@@ -55852,90 +55902,39 @@ fn__append_opcode_info:
           pop rbx
           pop rbx
           push rax
-          ; 46 get argument
-          mov rax, rbp
-          add rax, 48
-          mov rbx, [rax]
-          push rbx
           ; 46 push string
-          mov rax, s_395
-          push rax
-          ; 46 push integer
-          mov rax, 46
-          push rax
-          ; 46 push string
-          mov rax, s_398
-          push rax
-          ; 46 push boolean
-          mov rax, 1
-          push rax
-          ; 46 call
-          call fn_opcode_to_str
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 46 swap
-          pop rax
-          pop rbx
-          push rax
-          push rbx
-          ; 46 push string
-          mov rax, s_395
-          push rax
-          ; 46 push integer
-          mov rax, 46
-          push rax
-          ; 46 push string
-          mov rax, s_398
-          push rax
-          ; 46 push boolean
-          mov rax, 1
-          push rax
-          ; 46 call
-          call fn_textbuffer_append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 47 push string
           mov rax, s_59
           push rax
-          ; 47 over
+          ; 46 over
           pop rax
           pop rbx
           push rbx
           push rax
           push rbx
-          ; 47 push integer
+          ; 46 push integer
           mov rax, 16
           push rax
-          ; 47 add
+          ; 46 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 47 get pointer to buffer
+          ; 46 get pointer to buffer
           mov rax, buf__text
           push rax
-          ; 47 push string
+          ; 46 push string
           mov rax, s_395
           push rax
-          ; 47 push integer
-          mov rax, 47
+          ; 46 push integer
+          mov rax, 46
           push rax
-          ; 47 push string
+          ; 46 push string
           mov rax, s_398
           push rax
-          ; 47 push boolean
+          ; 46 push boolean
           mov rax, 1
           push rax
-          ; 47 call
+          ; 46 call
           call fn__append
           pop rbx
           pop rbx
@@ -55944,23 +55943,53 @@ fn__append_opcode_info:
           pop rbx
           pop rbx
           pop rbx
-          ; 48 get pointer to buffer
+          ; 47 get pointer to buffer
           mov rax, buf__textbuffer
           push rax
-          ; 48 set pointer value
+          ; 47 set pointer value
           pop rax
           pop rbx
           mov [rax], rbx
-          ; 41 restore frame
+          ; 40 restore frame
           pop rax
           mov rsp, rbp
           pop rbp
-          ; 41 return
+          ; 40 return
           ret
-          ; 51 function definition
+          ; 50 function definition
 fn_generate_code_x86_64_linux: 
           push rbp
           mov rbp, rsp
+          ; 54 push integer
+          mov rax, 512000
+          push rax
+          ; 54 push string
+          mov rax, s_395
+          push rax
+          ; 54 push integer
+          mov rax, 54
+          push rax
+          ; 54 push string
+          mov rax, s_400
+          push rax
+          ; 54 push boolean
+          mov rax, 1
+          push rax
+          ; 54 call
+          call fn_textbuffer_create
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 54 get pointer to buffer
+          mov rax, buf__text
+          push rax
+          ; 54 set pointer value
+          pop rax
+          pop rbx
+          mov [rax], rbx
           ; 55 push integer
           mov rax, 512000
           push rax
@@ -55985,15 +56014,12 @@ fn_generate_code_x86_64_linux:
           pop rbx
           push rax
           ; 55 get pointer to buffer
-          mov rax, buf__text
+          mov rax, buf__data
           push rax
           ; 55 set pointer value
           pop rax
           pop rbx
           mov [rax], rbx
-          ; 56 push integer
-          mov rax, 512000
-          push rax
           ; 56 push string
           mov rax, s_395
           push rax
@@ -56007,43 +56033,26 @@ fn_generate_code_x86_64_linux:
           mov rax, 1
           push rax
           ; 56 call
-          call fn_textbuffer_create
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 56 get pointer to buffer
-          mov rax, buf__data
-          push rax
-          ; 56 set pointer value
-          pop rax
-          pop rbx
-          mov [rax], rbx
-          ; 57 push string
-          mov rax, s_395
-          push rax
-          ; 57 push integer
-          mov rax, 57
-          push rax
-          ; 57 push string
-          mov rax, s_400
-          push rax
-          ; 57 push boolean
-          mov rax, 1
-          push rax
-          ; 57 call
           call fn_new_textbuffer
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           push rax
-          ; 57 get pointer to buffer
-          mov rax, buf__bss
+          ; 56 get pointer to buffer
+          mov rax, buf__textbuffer
           push rax
-          ; 57 set pointer value
+          ; 56 set pointer value
+          pop rax
+          pop rbx
+          mov [rax], rbx
+          ; 57 push integer
+          mov rax, 0
+          push rax
+          ; 57 get pointer to buffer
+          mov rax, buf__string_index
+          push rax
+          ; 57 set integer value
           pop rax
           pop rbx
           mov [rax], rbx
@@ -56060,29 +56069,28 @@ fn_generate_code_x86_64_linux:
           mov rax, 1
           push rax
           ; 58 call
-          call fn_new_textbuffer
+          call fn_new_dict
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           push rax
           ; 58 get pointer to buffer
-          mov rax, buf__textbuffer
+          mov rax, buf__string_labels
           push rax
           ; 58 set pointer value
           pop rax
           pop rbx
           mov [rax], rbx
-          ; 59 push integer
-          mov rax, 0
+          ; 60 push string
+          mov rax, s_401
           push rax
-          ; 59 get pointer to buffer
-          mov rax, buf__string_index
+          ; 60 push string
+          mov rax, s_59
           push rax
-          ; 59 set integer value
-          pop rax
-          pop rbx
-          mov [rax], rbx
+          ; 60 get pointer to buffer
+          mov rax, buf__text
+          push rax
           ; 60 push string
           mov rax, s_395
           push rax
@@ -56096,24 +56104,49 @@ fn_generate_code_x86_64_linux:
           mov rax, 1
           push rax
           ; 60 call
-          call fn_new_dict
+          call fn__append
           pop rbx
           pop rbx
           pop rbx
           pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          ; 61 push string
+          mov rax, s_59
           push rax
-          ; 60 get pointer to buffer
-          mov rax, buf__string_labels
+          ; 61 push string
+          mov rax, s_402
           push rax
-          ; 60 set pointer value
-          pop rax
+          ; 61 get pointer to buffer
+          mov rax, buf__text
+          push rax
+          ; 61 push string
+          mov rax, s_395
+          push rax
+          ; 61 push integer
+          mov rax, 61
+          push rax
+          ; 61 push string
+          mov rax, s_400
+          push rax
+          ; 61 push boolean
+          mov rax, 1
+          push rax
+          ; 61 call
+          call fn__append
           pop rbx
-          mov [rax], rbx
-          ; 62 push string
-          mov rax, s_401
-          push rax
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
           ; 62 push string
           mov rax, s_59
+          push rax
+          ; 62 push string
+          mov rax, s_403
           push rax
           ; 62 get pointer to buffer
           mov rax, buf__text
@@ -56143,10 +56176,10 @@ fn_generate_code_x86_64_linux:
           mov rax, s_59
           push rax
           ; 63 push string
-          mov rax, s_402
+          mov rax, s_404
           push rax
           ; 63 get pointer to buffer
-          mov rax, buf__text
+          mov rax, buf__data
           push rax
           ; 63 push string
           mov rax, s_395
@@ -56169,123 +56202,33 @@ fn_generate_code_x86_64_linux:
           pop rbx
           pop rbx
           pop rbx
-          ; 64 push string
-          mov rax, s_59
-          push rax
-          ; 64 push string
-          mov rax, s_403
-          push rax
-          ; 64 get pointer to buffer
-          mov rax, buf__text
-          push rax
-          ; 64 push string
-          mov rax, s_395
-          push rax
-          ; 64 push integer
-          mov rax, 64
-          push rax
-          ; 64 push string
-          mov rax, s_400
-          push rax
-          ; 64 push boolean
-          mov rax, 1
-          push rax
-          ; 64 call
-          call fn__append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          ; 65 push string
-          mov rax, s_59
-          push rax
-          ; 65 push string
-          mov rax, s_404
-          push rax
-          ; 65 get pointer to buffer
-          mov rax, buf__data
-          push rax
-          ; 65 push string
-          mov rax, s_395
-          push rax
-          ; 65 push integer
-          mov rax, 65
-          push rax
-          ; 65 push string
-          mov rax, s_400
-          push rax
-          ; 65 push boolean
-          mov rax, 1
-          push rax
-          ; 65 call
-          call fn__append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          ; 66 push string
-          mov rax, s_59
-          push rax
-          ; 66 push string
-          mov rax, s_404
-          push rax
-          ; 66 get pointer to buffer
-          mov rax, buf__bss
-          push rax
-          ; 66 push string
-          mov rax, s_395
-          push rax
           ; 66 push integer
-          mov rax, 66
-          push rax
-          ; 66 push string
-          mov rax, s_400
-          push rax
-          ; 66 push boolean
-          mov rax, 1
-          push rax
-          ; 66 call
-          call fn__append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          ; 69 push integer
           mov rax, 0
           push rax
-          ; 70 label
+          ; 67 label
 while_0x0000000000000038: 
-          ; 70 duplicate
+          ; 67 duplicate
           pop rax
           push rax
           push rax
-          ; 70 get argument
+          ; 67 get argument
           mov rax, rbp
           add rax, 56
           mov rbx, [rax]
           push rbx
-          ; 70 push integer
+          ; 67 push integer
           mov rax, 8
           push rax
-          ; 70 add
+          ; 67 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 70 dereference integer
+          ; 67 dereference integer
           pop rax
           mov rbx, [rax]
           push rbx
-          ; 70 is less?
+          ; 67 is less?
           mov rax, 0
           mov rbx, 1
           pop rcx
@@ -56293,32 +56236,32 @@ while_0x0000000000000038:
           cmp rdx, rcx
           cmovl rax, rbx
           push rax
-          ; 70 start of while-loop
+          ; 67 start of while-loop
           pop rax
           test rax, rax
           jz while_0x0000000000000038_end
-          ; 71 duplicate
+          ; 68 duplicate
           pop rax
           push rax
           push rax
-          ; 71 get argument
+          ; 68 get argument
           mov rax, rbp
           add rax, 56
           mov rbx, [rax]
           push rbx
-          ; 71 push string
+          ; 68 push string
           mov rax, s_395
           push rax
-          ; 71 push integer
-          mov rax, 71
+          ; 68 push integer
+          mov rax, 68
           push rax
-          ; 71 push string
+          ; 68 push string
           mov rax, s_400
           push rax
-          ; 71 push boolean
+          ; 68 push boolean
           mov rax, 1
           push rax
-          ; 71 call
+          ; 68 call
           call fn_list_fetch
           pop rbx
           pop rbx
@@ -56327,28 +56270,64 @@ while_0x0000000000000038:
           pop rbx
           pop rbx
           push rax
-          ; 74 duplicate
+          ; 71 duplicate
           pop rax
           push rax
           push rax
-          ; 74 push integer
+          ; 71 push integer
           mov rax, 16
           push rax
-          ; 74 add
+          ; 71 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 74 dereference integer
+          ; 71 dereference integer
           pop rax
           mov rbx, [rax]
           push rbx
-          ; 75 over
+          ; 72 over
           pop rax
           pop rbx
           push rbx
           push rax
           push rbx
+          ; 72 push integer
+          mov rax, 0
+          push rax
+          ; 72 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 72 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 73 push string
+          mov rax, s_395
+          push rax
+          ; 73 push integer
+          mov rax, 73
+          push rax
+          ; 73 push string
+          mov rax, s_400
+          push rax
+          ; 73 push boolean
+          mov rax, 1
+          push rax
+          ; 73 call
+          call fn__append_opcode_info
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          ; 75 duplicate
+          pop rax
+          push rax
+          push rax
           ; 75 push integer
           mov rax, 0
           push rax
@@ -56361,6 +56340,30 @@ while_0x0000000000000038:
           pop rax
           mov rbx, [rax]
           push rbx
+          ; 75 push integer
+          mov rax, 13
+          push rax
+          ; 75 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
+          push rax
+          ; 75 start of if-block
+          pop rax
+          test rax, rax
+          jz if_0x0000000000000194
+          ; 76 push string
+          mov rax, s_59
+          push rax
+          ; 76 push string
+          mov rax, s_405
+          push rax
+          ; 76 get pointer to buffer
+          mov rax, buf__text
+          push rax
           ; 76 push string
           mov rax, s_395
           push rax
@@ -56374,66 +56377,6 @@ while_0x0000000000000038:
           mov rax, 1
           push rax
           ; 76 call
-          call fn__append_opcode_info
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          ; 78 duplicate
-          pop rax
-          push rax
-          push rax
-          ; 78 push integer
-          mov rax, 0
-          push rax
-          ; 78 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 78 dereference integer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 78 push integer
-          mov rax, 13
-          push rax
-          ; 78 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
-          push rax
-          ; 78 start of if-block
-          pop rax
-          test rax, rax
-          jz if_0x0000000000000194
-          ; 79 push string
-          mov rax, s_59
-          push rax
-          ; 79 push string
-          mov rax, s_405
-          push rax
-          ; 79 get pointer to buffer
-          mov rax, buf__text
-          push rax
-          ; 79 push string
-          mov rax, s_395
-          push rax
-          ; 79 push integer
-          mov rax, 79
-          push rax
-          ; 79 push string
-          mov rax, s_400
-          push rax
-          ; 79 push boolean
-          mov rax, 1
-          push rax
-          ; 79 call
           call fn__append
           pop rbx
           pop rbx
@@ -56442,11 +56385,106 @@ while_0x0000000000000038:
           pop rbx
           pop rbx
           pop rbx
+          ; 77 push string
+          mov rax, s_59
+          push rax
+          ; 77 push string
+          mov rax, s_406
+          push rax
+          ; 77 get pointer to buffer
+          mov rax, buf__text
+          push rax
+          ; 77 push string
+          mov rax, s_395
+          push rax
+          ; 77 push integer
+          mov rax, 77
+          push rax
+          ; 77 push string
+          mov rax, s_400
+          push rax
+          ; 77 push boolean
+          mov rax, 1
+          push rax
+          ; 77 call
+          call fn__append
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          ; 78 push string
+          mov rax, s_59
+          push rax
+          ; 78 push string
+          mov rax, s_406
+          push rax
+          ; 78 get pointer to buffer
+          mov rax, buf__text
+          push rax
+          ; 78 push string
+          mov rax, s_395
+          push rax
+          ; 78 push integer
+          mov rax, 78
+          push rax
+          ; 78 push string
+          mov rax, s_400
+          push rax
+          ; 78 push boolean
+          mov rax, 1
+          push rax
+          ; 78 call
+          call fn__append
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          ; 76 jump
+          jmp end_0x0000000000000194
+          ; 76 label
+if_0x0000000000000194: 
+          ; 79 duplicate
+          pop rax
+          push rax
+          push rax
+          ; 79 push integer
+          mov rax, 0
+          push rax
+          ; 79 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 79 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 79 push integer
+          mov rax, 12
+          push rax
+          ; 79 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
+          push rax
+          ; 79 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x0000000000000195
           ; 80 push string
           mov rax, s_59
           push rax
           ; 80 push string
-          mov rax, s_406
+          mov rax, s_405
           push rax
           ; 80 get pointer to buffer
           mov rax, buf__text
@@ -56472,28 +56510,63 @@ while_0x0000000000000038:
           pop rbx
           pop rbx
           pop rbx
-          ; 81 push string
-          mov rax, s_59
+          ; 79 jump
+          jmp end_0x0000000000000194
+          ; 79 label
+elif_0x0000000000000195: 
+          ; 81 duplicate
+          pop rax
           push rax
-          ; 81 push string
-          mov rax, s_406
-          push rax
-          ; 81 get pointer to buffer
-          mov rax, buf__text
-          push rax
-          ; 81 push string
-          mov rax, s_395
           push rax
           ; 81 push integer
-          mov rax, 81
+          mov rax, 0
           push rax
-          ; 81 push string
+          ; 81 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 81 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 81 push integer
+          mov rax, 44
+          push rax
+          ; 81 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
+          push rax
+          ; 81 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x0000000000000196
+          ; 82 push string
+          mov rax, s_59
+          push rax
+          ; 82 push string
+          mov rax, s_405
+          push rax
+          ; 82 get pointer to buffer
+          mov rax, buf__text
+          push rax
+          ; 82 push string
+          mov rax, s_395
+          push rax
+          ; 82 push integer
+          mov rax, 82
+          push rax
+          ; 82 push string
           mov rax, s_400
           push rax
-          ; 81 push boolean
+          ; 82 push boolean
           mov rax, 1
           push rax
-          ; 81 call
+          ; 82 call
           call fn__append
           pop rbx
           pop rbx
@@ -56502,46 +56575,11 @@ while_0x0000000000000038:
           pop rbx
           pop rbx
           pop rbx
-          ; 79 jump
-          jmp end_0x0000000000000194
-          ; 79 label
-if_0x0000000000000194: 
-          ; 82 duplicate
-          pop rax
-          push rax
-          push rax
-          ; 82 push integer
-          mov rax, 0
-          push rax
-          ; 82 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 82 dereference integer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 82 push integer
-          mov rax, 12
-          push rax
-          ; 82 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
-          push rax
-          ; 82 start of if-block
-          pop rax
-          test rax, rax
-          jz elif_0x0000000000000195
           ; 83 push string
           mov rax, s_59
           push rax
           ; 83 push string
-          mov rax, s_405
+          mov rax, s_407
           push rax
           ; 83 get pointer to buffer
           mov rax, buf__text
@@ -56567,46 +56605,41 @@ if_0x0000000000000194:
           pop rbx
           pop rbx
           pop rbx
-          ; 82 jump
-          jmp end_0x0000000000000194
-          ; 82 label
-elif_0x0000000000000195: 
-          ; 84 duplicate
-          pop rax
+          ; 84 push string
+          mov rax, s_59
           push rax
+          ; 84 push string
+          mov rax, s_406
+          push rax
+          ; 84 get pointer to buffer
+          mov rax, buf__text
+          push rax
+          ; 84 push string
+          mov rax, s_395
           push rax
           ; 84 push integer
-          mov rax, 0
+          mov rax, 84
           push rax
-          ; 84 add
-          pop rax
+          ; 84 push string
+          mov rax, s_400
+          push rax
+          ; 84 push boolean
+          mov rax, 1
+          push rax
+          ; 84 call
+          call fn__append
           pop rbx
-          add rbx, rax
-          push rbx
-          ; 84 dereference integer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 84 push integer
-          mov rax, 44
-          push rax
-          ; 84 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
-          push rax
-          ; 84 start of if-block
-          pop rax
-          test rax, rax
-          jz elif_0x0000000000000196
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
           ; 85 push string
           mov rax, s_59
           push rax
           ; 85 push string
-          mov rax, s_405
+          mov rax, s_408
           push rax
           ; 85 get pointer to buffer
           mov rax, buf__text
@@ -56632,41 +56665,46 @@ elif_0x0000000000000195:
           pop rbx
           pop rbx
           pop rbx
-          ; 86 push string
-          mov rax, s_59
+          ; 81 jump
+          jmp end_0x0000000000000194
+          ; 81 label
+elif_0x0000000000000196: 
+          ; 86 duplicate
+          pop rax
           push rax
-          ; 86 push string
-          mov rax, s_407
-          push rax
-          ; 86 get pointer to buffer
-          mov rax, buf__text
-          push rax
-          ; 86 push string
-          mov rax, s_395
           push rax
           ; 86 push integer
-          mov rax, 86
+          mov rax, 0
           push rax
-          ; 86 push string
-          mov rax, s_400
+          ; 86 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 86 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 86 push integer
+          mov rax, 28
           push rax
-          ; 86 push boolean
-          mov rax, 1
+          ; 86 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
           push rax
-          ; 86 call
-          call fn__append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
+          ; 86 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x0000000000000197
           ; 87 push string
           mov rax, s_59
           push rax
           ; 87 push string
-          mov rax, s_406
+          mov rax, s_405
           push rax
           ; 87 get pointer to buffer
           mov rax, buf__text
@@ -56696,7 +56734,7 @@ elif_0x0000000000000195:
           mov rax, s_59
           push rax
           ; 88 push string
-          mov rax, s_408
+          mov rax, s_407
           push rax
           ; 88 get pointer to buffer
           mov rax, buf__text
@@ -56722,46 +56760,41 @@ elif_0x0000000000000195:
           pop rbx
           pop rbx
           pop rbx
-          ; 84 jump
-          jmp end_0x0000000000000194
-          ; 84 label
-elif_0x0000000000000196: 
-          ; 89 duplicate
-          pop rax
+          ; 89 push string
+          mov rax, s_59
           push rax
+          ; 89 push string
+          mov rax, s_408
+          push rax
+          ; 89 get pointer to buffer
+          mov rax, buf__text
+          push rax
+          ; 89 push string
+          mov rax, s_395
           push rax
           ; 89 push integer
-          mov rax, 0
+          mov rax, 89
           push rax
-          ; 89 add
-          pop rax
+          ; 89 push string
+          mov rax, s_400
+          push rax
+          ; 89 push boolean
+          mov rax, 1
+          push rax
+          ; 89 call
+          call fn__append
           pop rbx
-          add rbx, rax
-          push rbx
-          ; 89 dereference integer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 89 push integer
-          mov rax, 28
-          push rax
-          ; 89 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
-          push rax
-          ; 89 start of if-block
-          pop rax
-          test rax, rax
-          jz elif_0x0000000000000197
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
           ; 90 push string
           mov rax, s_59
           push rax
           ; 90 push string
-          mov rax, s_405
+          mov rax, s_406
           push rax
           ; 90 get pointer to buffer
           mov rax, buf__text
@@ -56791,7 +56824,7 @@ elif_0x0000000000000196:
           mov rax, s_59
           push rax
           ; 91 push string
-          mov rax, s_407
+          mov rax, s_408
           push rax
           ; 91 get pointer to buffer
           mov rax, buf__text
@@ -56817,41 +56850,46 @@ elif_0x0000000000000196:
           pop rbx
           pop rbx
           pop rbx
-          ; 92 push string
-          mov rax, s_59
+          ; 86 jump
+          jmp end_0x0000000000000194
+          ; 86 label
+elif_0x0000000000000197: 
+          ; 92 duplicate
+          pop rax
           push rax
-          ; 92 push string
-          mov rax, s_408
-          push rax
-          ; 92 get pointer to buffer
-          mov rax, buf__text
-          push rax
-          ; 92 push string
-          mov rax, s_395
           push rax
           ; 92 push integer
-          mov rax, 92
+          mov rax, 0
           push rax
-          ; 92 push string
-          mov rax, s_400
+          ; 92 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 92 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 92 push integer
+          mov rax, 36
           push rax
-          ; 92 push boolean
-          mov rax, 1
+          ; 92 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
           push rax
-          ; 92 call
-          call fn__append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
+          ; 92 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x0000000000000198
           ; 93 push string
           mov rax, s_59
           push rax
           ; 93 push string
-          mov rax, s_406
+          mov rax, s_405
           push rax
           ; 93 get pointer to buffer
           mov rax, buf__text
@@ -56881,7 +56919,7 @@ elif_0x0000000000000196:
           mov rax, s_59
           push rax
           ; 94 push string
-          mov rax, s_408
+          mov rax, s_407
           push rax
           ; 94 get pointer to buffer
           mov rax, buf__text
@@ -56907,46 +56945,41 @@ elif_0x0000000000000196:
           pop rbx
           pop rbx
           pop rbx
-          ; 89 jump
-          jmp end_0x0000000000000194
-          ; 89 label
-elif_0x0000000000000197: 
-          ; 95 duplicate
-          pop rax
+          ; 95 push string
+          mov rax, s_59
           push rax
+          ; 95 push string
+          mov rax, s_409
+          push rax
+          ; 95 get pointer to buffer
+          mov rax, buf__text
+          push rax
+          ; 95 push string
+          mov rax, s_395
           push rax
           ; 95 push integer
-          mov rax, 0
+          mov rax, 95
           push rax
-          ; 95 add
-          pop rax
+          ; 95 push string
+          mov rax, s_400
+          push rax
+          ; 95 push boolean
+          mov rax, 1
+          push rax
+          ; 95 call
+          call fn__append
           pop rbx
-          add rbx, rax
-          push rbx
-          ; 95 dereference integer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 95 push integer
-          mov rax, 36
-          push rax
-          ; 95 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
-          push rax
-          ; 95 start of if-block
-          pop rax
-          test rax, rax
-          jz elif_0x0000000000000198
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
           ; 96 push string
           mov rax, s_59
           push rax
           ; 96 push string
-          mov rax, s_405
+          mov rax, s_408
           push rax
           ; 96 get pointer to buffer
           mov rax, buf__text
@@ -56976,7 +57009,7 @@ elif_0x0000000000000197:
           mov rax, s_59
           push rax
           ; 97 push string
-          mov rax, s_407
+          mov rax, s_406
           push rax
           ; 97 get pointer to buffer
           mov rax, buf__text
@@ -57006,7 +57039,7 @@ elif_0x0000000000000197:
           mov rax, s_59
           push rax
           ; 98 push string
-          mov rax, s_409
+          mov rax, s_410
           push rax
           ; 98 get pointer to buffer
           mov rax, buf__text
@@ -57032,45 +57065,48 @@ elif_0x0000000000000197:
           pop rbx
           pop rbx
           pop rbx
-          ; 99 push string
-          mov rax, s_59
+          ; 92 jump
+          jmp end_0x0000000000000194
+          ; 92 label
+elif_0x0000000000000198: 
+          ; 99 duplicate
+          pop rax
           push rax
-          ; 99 push string
-          mov rax, s_408
-          push rax
-          ; 99 get pointer to buffer
-          mov rax, buf__text
-          push rax
-          ; 99 push string
-          mov rax, s_395
           push rax
           ; 99 push integer
-          mov rax, 99
+          mov rax, 0
           push rax
-          ; 99 push string
-          mov rax, s_400
+          ; 99 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 99 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 99 push integer
+          mov rax, 31
           push rax
-          ; 99 push boolean
-          mov rax, 1
+          ; 99 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
           push rax
-          ; 99 call
-          call fn__append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          ; 100 push string
-          mov rax, s_59
-          push rax
-          ; 100 push string
-          mov rax, s_406
-          push rax
+          ; 99 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x0000000000000199
           ; 100 get pointer to buffer
-          mov rax, buf__text
+          mov rax, buf__textbuffer
           push rax
+          ; 100 dereference pointer
+          pop rax
+          mov rbx, [rax]
+          push rbx
           ; 100 push string
           mov rax, s_395
           push rax
@@ -57084,23 +57120,21 @@ elif_0x0000000000000197:
           mov rax, 1
           push rax
           ; 100 call
-          call fn__append
+          call fn_textbuffer_clear
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
-          pop rbx
-          pop rbx
-          ; 101 push string
-          mov rax, s_59
           push rax
           ; 101 push string
-          mov rax, s_410
+          mov rax, s_411
           push rax
-          ; 101 get pointer to buffer
-          mov rax, buf__text
+          ; 101 swap
+          pop rax
+          pop rbx
           push rax
+          push rbx
           ; 101 push string
           mov rax, s_395
           push rax
@@ -57114,56 +57148,78 @@ elif_0x0000000000000197:
           mov rax, 1
           push rax
           ; 101 call
-          call fn__append
+          call fn_textbuffer_append
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
-          pop rbx
-          ; 95 jump
-          jmp end_0x0000000000000194
-          ; 95 label
-elif_0x0000000000000198: 
-          ; 102 duplicate
+          push rax
+          ; 102 over
           pop rax
+          pop rbx
+          push rbx
           push rax
-          push rax
+          push rbx
           ; 102 push integer
-          mov rax, 0
+          mov rax, 8
           push rax
           ; 102 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 102 dereference integer
+          ; 102 dereference pointer
           pop rax
           mov rbx, [rax]
           push rbx
+          ; 102 swap
+          pop rax
+          pop rbx
+          push rax
+          push rbx
+          ; 102 push string
+          mov rax, s_395
+          push rax
           ; 102 push integer
-          mov rax, 31
+          mov rax, 102
           push rax
-          ; 102 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
+          ; 102 push string
+          mov rax, s_400
           push rax
-          ; 102 start of if-block
+          ; 102 push boolean
+          mov rax, 1
+          push rax
+          ; 102 call
+          call fn_textbuffer_append
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 103 push string
+          mov rax, s_59
+          push rax
+          ; 103 over
           pop rax
-          test rax, rax
-          jz elif_0x0000000000000199
-          ; 103 get pointer to buffer
-          mov rax, buf__textbuffer
-          push rax
-          ; 103 dereference pointer
-          pop rax
-          mov rbx, [rax]
+          pop rbx
           push rbx
+          push rax
+          push rbx
+          ; 103 push integer
+          mov rax, 16
+          push rax
+          ; 103 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 103 get pointer to buffer
+          mov rax, buf__text
+          push rax
           ; 103 push string
           mov rax, s_395
           push rax
@@ -57177,21 +57233,23 @@ elif_0x0000000000000198:
           mov rax, 1
           push rax
           ; 103 call
-          call fn_textbuffer_clear
+          call fn__append
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
+          pop rbx
+          pop rbx
+          ; 104 push string
+          mov rax, s_59
           push rax
           ; 104 push string
-          mov rax, s_411
+          mov rax, s_406
           push rax
-          ; 104 swap
-          pop rax
-          pop rbx
+          ; 104 get pointer to buffer
+          mov rax, buf__text
           push rax
-          push rbx
           ; 104 push string
           mov rax, s_395
           push rax
@@ -57205,91 +57263,6 @@ elif_0x0000000000000198:
           mov rax, 1
           push rax
           ; 104 call
-          call fn_textbuffer_append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 105 over
-          pop rax
-          pop rbx
-          push rbx
-          push rax
-          push rbx
-          ; 105 push integer
-          mov rax, 8
-          push rax
-          ; 105 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 105 dereference pointer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 105 swap
-          pop rax
-          pop rbx
-          push rax
-          push rbx
-          ; 105 push string
-          mov rax, s_395
-          push rax
-          ; 105 push integer
-          mov rax, 105
-          push rax
-          ; 105 push string
-          mov rax, s_400
-          push rax
-          ; 105 push boolean
-          mov rax, 1
-          push rax
-          ; 105 call
-          call fn_textbuffer_append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 106 push string
-          mov rax, s_59
-          push rax
-          ; 106 over
-          pop rax
-          pop rbx
-          push rbx
-          push rax
-          push rbx
-          ; 106 push integer
-          mov rax, 16
-          push rax
-          ; 106 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 106 get pointer to buffer
-          mov rax, buf__text
-          push rax
-          ; 106 push string
-          mov rax, s_395
-          push rax
-          ; 106 push integer
-          mov rax, 106
-          push rax
-          ; 106 push string
-          mov rax, s_400
-          push rax
-          ; 106 push boolean
-          mov rax, 1
-          push rax
-          ; 106 call
           call fn__append
           pop rbx
           pop rbx
@@ -57298,15 +57271,55 @@ elif_0x0000000000000198:
           pop rbx
           pop rbx
           pop rbx
-          ; 107 push string
-          mov rax, s_59
+          ; 105 get pointer to buffer
+          mov rax, buf__textbuffer
           push rax
-          ; 107 push string
-          mov rax, s_406
+          ; 105 set pointer value
+          pop rax
+          pop rbx
+          mov [rax], rbx
+          ; 99 jump
+          jmp end_0x0000000000000194
+          ; 99 label
+elif_0x0000000000000199: 
+          ; 106 duplicate
+          pop rax
           push rax
+          push rax
+          ; 106 push integer
+          mov rax, 0
+          push rax
+          ; 106 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 106 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 106 push integer
+          mov rax, 29
+          push rax
+          ; 106 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
+          push rax
+          ; 106 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x000000000000019a
           ; 107 get pointer to buffer
-          mov rax, buf__text
+          mov rax, buf__textbuffer
           push rax
+          ; 107 dereference pointer
+          pop rax
+          mov rbx, [rax]
+          push rbx
           ; 107 push string
           mov rax, s_395
           push rax
@@ -57320,63 +57333,106 @@ elif_0x0000000000000198:
           mov rax, 1
           push rax
           ; 107 call
-          call fn__append
+          call fn_textbuffer_clear
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
-          pop rbx
-          pop rbx
-          ; 108 get pointer to buffer
-          mov rax, buf__textbuffer
           push rax
-          ; 108 set pointer value
+          ; 108 push string
+          mov rax, s_411
+          push rax
+          ; 108 swap
           pop rax
           pop rbx
-          mov [rax], rbx
-          ; 102 jump
-          jmp end_0x0000000000000194
-          ; 102 label
-elif_0x0000000000000199: 
-          ; 109 duplicate
+          push rax
+          push rbx
+          ; 108 push string
+          mov rax, s_395
+          push rax
+          ; 108 push integer
+          mov rax, 108
+          push rax
+          ; 108 push string
+          mov rax, s_400
+          push rax
+          ; 108 push boolean
+          mov rax, 1
+          push rax
+          ; 108 call
+          call fn_textbuffer_append
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 109 over
           pop rax
+          pop rbx
+          push rbx
           push rax
-          push rax
+          push rbx
           ; 109 push integer
-          mov rax, 0
+          mov rax, 8
           push rax
           ; 109 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 109 dereference integer
+          ; 109 dereference pointer
           pop rax
           mov rbx, [rax]
           push rbx
+          ; 109 swap
+          pop rax
+          pop rbx
+          push rax
+          push rbx
+          ; 109 push string
+          mov rax, s_395
+          push rax
           ; 109 push integer
-          mov rax, 29
+          mov rax, 109
           push rax
-          ; 109 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
+          ; 109 push string
+          mov rax, s_400
           push rax
-          ; 109 start of if-block
+          ; 109 push boolean
+          mov rax, 1
+          push rax
+          ; 109 call
+          call fn_textbuffer_append
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 110 push string
+          mov rax, s_59
+          push rax
+          ; 110 over
           pop rax
-          test rax, rax
-          jz elif_0x000000000000019a
-          ; 110 get pointer to buffer
-          mov rax, buf__textbuffer
-          push rax
-          ; 110 dereference pointer
-          pop rax
-          mov rbx, [rax]
+          pop rbx
           push rbx
+          push rax
+          push rbx
+          ; 110 push integer
+          mov rax, 16
+          push rax
+          ; 110 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 110 get pointer to buffer
+          mov rax, buf__text
+          push rax
           ; 110 push string
           mov rax, s_395
           push rax
@@ -57390,21 +57446,23 @@ elif_0x0000000000000199:
           mov rax, 1
           push rax
           ; 110 call
-          call fn_textbuffer_clear
+          call fn__append
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
+          pop rbx
+          pop rbx
+          ; 111 push string
+          mov rax, s_59
           push rax
           ; 111 push string
-          mov rax, s_411
+          mov rax, s_406
           push rax
-          ; 111 swap
-          pop rax
-          pop rbx
+          ; 111 get pointer to buffer
+          mov rax, buf__text
           push rax
-          push rbx
           ; 111 push string
           mov rax, s_395
           push rax
@@ -57418,91 +57476,6 @@ elif_0x0000000000000199:
           mov rax, 1
           push rax
           ; 111 call
-          call fn_textbuffer_append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 112 over
-          pop rax
-          pop rbx
-          push rbx
-          push rax
-          push rbx
-          ; 112 push integer
-          mov rax, 8
-          push rax
-          ; 112 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 112 dereference pointer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 112 swap
-          pop rax
-          pop rbx
-          push rax
-          push rbx
-          ; 112 push string
-          mov rax, s_395
-          push rax
-          ; 112 push integer
-          mov rax, 112
-          push rax
-          ; 112 push string
-          mov rax, s_400
-          push rax
-          ; 112 push boolean
-          mov rax, 1
-          push rax
-          ; 112 call
-          call fn_textbuffer_append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 113 push string
-          mov rax, s_59
-          push rax
-          ; 113 over
-          pop rax
-          pop rbx
-          push rbx
-          push rax
-          push rbx
-          ; 113 push integer
-          mov rax, 16
-          push rax
-          ; 113 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 113 get pointer to buffer
-          mov rax, buf__text
-          push rax
-          ; 113 push string
-          mov rax, s_395
-          push rax
-          ; 113 push integer
-          mov rax, 113
-          push rax
-          ; 113 push string
-          mov rax, s_400
-          push rax
-          ; 113 push boolean
-          mov rax, 1
-          push rax
-          ; 113 call
           call fn__append
           pop rbx
           pop rbx
@@ -57511,15 +57484,55 @@ elif_0x0000000000000199:
           pop rbx
           pop rbx
           pop rbx
-          ; 114 push string
-          mov rax, s_59
+          ; 112 get pointer to buffer
+          mov rax, buf__textbuffer
           push rax
-          ; 114 push string
-          mov rax, s_406
+          ; 112 set pointer value
+          pop rax
+          pop rbx
+          mov [rax], rbx
+          ; 106 jump
+          jmp end_0x0000000000000194
+          ; 106 label
+elif_0x000000000000019a: 
+          ; 113 duplicate
+          pop rax
           push rax
+          push rax
+          ; 113 push integer
+          mov rax, 0
+          push rax
+          ; 113 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 113 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 113 push integer
+          mov rax, 30
+          push rax
+          ; 113 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
+          push rax
+          ; 113 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x000000000000019b
           ; 114 get pointer to buffer
-          mov rax, buf__text
+          mov rax, buf__textbuffer
           push rax
+          ; 114 dereference pointer
+          pop rax
+          mov rbx, [rax]
+          push rbx
           ; 114 push string
           mov rax, s_395
           push rax
@@ -57533,6 +57546,144 @@ elif_0x0000000000000199:
           mov rax, 1
           push rax
           ; 114 call
+          call fn_textbuffer_clear
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 115 push string
+          mov rax, s_411
+          push rax
+          ; 115 swap
+          pop rax
+          pop rbx
+          push rax
+          push rbx
+          ; 115 push string
+          mov rax, s_395
+          push rax
+          ; 115 push integer
+          mov rax, 115
+          push rax
+          ; 115 push string
+          mov rax, s_400
+          push rax
+          ; 115 push boolean
+          mov rax, 1
+          push rax
+          ; 115 call
+          call fn_textbuffer_append
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 116 over
+          pop rax
+          pop rbx
+          push rbx
+          push rax
+          push rbx
+          ; 116 push integer
+          mov rax, 8
+          push rax
+          ; 116 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 116 dereference pointer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 116 dereference character
+          pop rax
+          xor rbx, rbx
+          mov bl, [rax]
+          push rbx
+          ; 116 push string
+          mov rax, s_395
+          push rax
+          ; 116 push integer
+          mov rax, 116
+          push rax
+          ; 116 push string
+          mov rax, s_400
+          push rax
+          ; 116 push boolean
+          mov rax, 1
+          push rax
+          ; 116 call
+          call fn_itos
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 116 swap
+          pop rax
+          pop rbx
+          push rax
+          push rbx
+          ; 116 push string
+          mov rax, s_395
+          push rax
+          ; 116 push integer
+          mov rax, 116
+          push rax
+          ; 116 push string
+          mov rax, s_400
+          push rax
+          ; 116 push boolean
+          mov rax, 1
+          push rax
+          ; 116 call
+          call fn_textbuffer_append
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 116 push string
+          mov rax, s_59
+          push rax
+          ; 116 over
+          pop rax
+          pop rbx
+          push rbx
+          push rax
+          push rbx
+          ; 116 push integer
+          mov rax, 16
+          push rax
+          ; 116 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 116 get pointer to buffer
+          mov rax, buf__text
+          push rax
+          ; 116 push string
+          mov rax, s_395
+          push rax
+          ; 116 push integer
+          mov rax, 116
+          push rax
+          ; 116 push string
+          mov rax, s_400
+          push rax
+          ; 116 push boolean
+          mov rax, 1
+          push rax
+          ; 116 call
           call fn__append
           pop rbx
           pop rbx
@@ -57541,55 +57692,26 @@ elif_0x0000000000000199:
           pop rbx
           pop rbx
           pop rbx
-          ; 115 get pointer to buffer
-          mov rax, buf__textbuffer
+          ; 117 push string
+          mov rax, s_59
           push rax
-          ; 115 set pointer value
+          ; 117 over
           pop rax
           pop rbx
-          mov [rax], rbx
-          ; 109 jump
-          jmp end_0x0000000000000194
-          ; 109 label
-elif_0x000000000000019a: 
-          ; 116 duplicate
-          pop rax
+          push rbx
           push rax
+          push rbx
+          ; 117 push integer
+          mov rax, 16
           push rax
-          ; 116 push integer
-          mov rax, 0
-          push rax
-          ; 116 add
+          ; 117 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 116 dereference integer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 116 push integer
-          mov rax, 30
-          push rax
-          ; 116 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
-          push rax
-          ; 116 start of if-block
-          pop rax
-          test rax, rax
-          jz elif_0x000000000000019b
           ; 117 get pointer to buffer
-          mov rax, buf__textbuffer
+          mov rax, buf__text
           push rax
-          ; 117 dereference pointer
-          pop rax
-          mov rbx, [rax]
-          push rbx
           ; 117 push string
           mov rax, s_395
           push rax
@@ -57603,21 +57725,23 @@ elif_0x000000000000019a:
           mov rax, 1
           push rax
           ; 117 call
-          call fn_textbuffer_clear
+          call fn__append
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
+          pop rbx
+          pop rbx
+          ; 118 push string
+          mov rax, s_59
           push rax
           ; 118 push string
-          mov rax, s_411
+          mov rax, s_406
           push rax
-          ; 118 swap
-          pop rax
-          pop rbx
+          ; 118 get pointer to buffer
+          mov rax, buf__text
           push rax
-          push rbx
           ; 118 push string
           mov rax, s_395
           push rax
@@ -57631,116 +57755,6 @@ elif_0x000000000000019a:
           mov rax, 1
           push rax
           ; 118 call
-          call fn_textbuffer_append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 119 over
-          pop rax
-          pop rbx
-          push rbx
-          push rax
-          push rbx
-          ; 119 push integer
-          mov rax, 8
-          push rax
-          ; 119 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 119 dereference pointer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 119 dereference character
-          pop rax
-          xor rbx, rbx
-          mov bl, [rax]
-          push rbx
-          ; 119 push string
-          mov rax, s_395
-          push rax
-          ; 119 push integer
-          mov rax, 119
-          push rax
-          ; 119 push string
-          mov rax, s_400
-          push rax
-          ; 119 push boolean
-          mov rax, 1
-          push rax
-          ; 119 call
-          call fn_itos
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 119 swap
-          pop rax
-          pop rbx
-          push rax
-          push rbx
-          ; 119 push string
-          mov rax, s_395
-          push rax
-          ; 119 push integer
-          mov rax, 119
-          push rax
-          ; 119 push string
-          mov rax, s_400
-          push rax
-          ; 119 push boolean
-          mov rax, 1
-          push rax
-          ; 119 call
-          call fn_textbuffer_append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 119 push string
-          mov rax, s_59
-          push rax
-          ; 119 over
-          pop rax
-          pop rbx
-          push rbx
-          push rax
-          push rbx
-          ; 119 push integer
-          mov rax, 16
-          push rax
-          ; 119 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 119 get pointer to buffer
-          mov rax, buf__text
-          push rax
-          ; 119 push string
-          mov rax, s_395
-          push rax
-          ; 119 push integer
-          mov rax, 119
-          push rax
-          ; 119 push string
-          mov rax, s_400
-          push rax
-          ; 119 push boolean
-          mov rax, 1
-          push rax
-          ; 119 call
           call fn__append
           pop rbx
           pop rbx
@@ -57749,106 +57763,110 @@ elif_0x000000000000019a:
           pop rbx
           pop rbx
           pop rbx
-          ; 120 push string
-          mov rax, s_59
+          ; 119 get pointer to buffer
+          mov rax, buf__textbuffer
           push rax
-          ; 120 over
+          ; 119 set pointer value
           pop rax
           pop rbx
-          push rbx
+          mov [rax], rbx
+          ; 113 jump
+          jmp end_0x0000000000000194
+          ; 113 label
+elif_0x000000000000019b: 
+          ; 120 duplicate
+          pop rax
           push rax
-          push rbx
+          push rax
           ; 120 push integer
-          mov rax, 16
+          mov rax, 0
           push rax
           ; 120 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 120 get pointer to buffer
-          mov rax, buf__text
-          push rax
-          ; 120 push string
-          mov rax, s_395
-          push rax
+          ; 120 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
           ; 120 push integer
-          mov rax, 120
+          mov rax, 32
           push rax
-          ; 120 push string
-          mov rax, s_400
-          push rax
-          ; 120 push boolean
-          mov rax, 1
-          push rax
-          ; 120 call
-          call fn__append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          ; 121 push string
-          mov rax, s_59
-          push rax
-          ; 121 push string
-          mov rax, s_406
-          push rax
-          ; 121 get pointer to buffer
-          mov rax, buf__text
-          push rax
-          ; 121 push string
-          mov rax, s_395
-          push rax
-          ; 121 push integer
-          mov rax, 121
-          push rax
-          ; 121 push string
-          mov rax, s_400
-          push rax
-          ; 121 push boolean
-          mov rax, 1
-          push rax
-          ; 121 call
-          call fn__append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          ; 122 get pointer to buffer
-          mov rax, buf__textbuffer
-          push rax
-          ; 122 set pointer value
-          pop rax
-          pop rbx
-          mov [rax], rbx
-          ; 116 jump
-          jmp end_0x0000000000000194
-          ; 116 label
-elif_0x000000000000019b: 
-          ; 123 duplicate
-          pop rax
-          push rax
-          push rax
-          ; 123 push integer
+          ; 120 is equal?
           mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
           push rax
-          ; 123 add
+          ; 120 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x000000000000019c
+          ; 122 duplicate
+          pop rax
+          push rax
+          push rax
+          ; 122 push integer
+          mov rax, 8
+          push rax
+          ; 122 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 123 dereference integer
+          ; 122 dereference pointer
           pop rax
           mov rbx, [rax]
           push rbx
+          ; 122 get pointer to buffer
+          mov rax, buf__string_labels
+          push rax
+          ; 122 dereference pointer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 122 push string
+          mov rax, s_395
+          push rax
+          ; 122 push integer
+          mov rax, 122
+          push rax
+          ; 122 push string
+          mov rax, s_400
+          push rax
+          ; 122 push boolean
+          mov rax, 1
+          push rax
+          ; 122 call
+          call fn_dict_fetch
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 123 push string
+          mov rax, s_395
+          push rax
           ; 123 push integer
-          mov rax, 32
+          mov rax, 123
+          push rax
+          ; 123 push string
+          mov rax, s_400
+          push rax
+          ; 123 push boolean
+          mov rax, 1
+          push rax
+          ; 123 call
+          call fn_NULL
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
           push rax
           ; 123 is equal?
           mov rax, 0
@@ -57861,108 +57879,157 @@ elif_0x000000000000019b:
           ; 123 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x000000000000019c
-          ; 125 duplicate
-          pop rax
-          push rax
-          push rax
-          ; 125 push integer
-          mov rax, 8
-          push rax
-          ; 125 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 125 dereference pointer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 125 get pointer to buffer
-          mov rax, buf__string_labels
-          push rax
-          ; 125 dereference pointer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 125 push string
-          mov rax, s_395
-          push rax
-          ; 125 push integer
-          mov rax, 125
-          push rax
-          ; 125 push string
-          mov rax, s_400
-          push rax
-          ; 125 push boolean
-          mov rax, 1
-          push rax
-          ; 125 call
-          call fn_dict_fetch
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 126 push string
-          mov rax, s_395
-          push rax
-          ; 126 push integer
-          mov rax, 126
-          push rax
-          ; 126 push string
-          mov rax, s_400
-          push rax
-          ; 126 push boolean
-          mov rax, 1
-          push rax
-          ; 126 call
-          call fn_NULL
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 126 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
-          push rax
-          ; 126 start of if-block
-          pop rax
-          test rax, rax
           jz if_0x000000000000019d
-          ; 128 get pointer to buffer
+          ; 125 get pointer to buffer
           mov rax, buf__string_index
           push rax
-          ; 128 dereference integer
+          ; 125 dereference integer
           pop rax
           mov rbx, [rax]
           push rbx
-          ; 129 push integer
+          ; 126 push integer
           mov rax, 1
           push rax
-          ; 129 add
+          ; 126 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 129 duplicate
+          ; 126 duplicate
           pop rax
           push rax
           push rax
-          ; 129 get pointer to buffer
+          ; 126 get pointer to buffer
           mov rax, buf__string_index
           push rax
-          ; 129 set integer value
+          ; 126 set integer value
           pop rax
           pop rbx
           mov [rax], rbx
+          ; 129 push string
+          mov rax, s_395
+          push rax
+          ; 129 push integer
+          mov rax, 129
+          push rax
+          ; 129 push string
+          mov rax, s_400
+          push rax
+          ; 129 push boolean
+          mov rax, 1
+          push rax
+          ; 129 call
+          call fn_itos
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 130 duplicate
+          pop rax
+          push rax
+          push rax
+          ; 130 push string
+          mov rax, s_395
+          push rax
+          ; 130 push integer
+          mov rax, 130
+          push rax
+          ; 130 push string
+          mov rax, s_400
+          push rax
+          ; 130 push boolean
+          mov rax, 1
+          push rax
+          ; 130 call
+          call fn_strlen
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 130 push integer
+          mov rax, 3
+          push rax
+          ; 130 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 130 push string
+          mov rax, s_395
+          push rax
+          ; 130 push integer
+          mov rax, 130
+          push rax
+          ; 130 push string
+          mov rax, s_400
+          push rax
+          ; 130 push boolean
+          mov rax, 1
+          push rax
+          ; 130 call
+          call fn_malloc
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 131 push string
+          mov rax, s_412
+          push rax
+          ; 131 over
+          pop rax
+          pop rbx
+          push rbx
+          push rax
+          push rbx
+          ; 131 push string
+          mov rax, s_395
+          push rax
+          ; 131 push integer
+          mov rax, 131
+          push rax
+          ; 131 push string
+          mov rax, s_400
+          push rax
+          ; 131 push boolean
+          mov rax, 1
+          push rax
+          ; 131 call
+          call fn_strcpy
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 131 drop
+          pop rax
+          ; 132 over
+          pop rax
+          pop rbx
+          push rbx
+          push rax
+          push rbx
+          ; 132 over
+          pop rax
+          pop rbx
+          push rbx
+          push rax
+          push rbx
+          ; 132 push integer
+          mov rax, 2
+          push rax
+          ; 132 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
           ; 132 push string
           mov rax, s_395
           push rax
@@ -57976,87 +58043,6 @@ elif_0x000000000000019b:
           mov rax, 1
           push rax
           ; 132 call
-          call fn_itos
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 133 duplicate
-          pop rax
-          push rax
-          push rax
-          ; 133 push string
-          mov rax, s_395
-          push rax
-          ; 133 push integer
-          mov rax, 133
-          push rax
-          ; 133 push string
-          mov rax, s_400
-          push rax
-          ; 133 push boolean
-          mov rax, 1
-          push rax
-          ; 133 call
-          call fn_strlen
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 133 push integer
-          mov rax, 3
-          push rax
-          ; 133 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 133 push string
-          mov rax, s_395
-          push rax
-          ; 133 push integer
-          mov rax, 133
-          push rax
-          ; 133 push string
-          mov rax, s_400
-          push rax
-          ; 133 push boolean
-          mov rax, 1
-          push rax
-          ; 133 call
-          call fn_malloc
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 134 push string
-          mov rax, s_412
-          push rax
-          ; 134 over
-          pop rax
-          pop rbx
-          push rbx
-          push rax
-          push rbx
-          ; 134 push string
-          mov rax, s_395
-          push rax
-          ; 134 push integer
-          mov rax, 134
-          push rax
-          ; 134 push string
-          mov rax, s_400
-          push rax
-          ; 134 push boolean
-          mov rax, 1
-          push rax
-          ; 134 call
           call fn_strcpy
           pop rbx
           pop rbx
@@ -58065,14 +58051,15 @@ elif_0x000000000000019b:
           pop rbx
           pop rbx
           push rax
-          ; 134 drop
+          ; 132 drop
           pop rax
-          ; 135 over
+          ; 133 swap
           pop rax
           pop rbx
-          push rbx
           push rax
           push rbx
+          ; 133 drop
+          pop rax
           ; 135 over
           pop rax
           pop rbx
@@ -58080,68 +58067,60 @@ elif_0x000000000000019b:
           push rax
           push rbx
           ; 135 push integer
-          mov rax, 2
+          mov rax, 8
           push rax
           ; 135 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 135 push string
-          mov rax, s_395
-          push rax
-          ; 135 push integer
-          mov rax, 135
-          push rax
-          ; 135 push string
-          mov rax, s_400
-          push rax
-          ; 135 push boolean
-          mov rax, 1
-          push rax
-          ; 135 call
-          call fn_strcpy
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 135 drop
-          pop rax
-          ; 136 swap
-          pop rax
-          pop rbx
-          push rax
-          push rbx
-          ; 136 drop
-          pop rax
-          ; 138 over
-          pop rax
-          pop rbx
-          push rbx
-          push rax
-          push rbx
-          ; 138 push integer
-          mov rax, 8
-          push rax
-          ; 138 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 138 dereference pointer
+          ; 135 dereference pointer
           pop rax
           mov rbx, [rax]
           push rbx
-          ; 138 swap
+          ; 135 swap
           pop rax
           pop rbx
           push rax
           push rbx
-          ; 139 get pointer to buffer
+          ; 136 get pointer to buffer
           mov rax, buf__string_labels
+          push rax
+          ; 136 dereference pointer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 136 push string
+          mov rax, s_395
+          push rax
+          ; 136 push integer
+          mov rax, 136
+          push rax
+          ; 136 push string
+          mov rax, s_400
+          push rax
+          ; 136 push boolean
+          mov rax, 1
+          push rax
+          ; 136 call
+          call fn_dict_insert
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 136 get pointer to buffer
+          mov rax, buf__string_labels
+          push rax
+          ; 136 set pointer value
+          pop rax
+          pop rbx
+          mov [rax], rbx
+          ; 139 get pointer to buffer
+          mov rax, buf__textbuffer
           push rax
           ; 139 dereference pointer
           pop rax
@@ -58160,28 +58139,92 @@ elif_0x000000000000019b:
           mov rax, 1
           push rax
           ; 139 call
-          call fn_dict_insert
-          pop rbx
-          pop rbx
+          call fn_textbuffer_clear
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           push rax
-          ; 139 get pointer to buffer
-          mov rax, buf__string_labels
-          push rax
-          ; 139 set pointer value
+          ; 140 over
           pop rax
           pop rbx
-          mov [rax], rbx
-          ; 142 get pointer to buffer
-          mov rax, buf__textbuffer
+          push rbx
           push rax
-          ; 142 dereference pointer
+          push rbx
+          ; 140 push integer
+          mov rax, 8
+          push rax
+          ; 140 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 140 dereference pointer
           pop rax
           mov rbx, [rax]
+          push rbx
+          ; 141 get pointer to buffer
+          mov rax, buf__string_labels
+          push rax
+          ; 141 dereference pointer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 141 push string
+          mov rax, s_395
+          push rax
+          ; 141 push integer
+          mov rax, 141
+          push rax
+          ; 141 push string
+          mov rax, s_400
+          push rax
+          ; 141 push boolean
+          mov rax, 1
+          push rax
+          ; 141 call
+          call fn_dict_fetch
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 141 swap
+          pop rax
+          pop rbx
+          push rax
+          push rbx
+          ; 141 push string
+          mov rax, s_395
+          push rax
+          ; 141 push integer
+          mov rax, 141
+          push rax
+          ; 141 push string
+          mov rax, s_400
+          push rax
+          ; 141 push boolean
+          mov rax, 1
+          push rax
+          ; 141 call
+          call fn_textbuffer_append
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 142 push string
+          mov rax, s_413
+          push rax
+          ; 142 swap
+          pop rax
+          pop rbx
+          push rax
           push rbx
           ; 142 push string
           mov rax, s_395
@@ -58196,161 +58239,61 @@ elif_0x000000000000019b:
           mov rax, 1
           push rax
           ; 142 call
-          call fn_textbuffer_clear
+          call fn_textbuffer_append
+          pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           push rax
-          ; 143 over
-          pop rax
-          pop rbx
-          push rbx
-          push rax
-          push rbx
-          ; 143 push integer
-          mov rax, 8
-          push rax
-          ; 143 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 143 dereference pointer
-          pop rax
-          mov rbx, [rax]
-          push rbx
           ; 144 get pointer to buffer
-          mov rax, buf__string_labels
-          push rax
-          ; 144 dereference pointer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 144 push string
-          mov rax, s_395
-          push rax
-          ; 144 push integer
-          mov rax, 144
-          push rax
-          ; 144 push string
-          mov rax, s_400
-          push rax
-          ; 144 push boolean
-          mov rax, 1
-          push rax
-          ; 144 call
-          call fn_dict_fetch
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 144 swap
-          pop rax
-          pop rbx
-          push rax
-          push rbx
-          ; 144 push string
-          mov rax, s_395
-          push rax
-          ; 144 push integer
-          mov rax, 144
-          push rax
-          ; 144 push string
-          mov rax, s_400
-          push rax
-          ; 144 push boolean
-          mov rax, 1
-          push rax
-          ; 144 call
-          call fn_textbuffer_append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 145 push string
-          mov rax, s_413
-          push rax
-          ; 145 swap
-          pop rax
-          pop rbx
-          push rax
-          push rbx
-          ; 145 push string
-          mov rax, s_395
-          push rax
-          ; 145 push integer
-          mov rax, 145
-          push rax
-          ; 145 push string
-          mov rax, s_400
-          push rax
-          ; 145 push boolean
-          mov rax, 1
-          push rax
-          ; 145 call
-          call fn_textbuffer_append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 147 get pointer to buffer
           mov rax, buf__textbuffer
           push rax
-          ; 147 set pointer value
+          ; 144 set pointer value
           pop rax
           pop rbx
           mov [rax], rbx
-          ; 148 duplicate
+          ; 145 duplicate
           pop rax
           push rax
           push rax
-          ; 148 push integer
+          ; 145 push integer
           mov rax, 8
           push rax
-          ; 148 add
+          ; 145 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 148 dereference pointer
+          ; 145 dereference pointer
           pop rax
           mov rbx, [rax]
           push rbx
-          ; 150 push integer
+          ; 147 push integer
           mov rax, 0
           push rax
-          ; 150 label
+          ; 147 label
 while_0x0000000000000039: 
-          ; 150 over
+          ; 147 over
           pop rax
           pop rbx
           push rbx
           push rax
           push rbx
-          ; 150 push string
+          ; 147 push string
           mov rax, s_395
           push rax
-          ; 150 push integer
-          mov rax, 150
+          ; 147 push integer
+          mov rax, 147
           push rax
-          ; 150 push string
+          ; 147 push string
           mov rax, s_400
           push rax
-          ; 150 push boolean
+          ; 147 push boolean
           mov rax, 1
           push rax
-          ; 150 call
+          ; 147 call
           call fn_strlen
           pop rbx
           pop rbx
@@ -58358,18 +58301,18 @@ while_0x0000000000000039:
           pop rbx
           pop rbx
           push rax
-          ; 150 over
+          ; 147 over
           pop rax
           pop rbx
           push rbx
           push rax
           push rbx
-          ; 150 swap
+          ; 147 swap
           pop rax
           pop rbx
           push rax
           push rbx
-          ; 150 is less?
+          ; 147 is less?
           mov rax, 0
           mov rbx, 1
           pop rcx
@@ -58377,18 +58320,18 @@ while_0x0000000000000039:
           cmp rdx, rcx
           cmovl rax, rbx
           push rax
-          ; 150 start of while-loop
+          ; 147 start of while-loop
           pop rax
           test rax, rax
           jz while_0x0000000000000039_end
-          ; 151 duplicate
+          ; 148 duplicate
           pop rax
           push rax
           push rax
-          ; 151 push integer
+          ; 148 push integer
           mov rax, 0
           push rax
-          ; 151 is greater?
+          ; 148 is greater?
           mov rax, 0
           mov rbx, 1
           pop rcx
@@ -58396,33 +58339,33 @@ while_0x0000000000000039:
           cmp rdx, rcx
           cmovg rax, rbx
           push rax
-          ; 151 start of if-block
+          ; 148 start of if-block
           pop rax
           test rax, rax
           jz if_0x000000000000019e
-          ; 152 push string
+          ; 149 push string
           mov rax, s_414
           push rax
-          ; 152 get pointer to buffer
+          ; 149 get pointer to buffer
           mov rax, buf__textbuffer
           push rax
-          ; 152 dereference pointer
+          ; 149 dereference pointer
           pop rax
           mov rbx, [rax]
           push rbx
-          ; 152 push string
+          ; 149 push string
           mov rax, s_395
           push rax
-          ; 152 push integer
-          mov rax, 152
+          ; 149 push integer
+          mov rax, 149
           push rax
-          ; 152 push string
+          ; 149 push string
           mov rax, s_400
           push rax
-          ; 152 push boolean
+          ; 149 push boolean
           mov rax, 1
           push rax
-          ; 152 call
+          ; 149 call
           call fn_textbuffer_append
           pop rbx
           pop rbx
@@ -58431,50 +58374,50 @@ while_0x0000000000000039:
           pop rbx
           pop rbx
           push rax
-          ; 152 get pointer to buffer
+          ; 149 get pointer to buffer
           mov rax, buf__textbuffer
           push rax
-          ; 152 set pointer value
+          ; 149 set pointer value
           pop rax
           pop rbx
           mov [rax], rbx
-          ; 152 jump
+          ; 149 jump
           jmp end_0x000000000000019e
-          ; 152 label
+          ; 149 label
 if_0x000000000000019e: 
-          ; 152 label
+          ; 149 label
 end_0x000000000000019e: 
-          ; 153 over
+          ; 150 over
           pop rax
           pop rbx
           push rbx
           push rax
           push rbx
-          ; 153 over
+          ; 150 over
           pop rax
           pop rbx
           push rbx
           push rax
           push rbx
-          ; 153 add
+          ; 150 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 154 duplicate
+          ; 151 duplicate
           pop rax
           push rax
           push rax
-          ; 154 dereference character
+          ; 151 dereference character
           pop rax
           xor rbx, rbx
           mov bl, [rax]
           push rbx
-          ; 154 push character
+          ; 151 push character
           mov rax, 92
           mov rax, 92
           push rax
-          ; 154 is equal?
+          ; 151 is equal?
           mov rax, 0
           mov rbx, 1
           pop rcx
@@ -58482,32 +58425,32 @@ end_0x000000000000019e:
           cmp rdx, rcx
           cmove rax, rbx
           push rax
-          ; 154 start of if-block
+          ; 151 start of if-block
           pop rax
           test rax, rax
           jz if_0x000000000000019f
-          ; 155 push integer
+          ; 152 push integer
           mov rax, 1
           push rax
-          ; 155 add
+          ; 152 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 155 dereference character
+          ; 152 dereference character
           pop rax
           xor rbx, rbx
           mov bl, [rax]
           push rbx
-          ; 156 duplicate
+          ; 153 duplicate
           pop rax
           push rax
           push rax
-          ; 156 push character
+          ; 153 push character
           mov rax, 110
           mov rax, 110
           push rax
-          ; 156 is equal?
+          ; 153 is equal?
           mov rax, 0
           mov rbx, 1
           pop rcx
@@ -58515,33 +58458,33 @@ end_0x000000000000019e:
           cmp rdx, rcx
           cmove rax, rbx
           push rax
-          ; 156 start of if-block
+          ; 153 start of if-block
           pop rax
           test rax, rax
           jz if_0x00000000000001a0
-          ; 157 push string
+          ; 154 push string
           mov rax, s_415
           push rax
-          ; 157 get pointer to buffer
+          ; 154 get pointer to buffer
           mov rax, buf__textbuffer
           push rax
-          ; 157 dereference pointer
+          ; 154 dereference pointer
           pop rax
           mov rbx, [rax]
           push rbx
-          ; 157 push string
+          ; 154 push string
           mov rax, s_395
           push rax
-          ; 157 push integer
-          mov rax, 157
+          ; 154 push integer
+          mov rax, 154
           push rax
-          ; 157 push string
+          ; 154 push string
           mov rax, s_400
           push rax
-          ; 157 push boolean
+          ; 154 push boolean
           mov rax, 1
           push rax
-          ; 157 call
+          ; 154 call
           call fn_textbuffer_append
           pop rbx
           pop rbx
@@ -58550,150 +58493,150 @@ end_0x000000000000019e:
           pop rbx
           pop rbx
           push rax
-          ; 157 get pointer to buffer
+          ; 154 get pointer to buffer
           mov rax, buf__textbuffer
           push rax
-          ; 157 set pointer value
+          ; 154 set pointer value
+          pop rax
+          pop rbx
+          mov [rax], rbx
+          ; 154 jump
+          jmp end_0x00000000000001a0
+          ; 154 label
+if_0x00000000000001a0: 
+          ; 155 duplicate
+          pop rax
+          push rax
+          push rax
+          ; 155 push character
+          mov rax, 114
+          mov rax, 114
+          push rax
+          ; 155 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
+          push rax
+          ; 155 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x00000000000001a1
+          ; 156 push string
+          mov rax, s_416
+          push rax
+          ; 156 get pointer to buffer
+          mov rax, buf__textbuffer
+          push rax
+          ; 156 dereference pointer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 156 push string
+          mov rax, s_395
+          push rax
+          ; 156 push integer
+          mov rax, 156
+          push rax
+          ; 156 push string
+          mov rax, s_400
+          push rax
+          ; 156 push boolean
+          mov rax, 1
+          push rax
+          ; 156 call
+          call fn_textbuffer_append
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 156 get pointer to buffer
+          mov rax, buf__textbuffer
+          push rax
+          ; 156 set pointer value
+          pop rax
+          pop rbx
+          mov [rax], rbx
+          ; 155 jump
+          jmp end_0x00000000000001a0
+          ; 155 label
+elif_0x00000000000001a1: 
+          ; 157 duplicate
+          pop rax
+          push rax
+          push rax
+          ; 157 push character
+          mov rax, 92
+          mov rax, 92
+          push rax
+          ; 157 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
+          push rax
+          ; 157 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x00000000000001a2
+          ; 158 push string
+          mov rax, s_417
+          push rax
+          ; 158 get pointer to buffer
+          mov rax, buf__textbuffer
+          push rax
+          ; 158 dereference pointer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 158 push string
+          mov rax, s_395
+          push rax
+          ; 158 push integer
+          mov rax, 158
+          push rax
+          ; 158 push string
+          mov rax, s_400
+          push rax
+          ; 158 push boolean
+          mov rax, 1
+          push rax
+          ; 158 call
+          call fn_textbuffer_append
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 158 get pointer to buffer
+          mov rax, buf__textbuffer
+          push rax
+          ; 158 set pointer value
           pop rax
           pop rbx
           mov [rax], rbx
           ; 157 jump
           jmp end_0x00000000000001a0
           ; 157 label
-if_0x00000000000001a0: 
-          ; 158 duplicate
-          pop rax
-          push rax
-          push rax
-          ; 158 push character
-          mov rax, 114
-          mov rax, 114
-          push rax
-          ; 158 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
-          push rax
-          ; 158 start of if-block
-          pop rax
-          test rax, rax
-          jz elif_0x00000000000001a1
-          ; 159 push string
-          mov rax, s_416
-          push rax
-          ; 159 get pointer to buffer
-          mov rax, buf__textbuffer
-          push rax
-          ; 159 dereference pointer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 159 push string
-          mov rax, s_395
-          push rax
-          ; 159 push integer
-          mov rax, 159
-          push rax
-          ; 159 push string
-          mov rax, s_400
-          push rax
-          ; 159 push boolean
-          mov rax, 1
-          push rax
-          ; 159 call
-          call fn_textbuffer_append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 159 get pointer to buffer
-          mov rax, buf__textbuffer
-          push rax
-          ; 159 set pointer value
-          pop rax
-          pop rbx
-          mov [rax], rbx
-          ; 158 jump
-          jmp end_0x00000000000001a0
-          ; 158 label
-elif_0x00000000000001a1: 
-          ; 160 duplicate
-          pop rax
-          push rax
-          push rax
-          ; 160 push character
-          mov rax, 92
-          mov rax, 92
-          push rax
-          ; 160 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
-          push rax
-          ; 160 start of if-block
-          pop rax
-          test rax, rax
-          jz elif_0x00000000000001a2
-          ; 161 push string
-          mov rax, s_417
-          push rax
-          ; 161 get pointer to buffer
-          mov rax, buf__textbuffer
-          push rax
-          ; 161 dereference pointer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 161 push string
-          mov rax, s_395
-          push rax
-          ; 161 push integer
-          mov rax, 161
-          push rax
-          ; 161 push string
-          mov rax, s_400
-          push rax
-          ; 161 push boolean
-          mov rax, 1
-          push rax
-          ; 161 call
-          call fn_textbuffer_append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 161 get pointer to buffer
-          mov rax, buf__textbuffer
-          push rax
-          ; 161 set pointer value
-          pop rax
-          pop rbx
-          mov [rax], rbx
-          ; 160 jump
-          jmp end_0x00000000000001a0
-          ; 160 label
 elif_0x00000000000001a2: 
-          ; 162 duplicate
+          ; 159 duplicate
           pop rax
           push rax
           push rax
-          ; 162 push character
+          ; 159 push character
           mov rax, 48
           mov rax, 48
           push rax
-          ; 162 is equal?
+          ; 159 is equal?
           mov rax, 0
           mov rbx, 1
           pop rcx
@@ -58701,33 +58644,33 @@ elif_0x00000000000001a2:
           cmp rdx, rcx
           cmove rax, rbx
           push rax
-          ; 162 start of if-block
+          ; 159 start of if-block
           pop rax
           test rax, rax
           jz elif_0x00000000000001a3
-          ; 163 push string
+          ; 160 push string
           mov rax, s_1
           push rax
-          ; 163 get pointer to buffer
+          ; 160 get pointer to buffer
           mov rax, buf__textbuffer
           push rax
-          ; 163 dereference pointer
+          ; 160 dereference pointer
           pop rax
           mov rbx, [rax]
           push rbx
-          ; 163 push string
+          ; 160 push string
           mov rax, s_395
           push rax
-          ; 163 push integer
-          mov rax, 163
+          ; 160 push integer
+          mov rax, 160
           push rax
-          ; 163 push string
+          ; 160 push string
           mov rax, s_400
           push rax
-          ; 163 push boolean
+          ; 160 push boolean
           mov rax, 1
           push rax
-          ; 163 call
+          ; 160 call
           call fn_textbuffer_append
           pop rbx
           pop rbx
@@ -58736,26 +58679,26 @@ elif_0x00000000000001a2:
           pop rbx
           pop rbx
           push rax
-          ; 163 get pointer to buffer
+          ; 160 get pointer to buffer
           mov rax, buf__textbuffer
           push rax
-          ; 163 set pointer value
+          ; 160 set pointer value
           pop rax
           pop rbx
           mov [rax], rbx
-          ; 162 jump
+          ; 159 jump
           jmp end_0x00000000000001a0
-          ; 162 label
+          ; 159 label
 elif_0x00000000000001a3: 
-          ; 164 duplicate
+          ; 161 duplicate
           pop rax
           push rax
           push rax
-          ; 164 push character
+          ; 161 push character
           mov rax, 34
           mov rax, 34
           push rax
-          ; 164 is equal?
+          ; 161 is equal?
           mov rax, 0
           mov rbx, 1
           pop rcx
@@ -58763,33 +58706,33 @@ elif_0x00000000000001a3:
           cmp rdx, rcx
           cmove rax, rbx
           push rax
-          ; 164 start of if-block
+          ; 161 start of if-block
           pop rax
           test rax, rax
           jz elif_0x00000000000001a4
-          ; 165 push string
+          ; 162 push string
           mov rax, s_418
           push rax
-          ; 165 get pointer to buffer
+          ; 162 get pointer to buffer
           mov rax, buf__textbuffer
           push rax
-          ; 165 dereference pointer
+          ; 162 dereference pointer
           pop rax
           mov rbx, [rax]
           push rbx
-          ; 165 push string
+          ; 162 push string
           mov rax, s_395
           push rax
-          ; 165 push integer
-          mov rax, 165
+          ; 162 push integer
+          mov rax, 162
           push rax
-          ; 165 push string
+          ; 162 push string
           mov rax, s_400
           push rax
-          ; 165 push boolean
+          ; 162 push boolean
           mov rax, 1
           push rax
-          ; 165 call
+          ; 162 call
           call fn_textbuffer_append
           pop rbx
           pop rbx
@@ -58798,43 +58741,117 @@ elif_0x00000000000001a3:
           pop rbx
           pop rbx
           push rax
-          ; 165 get pointer to buffer
+          ; 162 get pointer to buffer
           mov rax, buf__textbuffer
           push rax
-          ; 165 set pointer value
+          ; 162 set pointer value
           pop rax
           pop rbx
           mov [rax], rbx
-          ; 164 jump
+          ; 161 jump
           jmp end_0x00000000000001a0
-          ; 164 label
+          ; 161 label
 elif_0x00000000000001a4: 
-          ; 167 push string
+          ; 164 push string
           mov rax, s_419
           push rax
-          ; 167 push string
+          ; 164 push string
           mov rax, s_395
           push rax
-          ; 167 push integer
-          mov rax, 167
+          ; 164 push integer
+          mov rax, 164
           push rax
-          ; 167 push string
+          ; 164 push string
           mov rax, s_400
           push rax
-          ; 167 push boolean
+          ; 164 push boolean
           mov rax, 1
           push rax
-          ; 167 call
+          ; 164 call
           call fn_raise
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
-          ; 167 label
+          ; 164 label
 end_0x00000000000001a0: 
-          ; 168 drop
+          ; 165 drop
           pop rax
+          ; 166 push integer
+          mov rax, 1
+          push rax
+          ; 166 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 152 jump
+          jmp end_0x000000000000019f
+          ; 152 label
+if_0x000000000000019f: 
+          ; 168 dereference character
+          pop rax
+          xor rbx, rbx
+          mov bl, [rax]
+          push rbx
+          ; 168 push string
+          mov rax, s_395
+          push rax
+          ; 168 push integer
+          mov rax, 168
+          push rax
+          ; 168 push string
+          mov rax, s_400
+          push rax
+          ; 168 push boolean
+          mov rax, 1
+          push rax
+          ; 168 call
+          call fn_itos
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 168 get pointer to buffer
+          mov rax, buf__textbuffer
+          push rax
+          ; 168 dereference pointer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 168 push string
+          mov rax, s_395
+          push rax
+          ; 168 push integer
+          mov rax, 168
+          push rax
+          ; 168 push string
+          mov rax, s_400
+          push rax
+          ; 168 push boolean
+          mov rax, 1
+          push rax
+          ; 168 call
+          call fn_textbuffer_append
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 168 get pointer to buffer
+          mov rax, buf__textbuffer
+          push rax
+          ; 168 set pointer value
+          pop rax
+          pop rbx
+          mov [rax], rbx
+          ; 168 label
+end_0x000000000000019f: 
           ; 169 push integer
           mov rax, 1
           push rax
@@ -58843,106 +58860,32 @@ end_0x00000000000001a0:
           pop rbx
           add rbx, rax
           push rbx
-          ; 155 jump
-          jmp end_0x000000000000019f
-          ; 155 label
-if_0x000000000000019f: 
-          ; 171 dereference character
-          pop rax
-          xor rbx, rbx
-          mov bl, [rax]
-          push rbx
-          ; 171 push string
-          mov rax, s_395
-          push rax
-          ; 171 push integer
-          mov rax, 171
-          push rax
-          ; 171 push string
-          mov rax, s_400
-          push rax
-          ; 171 push boolean
-          mov rax, 1
-          push rax
-          ; 171 call
-          call fn_itos
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 171 get pointer to buffer
-          mov rax, buf__textbuffer
-          push rax
-          ; 171 dereference pointer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 171 push string
-          mov rax, s_395
-          push rax
-          ; 171 push integer
-          mov rax, 171
-          push rax
-          ; 171 push string
-          mov rax, s_400
-          push rax
-          ; 171 push boolean
-          mov rax, 1
-          push rax
-          ; 171 call
-          call fn_textbuffer_append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 171 get pointer to buffer
-          mov rax, buf__textbuffer
-          push rax
-          ; 171 set pointer value
-          pop rax
-          pop rbx
-          mov [rax], rbx
-          ; 171 label
-end_0x000000000000019f: 
-          ; 172 push integer
-          mov rax, 1
-          push rax
-          ; 172 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 150 end of while-loop
+          ; 147 end of while-loop
           jmp while_0x0000000000000039
 while_0x0000000000000039_end: 
-          ; 173 swap
+          ; 170 swap
           pop rax
           pop rbx
           push rax
           push rbx
-          ; 173 drop
+          ; 170 drop
           pop rax
-          ; 175 get pointer to buffer
+          ; 172 get pointer to buffer
           mov rax, buf__textbuffer
           push rax
-          ; 175 dereference pointer
+          ; 172 dereference pointer
           pop rax
           mov rbx, [rax]
           push rbx
-          ; 177 swap
+          ; 174 swap
           pop rax
           pop rbx
           push rax
           push rbx
-          ; 177 push integer
+          ; 174 push integer
           mov rax, 0
           push rax
-          ; 177 is greater?
+          ; 174 is greater?
           mov rax, 0
           mov rbx, 1
           pop rcx
@@ -58950,31 +58893,31 @@ while_0x0000000000000039_end:
           cmp rdx, rcx
           cmovg rax, rbx
           push rax
-          ; 177 start of if-block
+          ; 174 start of if-block
           pop rax
           test rax, rax
           jz if_0x00000000000001a5
-          ; 178 push string
+          ; 175 push string
           mov rax, s_420
           push rax
-          ; 178 swap
+          ; 175 swap
           pop rax
           pop rbx
           push rax
           push rbx
-          ; 178 push string
+          ; 175 push string
           mov rax, s_395
           push rax
-          ; 178 push integer
-          mov rax, 178
+          ; 175 push integer
+          mov rax, 175
           push rax
-          ; 178 push string
+          ; 175 push string
           mov rax, s_400
           push rax
-          ; 178 push boolean
+          ; 175 push boolean
           mov rax, 1
           push rax
-          ; 178 call
+          ; 175 call
           call fn_textbuffer_append
           pop rbx
           pop rbx
@@ -58983,31 +58926,31 @@ while_0x0000000000000039_end:
           pop rbx
           pop rbx
           push rax
-          ; 178 jump
+          ; 175 jump
           jmp end_0x00000000000001a5
-          ; 178 label
+          ; 175 label
 if_0x00000000000001a5: 
-          ; 180 push string
+          ; 177 push string
           mov rax, s_1
           push rax
-          ; 180 swap
+          ; 177 swap
           pop rax
           pop rbx
           push rax
           push rbx
-          ; 180 push string
+          ; 177 push string
           mov rax, s_395
           push rax
-          ; 180 push integer
-          mov rax, 180
+          ; 177 push integer
+          mov rax, 177
           push rax
-          ; 180 push string
+          ; 177 push string
           mov rax, s_400
           push rax
-          ; 180 push boolean
+          ; 177 push boolean
           mov rax, 1
           push rax
-          ; 180 call
+          ; 177 call
           call fn_textbuffer_append
           pop rbx
           pop rbx
@@ -59016,25 +58959,103 @@ if_0x00000000000001a5:
           pop rbx
           pop rbx
           push rax
-          ; 180 label
+          ; 177 label
 end_0x00000000000001a5: 
+          ; 179 duplicate
+          pop rax
+          push rax
+          push rax
+          ; 179 push integer
+          mov rax, 16
+          push rax
+          ; 179 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 179 push string
+          mov rax, s_59
+          push rax
+          ; 179 get pointer to buffer
+          mov rax, buf__data
+          push rax
+          ; 179 push string
+          mov rax, s_395
+          push rax
+          ; 179 push integer
+          mov rax, 179
+          push rax
+          ; 179 push string
+          mov rax, s_400
+          push rax
+          ; 179 push boolean
+          mov rax, 1
+          push rax
+          ; 179 call
+          call fn__append
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          ; 180 get pointer to buffer
+          mov rax, buf__textbuffer
+          push rax
+          ; 180 set pointer value
+          pop rax
+          pop rbx
+          mov [rax], rbx
+          ; 124 jump
+          jmp end_0x000000000000019d
+          ; 124 label
+if_0x000000000000019d: 
+          ; 124 label
+end_0x000000000000019d: 
           ; 182 duplicate
           pop rax
           push rax
           push rax
           ; 182 push integer
-          mov rax, 16
+          mov rax, 8
           push rax
           ; 182 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 182 push string
-          mov rax, s_59
-          push rax
+          ; 182 dereference pointer
+          pop rax
+          mov rbx, [rax]
+          push rbx
           ; 182 get pointer to buffer
-          mov rax, buf__data
+          mov rax, buf__string_labels
+          push rax
+          ; 182 dereference pointer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 182 push string
+          mov rax, s_395
+          push rax
+          ; 182 push integer
+          mov rax, 182
+          push rax
+          ; 182 push string
+          mov rax, s_400
+          push rax
+          ; 182 push boolean
+          mov rax, 1
+          push rax
+          ; 182 call
+          call fn_dict_fetch
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
           push rax
           ; 182 push string
           mov rax, s_395
@@ -59049,91 +59070,13 @@ end_0x00000000000001a5:
           mov rax, 1
           push rax
           ; 182 call
-          call fn__append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          ; 183 get pointer to buffer
-          mov rax, buf__textbuffer
-          push rax
-          ; 183 set pointer value
-          pop rax
-          pop rbx
-          mov [rax], rbx
-          ; 127 jump
-          jmp end_0x000000000000019d
-          ; 127 label
-if_0x000000000000019d: 
-          ; 127 label
-end_0x000000000000019d: 
-          ; 185 duplicate
-          pop rax
-          push rax
-          push rax
-          ; 185 push integer
-          mov rax, 8
-          push rax
-          ; 185 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 185 dereference pointer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 185 get pointer to buffer
-          mov rax, buf__string_labels
-          push rax
-          ; 185 dereference pointer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 185 push string
-          mov rax, s_395
-          push rax
-          ; 185 push integer
-          mov rax, 185
-          push rax
-          ; 185 push string
-          mov rax, s_400
-          push rax
-          ; 185 push boolean
-          mov rax, 1
-          push rax
-          ; 185 call
-          call fn_dict_fetch
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 185 push string
-          mov rax, s_395
-          push rax
-          ; 185 push integer
-          mov rax, 185
-          push rax
-          ; 185 push string
-          mov rax, s_400
-          push rax
-          ; 185 push boolean
-          mov rax, 1
-          push rax
-          ; 185 call
           call fn_NULL
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           push rax
-          ; 185 is not equal?
+          ; 182 is not equal?
           mov rax, 0
           mov rbx, 1
           pop rcx
@@ -59141,9 +59084,64 @@ end_0x000000000000019d:
           cmp rdx, rcx
           cmovne rax, rbx
           push rax
-          ; 186 push string
+          ; 183 push string
           mov rax, s_421
           push rax
+          ; 183 push string
+          mov rax, s_395
+          push rax
+          ; 183 push integer
+          mov rax, 183
+          push rax
+          ; 183 push string
+          mov rax, s_400
+          push rax
+          ; 183 push boolean
+          mov rax, 1
+          push rax
+          ; 183 call
+          call fn_assert
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          ; 185 get pointer to buffer
+          mov rax, buf__textbuffer
+          push rax
+          ; 185 dereference pointer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 185 push string
+          mov rax, s_395
+          push rax
+          ; 185 push integer
+          mov rax, 185
+          push rax
+          ; 185 push string
+          mov rax, s_400
+          push rax
+          ; 185 push boolean
+          mov rax, 1
+          push rax
+          ; 185 call
+          call fn_textbuffer_clear
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 186 push string
+          mov rax, s_411
+          push rax
+          ; 186 swap
+          pop rax
+          pop rbx
+          push rax
+          push rbx
           ; 186 push string
           mov rax, s_395
           push rax
@@ -59157,15 +59155,34 @@ end_0x000000000000019d:
           mov rax, 1
           push rax
           ; 186 call
-          call fn_assert
+          call fn_textbuffer_append
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
+          push rax
+          ; 187 over
+          pop rax
+          pop rbx
+          push rbx
+          push rax
+          push rbx
+          ; 187 push integer
+          mov rax, 8
+          push rax
+          ; 187 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 187 dereference pointer
+          pop rax
+          mov rbx, [rax]
+          push rbx
           ; 188 get pointer to buffer
-          mov rax, buf__textbuffer
+          mov rax, buf__string_labels
           push rax
           ; 188 dereference pointer
           pop rax
@@ -59184,7 +59201,34 @@ end_0x000000000000019d:
           mov rax, 1
           push rax
           ; 188 call
-          call fn_textbuffer_clear
+          call fn_dict_fetch
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 188 swap
+          pop rax
+          pop rbx
+          push rax
+          push rbx
+          ; 188 push string
+          mov rax, s_395
+          push rax
+          ; 188 push integer
+          mov rax, 188
+          push rax
+          ; 188 push string
+          mov rax, s_400
+          push rax
+          ; 188 push boolean
+          mov rax, 1
+          push rax
+          ; 188 call
+          call fn_textbuffer_append
+          pop rbx
           pop rbx
           pop rbx
           pop rbx
@@ -59192,13 +59236,25 @@ end_0x000000000000019d:
           pop rbx
           push rax
           ; 189 push string
-          mov rax, s_411
+          mov rax, s_59
           push rax
-          ; 189 swap
+          ; 189 over
           pop rax
           pop rbx
+          push rbx
           push rax
           push rbx
+          ; 189 push integer
+          mov rax, 16
+          push rax
+          ; 189 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 189 get pointer to buffer
+          mov rax, buf__text
+          push rax
           ; 189 push string
           mov rax, s_395
           push rax
@@ -59212,119 +59268,6 @@ end_0x000000000000019d:
           mov rax, 1
           push rax
           ; 189 call
-          call fn_textbuffer_append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 190 over
-          pop rax
-          pop rbx
-          push rbx
-          push rax
-          push rbx
-          ; 190 push integer
-          mov rax, 8
-          push rax
-          ; 190 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 190 dereference pointer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 191 get pointer to buffer
-          mov rax, buf__string_labels
-          push rax
-          ; 191 dereference pointer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 191 push string
-          mov rax, s_395
-          push rax
-          ; 191 push integer
-          mov rax, 191
-          push rax
-          ; 191 push string
-          mov rax, s_400
-          push rax
-          ; 191 push boolean
-          mov rax, 1
-          push rax
-          ; 191 call
-          call fn_dict_fetch
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 191 swap
-          pop rax
-          pop rbx
-          push rax
-          push rbx
-          ; 191 push string
-          mov rax, s_395
-          push rax
-          ; 191 push integer
-          mov rax, 191
-          push rax
-          ; 191 push string
-          mov rax, s_400
-          push rax
-          ; 191 push boolean
-          mov rax, 1
-          push rax
-          ; 191 call
-          call fn_textbuffer_append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 192 push string
-          mov rax, s_59
-          push rax
-          ; 192 over
-          pop rax
-          pop rbx
-          push rbx
-          push rax
-          push rbx
-          ; 192 push integer
-          mov rax, 16
-          push rax
-          ; 192 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 192 get pointer to buffer
-          mov rax, buf__text
-          push rax
-          ; 192 push string
-          mov rax, s_395
-          push rax
-          ; 192 push integer
-          mov rax, 192
-          push rax
-          ; 192 push string
-          mov rax, s_400
-          push rax
-          ; 192 push boolean
-          mov rax, 1
-          push rax
-          ; 192 call
           call fn__append
           pop rbx
           pop rbx
@@ -59333,15 +59276,85 @@ end_0x000000000000019d:
           pop rbx
           pop rbx
           pop rbx
-          ; 193 push string
+          ; 190 push string
           mov rax, s_59
           push rax
-          ; 193 push string
+          ; 190 push string
           mov rax, s_406
           push rax
-          ; 193 get pointer to buffer
+          ; 190 get pointer to buffer
           mov rax, buf__text
           push rax
+          ; 190 push string
+          mov rax, s_395
+          push rax
+          ; 190 push integer
+          mov rax, 190
+          push rax
+          ; 190 push string
+          mov rax, s_400
+          push rax
+          ; 190 push boolean
+          mov rax, 1
+          push rax
+          ; 190 call
+          call fn__append
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          ; 191 get pointer to buffer
+          mov rax, buf__textbuffer
+          push rax
+          ; 191 set pointer value
+          pop rax
+          pop rbx
+          mov [rax], rbx
+          ; 120 jump
+          jmp end_0x0000000000000194
+          ; 120 label
+elif_0x000000000000019c: 
+          ; 192 duplicate
+          pop rax
+          push rax
+          push rax
+          ; 192 push integer
+          mov rax, 0
+          push rax
+          ; 192 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 192 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 192 push integer
+          mov rax, 14
+          push rax
+          ; 192 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
+          push rax
+          ; 192 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x00000000000001a6
+          ; 193 get pointer to buffer
+          mov rax, buf__textbuffer
+          push rax
+          ; 193 dereference pointer
+          pop rax
+          mov rbx, [rax]
+          push rbx
           ; 193 push string
           mov rax, s_395
           push rax
@@ -59355,62 +59368,93 @@ end_0x000000000000019d:
           mov rax, 1
           push rax
           ; 193 call
-          call fn__append
+          call fn_textbuffer_clear
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
-          pop rbx
-          pop rbx
-          ; 194 get pointer to buffer
-          mov rax, buf__textbuffer
           push rax
-          ; 194 set pointer value
+          ; 194 push string
+          mov rax, s_378
+          push rax
+          ; 194 swap
           pop rax
           pop rbx
-          mov [rax], rbx
-          ; 123 jump
-          jmp end_0x0000000000000194
-          ; 123 label
-elif_0x000000000000019c: 
-          ; 195 duplicate
+          push rax
+          push rbx
+          ; 194 push string
+          mov rax, s_395
+          push rax
+          ; 194 push integer
+          mov rax, 194
+          push rax
+          ; 194 push string
+          mov rax, s_400
+          push rax
+          ; 194 push boolean
+          mov rax, 1
+          push rax
+          ; 194 call
+          call fn_textbuffer_append
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 195 over
           pop rax
+          pop rbx
+          push rbx
           push rax
-          push rax
+          push rbx
           ; 195 push integer
-          mov rax, 0
+          mov rax, 8
           push rax
           ; 195 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 195 dereference integer
+          ; 195 dereference pointer
           pop rax
           mov rbx, [rax]
           push rbx
+          ; 195 swap
+          pop rax
+          pop rbx
+          push rax
+          push rbx
+          ; 195 push string
+          mov rax, s_395
+          push rax
           ; 195 push integer
-          mov rax, 14
+          mov rax, 195
           push rax
-          ; 195 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
+          ; 195 push string
+          mov rax, s_400
           push rax
-          ; 195 start of if-block
+          ; 195 push boolean
+          mov rax, 1
+          push rax
+          ; 195 call
+          call fn_textbuffer_append
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 196 push string
+          mov rax, s_422
+          push rax
+          ; 196 swap
           pop rax
-          test rax, rax
-          jz elif_0x00000000000001a6
-          ; 196 get pointer to buffer
-          mov rax, buf__textbuffer
+          pop rbx
           push rax
-          ; 196 dereference pointer
-          pop rax
-          mov rbx, [rax]
           push rbx
           ; 196 push string
           mov rax, s_395
@@ -59425,21 +59469,32 @@ elif_0x000000000000019c:
           mov rax, 1
           push rax
           ; 196 call
-          call fn_textbuffer_clear
+          call fn_textbuffer_append
+          pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           push rax
-          ; 197 push string
-          mov rax, s_378
+          ; 197 duplicate
+          pop rax
           push rax
-          ; 197 swap
+          push rax
+          ; 197 push integer
+          mov rax, 16
+          push rax
+          ; 197 add
           pop rax
           pop rbx
-          push rax
+          add rbx, rax
           push rbx
+          ; 197 push string
+          mov rax, s_59
+          push rax
+          ; 197 get pointer to buffer
+          mov rax, buf__text
+          push rax
           ; 197 push string
           mov rax, s_395
           push rax
@@ -59453,37 +59508,23 @@ elif_0x000000000000019c:
           mov rax, 1
           push rax
           ; 197 call
-          call fn_textbuffer_append
+          call fn__append
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
+          pop rbx
+          ; 198 push string
+          mov rax, s_59
           push rax
-          ; 198 over
-          pop rax
-          pop rbx
-          push rbx
+          ; 198 push string
+          mov rax, s_423
           push rax
-          push rbx
-          ; 198 push integer
-          mov rax, 8
+          ; 198 get pointer to buffer
+          mov rax, buf__text
           push rax
-          ; 198 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 198 dereference pointer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 198 swap
-          pop rax
-          pop rbx
-          push rax
-          push rbx
           ; 198 push string
           mov rax, s_395
           push rax
@@ -59497,22 +59538,23 @@ elif_0x000000000000019c:
           mov rax, 1
           push rax
           ; 198 call
-          call fn_textbuffer_append
+          call fn__append
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
+          pop rbx
+          ; 199 push string
+          mov rax, s_59
           push rax
           ; 199 push string
-          mov rax, s_422
+          mov rax, s_424
           push rax
-          ; 199 swap
-          pop rax
-          pop rbx
+          ; 199 get pointer to buffer
+          mov rax, buf__text
           push rax
-          push rbx
           ; 199 push string
           mov rax, s_395
           push rax
@@ -59526,92 +59568,63 @@ elif_0x000000000000019c:
           mov rax, 1
           push rax
           ; 199 call
-          call fn_textbuffer_append
+          call fn__append
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
+          pop rbx
+          ; 200 get pointer to buffer
+          mov rax, buf__textbuffer
           push rax
-          ; 200 duplicate
+          ; 200 set pointer value
+          pop rax
+          pop rbx
+          mov [rax], rbx
+          ; 192 jump
+          jmp end_0x0000000000000194
+          ; 192 label
+elif_0x00000000000001a6: 
+          ; 201 duplicate
           pop rax
           push rax
           push rax
-          ; 200 push integer
-          mov rax, 16
+          ; 201 push integer
+          mov rax, 0
           push rax
-          ; 200 add
+          ; 201 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 200 push string
-          mov rax, s_59
-          push rax
-          ; 200 get pointer to buffer
-          mov rax, buf__text
-          push rax
-          ; 200 push string
-          mov rax, s_395
-          push rax
-          ; 200 push integer
-          mov rax, 200
-          push rax
-          ; 200 push string
-          mov rax, s_400
-          push rax
-          ; 200 push boolean
-          mov rax, 1
-          push rax
-          ; 200 call
-          call fn__append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          ; 201 push string
-          mov rax, s_59
-          push rax
-          ; 201 push string
-          mov rax, s_423
-          push rax
-          ; 201 get pointer to buffer
-          mov rax, buf__text
-          push rax
-          ; 201 push string
-          mov rax, s_395
-          push rax
+          ; 201 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
           ; 201 push integer
-          mov rax, 201
+          mov rax, 4
           push rax
-          ; 201 push string
-          mov rax, s_400
+          ; 201 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
           push rax
-          ; 201 push boolean
-          mov rax, 1
-          push rax
-          ; 201 call
-          call fn__append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          ; 202 push string
-          mov rax, s_59
-          push rax
-          ; 202 push string
-          mov rax, s_424
-          push rax
+          ; 201 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x00000000000001a7
           ; 202 get pointer to buffer
-          mov rax, buf__text
+          mov rax, buf__textbuffer
           push rax
+          ; 202 dereference pointer
+          pop rax
+          mov rbx, [rax]
+          push rbx
           ; 202 push string
           mov rax, s_395
           push rax
@@ -59625,63 +59638,106 @@ elif_0x000000000000019c:
           mov rax, 1
           push rax
           ; 202 call
-          call fn__append
+          call fn_textbuffer_clear
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
-          pop rbx
-          pop rbx
-          ; 203 get pointer to buffer
-          mov rax, buf__textbuffer
           push rax
-          ; 203 set pointer value
+          ; 203 push string
+          mov rax, s_425
+          push rax
+          ; 203 swap
           pop rax
           pop rbx
-          mov [rax], rbx
-          ; 195 jump
-          jmp end_0x0000000000000194
-          ; 195 label
-elif_0x00000000000001a6: 
-          ; 204 duplicate
+          push rax
+          push rbx
+          ; 203 push string
+          mov rax, s_395
+          push rax
+          ; 203 push integer
+          mov rax, 203
+          push rax
+          ; 203 push string
+          mov rax, s_400
+          push rax
+          ; 203 push boolean
+          mov rax, 1
+          push rax
+          ; 203 call
+          call fn_textbuffer_append
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 204 over
           pop rax
+          pop rbx
+          push rbx
           push rax
-          push rax
+          push rbx
           ; 204 push integer
-          mov rax, 0
+          mov rax, 8
           push rax
           ; 204 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 204 dereference integer
+          ; 204 dereference pointer
           pop rax
           mov rbx, [rax]
           push rbx
+          ; 204 swap
+          pop rax
+          pop rbx
+          push rax
+          push rbx
+          ; 204 push string
+          mov rax, s_395
+          push rax
           ; 204 push integer
-          mov rax, 4
+          mov rax, 204
           push rax
-          ; 204 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
+          ; 204 push string
+          mov rax, s_400
           push rax
-          ; 204 start of if-block
+          ; 204 push boolean
+          mov rax, 1
+          push rax
+          ; 204 call
+          call fn_textbuffer_append
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 205 push string
+          mov rax, s_59
+          push rax
+          ; 205 over
           pop rax
-          test rax, rax
-          jz elif_0x00000000000001a7
-          ; 205 get pointer to buffer
-          mov rax, buf__textbuffer
-          push rax
-          ; 205 dereference pointer
-          pop rax
-          mov rbx, [rax]
+          pop rbx
           push rbx
+          push rax
+          push rbx
+          ; 205 push integer
+          mov rax, 16
+          push rax
+          ; 205 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 205 get pointer to buffer
+          mov rax, buf__text
+          push rax
           ; 205 push string
           mov rax, s_395
           push rax
@@ -59695,106 +59751,44 @@ elif_0x00000000000001a6:
           mov rax, 1
           push rax
           ; 205 call
-          call fn_textbuffer_clear
+          call fn__append
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
+          pop rbx
+          pop rbx
+          ; 206 get pointer to buffer
+          mov rax, buf__textbuffer
           push rax
-          ; 206 push string
-          mov rax, s_425
-          push rax
-          ; 206 swap
+          ; 206 set pointer value
           pop rax
           pop rbx
-          push rax
-          push rbx
-          ; 206 push string
-          mov rax, s_395
-          push rax
-          ; 206 push integer
-          mov rax, 206
-          push rax
-          ; 206 push string
-          mov rax, s_400
-          push rax
-          ; 206 push boolean
-          mov rax, 1
-          push rax
-          ; 206 call
-          call fn_textbuffer_append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 207 over
+          mov [rax], rbx
+          ; 208 duplicate
           pop rax
-          pop rbx
-          push rbx
           push rax
-          push rbx
-          ; 207 push integer
-          mov rax, 8
           push rax
-          ; 207 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 207 dereference pointer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 207 swap
-          pop rax
-          pop rbx
-          push rax
-          push rbx
-          ; 207 push string
-          mov rax, s_395
-          push rax
-          ; 207 push integer
-          mov rax, 207
-          push rax
-          ; 207 push string
-          mov rax, s_400
-          push rax
-          ; 207 push boolean
-          mov rax, 1
-          push rax
-          ; 207 call
-          call fn_textbuffer_append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 208 push string
-          mov rax, s_59
-          push rax
-          ; 208 over
-          pop rax
-          pop rbx
-          push rbx
-          push rax
-          push rbx
           ; 208 push integer
-          mov rax, 16
+          mov rax, 8
           push rax
           ; 208 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
+          ; 208 dereference pointer
+          pop rax
+          mov rbx, [rax]
+          push rbx
           ; 208 get pointer to buffer
-          mov rax, buf__text
+          mov rax, buf_functions
           push rax
+          ; 208 dereference pointer
+          pop rax
+          mov rbx, [rax]
+          push rbx
           ; 208 push string
           mov rax, s_395
           push rax
@@ -59808,44 +59802,84 @@ elif_0x00000000000001a6:
           mov rax, 1
           push rax
           ; 208 call
-          call fn__append
+          call fn_dict_fetch
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
-          pop rbx
-          ; 209 get pointer to buffer
-          mov rax, buf__textbuffer
           push rax
-          ; 209 set pointer value
+          ; 209 push integer
+          mov rax, 0
+          push rax
+          ; 210 label
+while_0x000000000000003a: 
+          ; 210 over
           pop rax
           pop rbx
-          mov [rax], rbx
-          ; 211 duplicate
-          pop rax
+          push rbx
           push rax
-          push rax
-          ; 211 push integer
+          push rbx
+          ; 210 push integer
           mov rax, 8
           push rax
-          ; 211 add
+          ; 210 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 211 dereference pointer
+          ; 210 dereference pointer
           pop rax
           mov rbx, [rax]
           push rbx
-          ; 211 get pointer to buffer
-          mov rax, buf_functions
+          ; 210 push integer
+          mov rax, 8
           push rax
-          ; 211 dereference pointer
+          ; 210 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 210 dereference integer
           pop rax
           mov rbx, [rax]
           push rbx
+          ; 210 push integer
+          mov rax, 4
+          push rax
+          ; 210 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 210 over
+          pop rax
+          pop rbx
+          push rbx
+          push rax
+          push rbx
+          ; 210 is greater?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmovg rax, rbx
+          push rax
+          ; 210 start of while-loop
+          pop rax
+          test rax, rax
+          jz while_0x000000000000003a_end
+          ; 211 push string
+          mov rax, s_59
+          push rax
+          ; 211 push string
+          mov rax, s_407
+          push rax
+          ; 211 get pointer to buffer
+          mov rax, buf__text
+          push rax
           ; 211 push string
           mov rax, s_395
           push rax
@@ -59859,97 +59893,6 @@ elif_0x00000000000001a6:
           mov rax, 1
           push rax
           ; 211 call
-          call fn_dict_fetch
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 212 push integer
-          mov rax, 0
-          push rax
-          ; 213 label
-while_0x000000000000003a: 
-          ; 213 over
-          pop rax
-          pop rbx
-          push rbx
-          push rax
-          push rbx
-          ; 213 push integer
-          mov rax, 8
-          push rax
-          ; 213 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 213 dereference pointer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 213 push integer
-          mov rax, 8
-          push rax
-          ; 213 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 213 dereference integer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 213 push integer
-          mov rax, 4
-          push rax
-          ; 213 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 213 over
-          pop rax
-          pop rbx
-          push rbx
-          push rax
-          push rbx
-          ; 213 is greater?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmovg rax, rbx
-          push rax
-          ; 213 start of while-loop
-          pop rax
-          test rax, rax
-          jz while_0x000000000000003a_end
-          ; 214 push string
-          mov rax, s_59
-          push rax
-          ; 214 push string
-          mov rax, s_407
-          push rax
-          ; 214 get pointer to buffer
-          mov rax, buf__text
-          push rax
-          ; 214 push string
-          mov rax, s_395
-          push rax
-          ; 214 push integer
-          mov rax, 214
-          push rax
-          ; 214 push string
-          mov rax, s_400
-          push rax
-          ; 214 push boolean
-          mov rax, 1
-          push rax
-          ; 214 call
           call fn__append
           pop rbx
           pop rbx
@@ -59958,35 +59901,35 @@ while_0x000000000000003a:
           pop rbx
           pop rbx
           pop rbx
-          ; 215 push integer
+          ; 212 push integer
           mov rax, 1
           push rax
-          ; 215 add
+          ; 212 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 213 end of while-loop
+          ; 210 end of while-loop
           jmp while_0x000000000000003a
 while_0x000000000000003a_end: 
-          ; 216 drop
+          ; 213 drop
           pop rax
-          ; 217 push integer
+          ; 214 push integer
           mov rax, 16
           push rax
-          ; 217 add
+          ; 214 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 217 dereference integer
+          ; 214 dereference integer
           pop rax
           mov rbx, [rax]
           push rbx
-          ; 217 push integer
+          ; 214 push integer
           mov rax, 5
           push rax
-          ; 217 is not equal?
+          ; 214 is not equal?
           mov rax, 0
           mov rbx, 1
           pop rcx
@@ -59994,19 +59937,118 @@ while_0x000000000000003a_end:
           cmp rdx, rcx
           cmovne rax, rbx
           push rax
-          ; 217 start of if-block
+          ; 214 start of if-block
           pop rax
           test rax, rax
           jz if_0x00000000000001a8
-          ; 218 push string
+          ; 215 push string
           mov rax, s_59
           push rax
-          ; 218 push string
+          ; 215 push string
           mov rax, s_406
           push rax
-          ; 218 get pointer to buffer
+          ; 215 get pointer to buffer
           mov rax, buf__text
           push rax
+          ; 215 push string
+          mov rax, s_395
+          push rax
+          ; 215 push integer
+          mov rax, 215
+          push rax
+          ; 215 push string
+          mov rax, s_400
+          push rax
+          ; 215 push boolean
+          mov rax, 1
+          push rax
+          ; 215 call
+          call fn__append
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          ; 215 jump
+          jmp end_0x00000000000001a8
+          ; 215 label
+if_0x00000000000001a8: 
+          ; 215 label
+end_0x00000000000001a8: 
+          ; 201 jump
+          jmp end_0x0000000000000194
+          ; 201 label
+elif_0x00000000000001a7: 
+          ; 216 duplicate
+          pop rax
+          push rax
+          push rax
+          ; 216 push integer
+          mov rax, 0
+          push rax
+          ; 216 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 216 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 216 push integer
+          mov rax, 15
+          push rax
+          ; 216 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
+          push rax
+          ; 216 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x00000000000001a9
+          ; 217 push string
+          mov rax, s_59
+          push rax
+          ; 217 push string
+          mov rax, s_426
+          push rax
+          ; 217 get pointer to buffer
+          mov rax, buf__text
+          push rax
+          ; 217 push string
+          mov rax, s_395
+          push rax
+          ; 217 push integer
+          mov rax, 217
+          push rax
+          ; 217 push string
+          mov rax, s_400
+          push rax
+          ; 217 push boolean
+          mov rax, 1
+          push rax
+          ; 217 call
+          call fn__append
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          ; 218 get pointer to buffer
+          mov rax, buf__textbuffer
+          push rax
+          ; 218 dereference pointer
+          pop rax
+          mov rbx, [rax]
+          push rbx
           ; 218 push string
           mov rax, s_395
           push rax
@@ -60020,64 +60062,65 @@ while_0x000000000000003a_end:
           mov rax, 1
           push rax
           ; 218 call
-          call fn__append
+          call fn_textbuffer_clear
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
-          pop rbx
-          pop rbx
-          ; 218 jump
-          jmp end_0x00000000000001a8
-          ; 218 label
-if_0x00000000000001a8: 
-          ; 218 label
-end_0x00000000000001a8: 
-          ; 204 jump
-          jmp end_0x0000000000000194
-          ; 204 label
-elif_0x00000000000001a7: 
-          ; 219 duplicate
-          pop rax
           push rax
+          ; 219 push string
+          mov rax, s_427
+          push rax
+          ; 219 swap
+          pop rax
+          pop rbx
+          push rax
+          push rbx
+          ; 219 push string
+          mov rax, s_395
           push rax
           ; 219 push integer
-          mov rax, 0
+          mov rax, 219
           push rax
-          ; 219 add
+          ; 219 push string
+          mov rax, s_400
+          push rax
+          ; 219 push boolean
+          mov rax, 1
+          push rax
+          ; 219 call
+          call fn_textbuffer_append
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 220 over
+          pop rax
+          pop rbx
+          push rbx
+          push rax
+          push rbx
+          ; 220 push integer
+          mov rax, 8
+          push rax
+          ; 220 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 219 dereference integer
+          ; 220 dereference pointer
           pop rax
           mov rbx, [rax]
           push rbx
-          ; 219 push integer
-          mov rax, 15
-          push rax
-          ; 219 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
-          push rax
-          ; 219 start of if-block
+          ; 220 swap
           pop rax
-          test rax, rax
-          jz elif_0x00000000000001a9
-          ; 220 push string
-          mov rax, s_59
+          pop rbx
           push rax
-          ; 220 push string
-          mov rax, s_426
-          push rax
-          ; 220 get pointer to buffer
-          mov rax, buf__text
-          push rax
+          push rbx
           ; 220 push string
           mov rax, s_395
           push rax
@@ -60091,21 +60134,34 @@ elif_0x00000000000001a7:
           mov rax, 1
           push rax
           ; 220 call
-          call fn__append
+          call fn_textbuffer_append
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
-          pop rbx
-          ; 221 get pointer to buffer
-          mov rax, buf__textbuffer
           push rax
-          ; 221 dereference pointer
+          ; 221 push string
+          mov rax, s_59
+          push rax
+          ; 221 over
           pop rax
-          mov rbx, [rax]
+          pop rbx
           push rbx
+          push rax
+          push rbx
+          ; 221 push integer
+          mov rax, 16
+          push rax
+          ; 221 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 221 get pointer to buffer
+          mov rax, buf__text
+          push rax
           ; 221 push string
           mov rax, s_395
           push rax
@@ -60119,65 +60175,30 @@ elif_0x00000000000001a7:
           mov rax, 1
           push rax
           ; 221 call
-          call fn_textbuffer_clear
+          call fn__append
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
+          pop rbx
+          pop rbx
+          ; 222 get pointer to buffer
+          mov rax, buf__textbuffer
           push rax
-          ; 222 push string
-          mov rax, s_427
-          push rax
-          ; 222 swap
+          ; 222 set pointer value
           pop rax
           pop rbx
+          mov [rax], rbx
+          ; 223 push string
+          mov rax, s_59
           push rax
-          push rbx
-          ; 222 push string
-          mov rax, s_395
+          ; 223 push string
+          mov rax, s_428
           push rax
-          ; 222 push integer
-          mov rax, 222
+          ; 223 get pointer to buffer
+          mov rax, buf__text
           push rax
-          ; 222 push string
-          mov rax, s_400
-          push rax
-          ; 222 push boolean
-          mov rax, 1
-          push rax
-          ; 222 call
-          call fn_textbuffer_append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 223 over
-          pop rax
-          pop rbx
-          push rbx
-          push rax
-          push rbx
-          ; 223 push integer
-          mov rax, 8
-          push rax
-          ; 223 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 223 dereference pointer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 223 swap
-          pop rax
-          pop rbx
-          push rax
-          push rbx
           ; 223 push string
           mov rax, s_395
           push rax
@@ -60191,31 +60212,20 @@ elif_0x00000000000001a7:
           mov rax, 1
           push rax
           ; 223 call
-          call fn_textbuffer_append
+          call fn__append
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
-          push rax
+          pop rbx
           ; 224 push string
           mov rax, s_59
           push rax
-          ; 224 over
-          pop rax
-          pop rbx
-          push rbx
+          ; 224 push string
+          mov rax, s_408
           push rax
-          push rbx
-          ; 224 push integer
-          mov rax, 16
-          push rax
-          ; 224 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
           ; 224 get pointer to buffer
           mov rax, buf__text
           push rax
@@ -60240,18 +60250,46 @@ elif_0x00000000000001a7:
           pop rbx
           pop rbx
           pop rbx
-          ; 225 get pointer to buffer
-          mov rax, buf__textbuffer
+          ; 216 jump
+          jmp end_0x0000000000000194
+          ; 216 label
+elif_0x00000000000001a9: 
+          ; 225 duplicate
+          pop rax
           push rax
-          ; 225 set pointer value
+          push rax
+          ; 225 push integer
+          mov rax, 0
+          push rax
+          ; 225 add
           pop rax
           pop rbx
-          mov [rax], rbx
+          add rbx, rax
+          push rbx
+          ; 225 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 225 push integer
+          mov rax, 1
+          push rax
+          ; 225 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
+          push rax
+          ; 225 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x00000000000001aa
           ; 226 push string
           mov rax, s_59
           push rax
           ; 226 push string
-          mov rax, s_428
+          mov rax, s_405
           push rax
           ; 226 get pointer to buffer
           mov rax, buf__text
@@ -60281,7 +60319,7 @@ elif_0x00000000000001a7:
           mov rax, s_59
           push rax
           ; 227 push string
-          mov rax, s_408
+          mov rax, s_407
           push rax
           ; 227 get pointer to buffer
           mov rax, buf__text
@@ -60307,46 +60345,41 @@ elif_0x00000000000001a7:
           pop rbx
           pop rbx
           pop rbx
-          ; 219 jump
-          jmp end_0x0000000000000194
-          ; 219 label
-elif_0x00000000000001a9: 
-          ; 228 duplicate
-          pop rax
+          ; 228 push string
+          mov rax, s_59
           push rax
+          ; 228 push string
+          mov rax, s_429
+          push rax
+          ; 228 get pointer to buffer
+          mov rax, buf__text
+          push rax
+          ; 228 push string
+          mov rax, s_395
           push rax
           ; 228 push integer
-          mov rax, 0
+          mov rax, 228
           push rax
-          ; 228 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 228 dereference integer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 228 push integer
+          ; 228 push string
+          mov rax, s_400
+          push rax
+          ; 228 push boolean
           mov rax, 1
           push rax
-          ; 228 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
-          push rax
-          ; 228 start of if-block
-          pop rax
-          test rax, rax
-          jz elif_0x00000000000001aa
+          ; 228 call
+          call fn__append
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
           ; 229 push string
           mov rax, s_59
           push rax
           ; 229 push string
-          mov rax, s_405
+          mov rax, s_408
           push rax
           ; 229 get pointer to buffer
           mov rax, buf__text
@@ -60372,41 +60405,46 @@ elif_0x00000000000001a9:
           pop rbx
           pop rbx
           pop rbx
-          ; 230 push string
-          mov rax, s_59
+          ; 225 jump
+          jmp end_0x0000000000000194
+          ; 225 label
+elif_0x00000000000001aa: 
+          ; 230 duplicate
+          pop rax
           push rax
-          ; 230 push string
-          mov rax, s_407
-          push rax
-          ; 230 get pointer to buffer
-          mov rax, buf__text
-          push rax
-          ; 230 push string
-          mov rax, s_395
           push rax
           ; 230 push integer
-          mov rax, 230
+          mov rax, 0
           push rax
-          ; 230 push string
-          mov rax, s_400
+          ; 230 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 230 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 230 push integer
+          mov rax, 43
           push rax
-          ; 230 push boolean
-          mov rax, 1
+          ; 230 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
           push rax
-          ; 230 call
-          call fn__append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
+          ; 230 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x00000000000001ab
           ; 231 push string
           mov rax, s_59
           push rax
           ; 231 push string
-          mov rax, s_429
+          mov rax, s_405
           push rax
           ; 231 get pointer to buffer
           mov rax, buf__text
@@ -60436,7 +60474,7 @@ elif_0x00000000000001a9:
           mov rax, s_59
           push rax
           ; 232 push string
-          mov rax, s_408
+          mov rax, s_407
           push rax
           ; 232 get pointer to buffer
           mov rax, buf__text
@@ -60462,46 +60500,41 @@ elif_0x00000000000001a9:
           pop rbx
           pop rbx
           pop rbx
-          ; 228 jump
-          jmp end_0x0000000000000194
-          ; 228 label
-elif_0x00000000000001aa: 
-          ; 233 duplicate
-          pop rax
+          ; 233 push string
+          mov rax, s_59
           push rax
+          ; 233 push string
+          mov rax, s_430
+          push rax
+          ; 233 get pointer to buffer
+          mov rax, buf__text
+          push rax
+          ; 233 push string
+          mov rax, s_395
           push rax
           ; 233 push integer
-          mov rax, 0
+          mov rax, 233
           push rax
-          ; 233 add
-          pop rax
+          ; 233 push string
+          mov rax, s_400
+          push rax
+          ; 233 push boolean
+          mov rax, 1
+          push rax
+          ; 233 call
+          call fn__append
           pop rbx
-          add rbx, rax
-          push rbx
-          ; 233 dereference integer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 233 push integer
-          mov rax, 43
-          push rax
-          ; 233 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
-          push rax
-          ; 233 start of if-block
-          pop rax
-          test rax, rax
-          jz elif_0x00000000000001ab
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
           ; 234 push string
           mov rax, s_59
           push rax
           ; 234 push string
-          mov rax, s_405
+          mov rax, s_408
           push rax
           ; 234 get pointer to buffer
           mov rax, buf__text
@@ -60527,41 +60560,46 @@ elif_0x00000000000001aa:
           pop rbx
           pop rbx
           pop rbx
-          ; 235 push string
-          mov rax, s_59
+          ; 230 jump
+          jmp end_0x0000000000000194
+          ; 230 label
+elif_0x00000000000001ab: 
+          ; 235 duplicate
+          pop rax
           push rax
-          ; 235 push string
-          mov rax, s_407
-          push rax
-          ; 235 get pointer to buffer
-          mov rax, buf__text
-          push rax
-          ; 235 push string
-          mov rax, s_395
           push rax
           ; 235 push integer
-          mov rax, 235
+          mov rax, 0
           push rax
-          ; 235 push string
-          mov rax, s_400
+          ; 235 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 235 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 235 push integer
+          mov rax, 26
           push rax
-          ; 235 push boolean
-          mov rax, 1
+          ; 235 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
           push rax
-          ; 235 call
-          call fn__append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
+          ; 235 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x00000000000001ac
           ; 236 push string
           mov rax, s_59
           push rax
           ; 236 push string
-          mov rax, s_430
+          mov rax, s_405
           push rax
           ; 236 get pointer to buffer
           mov rax, buf__text
@@ -60591,7 +60629,7 @@ elif_0x00000000000001aa:
           mov rax, s_59
           push rax
           ; 237 push string
-          mov rax, s_408
+          mov rax, s_407
           push rax
           ; 237 get pointer to buffer
           mov rax, buf__text
@@ -60617,46 +60655,41 @@ elif_0x00000000000001aa:
           pop rbx
           pop rbx
           pop rbx
-          ; 233 jump
-          jmp end_0x0000000000000194
-          ; 233 label
-elif_0x00000000000001ab: 
-          ; 238 duplicate
-          pop rax
+          ; 238 push string
+          mov rax, s_59
           push rax
+          ; 238 push string
+          mov rax, s_431
+          push rax
+          ; 238 get pointer to buffer
+          mov rax, buf__text
+          push rax
+          ; 238 push string
+          mov rax, s_395
           push rax
           ; 238 push integer
-          mov rax, 0
+          mov rax, 238
           push rax
-          ; 238 add
-          pop rax
+          ; 238 push string
+          mov rax, s_400
+          push rax
+          ; 238 push boolean
+          mov rax, 1
+          push rax
+          ; 238 call
+          call fn__append
           pop rbx
-          add rbx, rax
-          push rbx
-          ; 238 dereference integer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 238 push integer
-          mov rax, 26
-          push rax
-          ; 238 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
-          push rax
-          ; 238 start of if-block
-          pop rax
-          test rax, rax
-          jz elif_0x00000000000001ac
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
           ; 239 push string
           mov rax, s_59
           push rax
           ; 239 push string
-          mov rax, s_405
+          mov rax, s_408
           push rax
           ; 239 get pointer to buffer
           mov rax, buf__text
@@ -60682,41 +60715,46 @@ elif_0x00000000000001ab:
           pop rbx
           pop rbx
           pop rbx
-          ; 240 push string
-          mov rax, s_59
+          ; 235 jump
+          jmp end_0x0000000000000194
+          ; 235 label
+elif_0x00000000000001ac: 
+          ; 240 duplicate
+          pop rax
           push rax
-          ; 240 push string
-          mov rax, s_407
-          push rax
-          ; 240 get pointer to buffer
-          mov rax, buf__text
-          push rax
-          ; 240 push string
-          mov rax, s_395
           push rax
           ; 240 push integer
-          mov rax, 240
+          mov rax, 0
           push rax
-          ; 240 push string
-          mov rax, s_400
+          ; 240 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 240 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 240 push integer
+          mov rax, 11
           push rax
-          ; 240 push boolean
-          mov rax, 1
+          ; 240 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
           push rax
-          ; 240 call
-          call fn__append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
+          ; 240 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x00000000000001ad
           ; 241 push string
           mov rax, s_59
           push rax
           ; 241 push string
-          mov rax, s_431
+          mov rax, s_432
           push rax
           ; 241 get pointer to buffer
           mov rax, buf__text
@@ -60746,7 +60784,7 @@ elif_0x00000000000001ab:
           mov rax, s_59
           push rax
           ; 242 push string
-          mov rax, s_408
+          mov rax, s_407
           push rax
           ; 242 get pointer to buffer
           mov rax, buf__text
@@ -60772,46 +60810,41 @@ elif_0x00000000000001ab:
           pop rbx
           pop rbx
           pop rbx
-          ; 238 jump
-          jmp end_0x0000000000000194
-          ; 238 label
-elif_0x00000000000001ac: 
-          ; 243 duplicate
-          pop rax
+          ; 243 push string
+          mov rax, s_59
           push rax
+          ; 243 push string
+          mov rax, s_405
+          push rax
+          ; 243 get pointer to buffer
+          mov rax, buf__text
+          push rax
+          ; 243 push string
+          mov rax, s_395
           push rax
           ; 243 push integer
-          mov rax, 0
+          mov rax, 243
           push rax
-          ; 243 add
-          pop rax
+          ; 243 push string
+          mov rax, s_400
+          push rax
+          ; 243 push boolean
+          mov rax, 1
+          push rax
+          ; 243 call
+          call fn__append
           pop rbx
-          add rbx, rax
-          push rbx
-          ; 243 dereference integer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 243 push integer
-          mov rax, 11
-          push rax
-          ; 243 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
-          push rax
-          ; 243 start of if-block
-          pop rax
-          test rax, rax
-          jz elif_0x00000000000001ad
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
           ; 244 push string
           mov rax, s_59
           push rax
           ; 244 push string
-          mov rax, s_432
+          mov rax, s_433
           push rax
           ; 244 get pointer to buffer
           mov rax, buf__text
@@ -60841,7 +60874,7 @@ elif_0x00000000000001ac:
           mov rax, s_59
           push rax
           ; 245 push string
-          mov rax, s_407
+          mov rax, s_406
           push rax
           ; 245 get pointer to buffer
           mov rax, buf__text
@@ -60867,41 +60900,46 @@ elif_0x00000000000001ac:
           pop rbx
           pop rbx
           pop rbx
-          ; 246 push string
-          mov rax, s_59
+          ; 240 jump
+          jmp end_0x0000000000000194
+          ; 240 label
+elif_0x00000000000001ad: 
+          ; 246 duplicate
+          pop rax
           push rax
-          ; 246 push string
-          mov rax, s_405
-          push rax
-          ; 246 get pointer to buffer
-          mov rax, buf__text
-          push rax
-          ; 246 push string
-          mov rax, s_395
           push rax
           ; 246 push integer
-          mov rax, 246
+          mov rax, 0
           push rax
-          ; 246 push string
-          mov rax, s_400
+          ; 246 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 246 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 246 push integer
+          mov rax, 27
           push rax
-          ; 246 push boolean
-          mov rax, 1
+          ; 246 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
           push rax
-          ; 246 call
-          call fn__append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
+          ; 246 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x00000000000001ae
           ; 247 push string
           mov rax, s_59
           push rax
           ; 247 push string
-          mov rax, s_433
+          mov rax, s_432
           push rax
           ; 247 get pointer to buffer
           mov rax, buf__text
@@ -60931,7 +60969,7 @@ elif_0x00000000000001ac:
           mov rax, s_59
           push rax
           ; 248 push string
-          mov rax, s_406
+          mov rax, s_407
           push rax
           ; 248 get pointer to buffer
           mov rax, buf__text
@@ -60957,46 +60995,41 @@ elif_0x00000000000001ac:
           pop rbx
           pop rbx
           pop rbx
-          ; 243 jump
-          jmp end_0x0000000000000194
-          ; 243 label
-elif_0x00000000000001ad: 
-          ; 249 duplicate
-          pop rax
+          ; 249 push string
+          mov rax, s_59
           push rax
+          ; 249 push string
+          mov rax, s_405
+          push rax
+          ; 249 get pointer to buffer
+          mov rax, buf__text
+          push rax
+          ; 249 push string
+          mov rax, s_395
           push rax
           ; 249 push integer
-          mov rax, 0
+          mov rax, 249
           push rax
-          ; 249 add
-          pop rax
+          ; 249 push string
+          mov rax, s_400
+          push rax
+          ; 249 push boolean
+          mov rax, 1
+          push rax
+          ; 249 call
+          call fn__append
           pop rbx
-          add rbx, rax
-          push rbx
-          ; 249 dereference integer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 249 push integer
-          mov rax, 27
-          push rax
-          ; 249 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
-          push rax
-          ; 249 start of if-block
-          pop rax
-          test rax, rax
-          jz elif_0x00000000000001ae
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
           ; 250 push string
           mov rax, s_59
           push rax
           ; 250 push string
-          mov rax, s_432
+          mov rax, s_433
           push rax
           ; 250 get pointer to buffer
           mov rax, buf__text
@@ -61026,7 +61059,7 @@ elif_0x00000000000001ad:
           mov rax, s_59
           push rax
           ; 251 push string
-          mov rax, s_407
+          mov rax, s_434
           push rax
           ; 251 get pointer to buffer
           mov rax, buf__text
@@ -61052,41 +61085,46 @@ elif_0x00000000000001ad:
           pop rbx
           pop rbx
           pop rbx
-          ; 252 push string
-          mov rax, s_59
+          ; 246 jump
+          jmp end_0x0000000000000194
+          ; 246 label
+elif_0x00000000000001ae: 
+          ; 252 duplicate
+          pop rax
           push rax
-          ; 252 push string
-          mov rax, s_405
-          push rax
-          ; 252 get pointer to buffer
-          mov rax, buf__text
-          push rax
-          ; 252 push string
-          mov rax, s_395
           push rax
           ; 252 push integer
-          mov rax, 252
+          mov rax, 0
           push rax
-          ; 252 push string
-          mov rax, s_400
+          ; 252 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 252 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 252 push integer
+          mov rax, 34
           push rax
-          ; 252 push boolean
-          mov rax, 1
+          ; 252 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
           push rax
-          ; 252 call
-          call fn__append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
+          ; 252 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x00000000000001af
           ; 253 push string
           mov rax, s_59
           push rax
           ; 253 push string
-          mov rax, s_433
+          mov rax, s_405
           push rax
           ; 253 get pointer to buffer
           mov rax, buf__text
@@ -61116,7 +61154,7 @@ elif_0x00000000000001ad:
           mov rax, s_59
           push rax
           ; 254 push string
-          mov rax, s_434
+          mov rax, s_435
           push rax
           ; 254 get pointer to buffer
           mov rax, buf__text
@@ -61142,63 +61180,28 @@ elif_0x00000000000001ad:
           pop rbx
           pop rbx
           pop rbx
-          ; 249 jump
-          jmp end_0x0000000000000194
-          ; 249 label
-elif_0x00000000000001ae: 
-          ; 255 duplicate
-          pop rax
-          push rax
-          push rax
-          ; 255 push integer
-          mov rax, 0
-          push rax
-          ; 255 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 255 dereference integer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 255 push integer
-          mov rax, 34
-          push rax
-          ; 255 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
-          push rax
-          ; 255 start of if-block
-          pop rax
-          test rax, rax
-          jz elif_0x00000000000001af
-          ; 256 push string
+          ; 255 push string
           mov rax, s_59
           push rax
-          ; 256 push string
-          mov rax, s_405
+          ; 255 push string
+          mov rax, s_436
           push rax
-          ; 256 get pointer to buffer
+          ; 255 get pointer to buffer
           mov rax, buf__text
           push rax
-          ; 256 push string
+          ; 255 push string
           mov rax, s_395
           push rax
-          ; 256 push integer
-          mov rax, 256
+          ; 255 push integer
+          mov rax, 255
           push rax
-          ; 256 push string
+          ; 255 push string
           mov rax, s_400
           push rax
-          ; 256 push boolean
+          ; 255 push boolean
           mov rax, 1
           push rax
-          ; 256 call
+          ; 255 call
           call fn__append
           pop rbx
           pop rbx
@@ -61207,11 +61210,46 @@ elif_0x00000000000001ae:
           pop rbx
           pop rbx
           pop rbx
+          ; 252 jump
+          jmp end_0x0000000000000194
+          ; 252 label
+elif_0x00000000000001af: 
+          ; 256 duplicate
+          pop rax
+          push rax
+          push rax
+          ; 256 push integer
+          mov rax, 0
+          push rax
+          ; 256 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 256 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 256 push integer
+          mov rax, 35
+          push rax
+          ; 256 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
+          push rax
+          ; 256 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x00000000000001b0
           ; 257 push string
           mov rax, s_59
           push rax
           ; 257 push string
-          mov rax, s_435
+          mov rax, s_437
           push rax
           ; 257 get pointer to buffer
           mov rax, buf__text
@@ -61237,28 +61275,63 @@ elif_0x00000000000001ae:
           pop rbx
           pop rbx
           pop rbx
-          ; 258 push string
-          mov rax, s_59
+          ; 256 jump
+          jmp end_0x0000000000000194
+          ; 256 label
+elif_0x00000000000001b0: 
+          ; 258 duplicate
+          pop rax
           push rax
-          ; 258 push string
-          mov rax, s_436
-          push rax
-          ; 258 get pointer to buffer
-          mov rax, buf__text
-          push rax
-          ; 258 push string
-          mov rax, s_395
           push rax
           ; 258 push integer
-          mov rax, 258
+          mov rax, 0
           push rax
-          ; 258 push string
+          ; 258 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 258 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 258 push integer
+          mov rax, 2
+          push rax
+          ; 258 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
+          push rax
+          ; 258 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x00000000000001b1
+          ; 259 push string
+          mov rax, s_59
+          push rax
+          ; 259 push string
+          mov rax, s_405
+          push rax
+          ; 259 get pointer to buffer
+          mov rax, buf__text
+          push rax
+          ; 259 push string
+          mov rax, s_395
+          push rax
+          ; 259 push integer
+          mov rax, 259
+          push rax
+          ; 259 push string
           mov rax, s_400
           push rax
-          ; 258 push boolean
+          ; 259 push boolean
           mov rax, 1
           push rax
-          ; 258 call
+          ; 259 call
           call fn__append
           pop rbx
           pop rbx
@@ -61267,46 +61340,11 @@ elif_0x00000000000001ae:
           pop rbx
           pop rbx
           pop rbx
-          ; 255 jump
-          jmp end_0x0000000000000194
-          ; 255 label
-elif_0x00000000000001af: 
-          ; 259 duplicate
-          pop rax
-          push rax
-          push rax
-          ; 259 push integer
-          mov rax, 0
-          push rax
-          ; 259 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 259 dereference integer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 259 push integer
-          mov rax, 35
-          push rax
-          ; 259 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
-          push rax
-          ; 259 start of if-block
-          pop rax
-          test rax, rax
-          jz elif_0x00000000000001b0
           ; 260 push string
           mov rax, s_59
           push rax
           ; 260 push string
-          mov rax, s_437
+          mov rax, s_407
           push rax
           ; 260 get pointer to buffer
           mov rax, buf__text
@@ -61332,46 +61370,41 @@ elif_0x00000000000001af:
           pop rbx
           pop rbx
           pop rbx
-          ; 259 jump
-          jmp end_0x0000000000000194
-          ; 259 label
-elif_0x00000000000001b0: 
-          ; 261 duplicate
-          pop rax
+          ; 261 push string
+          mov rax, s_59
           push rax
+          ; 261 push string
+          mov rax, s_438
+          push rax
+          ; 261 get pointer to buffer
+          mov rax, buf__text
+          push rax
+          ; 261 push string
+          mov rax, s_395
           push rax
           ; 261 push integer
-          mov rax, 0
+          mov rax, 261
           push rax
-          ; 261 add
-          pop rax
+          ; 261 push string
+          mov rax, s_400
+          push rax
+          ; 261 push boolean
+          mov rax, 1
+          push rax
+          ; 261 call
+          call fn__append
           pop rbx
-          add rbx, rax
-          push rbx
-          ; 261 dereference integer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 261 push integer
-          mov rax, 2
-          push rax
-          ; 261 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
-          push rax
-          ; 261 start of if-block
-          pop rax
-          test rax, rax
-          jz elif_0x00000000000001b1
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
           ; 262 push string
           mov rax, s_59
           push rax
           ; 262 push string
-          mov rax, s_405
+          mov rax, s_408
           push rax
           ; 262 get pointer to buffer
           mov rax, buf__text
@@ -61397,41 +61430,46 @@ elif_0x00000000000001b0:
           pop rbx
           pop rbx
           pop rbx
-          ; 263 push string
-          mov rax, s_59
+          ; 258 jump
+          jmp end_0x0000000000000194
+          ; 258 label
+elif_0x00000000000001b1: 
+          ; 263 duplicate
+          pop rax
           push rax
-          ; 263 push string
-          mov rax, s_407
-          push rax
-          ; 263 get pointer to buffer
-          mov rax, buf__text
-          push rax
-          ; 263 push string
-          mov rax, s_395
           push rax
           ; 263 push integer
-          mov rax, 263
+          mov rax, 0
           push rax
-          ; 263 push string
-          mov rax, s_400
+          ; 263 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 263 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 263 push integer
+          mov rax, 3
           push rax
-          ; 263 push boolean
-          mov rax, 1
+          ; 263 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
           push rax
-          ; 263 call
-          call fn__append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
+          ; 263 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x00000000000001b2
           ; 264 push string
           mov rax, s_59
           push rax
           ; 264 push string
-          mov rax, s_438
+          mov rax, s_405
           push rax
           ; 264 get pointer to buffer
           mov rax, buf__text
@@ -61461,7 +61499,7 @@ elif_0x00000000000001b0:
           mov rax, s_59
           push rax
           ; 265 push string
-          mov rax, s_408
+          mov rax, s_407
           push rax
           ; 265 get pointer to buffer
           mov rax, buf__text
@@ -61487,46 +61525,41 @@ elif_0x00000000000001b0:
           pop rbx
           pop rbx
           pop rbx
-          ; 261 jump
-          jmp end_0x0000000000000194
-          ; 261 label
-elif_0x00000000000001b1: 
-          ; 266 duplicate
-          pop rax
+          ; 266 push string
+          mov rax, s_59
           push rax
+          ; 266 push string
+          mov rax, s_439
+          push rax
+          ; 266 get pointer to buffer
+          mov rax, buf__text
+          push rax
+          ; 266 push string
+          mov rax, s_395
           push rax
           ; 266 push integer
-          mov rax, 0
+          mov rax, 266
           push rax
-          ; 266 add
-          pop rax
+          ; 266 push string
+          mov rax, s_400
+          push rax
+          ; 266 push boolean
+          mov rax, 1
+          push rax
+          ; 266 call
+          call fn__append
           pop rbx
-          add rbx, rax
-          push rbx
-          ; 266 dereference integer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 266 push integer
-          mov rax, 3
-          push rax
-          ; 266 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
-          push rax
-          ; 266 start of if-block
-          pop rax
-          test rax, rax
-          jz elif_0x00000000000001b2
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
           ; 267 push string
           mov rax, s_59
           push rax
           ; 267 push string
-          mov rax, s_405
+          mov rax, s_408
           push rax
           ; 267 get pointer to buffer
           mov rax, buf__text
@@ -61552,45 +61585,48 @@ elif_0x00000000000001b1:
           pop rbx
           pop rbx
           pop rbx
-          ; 268 push string
-          mov rax, s_59
+          ; 263 jump
+          jmp end_0x0000000000000194
+          ; 263 label
+elif_0x00000000000001b2: 
+          ; 268 duplicate
+          pop rax
           push rax
-          ; 268 push string
-          mov rax, s_407
-          push rax
-          ; 268 get pointer to buffer
-          mov rax, buf__text
-          push rax
-          ; 268 push string
-          mov rax, s_395
           push rax
           ; 268 push integer
-          mov rax, 268
+          mov rax, 0
           push rax
-          ; 268 push string
-          mov rax, s_400
+          ; 268 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 268 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 268 push integer
+          mov rax, 16
           push rax
-          ; 268 push boolean
-          mov rax, 1
+          ; 268 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
           push rax
-          ; 268 call
-          call fn__append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          ; 269 push string
-          mov rax, s_59
-          push rax
-          ; 269 push string
-          mov rax, s_439
-          push rax
+          ; 268 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x00000000000001b3
           ; 269 get pointer to buffer
-          mov rax, buf__text
+          mov rax, buf__textbuffer
           push rax
+          ; 269 dereference pointer
+          pop rax
+          mov rbx, [rax]
+          push rbx
           ; 269 push string
           mov rax, s_395
           push rax
@@ -61604,23 +61640,21 @@ elif_0x00000000000001b1:
           mov rax, 1
           push rax
           ; 269 call
-          call fn__append
+          call fn_textbuffer_clear
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
-          pop rbx
-          pop rbx
-          ; 270 push string
-          mov rax, s_59
           push rax
           ; 270 push string
-          mov rax, s_408
+          mov rax, s_440
           push rax
-          ; 270 get pointer to buffer
-          mov rax, buf__text
+          ; 270 swap
+          pop rax
+          pop rbx
           push rax
+          push rbx
           ; 270 push string
           mov rax, s_395
           push rax
@@ -61634,56 +61668,78 @@ elif_0x00000000000001b1:
           mov rax, 1
           push rax
           ; 270 call
-          call fn__append
+          call fn_textbuffer_append
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
-          pop rbx
-          ; 266 jump
-          jmp end_0x0000000000000194
-          ; 266 label
-elif_0x00000000000001b2: 
-          ; 271 duplicate
+          push rax
+          ; 271 over
           pop rax
+          pop rbx
+          push rbx
           push rax
-          push rax
+          push rbx
           ; 271 push integer
-          mov rax, 0
+          mov rax, 8
           push rax
           ; 271 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 271 dereference integer
+          ; 271 dereference pointer
           pop rax
           mov rbx, [rax]
           push rbx
+          ; 271 swap
+          pop rax
+          pop rbx
+          push rax
+          push rbx
+          ; 271 push string
+          mov rax, s_395
+          push rax
           ; 271 push integer
+          mov rax, 271
+          push rax
+          ; 271 push string
+          mov rax, s_400
+          push rax
+          ; 271 push boolean
+          mov rax, 1
+          push rax
+          ; 271 call
+          call fn_textbuffer_append
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 272 push string
+          mov rax, s_59
+          push rax
+          ; 272 over
+          pop rax
+          pop rbx
+          push rbx
+          push rax
+          push rbx
+          ; 272 push integer
           mov rax, 16
           push rax
-          ; 271 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
-          push rax
-          ; 271 start of if-block
+          ; 272 add
           pop rax
-          test rax, rax
-          jz elif_0x00000000000001b3
-          ; 272 get pointer to buffer
-          mov rax, buf__textbuffer
-          push rax
-          ; 272 dereference pointer
-          pop rax
-          mov rbx, [rax]
+          pop rbx
+          add rbx, rax
           push rbx
+          ; 272 get pointer to buffer
+          mov rax, buf__text
+          push rax
           ; 272 push string
           mov rax, s_395
           push rax
@@ -61697,21 +61753,23 @@ elif_0x00000000000001b2:
           mov rax, 1
           push rax
           ; 272 call
-          call fn_textbuffer_clear
+          call fn__append
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
+          pop rbx
+          pop rbx
+          ; 273 push string
+          mov rax, s_59
           push rax
           ; 273 push string
-          mov rax, s_440
+          mov rax, s_406
           push rax
-          ; 273 swap
-          pop rax
-          pop rbx
+          ; 273 get pointer to buffer
+          mov rax, buf__text
           push rax
-          push rbx
           ; 273 push string
           mov rax, s_395
           push rax
@@ -61725,91 +61783,6 @@ elif_0x00000000000001b2:
           mov rax, 1
           push rax
           ; 273 call
-          call fn_textbuffer_append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 274 over
-          pop rax
-          pop rbx
-          push rbx
-          push rax
-          push rbx
-          ; 274 push integer
-          mov rax, 8
-          push rax
-          ; 274 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 274 dereference pointer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 274 swap
-          pop rax
-          pop rbx
-          push rax
-          push rbx
-          ; 274 push string
-          mov rax, s_395
-          push rax
-          ; 274 push integer
-          mov rax, 274
-          push rax
-          ; 274 push string
-          mov rax, s_400
-          push rax
-          ; 274 push boolean
-          mov rax, 1
-          push rax
-          ; 274 call
-          call fn_textbuffer_append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 275 push string
-          mov rax, s_59
-          push rax
-          ; 275 over
-          pop rax
-          pop rbx
-          push rbx
-          push rax
-          push rbx
-          ; 275 push integer
-          mov rax, 16
-          push rax
-          ; 275 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 275 get pointer to buffer
-          mov rax, buf__text
-          push rax
-          ; 275 push string
-          mov rax, s_395
-          push rax
-          ; 275 push integer
-          mov rax, 275
-          push rax
-          ; 275 push string
-          mov rax, s_400
-          push rax
-          ; 275 push boolean
-          mov rax, 1
-          push rax
-          ; 275 call
           call fn__append
           pop rbx
           pop rbx
@@ -61818,15 +61791,55 @@ elif_0x00000000000001b2:
           pop rbx
           pop rbx
           pop rbx
-          ; 276 push string
-          mov rax, s_59
+          ; 274 get pointer to buffer
+          mov rax, buf__textbuffer
           push rax
-          ; 276 push string
-          mov rax, s_406
+          ; 274 set pointer value
+          pop rax
+          pop rbx
+          mov [rax], rbx
+          ; 268 jump
+          jmp end_0x0000000000000194
+          ; 268 label
+elif_0x00000000000001b3: 
+          ; 275 duplicate
+          pop rax
           push rax
+          push rax
+          ; 275 push integer
+          mov rax, 0
+          push rax
+          ; 275 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 275 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 275 push integer
+          mov rax, 6
+          push rax
+          ; 275 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
+          push rax
+          ; 275 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x00000000000001b4
           ; 276 get pointer to buffer
-          mov rax, buf__text
+          mov rax, buf__textbuffer
           push rax
+          ; 276 dereference pointer
+          pop rax
+          mov rbx, [rax]
+          push rbx
           ; 276 push string
           mov rax, s_395
           push rax
@@ -61840,29 +61853,60 @@ elif_0x00000000000001b2:
           mov rax, 1
           push rax
           ; 276 call
-          call fn__append
+          call fn_textbuffer_clear
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
-          pop rbx
-          pop rbx
-          ; 277 get pointer to buffer
-          mov rax, buf__textbuffer
           push rax
-          ; 277 set pointer value
+          ; 277 push string
+          mov rax, s_441
+          push rax
+          ; 277 swap
           pop rax
           pop rbx
-          mov [rax], rbx
-          ; 271 jump
-          jmp end_0x0000000000000194
-          ; 271 label
-elif_0x00000000000001b3: 
-          ; 278 duplicate
+          push rax
+          push rbx
+          ; 277 push string
+          mov rax, s_395
+          push rax
+          ; 277 push integer
+          mov rax, 277
+          push rax
+          ; 277 push string
+          mov rax, s_400
+          push rax
+          ; 277 push boolean
+          mov rax, 1
+          push rax
+          ; 277 call
+          call fn_textbuffer_append
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 278 over
           pop rax
+          pop rbx
+          push rbx
           push rax
+          push rbx
+          ; 278 push integer
+          mov rax, 8
           push rax
+          ; 278 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 278 dereference pointer
+          pop rax
+          mov rbx, [rax]
+          push rbx
           ; 278 push integer
           mov rax, 0
           push rax
@@ -61871,31 +61915,14 @@ elif_0x00000000000001b3:
           pop rbx
           add rbx, rax
           push rbx
-          ; 278 dereference integer
+          ; 278 dereference pointer
           pop rax
           mov rbx, [rax]
           push rbx
-          ; 278 push integer
-          mov rax, 6
-          push rax
-          ; 278 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
-          push rax
-          ; 278 start of if-block
+          ; 279 swap
           pop rax
-          test rax, rax
-          jz elif_0x00000000000001b4
-          ; 279 get pointer to buffer
-          mov rax, buf__textbuffer
+          pop rbx
           push rax
-          ; 279 dereference pointer
-          pop rax
-          mov rbx, [rax]
           push rbx
           ; 279 push string
           mov rax, s_395
@@ -61910,7 +61937,8 @@ elif_0x00000000000001b3:
           mov rax, 1
           push rax
           ; 279 call
-          call fn_textbuffer_clear
+          call fn_textbuffer_append
+          pop rbx
           pop rbx
           pop rbx
           pop rbx
@@ -61918,7 +61946,7 @@ elif_0x00000000000001b3:
           pop rbx
           push rax
           ; 280 push string
-          mov rax, s_441
+          mov rax, s_442
           push rax
           ; 280 swap
           pop rax
@@ -61965,7 +61993,7 @@ elif_0x00000000000001b3:
           mov rbx, [rax]
           push rbx
           ; 281 push integer
-          mov rax, 0
+          mov rax, 8
           push rax
           ; 281 add
           pop rax
@@ -62002,108 +62030,95 @@ elif_0x00000000000001b3:
           pop rbx
           pop rbx
           push rax
-          ; 283 push string
-          mov rax, s_442
-          push rax
-          ; 283 swap
+          ; 284 duplicate
           pop rax
-          pop rbx
           push rax
-          push rbx
-          ; 283 push string
-          mov rax, s_395
           push rax
-          ; 283 push integer
-          mov rax, 283
-          push rax
-          ; 283 push string
-          mov rax, s_400
-          push rax
-          ; 283 push boolean
-          mov rax, 1
-          push rax
-          ; 283 call
-          call fn_textbuffer_append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 284 over
-          pop rax
-          pop rbx
-          push rbx
-          push rax
-          push rbx
           ; 284 push integer
-          mov rax, 8
-          push rax
-          ; 284 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 284 dereference pointer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 284 push integer
-          mov rax, 8
-          push rax
-          ; 284 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 284 dereference pointer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 285 swap
-          pop rax
-          pop rbx
-          push rax
-          push rbx
-          ; 285 push string
-          mov rax, s_395
-          push rax
-          ; 285 push integer
-          mov rax, 285
-          push rax
-          ; 285 push string
-          mov rax, s_400
-          push rax
-          ; 285 push boolean
-          mov rax, 1
-          push rax
-          ; 285 call
-          call fn_textbuffer_append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 287 duplicate
-          pop rax
-          push rax
-          push rax
-          ; 287 push integer
           mov rax, 16
           push rax
-          ; 287 add
+          ; 284 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
+          ; 284 push string
+          mov rax, s_59
+          push rax
+          ; 284 get pointer to buffer
+          mov rax, buf__data
+          push rax
+          ; 284 push string
+          mov rax, s_395
+          push rax
+          ; 284 push integer
+          mov rax, 284
+          push rax
+          ; 284 push string
+          mov rax, s_400
+          push rax
+          ; 284 push boolean
+          mov rax, 1
+          push rax
+          ; 284 call
+          call fn__append
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          ; 285 get pointer to buffer
+          mov rax, buf__textbuffer
+          push rax
+          ; 285 set pointer value
+          pop rax
+          pop rbx
+          mov [rax], rbx
+          ; 275 jump
+          jmp end_0x0000000000000194
+          ; 275 label
+elif_0x00000000000001b4: 
+          ; 286 duplicate
+          pop rax
+          push rax
+          push rax
+          ; 286 push integer
+          mov rax, 0
+          push rax
+          ; 286 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 286 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 286 push integer
+          mov rax, 18
+          push rax
+          ; 286 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
+          push rax
+          ; 286 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x00000000000001b5
           ; 287 push string
           mov rax, s_59
           push rax
+          ; 287 push string
+          mov rax, s_443
+          push rax
           ; 287 get pointer to buffer
-          mov rax, buf__bss
+          mov rax, buf__text
           push rax
           ; 287 push string
           mov rax, s_395
@@ -62126,53 +62141,71 @@ elif_0x00000000000001b3:
           pop rbx
           pop rbx
           pop rbx
+          ; 288 push string
+          mov rax, s_59
+          push rax
+          ; 288 push string
+          mov rax, s_444
+          push rax
           ; 288 get pointer to buffer
-          mov rax, buf__textbuffer
+          mov rax, buf__text
           push rax
-          ; 288 set pointer value
-          pop rax
+          ; 288 push string
+          mov rax, s_395
+          push rax
+          ; 288 push integer
+          mov rax, 288
+          push rax
+          ; 288 push string
+          mov rax, s_400
+          push rax
+          ; 288 push boolean
+          mov rax, 1
+          push rax
+          ; 288 call
+          call fn__append
           pop rbx
-          mov [rax], rbx
-          ; 278 jump
-          jmp end_0x0000000000000194
-          ; 278 label
-elif_0x00000000000001b4: 
-          ; 289 duplicate
-          pop rax
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          ; 289 push string
+          mov rax, s_59
           push rax
+          ; 289 push string
+          mov rax, s_409
+          push rax
+          ; 289 get pointer to buffer
+          mov rax, buf__text
+          push rax
+          ; 289 push string
+          mov rax, s_395
           push rax
           ; 289 push integer
-          mov rax, 0
+          mov rax, 289
           push rax
-          ; 289 add
-          pop rax
+          ; 289 push string
+          mov rax, s_400
+          push rax
+          ; 289 push boolean
+          mov rax, 1
+          push rax
+          ; 289 call
+          call fn__append
           pop rbx
-          add rbx, rax
-          push rbx
-          ; 289 dereference integer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 289 push integer
-          mov rax, 18
-          push rax
-          ; 289 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
-          push rax
-          ; 289 start of if-block
-          pop rax
-          test rax, rax
-          jz elif_0x00000000000001b5
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
           ; 290 push string
           mov rax, s_59
           push rax
           ; 290 push string
-          mov rax, s_443
+          mov rax, s_445
           push rax
           ; 290 get pointer to buffer
           mov rax, buf__text
@@ -62202,7 +62235,7 @@ elif_0x00000000000001b4:
           mov rax, s_59
           push rax
           ; 291 push string
-          mov rax, s_444
+          mov rax, s_446
           push rax
           ; 291 get pointer to buffer
           mov rax, buf__text
@@ -62232,7 +62265,7 @@ elif_0x00000000000001b4:
           mov rax, s_59
           push rax
           ; 292 push string
-          mov rax, s_409
+          mov rax, s_447
           push rax
           ; 292 get pointer to buffer
           mov rax, buf__text
@@ -62262,7 +62295,7 @@ elif_0x00000000000001b4:
           mov rax, s_59
           push rax
           ; 293 push string
-          mov rax, s_445
+          mov rax, s_406
           push rax
           ; 293 get pointer to buffer
           mov rax, buf__text
@@ -62288,41 +62321,46 @@ elif_0x00000000000001b4:
           pop rbx
           pop rbx
           pop rbx
-          ; 294 push string
-          mov rax, s_59
+          ; 286 jump
+          jmp end_0x0000000000000194
+          ; 286 label
+elif_0x00000000000001b5: 
+          ; 294 duplicate
+          pop rax
           push rax
-          ; 294 push string
-          mov rax, s_446
-          push rax
-          ; 294 get pointer to buffer
-          mov rax, buf__text
-          push rax
-          ; 294 push string
-          mov rax, s_395
           push rax
           ; 294 push integer
-          mov rax, 294
+          mov rax, 0
           push rax
-          ; 294 push string
-          mov rax, s_400
+          ; 294 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 294 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 294 push integer
+          mov rax, 23
           push rax
-          ; 294 push boolean
-          mov rax, 1
+          ; 294 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
           push rax
-          ; 294 call
-          call fn__append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
+          ; 294 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x00000000000001b6
           ; 295 push string
           mov rax, s_59
           push rax
           ; 295 push string
-          mov rax, s_447
+          mov rax, s_443
           push rax
           ; 295 get pointer to buffer
           mov rax, buf__text
@@ -62352,7 +62390,7 @@ elif_0x00000000000001b4:
           mov rax, s_59
           push rax
           ; 296 push string
-          mov rax, s_406
+          mov rax, s_444
           push rax
           ; 296 get pointer to buffer
           mov rax, buf__text
@@ -62378,46 +62416,41 @@ elif_0x00000000000001b4:
           pop rbx
           pop rbx
           pop rbx
-          ; 289 jump
-          jmp end_0x0000000000000194
-          ; 289 label
-elif_0x00000000000001b5: 
-          ; 297 duplicate
-          pop rax
+          ; 297 push string
+          mov rax, s_59
           push rax
+          ; 297 push string
+          mov rax, s_409
+          push rax
+          ; 297 get pointer to buffer
+          mov rax, buf__text
+          push rax
+          ; 297 push string
+          mov rax, s_395
           push rax
           ; 297 push integer
-          mov rax, 0
+          mov rax, 297
           push rax
-          ; 297 add
-          pop rax
+          ; 297 push string
+          mov rax, s_400
+          push rax
+          ; 297 push boolean
+          mov rax, 1
+          push rax
+          ; 297 call
+          call fn__append
           pop rbx
-          add rbx, rax
-          push rbx
-          ; 297 dereference integer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 297 push integer
-          mov rax, 23
-          push rax
-          ; 297 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
-          push rax
-          ; 297 start of if-block
-          pop rax
-          test rax, rax
-          jz elif_0x00000000000001b6
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
           ; 298 push string
           mov rax, s_59
           push rax
           ; 298 push string
-          mov rax, s_443
+          mov rax, s_445
           push rax
           ; 298 get pointer to buffer
           mov rax, buf__text
@@ -62447,7 +62480,7 @@ elif_0x00000000000001b5:
           mov rax, s_59
           push rax
           ; 299 push string
-          mov rax, s_444
+          mov rax, s_446
           push rax
           ; 299 get pointer to buffer
           mov rax, buf__text
@@ -62477,7 +62510,7 @@ elif_0x00000000000001b5:
           mov rax, s_59
           push rax
           ; 300 push string
-          mov rax, s_409
+          mov rax, s_448
           push rax
           ; 300 get pointer to buffer
           mov rax, buf__text
@@ -62507,7 +62540,7 @@ elif_0x00000000000001b5:
           mov rax, s_59
           push rax
           ; 301 push string
-          mov rax, s_445
+          mov rax, s_406
           push rax
           ; 301 get pointer to buffer
           mov rax, buf__text
@@ -62533,41 +62566,46 @@ elif_0x00000000000001b5:
           pop rbx
           pop rbx
           pop rbx
-          ; 302 push string
-          mov rax, s_59
+          ; 294 jump
+          jmp end_0x0000000000000194
+          ; 294 label
+elif_0x00000000000001b6: 
+          ; 302 duplicate
+          pop rax
           push rax
-          ; 302 push string
-          mov rax, s_446
-          push rax
-          ; 302 get pointer to buffer
-          mov rax, buf__text
-          push rax
-          ; 302 push string
-          mov rax, s_395
           push rax
           ; 302 push integer
-          mov rax, 302
+          mov rax, 0
           push rax
-          ; 302 push string
-          mov rax, s_400
+          ; 302 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 302 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 302 push integer
+          mov rax, 20
           push rax
-          ; 302 push boolean
-          mov rax, 1
+          ; 302 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
           push rax
-          ; 302 call
-          call fn__append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
+          ; 302 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x00000000000001b7
           ; 303 push string
           mov rax, s_59
           push rax
           ; 303 push string
-          mov rax, s_448
+          mov rax, s_443
           push rax
           ; 303 get pointer to buffer
           mov rax, buf__text
@@ -62597,7 +62635,7 @@ elif_0x00000000000001b5:
           mov rax, s_59
           push rax
           ; 304 push string
-          mov rax, s_406
+          mov rax, s_444
           push rax
           ; 304 get pointer to buffer
           mov rax, buf__text
@@ -62623,46 +62661,41 @@ elif_0x00000000000001b5:
           pop rbx
           pop rbx
           pop rbx
-          ; 297 jump
-          jmp end_0x0000000000000194
-          ; 297 label
-elif_0x00000000000001b6: 
-          ; 305 duplicate
-          pop rax
+          ; 305 push string
+          mov rax, s_59
           push rax
+          ; 305 push string
+          mov rax, s_409
+          push rax
+          ; 305 get pointer to buffer
+          mov rax, buf__text
+          push rax
+          ; 305 push string
+          mov rax, s_395
           push rax
           ; 305 push integer
-          mov rax, 0
+          mov rax, 305
           push rax
-          ; 305 add
-          pop rax
+          ; 305 push string
+          mov rax, s_400
+          push rax
+          ; 305 push boolean
+          mov rax, 1
+          push rax
+          ; 305 call
+          call fn__append
           pop rbx
-          add rbx, rax
-          push rbx
-          ; 305 dereference integer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 305 push integer
-          mov rax, 20
-          push rax
-          ; 305 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
-          push rax
-          ; 305 start of if-block
-          pop rax
-          test rax, rax
-          jz elif_0x00000000000001b7
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
           ; 306 push string
           mov rax, s_59
           push rax
           ; 306 push string
-          mov rax, s_443
+          mov rax, s_445
           push rax
           ; 306 get pointer to buffer
           mov rax, buf__text
@@ -62692,7 +62725,7 @@ elif_0x00000000000001b6:
           mov rax, s_59
           push rax
           ; 307 push string
-          mov rax, s_444
+          mov rax, s_446
           push rax
           ; 307 get pointer to buffer
           mov rax, buf__text
@@ -62722,7 +62755,7 @@ elif_0x00000000000001b6:
           mov rax, s_59
           push rax
           ; 308 push string
-          mov rax, s_409
+          mov rax, s_449
           push rax
           ; 308 get pointer to buffer
           mov rax, buf__text
@@ -62752,7 +62785,7 @@ elif_0x00000000000001b6:
           mov rax, s_59
           push rax
           ; 309 push string
-          mov rax, s_445
+          mov rax, s_406
           push rax
           ; 309 get pointer to buffer
           mov rax, buf__text
@@ -62778,41 +62811,46 @@ elif_0x00000000000001b6:
           pop rbx
           pop rbx
           pop rbx
-          ; 310 push string
-          mov rax, s_59
+          ; 302 jump
+          jmp end_0x0000000000000194
+          ; 302 label
+elif_0x00000000000001b7: 
+          ; 310 duplicate
+          pop rax
           push rax
-          ; 310 push string
-          mov rax, s_446
-          push rax
-          ; 310 get pointer to buffer
-          mov rax, buf__text
-          push rax
-          ; 310 push string
-          mov rax, s_395
           push rax
           ; 310 push integer
-          mov rax, 310
+          mov rax, 0
           push rax
-          ; 310 push string
-          mov rax, s_400
+          ; 310 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 310 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 310 push integer
+          mov rax, 19
           push rax
-          ; 310 push boolean
-          mov rax, 1
+          ; 310 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
           push rax
-          ; 310 call
-          call fn__append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
+          ; 310 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x00000000000001b8
           ; 311 push string
           mov rax, s_59
           push rax
           ; 311 push string
-          mov rax, s_449
+          mov rax, s_443
           push rax
           ; 311 get pointer to buffer
           mov rax, buf__text
@@ -62842,7 +62880,7 @@ elif_0x00000000000001b6:
           mov rax, s_59
           push rax
           ; 312 push string
-          mov rax, s_406
+          mov rax, s_444
           push rax
           ; 312 get pointer to buffer
           mov rax, buf__text
@@ -62868,46 +62906,41 @@ elif_0x00000000000001b6:
           pop rbx
           pop rbx
           pop rbx
-          ; 305 jump
-          jmp end_0x0000000000000194
-          ; 305 label
-elif_0x00000000000001b7: 
-          ; 313 duplicate
-          pop rax
+          ; 313 push string
+          mov rax, s_59
           push rax
+          ; 313 push string
+          mov rax, s_409
+          push rax
+          ; 313 get pointer to buffer
+          mov rax, buf__text
+          push rax
+          ; 313 push string
+          mov rax, s_395
           push rax
           ; 313 push integer
-          mov rax, 0
+          mov rax, 313
           push rax
-          ; 313 add
-          pop rax
+          ; 313 push string
+          mov rax, s_400
+          push rax
+          ; 313 push boolean
+          mov rax, 1
+          push rax
+          ; 313 call
+          call fn__append
           pop rbx
-          add rbx, rax
-          push rbx
-          ; 313 dereference integer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 313 push integer
-          mov rax, 19
-          push rax
-          ; 313 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
-          push rax
-          ; 313 start of if-block
-          pop rax
-          test rax, rax
-          jz elif_0x00000000000001b8
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
           ; 314 push string
           mov rax, s_59
           push rax
           ; 314 push string
-          mov rax, s_443
+          mov rax, s_445
           push rax
           ; 314 get pointer to buffer
           mov rax, buf__text
@@ -62937,7 +62970,7 @@ elif_0x00000000000001b7:
           mov rax, s_59
           push rax
           ; 315 push string
-          mov rax, s_444
+          mov rax, s_446
           push rax
           ; 315 get pointer to buffer
           mov rax, buf__text
@@ -62967,7 +63000,7 @@ elif_0x00000000000001b7:
           mov rax, s_59
           push rax
           ; 316 push string
-          mov rax, s_409
+          mov rax, s_450
           push rax
           ; 316 get pointer to buffer
           mov rax, buf__text
@@ -62997,7 +63030,7 @@ elif_0x00000000000001b7:
           mov rax, s_59
           push rax
           ; 317 push string
-          mov rax, s_445
+          mov rax, s_406
           push rax
           ; 317 get pointer to buffer
           mov rax, buf__text
@@ -63023,41 +63056,46 @@ elif_0x00000000000001b7:
           pop rbx
           pop rbx
           pop rbx
-          ; 318 push string
-          mov rax, s_59
+          ; 310 jump
+          jmp end_0x0000000000000194
+          ; 310 label
+elif_0x00000000000001b8: 
+          ; 318 duplicate
+          pop rax
           push rax
-          ; 318 push string
-          mov rax, s_446
-          push rax
-          ; 318 get pointer to buffer
-          mov rax, buf__text
-          push rax
-          ; 318 push string
-          mov rax, s_395
           push rax
           ; 318 push integer
-          mov rax, 318
+          mov rax, 0
           push rax
-          ; 318 push string
-          mov rax, s_400
+          ; 318 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 318 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 318 push integer
+          mov rax, 22
           push rax
-          ; 318 push boolean
-          mov rax, 1
+          ; 318 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
           push rax
-          ; 318 call
-          call fn__append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
+          ; 318 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x00000000000001b9
           ; 319 push string
           mov rax, s_59
           push rax
           ; 319 push string
-          mov rax, s_450
+          mov rax, s_443
           push rax
           ; 319 get pointer to buffer
           mov rax, buf__text
@@ -63087,7 +63125,7 @@ elif_0x00000000000001b7:
           mov rax, s_59
           push rax
           ; 320 push string
-          mov rax, s_406
+          mov rax, s_444
           push rax
           ; 320 get pointer to buffer
           mov rax, buf__text
@@ -63113,46 +63151,41 @@ elif_0x00000000000001b7:
           pop rbx
           pop rbx
           pop rbx
-          ; 313 jump
-          jmp end_0x0000000000000194
-          ; 313 label
-elif_0x00000000000001b8: 
-          ; 321 duplicate
-          pop rax
+          ; 321 push string
+          mov rax, s_59
           push rax
+          ; 321 push string
+          mov rax, s_409
+          push rax
+          ; 321 get pointer to buffer
+          mov rax, buf__text
+          push rax
+          ; 321 push string
+          mov rax, s_395
           push rax
           ; 321 push integer
-          mov rax, 0
+          mov rax, 321
           push rax
-          ; 321 add
-          pop rax
+          ; 321 push string
+          mov rax, s_400
+          push rax
+          ; 321 push boolean
+          mov rax, 1
+          push rax
+          ; 321 call
+          call fn__append
           pop rbx
-          add rbx, rax
-          push rbx
-          ; 321 dereference integer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 321 push integer
-          mov rax, 22
-          push rax
-          ; 321 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
-          push rax
-          ; 321 start of if-block
-          pop rax
-          test rax, rax
-          jz elif_0x00000000000001b9
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
           ; 322 push string
           mov rax, s_59
           push rax
           ; 322 push string
-          mov rax, s_443
+          mov rax, s_445
           push rax
           ; 322 get pointer to buffer
           mov rax, buf__text
@@ -63182,7 +63215,7 @@ elif_0x00000000000001b8:
           mov rax, s_59
           push rax
           ; 323 push string
-          mov rax, s_444
+          mov rax, s_446
           push rax
           ; 323 get pointer to buffer
           mov rax, buf__text
@@ -63212,7 +63245,7 @@ elif_0x00000000000001b8:
           mov rax, s_59
           push rax
           ; 324 push string
-          mov rax, s_409
+          mov rax, s_451
           push rax
           ; 324 get pointer to buffer
           mov rax, buf__text
@@ -63242,7 +63275,7 @@ elif_0x00000000000001b8:
           mov rax, s_59
           push rax
           ; 325 push string
-          mov rax, s_445
+          mov rax, s_406
           push rax
           ; 325 get pointer to buffer
           mov rax, buf__text
@@ -63268,41 +63301,46 @@ elif_0x00000000000001b8:
           pop rbx
           pop rbx
           pop rbx
-          ; 326 push string
-          mov rax, s_59
+          ; 318 jump
+          jmp end_0x0000000000000194
+          ; 318 label
+elif_0x00000000000001b9: 
+          ; 326 duplicate
+          pop rax
           push rax
-          ; 326 push string
-          mov rax, s_446
-          push rax
-          ; 326 get pointer to buffer
-          mov rax, buf__text
-          push rax
-          ; 326 push string
-          mov rax, s_395
           push rax
           ; 326 push integer
-          mov rax, 326
+          mov rax, 0
           push rax
-          ; 326 push string
-          mov rax, s_400
+          ; 326 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 326 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 326 push integer
+          mov rax, 21
           push rax
-          ; 326 push boolean
-          mov rax, 1
+          ; 326 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
           push rax
-          ; 326 call
-          call fn__append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
+          ; 326 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x00000000000001ba
           ; 327 push string
           mov rax, s_59
           push rax
           ; 327 push string
-          mov rax, s_451
+          mov rax, s_443
           push rax
           ; 327 get pointer to buffer
           mov rax, buf__text
@@ -63332,7 +63370,7 @@ elif_0x00000000000001b8:
           mov rax, s_59
           push rax
           ; 328 push string
-          mov rax, s_406
+          mov rax, s_444
           push rax
           ; 328 get pointer to buffer
           mov rax, buf__text
@@ -63358,46 +63396,41 @@ elif_0x00000000000001b8:
           pop rbx
           pop rbx
           pop rbx
-          ; 321 jump
-          jmp end_0x0000000000000194
-          ; 321 label
-elif_0x00000000000001b9: 
-          ; 329 duplicate
-          pop rax
+          ; 329 push string
+          mov rax, s_59
           push rax
+          ; 329 push string
+          mov rax, s_409
+          push rax
+          ; 329 get pointer to buffer
+          mov rax, buf__text
+          push rax
+          ; 329 push string
+          mov rax, s_395
           push rax
           ; 329 push integer
-          mov rax, 0
+          mov rax, 329
           push rax
-          ; 329 add
-          pop rax
+          ; 329 push string
+          mov rax, s_400
+          push rax
+          ; 329 push boolean
+          mov rax, 1
+          push rax
+          ; 329 call
+          call fn__append
           pop rbx
-          add rbx, rax
-          push rbx
-          ; 329 dereference integer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 329 push integer
-          mov rax, 21
-          push rax
-          ; 329 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
-          push rax
-          ; 329 start of if-block
-          pop rax
-          test rax, rax
-          jz elif_0x00000000000001ba
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
           ; 330 push string
           mov rax, s_59
           push rax
           ; 330 push string
-          mov rax, s_443
+          mov rax, s_445
           push rax
           ; 330 get pointer to buffer
           mov rax, buf__text
@@ -63427,7 +63460,7 @@ elif_0x00000000000001b9:
           mov rax, s_59
           push rax
           ; 331 push string
-          mov rax, s_444
+          mov rax, s_446
           push rax
           ; 331 get pointer to buffer
           mov rax, buf__text
@@ -63457,7 +63490,7 @@ elif_0x00000000000001b9:
           mov rax, s_59
           push rax
           ; 332 push string
-          mov rax, s_409
+          mov rax, s_452
           push rax
           ; 332 get pointer to buffer
           mov rax, buf__text
@@ -63487,7 +63520,7 @@ elif_0x00000000000001b9:
           mov rax, s_59
           push rax
           ; 333 push string
-          mov rax, s_445
+          mov rax, s_406
           push rax
           ; 333 get pointer to buffer
           mov rax, buf__text
@@ -63513,41 +63546,46 @@ elif_0x00000000000001b9:
           pop rbx
           pop rbx
           pop rbx
-          ; 334 push string
-          mov rax, s_59
+          ; 326 jump
+          jmp end_0x0000000000000194
+          ; 326 label
+elif_0x00000000000001ba: 
+          ; 334 duplicate
+          pop rax
           push rax
-          ; 334 push string
-          mov rax, s_446
-          push rax
-          ; 334 get pointer to buffer
-          mov rax, buf__text
-          push rax
-          ; 334 push string
-          mov rax, s_395
           push rax
           ; 334 push integer
-          mov rax, 334
+          mov rax, 0
           push rax
-          ; 334 push string
-          mov rax, s_400
+          ; 334 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 334 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 334 push integer
+          mov rax, 17
           push rax
-          ; 334 push boolean
-          mov rax, 1
+          ; 334 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
           push rax
-          ; 334 call
-          call fn__append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
+          ; 334 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x00000000000001bb
           ; 335 push string
           mov rax, s_59
           push rax
           ; 335 push string
-          mov rax, s_452
+          mov rax, s_405
           push rax
           ; 335 get pointer to buffer
           mov rax, buf__text
@@ -63577,7 +63615,7 @@ elif_0x00000000000001b9:
           mov rax, s_59
           push rax
           ; 336 push string
-          mov rax, s_406
+          mov rax, s_453
           push rax
           ; 336 get pointer to buffer
           mov rax, buf__text
@@ -63603,50 +63641,41 @@ elif_0x00000000000001b9:
           pop rbx
           pop rbx
           pop rbx
-          ; 329 jump
-          jmp end_0x0000000000000194
-          ; 329 label
-elif_0x00000000000001ba: 
-          ; 337 duplicate
-          pop rax
+          ; 337 get pointer to buffer
+          mov rax, buf__textbuffer
           push rax
-          push rax
-          ; 337 push integer
-          mov rax, 0
-          push rax
-          ; 337 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 337 dereference integer
+          ; 337 dereference pointer
           pop rax
           mov rbx, [rax]
           push rbx
+          ; 337 push string
+          mov rax, s_395
+          push rax
           ; 337 push integer
-          mov rax, 17
+          mov rax, 337
           push rax
-          ; 337 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
+          ; 337 push string
+          mov rax, s_400
           push rax
-          ; 337 start of if-block
+          ; 337 push boolean
+          mov rax, 1
+          push rax
+          ; 337 call
+          call fn_textbuffer_clear
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 338 push string
+          mov rax, s_454
+          push rax
+          ; 338 swap
           pop rax
-          test rax, rax
-          jz elif_0x00000000000001bb
-          ; 338 push string
-          mov rax, s_59
+          pop rbx
           push rax
-          ; 338 push string
-          mov rax, s_405
-          push rax
-          ; 338 get pointer to buffer
-          mov rax, buf__text
-          push rax
+          push rbx
           ; 338 push string
           mov rax, s_395
           push rax
@@ -63660,23 +63689,37 @@ elif_0x00000000000001ba:
           mov rax, 1
           push rax
           ; 338 call
-          call fn__append
+          call fn_textbuffer_append
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
-          pop rbx
-          ; 339 push string
-          mov rax, s_59
           push rax
-          ; 339 push string
-          mov rax, s_453
+          ; 339 over
+          pop rax
+          pop rbx
+          push rbx
           push rax
-          ; 339 get pointer to buffer
-          mov rax, buf__text
+          push rbx
+          ; 339 push integer
+          mov rax, 8
           push rax
+          ; 339 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 339 dereference pointer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 339 swap
+          pop rax
+          pop rbx
+          push rax
+          push rbx
           ; 339 push string
           mov rax, s_395
           push rax
@@ -63690,21 +63733,34 @@ elif_0x00000000000001ba:
           mov rax, 1
           push rax
           ; 339 call
-          call fn__append
+          call fn_textbuffer_append
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
-          pop rbx
-          ; 340 get pointer to buffer
-          mov rax, buf__textbuffer
           push rax
-          ; 340 dereference pointer
+          ; 340 push string
+          mov rax, s_59
+          push rax
+          ; 340 over
           pop rax
-          mov rbx, [rax]
+          pop rbx
           push rbx
+          push rax
+          push rbx
+          ; 340 push integer
+          mov rax, 16
+          push rax
+          ; 340 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 340 get pointer to buffer
+          mov rax, buf__text
+          push rax
           ; 340 push string
           mov rax, s_395
           push rax
@@ -63718,106 +63774,63 @@ elif_0x00000000000001ba:
           mov rax, 1
           push rax
           ; 340 call
-          call fn_textbuffer_clear
+          call fn__append
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
+          pop rbx
+          pop rbx
+          ; 341 get pointer to buffer
+          mov rax, buf__textbuffer
           push rax
-          ; 341 push string
-          mov rax, s_454
-          push rax
-          ; 341 swap
+          ; 341 set pointer value
           pop rax
           pop rbx
-          push rax
-          push rbx
-          ; 341 push string
-          mov rax, s_395
-          push rax
-          ; 341 push integer
-          mov rax, 341
-          push rax
-          ; 341 push string
-          mov rax, s_400
-          push rax
-          ; 341 push boolean
-          mov rax, 1
-          push rax
-          ; 341 call
-          call fn_textbuffer_append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 342 over
+          mov [rax], rbx
+          ; 334 jump
+          jmp end_0x0000000000000194
+          ; 334 label
+elif_0x00000000000001bb: 
+          ; 342 duplicate
           pop rax
-          pop rbx
-          push rbx
           push rax
-          push rbx
+          push rax
           ; 342 push integer
-          mov rax, 8
+          mov rax, 0
           push rax
           ; 342 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 342 dereference pointer
+          ; 342 dereference integer
           pop rax
           mov rbx, [rax]
           push rbx
-          ; 342 swap
-          pop rax
-          pop rbx
-          push rax
-          push rbx
-          ; 342 push string
-          mov rax, s_395
-          push rax
           ; 342 push integer
-          mov rax, 342
+          mov rax, 25
           push rax
-          ; 342 push string
-          mov rax, s_400
+          ; 342 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
           push rax
-          ; 342 push boolean
-          mov rax, 1
-          push rax
-          ; 342 call
-          call fn_textbuffer_append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 343 push string
-          mov rax, s_59
-          push rax
-          ; 343 over
+          ; 342 start of if-block
           pop rax
-          pop rbx
-          push rbx
-          push rax
-          push rbx
-          ; 343 push integer
-          mov rax, 16
-          push rax
-          ; 343 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
+          test rax, rax
+          jz elif_0x00000000000001bc
           ; 343 get pointer to buffer
-          mov rax, buf__text
+          mov rax, buf__textbuffer
           push rax
+          ; 343 dereference pointer
+          pop rax
+          mov rbx, [rax]
+          push rbx
           ; 343 push string
           mov rax, s_395
           push rax
@@ -63831,63 +63844,104 @@ elif_0x00000000000001ba:
           mov rax, 1
           push rax
           ; 343 call
-          call fn__append
+          call fn_textbuffer_clear
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
-          pop rbx
-          pop rbx
-          ; 344 get pointer to buffer
-          mov rax, buf__textbuffer
           push rax
-          ; 344 set pointer value
+          ; 344 over
           pop rax
           pop rbx
-          mov [rax], rbx
-          ; 337 jump
-          jmp end_0x0000000000000194
-          ; 337 label
-elif_0x00000000000001bb: 
-          ; 345 duplicate
-          pop rax
+          push rbx
           push rax
+          push rbx
+          ; 344 push integer
+          mov rax, 8
           push rax
-          ; 345 push integer
-          mov rax, 0
-          push rax
-          ; 345 add
+          ; 344 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 345 dereference integer
+          ; 344 dereference pointer
           pop rax
           mov rbx, [rax]
           push rbx
+          ; 344 swap
+          pop rax
+          pop rbx
+          push rax
+          push rbx
+          ; 344 push string
+          mov rax, s_395
+          push rax
+          ; 344 push integer
+          mov rax, 344
+          push rax
+          ; 344 push string
+          mov rax, s_400
+          push rax
+          ; 344 push boolean
+          mov rax, 1
+          push rax
+          ; 344 call
+          call fn_textbuffer_append
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 345 push string
+          mov rax, s_422
+          push rax
+          ; 345 swap
+          pop rax
+          pop rbx
+          push rax
+          push rbx
+          ; 345 push string
+          mov rax, s_395
+          push rax
           ; 345 push integer
-          mov rax, 25
+          mov rax, 345
           push rax
-          ; 345 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
+          ; 345 push string
+          mov rax, s_400
           push rax
-          ; 345 start of if-block
+          ; 345 push boolean
+          mov rax, 1
+          push rax
+          ; 345 call
+          call fn_textbuffer_append
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 346 duplicate
           pop rax
-          test rax, rax
-          jz elif_0x00000000000001bc
-          ; 346 get pointer to buffer
-          mov rax, buf__textbuffer
           push rax
-          ; 346 dereference pointer
+          push rax
+          ; 346 push integer
+          mov rax, 16
+          push rax
+          ; 346 add
           pop rax
-          mov rbx, [rax]
+          pop rbx
+          add rbx, rax
           push rbx
+          ; 346 push string
+          mov rax, s_59
+          push rax
+          ; 346 get pointer to buffer
+          mov rax, buf__text
+          push rax
           ; 346 push string
           mov rax, s_395
           push rax
@@ -63901,104 +63955,63 @@ elif_0x00000000000001bb:
           mov rax, 1
           push rax
           ; 346 call
-          call fn_textbuffer_clear
+          call fn__append
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
+          pop rbx
+          pop rbx
+          ; 347 get pointer to buffer
+          mov rax, buf__textbuffer
           push rax
-          ; 347 over
+          ; 347 set pointer value
           pop rax
           pop rbx
-          push rbx
+          mov [rax], rbx
+          ; 342 jump
+          jmp end_0x0000000000000194
+          ; 342 label
+elif_0x00000000000001bc: 
+          ; 348 duplicate
+          pop rax
           push rax
-          push rbx
-          ; 347 push integer
-          mov rax, 8
           push rax
-          ; 347 add
+          ; 348 push integer
+          mov rax, 0
+          push rax
+          ; 348 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 347 dereference pointer
+          ; 348 dereference integer
           pop rax
           mov rbx, [rax]
           push rbx
-          ; 347 swap
-          pop rax
-          pop rbx
-          push rax
-          push rbx
-          ; 347 push string
-          mov rax, s_395
-          push rax
-          ; 347 push integer
-          mov rax, 347
-          push rax
-          ; 347 push string
-          mov rax, s_400
-          push rax
-          ; 347 push boolean
-          mov rax, 1
-          push rax
-          ; 347 call
-          call fn_textbuffer_append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 348 push string
-          mov rax, s_422
-          push rax
-          ; 348 swap
-          pop rax
-          pop rbx
-          push rax
-          push rbx
-          ; 348 push string
-          mov rax, s_395
-          push rax
           ; 348 push integer
-          mov rax, 348
+          mov rax, 24
           push rax
-          ; 348 push string
-          mov rax, s_400
+          ; 348 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
           push rax
-          ; 348 push boolean
-          mov rax, 1
-          push rax
-          ; 348 call
-          call fn_textbuffer_append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 349 duplicate
+          ; 348 start of if-block
           pop rax
-          push rax
-          push rax
-          ; 349 push integer
-          mov rax, 16
-          push rax
-          ; 349 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 349 push string
-          mov rax, s_59
-          push rax
+          test rax, rax
+          jz elif_0x00000000000001bd
           ; 349 get pointer to buffer
-          mov rax, buf__text
+          mov rax, buf__textbuffer
           push rax
+          ; 349 dereference pointer
+          pop rax
+          mov rbx, [rax]
+          push rbx
           ; 349 push string
           mov rax, s_395
           push rax
@@ -64012,63 +64025,106 @@ elif_0x00000000000001bb:
           mov rax, 1
           push rax
           ; 349 call
-          call fn__append
+          call fn_textbuffer_clear
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
-          pop rbx
-          pop rbx
-          ; 350 get pointer to buffer
-          mov rax, buf__textbuffer
           push rax
-          ; 350 set pointer value
+          ; 350 push string
+          mov rax, s_455
+          push rax
+          ; 350 swap
           pop rax
           pop rbx
-          mov [rax], rbx
-          ; 345 jump
-          jmp end_0x0000000000000194
-          ; 345 label
-elif_0x00000000000001bc: 
-          ; 351 duplicate
+          push rax
+          push rbx
+          ; 350 push string
+          mov rax, s_395
+          push rax
+          ; 350 push integer
+          mov rax, 350
+          push rax
+          ; 350 push string
+          mov rax, s_400
+          push rax
+          ; 350 push boolean
+          mov rax, 1
+          push rax
+          ; 350 call
+          call fn_textbuffer_append
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 351 over
           pop rax
+          pop rbx
+          push rbx
           push rax
-          push rax
+          push rbx
           ; 351 push integer
-          mov rax, 0
+          mov rax, 8
           push rax
           ; 351 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 351 dereference integer
+          ; 351 dereference pointer
           pop rax
           mov rbx, [rax]
           push rbx
+          ; 351 swap
+          pop rax
+          pop rbx
+          push rax
+          push rbx
+          ; 351 push string
+          mov rax, s_395
+          push rax
           ; 351 push integer
-          mov rax, 24
+          mov rax, 351
           push rax
-          ; 351 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
+          ; 351 push string
+          mov rax, s_400
           push rax
-          ; 351 start of if-block
+          ; 351 push boolean
+          mov rax, 1
+          push rax
+          ; 351 call
+          call fn_textbuffer_append
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 352 push string
+          mov rax, s_59
+          push rax
+          ; 352 over
           pop rax
-          test rax, rax
-          jz elif_0x00000000000001bd
-          ; 352 get pointer to buffer
-          mov rax, buf__textbuffer
-          push rax
-          ; 352 dereference pointer
-          pop rax
-          mov rbx, [rax]
+          pop rbx
           push rbx
+          push rax
+          push rbx
+          ; 352 push integer
+          mov rax, 16
+          push rax
+          ; 352 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 352 get pointer to buffer
+          mov rax, buf__text
+          push rax
           ; 352 push string
           mov rax, s_395
           push rax
@@ -64082,103 +64138,62 @@ elif_0x00000000000001bc:
           mov rax, 1
           push rax
           ; 352 call
-          call fn_textbuffer_clear
+          call fn__append
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
+          pop rbx
+          pop rbx
+          ; 353 get pointer to buffer
+          mov rax, buf__textbuffer
           push rax
-          ; 353 push string
-          mov rax, s_455
-          push rax
-          ; 353 swap
+          ; 353 set pointer value
           pop rax
           pop rbx
-          push rax
-          push rbx
-          ; 353 push string
-          mov rax, s_395
-          push rax
-          ; 353 push integer
-          mov rax, 353
-          push rax
-          ; 353 push string
-          mov rax, s_400
-          push rax
-          ; 353 push boolean
-          mov rax, 1
-          push rax
-          ; 353 call
-          call fn_textbuffer_append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 354 over
+          mov [rax], rbx
+          ; 348 jump
+          jmp end_0x0000000000000194
+          ; 348 label
+elif_0x00000000000001bd: 
+          ; 354 duplicate
           pop rax
-          pop rbx
-          push rbx
           push rax
-          push rbx
+          push rax
           ; 354 push integer
-          mov rax, 8
+          mov rax, 0
           push rax
           ; 354 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 354 dereference pointer
+          ; 354 dereference integer
           pop rax
           mov rbx, [rax]
           push rbx
-          ; 354 swap
-          pop rax
-          pop rbx
-          push rax
-          push rbx
-          ; 354 push string
-          mov rax, s_395
-          push rax
           ; 354 push integer
-          mov rax, 354
+          mov rax, 45
           push rax
-          ; 354 push string
-          mov rax, s_400
+          ; 354 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
           push rax
-          ; 354 push boolean
-          mov rax, 1
-          push rax
-          ; 354 call
-          call fn_textbuffer_append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
+          ; 354 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x00000000000001be
           ; 355 push string
           mov rax, s_59
           push rax
-          ; 355 over
-          pop rax
-          pop rbx
-          push rbx
+          ; 355 push string
+          mov rax, s_405
           push rax
-          push rbx
-          ; 355 push integer
-          mov rax, 16
-          push rax
-          ; 355 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
           ; 355 get pointer to buffer
           mov rax, buf__text
           push rax
@@ -64203,56 +64218,63 @@ elif_0x00000000000001bc:
           pop rbx
           pop rbx
           pop rbx
-          ; 356 get pointer to buffer
-          mov rax, buf__textbuffer
+          ; 356 duplicate
+          pop rax
           push rax
-          ; 356 set pointer value
+          push rax
+          ; 356 push integer
+          mov rax, 8
+          push rax
+          ; 356 add
           pop rax
           pop rbx
-          mov [rax], rbx
-          ; 351 jump
-          jmp end_0x0000000000000194
-          ; 351 label
-elif_0x00000000000001bd: 
+          add rbx, rax
+          push rbx
+          ; 356 dereference pointer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 356 push string
+          mov rax, s_395
+          push rax
+          ; 356 push integer
+          mov rax, 356
+          push rax
+          ; 356 push string
+          mov rax, s_400
+          push rax
+          ; 356 push boolean
+          mov rax, 1
+          push rax
+          ; 356 call
+          call fn_stoi
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
           ; 357 duplicate
           pop rax
           push rax
           push rax
           ; 357 push integer
-          mov rax, 0
+          mov rax, 6
           push rax
-          ; 357 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 357 dereference integer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 357 push integer
-          mov rax, 45
-          push rax
-          ; 357 is equal?
+          ; 357 is greater?
           mov rax, 0
           mov rbx, 1
           pop rcx
           pop rdx
           cmp rdx, rcx
-          cmove rax, rbx
+          cmovg rax, rbx
           push rax
           ; 357 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001be
+          jz if_0x00000000000001bf
           ; 358 push string
-          mov rax, s_59
-          push rax
-          ; 358 push string
-          mov rax, s_405
-          push rax
-          ; 358 get pointer to buffer
-          mov rax, buf__text
+          mov rax, s_456
           push rax
           ; 358 push string
           mov rax, s_395
@@ -64267,105 +64289,26 @@ elif_0x00000000000001bd:
           mov rax, 1
           push rax
           ; 358 call
-          call fn__append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          ; 359 duplicate
-          pop rax
-          push rax
-          push rax
-          ; 359 push integer
-          mov rax, 8
-          push rax
-          ; 359 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 359 dereference pointer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 359 push string
-          mov rax, s_395
-          push rax
-          ; 359 push integer
-          mov rax, 359
-          push rax
-          ; 359 push string
-          mov rax, s_400
-          push rax
-          ; 359 push boolean
-          mov rax, 1
-          push rax
-          ; 359 call
-          call fn_stoi
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 360 duplicate
-          pop rax
-          push rax
-          push rax
-          ; 360 push integer
-          mov rax, 6
-          push rax
-          ; 360 is greater?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmovg rax, rbx
-          push rax
-          ; 360 start of if-block
-          pop rax
-          test rax, rax
-          jz if_0x00000000000001bf
-          ; 361 push string
-          mov rax, s_456
-          push rax
-          ; 361 push string
-          mov rax, s_395
-          push rax
-          ; 361 push integer
-          mov rax, 361
-          push rax
-          ; 361 push string
-          mov rax, s_400
-          push rax
-          ; 361 push boolean
-          mov rax, 1
-          push rax
-          ; 361 call
           call fn_raise
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
-          ; 361 jump
+          ; 358 jump
           jmp end_0x00000000000001bf
-          ; 361 label
+          ; 358 label
 if_0x00000000000001bf: 
-          ; 361 label
+          ; 358 label
 end_0x00000000000001bf: 
-          ; 362 duplicate
+          ; 359 duplicate
           pop rax
           push rax
           push rax
-          ; 362 push integer
+          ; 359 push integer
           mov rax, 5
           push rax
-          ; 362 is greater?
+          ; 359 is greater?
           mov rax, 0
           mov rbx, 1
           pop rcx
@@ -64373,32 +64316,32 @@ end_0x00000000000001bf:
           cmp rdx, rcx
           cmovg rax, rbx
           push rax
-          ; 362 start of if-block
+          ; 359 start of if-block
           pop rax
           test rax, rax
           jz if_0x00000000000001c0
-          ; 363 push string
+          ; 360 push string
           mov rax, s_59
           push rax
-          ; 363 push string
+          ; 360 push string
           mov rax, s_457
           push rax
-          ; 363 get pointer to buffer
+          ; 360 get pointer to buffer
           mov rax, buf__text
           push rax
-          ; 363 push string
+          ; 360 push string
           mov rax, s_395
           push rax
-          ; 363 push integer
-          mov rax, 363
+          ; 360 push integer
+          mov rax, 360
           push rax
-          ; 363 push string
+          ; 360 push string
           mov rax, s_400
           push rax
-          ; 363 push boolean
+          ; 360 push boolean
           mov rax, 1
           push rax
-          ; 363 call
+          ; 360 call
           call fn__append
           pop rbx
           pop rbx
@@ -64407,20 +64350,20 @@ end_0x00000000000001bf:
           pop rbx
           pop rbx
           pop rbx
-          ; 363 jump
+          ; 360 jump
           jmp end_0x00000000000001c0
-          ; 363 label
+          ; 360 label
 if_0x00000000000001c0: 
-          ; 363 label
+          ; 360 label
 end_0x00000000000001c0: 
-          ; 364 duplicate
+          ; 361 duplicate
           pop rax
           push rax
           push rax
-          ; 364 push integer
+          ; 361 push integer
           mov rax, 4
           push rax
-          ; 364 is greater?
+          ; 361 is greater?
           mov rax, 0
           mov rbx, 1
           pop rcx
@@ -64428,32 +64371,32 @@ end_0x00000000000001c0:
           cmp rdx, rcx
           cmovg rax, rbx
           push rax
-          ; 364 start of if-block
+          ; 361 start of if-block
           pop rax
           test rax, rax
           jz if_0x00000000000001c1
-          ; 365 push string
+          ; 362 push string
           mov rax, s_59
           push rax
-          ; 365 push string
+          ; 362 push string
           mov rax, s_458
           push rax
-          ; 365 get pointer to buffer
+          ; 362 get pointer to buffer
           mov rax, buf__text
           push rax
-          ; 365 push string
+          ; 362 push string
           mov rax, s_395
           push rax
-          ; 365 push integer
-          mov rax, 365
+          ; 362 push integer
+          mov rax, 362
           push rax
-          ; 365 push string
+          ; 362 push string
           mov rax, s_400
           push rax
-          ; 365 push boolean
+          ; 362 push boolean
           mov rax, 1
           push rax
-          ; 365 call
+          ; 362 call
           call fn__append
           pop rbx
           pop rbx
@@ -64462,20 +64405,20 @@ end_0x00000000000001c0:
           pop rbx
           pop rbx
           pop rbx
-          ; 365 jump
+          ; 362 jump
           jmp end_0x00000000000001c1
-          ; 365 label
+          ; 362 label
 if_0x00000000000001c1: 
-          ; 365 label
+          ; 362 label
 end_0x00000000000001c1: 
-          ; 366 duplicate
+          ; 363 duplicate
           pop rax
           push rax
           push rax
-          ; 366 push integer
+          ; 363 push integer
           mov rax, 3
           push rax
-          ; 366 is greater?
+          ; 363 is greater?
           mov rax, 0
           mov rbx, 1
           pop rcx
@@ -64483,32 +64426,32 @@ end_0x00000000000001c1:
           cmp rdx, rcx
           cmovg rax, rbx
           push rax
-          ; 366 start of if-block
+          ; 363 start of if-block
           pop rax
           test rax, rax
           jz if_0x00000000000001c2
-          ; 367 push string
+          ; 364 push string
           mov rax, s_59
           push rax
-          ; 367 push string
+          ; 364 push string
           mov rax, s_459
           push rax
-          ; 367 get pointer to buffer
+          ; 364 get pointer to buffer
           mov rax, buf__text
           push rax
-          ; 367 push string
+          ; 364 push string
           mov rax, s_395
           push rax
-          ; 367 push integer
-          mov rax, 367
+          ; 364 push integer
+          mov rax, 364
           push rax
-          ; 367 push string
+          ; 364 push string
           mov rax, s_400
           push rax
-          ; 367 push boolean
+          ; 364 push boolean
           mov rax, 1
           push rax
-          ; 367 call
+          ; 364 call
           call fn__append
           pop rbx
           pop rbx
@@ -64517,20 +64460,20 @@ end_0x00000000000001c1:
           pop rbx
           pop rbx
           pop rbx
-          ; 367 jump
+          ; 364 jump
           jmp end_0x00000000000001c2
-          ; 367 label
+          ; 364 label
 if_0x00000000000001c2: 
-          ; 367 label
+          ; 364 label
 end_0x00000000000001c2: 
-          ; 368 duplicate
+          ; 365 duplicate
           pop rax
           push rax
           push rax
-          ; 368 push integer
+          ; 365 push integer
           mov rax, 2
           push rax
-          ; 368 is greater?
+          ; 365 is greater?
           mov rax, 0
           mov rbx, 1
           pop rcx
@@ -64538,32 +64481,32 @@ end_0x00000000000001c2:
           cmp rdx, rcx
           cmovg rax, rbx
           push rax
-          ; 368 start of if-block
+          ; 365 start of if-block
           pop rax
           test rax, rax
           jz if_0x00000000000001c3
-          ; 369 push string
+          ; 366 push string
           mov rax, s_59
           push rax
-          ; 369 push string
+          ; 366 push string
           mov rax, s_445
           push rax
-          ; 369 get pointer to buffer
+          ; 366 get pointer to buffer
           mov rax, buf__text
           push rax
-          ; 369 push string
+          ; 366 push string
           mov rax, s_395
           push rax
-          ; 369 push integer
-          mov rax, 369
+          ; 366 push integer
+          mov rax, 366
           push rax
-          ; 369 push string
+          ; 366 push string
           mov rax, s_400
           push rax
-          ; 369 push boolean
+          ; 366 push boolean
           mov rax, 1
           push rax
-          ; 369 call
+          ; 366 call
           call fn__append
           pop rbx
           pop rbx
@@ -64572,20 +64515,20 @@ end_0x00000000000001c2:
           pop rbx
           pop rbx
           pop rbx
-          ; 369 jump
+          ; 366 jump
           jmp end_0x00000000000001c3
-          ; 369 label
+          ; 366 label
 if_0x00000000000001c3: 
-          ; 369 label
+          ; 366 label
 end_0x00000000000001c3: 
-          ; 370 duplicate
+          ; 367 duplicate
           pop rax
           push rax
           push rax
-          ; 370 push integer
+          ; 367 push integer
           mov rax, 1
           push rax
-          ; 370 is greater?
+          ; 367 is greater?
           mov rax, 0
           mov rbx, 1
           pop rcx
@@ -64593,32 +64536,32 @@ end_0x00000000000001c3:
           cmp rdx, rcx
           cmovg rax, rbx
           push rax
-          ; 370 start of if-block
+          ; 367 start of if-block
           pop rax
           test rax, rax
           jz if_0x00000000000001c4
-          ; 371 push string
+          ; 368 push string
           mov rax, s_59
           push rax
-          ; 371 push string
+          ; 368 push string
           mov rax, s_460
           push rax
-          ; 371 get pointer to buffer
+          ; 368 get pointer to buffer
           mov rax, buf__text
           push rax
-          ; 371 push string
+          ; 368 push string
           mov rax, s_395
           push rax
-          ; 371 push integer
-          mov rax, 371
+          ; 368 push integer
+          mov rax, 368
           push rax
-          ; 371 push string
+          ; 368 push string
           mov rax, s_400
           push rax
-          ; 371 push boolean
+          ; 368 push boolean
           mov rax, 1
           push rax
-          ; 371 call
+          ; 368 call
           call fn__append
           pop rbx
           pop rbx
@@ -64627,20 +64570,20 @@ end_0x00000000000001c3:
           pop rbx
           pop rbx
           pop rbx
-          ; 371 jump
+          ; 368 jump
           jmp end_0x00000000000001c4
-          ; 371 label
+          ; 368 label
 if_0x00000000000001c4: 
-          ; 371 label
+          ; 368 label
 end_0x00000000000001c4: 
-          ; 372 duplicate
+          ; 369 duplicate
           pop rax
           push rax
           push rax
-          ; 372 push integer
+          ; 369 push integer
           mov rax, 0
           push rax
-          ; 372 is greater?
+          ; 369 is greater?
           mov rax, 0
           mov rbx, 1
           pop rcx
@@ -64648,15 +64591,83 @@ end_0x00000000000001c4:
           cmp rdx, rcx
           cmovg rax, rbx
           push rax
-          ; 372 start of if-block
+          ; 369 start of if-block
           pop rax
           test rax, rax
           jz if_0x00000000000001c5
+          ; 370 push string
+          mov rax, s_59
+          push rax
+          ; 370 push string
+          mov rax, s_461
+          push rax
+          ; 370 get pointer to buffer
+          mov rax, buf__text
+          push rax
+          ; 370 push string
+          mov rax, s_395
+          push rax
+          ; 370 push integer
+          mov rax, 370
+          push rax
+          ; 370 push string
+          mov rax, s_400
+          push rax
+          ; 370 push boolean
+          mov rax, 1
+          push rax
+          ; 370 call
+          call fn__append
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          ; 370 jump
+          jmp end_0x00000000000001c5
+          ; 370 label
+if_0x00000000000001c5: 
+          ; 370 label
+end_0x00000000000001c5: 
+          ; 371 drop
+          pop rax
+          ; 372 push string
+          mov rax, s_59
+          push rax
+          ; 372 push string
+          mov rax, s_208
+          push rax
+          ; 372 get pointer to buffer
+          mov rax, buf__text
+          push rax
+          ; 372 push string
+          mov rax, s_395
+          push rax
+          ; 372 push integer
+          mov rax, 372
+          push rax
+          ; 372 push string
+          mov rax, s_400
+          push rax
+          ; 372 push boolean
+          mov rax, 1
+          push rax
+          ; 372 call
+          call fn__append
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
           ; 373 push string
           mov rax, s_59
           push rax
           ; 373 push string
-          mov rax, s_461
+          mov rax, s_406
           push rax
           ; 373 get pointer to buffer
           mov rax, buf__text
@@ -64682,23 +64693,48 @@ end_0x00000000000001c4:
           pop rbx
           pop rbx
           pop rbx
-          ; 373 jump
-          jmp end_0x00000000000001c5
-          ; 373 label
-if_0x00000000000001c5: 
-          ; 373 label
-end_0x00000000000001c5: 
-          ; 374 drop
+          ; 354 jump
+          jmp end_0x0000000000000194
+          ; 354 label
+elif_0x00000000000001be: 
+          ; 374 duplicate
           pop rax
-          ; 375 push string
-          mov rax, s_59
           push rax
-          ; 375 push string
-          mov rax, s_208
           push rax
+          ; 374 push integer
+          mov rax, 0
+          push rax
+          ; 374 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 374 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 374 push integer
+          mov rax, 33
+          push rax
+          ; 374 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
+          push rax
+          ; 374 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x00000000000001c6
           ; 375 get pointer to buffer
-          mov rax, buf__text
+          mov rax, buf__textbuffer
           push rax
+          ; 375 dereference pointer
+          pop rax
+          mov rbx, [rax]
+          push rbx
           ; 375 push string
           mov rax, s_395
           push rax
@@ -64712,23 +64748,21 @@ end_0x00000000000001c5:
           mov rax, 1
           push rax
           ; 375 call
-          call fn__append
+          call fn_textbuffer_clear
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
-          pop rbx
-          pop rbx
-          ; 376 push string
-          mov rax, s_59
           push rax
           ; 376 push string
-          mov rax, s_406
+          mov rax, s_462
           push rax
-          ; 376 get pointer to buffer
-          mov rax, buf__text
+          ; 376 swap
+          pop rax
+          pop rbx
           push rax
+          push rbx
           ; 376 push string
           mov rax, s_395
           push rax
@@ -64742,56 +64776,78 @@ end_0x00000000000001c5:
           mov rax, 1
           push rax
           ; 376 call
-          call fn__append
+          call fn_textbuffer_append
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
-          pop rbx
-          ; 357 jump
-          jmp end_0x0000000000000194
-          ; 357 label
-elif_0x00000000000001be: 
-          ; 377 duplicate
+          push rax
+          ; 377 over
           pop rax
+          pop rbx
+          push rbx
           push rax
-          push rax
+          push rbx
           ; 377 push integer
-          mov rax, 0
+          mov rax, 8
           push rax
           ; 377 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 377 dereference integer
+          ; 377 dereference pointer
           pop rax
           mov rbx, [rax]
           push rbx
+          ; 377 swap
+          pop rax
+          pop rbx
+          push rax
+          push rbx
+          ; 377 push string
+          mov rax, s_395
+          push rax
           ; 377 push integer
-          mov rax, 33
+          mov rax, 377
           push rax
-          ; 377 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
+          ; 377 push string
+          mov rax, s_400
           push rax
-          ; 377 start of if-block
+          ; 377 push boolean
+          mov rax, 1
+          push rax
+          ; 377 call
+          call fn_textbuffer_append
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 378 push string
+          mov rax, s_59
+          push rax
+          ; 378 over
           pop rax
-          test rax, rax
-          jz elif_0x00000000000001c6
-          ; 378 get pointer to buffer
-          mov rax, buf__textbuffer
-          push rax
-          ; 378 dereference pointer
-          pop rax
-          mov rbx, [rax]
+          pop rbx
           push rbx
+          push rax
+          push rbx
+          ; 378 push integer
+          mov rax, 16
+          push rax
+          ; 378 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 378 get pointer to buffer
+          mov rax, buf__text
+          push rax
           ; 378 push string
           mov rax, s_395
           push rax
@@ -64805,21 +64861,23 @@ elif_0x00000000000001be:
           mov rax, 1
           push rax
           ; 378 call
-          call fn_textbuffer_clear
+          call fn__append
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
+          pop rbx
+          pop rbx
+          ; 379 push string
+          mov rax, s_59
           push rax
           ; 379 push string
-          mov rax, s_462
+          mov rax, s_406
           push rax
-          ; 379 swap
-          pop rax
-          pop rbx
+          ; 379 get pointer to buffer
+          mov rax, buf__text
           push rax
-          push rbx
           ; 379 push string
           mov rax, s_395
           push rax
@@ -64833,91 +64891,6 @@ elif_0x00000000000001be:
           mov rax, 1
           push rax
           ; 379 call
-          call fn_textbuffer_append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 380 over
-          pop rax
-          pop rbx
-          push rbx
-          push rax
-          push rbx
-          ; 380 push integer
-          mov rax, 8
-          push rax
-          ; 380 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 380 dereference pointer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 380 swap
-          pop rax
-          pop rbx
-          push rax
-          push rbx
-          ; 380 push string
-          mov rax, s_395
-          push rax
-          ; 380 push integer
-          mov rax, 380
-          push rax
-          ; 380 push string
-          mov rax, s_400
-          push rax
-          ; 380 push boolean
-          mov rax, 1
-          push rax
-          ; 380 call
-          call fn_textbuffer_append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 381 push string
-          mov rax, s_59
-          push rax
-          ; 381 over
-          pop rax
-          pop rbx
-          push rbx
-          push rax
-          push rbx
-          ; 381 push integer
-          mov rax, 16
-          push rax
-          ; 381 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 381 get pointer to buffer
-          mov rax, buf__text
-          push rax
-          ; 381 push string
-          mov rax, s_395
-          push rax
-          ; 381 push integer
-          mov rax, 381
-          push rax
-          ; 381 push string
-          mov rax, s_400
-          push rax
-          ; 381 push boolean
-          mov rax, 1
-          push rax
-          ; 381 call
           call fn__append
           pop rbx
           pop rbx
@@ -64926,11 +64899,53 @@ elif_0x00000000000001be:
           pop rbx
           pop rbx
           pop rbx
+          ; 380 get pointer to buffer
+          mov rax, buf__textbuffer
+          push rax
+          ; 380 set pointer value
+          pop rax
+          pop rbx
+          mov [rax], rbx
+          ; 374 jump
+          jmp end_0x0000000000000194
+          ; 374 label
+elif_0x00000000000001c6: 
+          ; 381 duplicate
+          pop rax
+          push rax
+          push rax
+          ; 381 push integer
+          mov rax, 0
+          push rax
+          ; 381 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 381 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 381 push integer
+          mov rax, 7
+          push rax
+          ; 381 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
+          push rax
+          ; 381 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x00000000000001c7
           ; 382 push string
           mov rax, s_59
           push rax
           ; 382 push string
-          mov rax, s_406
+          mov rax, s_405
           push rax
           ; 382 get pointer to buffer
           mov rax, buf__text
@@ -64956,53 +64971,71 @@ elif_0x00000000000001be:
           pop rbx
           pop rbx
           pop rbx
+          ; 383 push string
+          mov rax, s_59
+          push rax
+          ; 383 push string
+          mov rax, s_463
+          push rax
           ; 383 get pointer to buffer
-          mov rax, buf__textbuffer
+          mov rax, buf__text
           push rax
-          ; 383 set pointer value
-          pop rax
+          ; 383 push string
+          mov rax, s_395
+          push rax
+          ; 383 push integer
+          mov rax, 383
+          push rax
+          ; 383 push string
+          mov rax, s_400
+          push rax
+          ; 383 push boolean
+          mov rax, 1
+          push rax
+          ; 383 call
+          call fn__append
           pop rbx
-          mov [rax], rbx
-          ; 377 jump
-          jmp end_0x0000000000000194
-          ; 377 label
-elif_0x00000000000001c6: 
-          ; 384 duplicate
-          pop rax
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          ; 384 push string
+          mov rax, s_59
           push rax
+          ; 384 push string
+          mov rax, s_464
+          push rax
+          ; 384 get pointer to buffer
+          mov rax, buf__text
+          push rax
+          ; 384 push string
+          mov rax, s_395
           push rax
           ; 384 push integer
-          mov rax, 0
+          mov rax, 384
           push rax
-          ; 384 add
-          pop rax
+          ; 384 push string
+          mov rax, s_400
+          push rax
+          ; 384 push boolean
+          mov rax, 1
+          push rax
+          ; 384 call
+          call fn__append
           pop rbx
-          add rbx, rax
-          push rbx
-          ; 384 dereference integer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 384 push integer
-          mov rax, 7
-          push rax
-          ; 384 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
-          push rax
-          ; 384 start of if-block
-          pop rax
-          test rax, rax
-          jz elif_0x00000000000001c7
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
           ; 385 push string
           mov rax, s_59
           push rax
           ; 385 push string
-          mov rax, s_405
+          mov rax, s_408
           push rax
           ; 385 get pointer to buffer
           mov rax, buf__text
@@ -65028,41 +65061,46 @@ elif_0x00000000000001c6:
           pop rbx
           pop rbx
           pop rbx
-          ; 386 push string
-          mov rax, s_59
+          ; 381 jump
+          jmp end_0x0000000000000194
+          ; 381 label
+elif_0x00000000000001c7: 
+          ; 386 duplicate
+          pop rax
           push rax
-          ; 386 push string
-          mov rax, s_463
-          push rax
-          ; 386 get pointer to buffer
-          mov rax, buf__text
-          push rax
-          ; 386 push string
-          mov rax, s_395
           push rax
           ; 386 push integer
-          mov rax, 386
+          mov rax, 0
           push rax
-          ; 386 push string
-          mov rax, s_400
+          ; 386 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 386 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 386 push integer
+          mov rax, 8
           push rax
-          ; 386 push boolean
-          mov rax, 1
+          ; 386 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
           push rax
-          ; 386 call
-          call fn__append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
+          ; 386 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x00000000000001c8
           ; 387 push string
           mov rax, s_59
           push rax
           ; 387 push string
-          mov rax, s_464
+          mov rax, s_405
           push rax
           ; 387 get pointer to buffer
           mov rax, buf__text
@@ -65092,7 +65130,7 @@ elif_0x00000000000001c6:
           mov rax, s_59
           push rax
           ; 388 push string
-          mov rax, s_408
+          mov rax, s_463
           push rax
           ; 388 get pointer to buffer
           mov rax, buf__text
@@ -65118,46 +65156,41 @@ elif_0x00000000000001c6:
           pop rbx
           pop rbx
           pop rbx
-          ; 384 jump
-          jmp end_0x0000000000000194
-          ; 384 label
-elif_0x00000000000001c7: 
-          ; 389 duplicate
-          pop rax
+          ; 389 push string
+          mov rax, s_59
           push rax
+          ; 389 push string
+          mov rax, s_464
+          push rax
+          ; 389 get pointer to buffer
+          mov rax, buf__text
+          push rax
+          ; 389 push string
+          mov rax, s_395
           push rax
           ; 389 push integer
-          mov rax, 0
+          mov rax, 389
           push rax
-          ; 389 add
-          pop rax
+          ; 389 push string
+          mov rax, s_400
+          push rax
+          ; 389 push boolean
+          mov rax, 1
+          push rax
+          ; 389 call
+          call fn__append
           pop rbx
-          add rbx, rax
-          push rbx
-          ; 389 dereference integer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 389 push integer
-          mov rax, 8
-          push rax
-          ; 389 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
-          push rax
-          ; 389 start of if-block
-          pop rax
-          test rax, rax
-          jz elif_0x00000000000001c8
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
           ; 390 push string
           mov rax, s_59
           push rax
           ; 390 push string
-          mov rax, s_405
+          mov rax, s_408
           push rax
           ; 390 get pointer to buffer
           mov rax, buf__text
@@ -65183,41 +65216,46 @@ elif_0x00000000000001c7:
           pop rbx
           pop rbx
           pop rbx
-          ; 391 push string
-          mov rax, s_59
+          ; 386 jump
+          jmp end_0x0000000000000194
+          ; 386 label
+elif_0x00000000000001c8: 
+          ; 391 duplicate
+          pop rax
           push rax
-          ; 391 push string
-          mov rax, s_463
-          push rax
-          ; 391 get pointer to buffer
-          mov rax, buf__text
-          push rax
-          ; 391 push string
-          mov rax, s_395
           push rax
           ; 391 push integer
-          mov rax, 391
+          mov rax, 0
           push rax
-          ; 391 push string
-          mov rax, s_400
+          ; 391 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 391 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 391 push integer
+          mov rax, 9
           push rax
-          ; 391 push boolean
-          mov rax, 1
+          ; 391 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
           push rax
-          ; 391 call
-          call fn__append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
+          ; 391 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x00000000000001c9
           ; 392 push string
           mov rax, s_59
           push rax
           ; 392 push string
-          mov rax, s_464
+          mov rax, s_405
           push rax
           ; 392 get pointer to buffer
           mov rax, buf__text
@@ -65247,7 +65285,7 @@ elif_0x00000000000001c7:
           mov rax, s_59
           push rax
           ; 393 push string
-          mov rax, s_408
+          mov rax, s_428
           push rax
           ; 393 get pointer to buffer
           mov rax, buf__text
@@ -65273,63 +65311,28 @@ elif_0x00000000000001c7:
           pop rbx
           pop rbx
           pop rbx
-          ; 389 jump
-          jmp end_0x0000000000000194
-          ; 389 label
-elif_0x00000000000001c8: 
-          ; 394 duplicate
-          pop rax
-          push rax
-          push rax
-          ; 394 push integer
-          mov rax, 0
-          push rax
-          ; 394 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 394 dereference integer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 394 push integer
-          mov rax, 9
-          push rax
-          ; 394 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
-          push rax
-          ; 394 start of if-block
-          pop rax
-          test rax, rax
-          jz elif_0x00000000000001c9
-          ; 395 push string
+          ; 394 push string
           mov rax, s_59
           push rax
-          ; 395 push string
-          mov rax, s_405
+          ; 394 push string
+          mov rax, s_408
           push rax
-          ; 395 get pointer to buffer
+          ; 394 get pointer to buffer
           mov rax, buf__text
           push rax
-          ; 395 push string
+          ; 394 push string
           mov rax, s_395
           push rax
-          ; 395 push integer
-          mov rax, 395
+          ; 394 push integer
+          mov rax, 394
           push rax
-          ; 395 push string
+          ; 394 push string
           mov rax, s_400
           push rax
-          ; 395 push boolean
+          ; 394 push boolean
           mov rax, 1
           push rax
-          ; 395 call
+          ; 394 call
           call fn__append
           pop rbx
           pop rbx
@@ -65338,11 +65341,46 @@ elif_0x00000000000001c8:
           pop rbx
           pop rbx
           pop rbx
+          ; 391 jump
+          jmp end_0x0000000000000194
+          ; 391 label
+elif_0x00000000000001c9: 
+          ; 395 duplicate
+          pop rax
+          push rax
+          push rax
+          ; 395 push integer
+          mov rax, 0
+          push rax
+          ; 395 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 395 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 395 push integer
+          mov rax, 10
+          push rax
+          ; 395 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
+          push rax
+          ; 395 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x00000000000001ca
           ; 396 push string
           mov rax, s_59
           push rax
           ; 396 push string
-          mov rax, s_428
+          mov rax, s_405
           push rax
           ; 396 get pointer to buffer
           mov rax, buf__text
@@ -65372,7 +65410,7 @@ elif_0x00000000000001c8:
           mov rax, s_59
           push rax
           ; 397 push string
-          mov rax, s_408
+          mov rax, s_428
           push rax
           ; 397 get pointer to buffer
           mov rax, buf__text
@@ -65398,63 +65436,28 @@ elif_0x00000000000001c8:
           pop rbx
           pop rbx
           pop rbx
-          ; 394 jump
-          jmp end_0x0000000000000194
-          ; 394 label
-elif_0x00000000000001c9: 
-          ; 398 duplicate
-          pop rax
-          push rax
-          push rax
-          ; 398 push integer
-          mov rax, 0
-          push rax
-          ; 398 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 398 dereference integer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 398 push integer
-          mov rax, 10
-          push rax
-          ; 398 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
-          push rax
-          ; 398 start of if-block
-          pop rax
-          test rax, rax
-          jz elif_0x00000000000001ca
-          ; 399 push string
+          ; 398 push string
           mov rax, s_59
           push rax
-          ; 399 push string
-          mov rax, s_405
+          ; 398 push string
+          mov rax, s_408
           push rax
-          ; 399 get pointer to buffer
+          ; 398 get pointer to buffer
           mov rax, buf__text
           push rax
-          ; 399 push string
+          ; 398 push string
           mov rax, s_395
           push rax
-          ; 399 push integer
-          mov rax, 399
+          ; 398 push integer
+          mov rax, 398
           push rax
-          ; 399 push string
+          ; 398 push string
           mov rax, s_400
           push rax
-          ; 399 push boolean
+          ; 398 push boolean
           mov rax, 1
           push rax
-          ; 399 call
+          ; 398 call
           call fn__append
           pop rbx
           pop rbx
@@ -65463,11 +65466,46 @@ elif_0x00000000000001c9:
           pop rbx
           pop rbx
           pop rbx
+          ; 395 jump
+          jmp end_0x0000000000000194
+          ; 395 label
+elif_0x00000000000001ca: 
+          ; 399 duplicate
+          pop rax
+          push rax
+          push rax
+          ; 399 push integer
+          mov rax, 0
+          push rax
+          ; 399 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 399 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 399 push integer
+          mov rax, 37
+          push rax
+          ; 399 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
+          push rax
+          ; 399 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x00000000000001cb
           ; 400 push string
           mov rax, s_59
           push rax
           ; 400 push string
-          mov rax, s_428
+          mov rax, s_405
           push rax
           ; 400 get pointer to buffer
           mov rax, buf__text
@@ -65497,7 +65535,7 @@ elif_0x00000000000001c9:
           mov rax, s_59
           push rax
           ; 401 push string
-          mov rax, s_408
+          mov rax, s_407
           push rax
           ; 401 get pointer to buffer
           mov rax, buf__text
@@ -65523,63 +65561,28 @@ elif_0x00000000000001c9:
           pop rbx
           pop rbx
           pop rbx
-          ; 398 jump
-          jmp end_0x0000000000000194
-          ; 398 label
-elif_0x00000000000001ca: 
-          ; 402 duplicate
-          pop rax
-          push rax
-          push rax
-          ; 402 push integer
-          mov rax, 0
-          push rax
-          ; 402 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 402 dereference integer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 402 push integer
-          mov rax, 37
-          push rax
-          ; 402 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
-          push rax
-          ; 402 start of if-block
-          pop rax
-          test rax, rax
-          jz elif_0x00000000000001cb
-          ; 403 push string
+          ; 402 push string
           mov rax, s_59
           push rax
-          ; 403 push string
-          mov rax, s_405
+          ; 402 push string
+          mov rax, s_465
           push rax
-          ; 403 get pointer to buffer
+          ; 402 get pointer to buffer
           mov rax, buf__text
           push rax
-          ; 403 push string
+          ; 402 push string
           mov rax, s_395
           push rax
-          ; 403 push integer
-          mov rax, 403
+          ; 402 push integer
+          mov rax, 402
           push rax
-          ; 403 push string
+          ; 402 push string
           mov rax, s_400
           push rax
-          ; 403 push boolean
+          ; 402 push boolean
           mov rax, 1
           push rax
-          ; 403 call
+          ; 402 call
           call fn__append
           pop rbx
           pop rbx
@@ -65588,11 +65591,46 @@ elif_0x00000000000001ca:
           pop rbx
           pop rbx
           pop rbx
+          ; 399 jump
+          jmp end_0x0000000000000194
+          ; 399 label
+elif_0x00000000000001cb: 
+          ; 403 duplicate
+          pop rax
+          push rax
+          push rax
+          ; 403 push integer
+          mov rax, 0
+          push rax
+          ; 403 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 403 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 403 push integer
+          mov rax, 38
+          push rax
+          ; 403 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
+          push rax
+          ; 403 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x00000000000001cc
           ; 404 push string
           mov rax, s_59
           push rax
           ; 404 push string
-          mov rax, s_407
+          mov rax, s_405
           push rax
           ; 404 get pointer to buffer
           mov rax, buf__text
@@ -65622,7 +65660,7 @@ elif_0x00000000000001ca:
           mov rax, s_59
           push rax
           ; 405 push string
-          mov rax, s_465
+          mov rax, s_407
           push rax
           ; 405 get pointer to buffer
           mov rax, buf__text
@@ -65648,63 +65686,28 @@ elif_0x00000000000001ca:
           pop rbx
           pop rbx
           pop rbx
-          ; 402 jump
-          jmp end_0x0000000000000194
-          ; 402 label
-elif_0x00000000000001cb: 
-          ; 406 duplicate
-          pop rax
-          push rax
-          push rax
-          ; 406 push integer
-          mov rax, 0
-          push rax
-          ; 406 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 406 dereference integer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 406 push integer
-          mov rax, 38
-          push rax
-          ; 406 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
-          push rax
-          ; 406 start of if-block
-          pop rax
-          test rax, rax
-          jz elif_0x00000000000001cc
-          ; 407 push string
+          ; 406 push string
           mov rax, s_59
           push rax
-          ; 407 push string
-          mov rax, s_405
+          ; 406 push string
+          mov rax, s_465
           push rax
-          ; 407 get pointer to buffer
+          ; 406 get pointer to buffer
           mov rax, buf__text
           push rax
-          ; 407 push string
+          ; 406 push string
           mov rax, s_395
           push rax
-          ; 407 push integer
-          mov rax, 407
+          ; 406 push integer
+          mov rax, 406
           push rax
-          ; 407 push string
+          ; 406 push string
           mov rax, s_400
           push rax
-          ; 407 push boolean
+          ; 406 push boolean
           mov rax, 1
           push rax
-          ; 407 call
+          ; 406 call
           call fn__append
           pop rbx
           pop rbx
@@ -65713,11 +65716,46 @@ elif_0x00000000000001cb:
           pop rbx
           pop rbx
           pop rbx
+          ; 403 jump
+          jmp end_0x0000000000000194
+          ; 403 label
+elif_0x00000000000001cc: 
+          ; 407 duplicate
+          pop rax
+          push rax
+          push rax
+          ; 407 push integer
+          mov rax, 0
+          push rax
+          ; 407 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 407 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 407 push integer
+          mov rax, 39
+          push rax
+          ; 407 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
+          push rax
+          ; 407 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x00000000000001cd
           ; 408 push string
           mov rax, s_59
           push rax
           ; 408 push string
-          mov rax, s_407
+          mov rax, s_405
           push rax
           ; 408 get pointer to buffer
           mov rax, buf__text
@@ -65747,7 +65785,7 @@ elif_0x00000000000001cb:
           mov rax, s_59
           push rax
           ; 409 push string
-          mov rax, s_465
+          mov rax, s_407
           push rax
           ; 409 get pointer to buffer
           mov rax, buf__text
@@ -65773,63 +65811,28 @@ elif_0x00000000000001cb:
           pop rbx
           pop rbx
           pop rbx
-          ; 406 jump
-          jmp end_0x0000000000000194
-          ; 406 label
-elif_0x00000000000001cc: 
-          ; 410 duplicate
-          pop rax
-          push rax
-          push rax
-          ; 410 push integer
-          mov rax, 0
-          push rax
-          ; 410 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 410 dereference integer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 410 push integer
-          mov rax, 39
-          push rax
-          ; 410 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
-          push rax
-          ; 410 start of if-block
-          pop rax
-          test rax, rax
-          jz elif_0x00000000000001cd
-          ; 411 push string
+          ; 410 push string
           mov rax, s_59
           push rax
-          ; 411 push string
-          mov rax, s_405
+          ; 410 push string
+          mov rax, s_466
           push rax
-          ; 411 get pointer to buffer
+          ; 410 get pointer to buffer
           mov rax, buf__text
           push rax
-          ; 411 push string
+          ; 410 push string
           mov rax, s_395
           push rax
-          ; 411 push integer
-          mov rax, 411
+          ; 410 push integer
+          mov rax, 410
           push rax
-          ; 411 push string
+          ; 410 push string
           mov rax, s_400
           push rax
-          ; 411 push boolean
+          ; 410 push boolean
           mov rax, 1
           push rax
-          ; 411 call
+          ; 410 call
           call fn__append
           pop rbx
           pop rbx
@@ -65838,11 +65841,46 @@ elif_0x00000000000001cc:
           pop rbx
           pop rbx
           pop rbx
+          ; 407 jump
+          jmp end_0x0000000000000194
+          ; 407 label
+elif_0x00000000000001cd: 
+          ; 411 duplicate
+          pop rax
+          push rax
+          push rax
+          ; 411 push integer
+          mov rax, 0
+          push rax
+          ; 411 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 411 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 411 push integer
+          mov rax, 40
+          push rax
+          ; 411 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
+          push rax
+          ; 411 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x00000000000001ce
           ; 412 push string
           mov rax, s_59
           push rax
           ; 412 push string
-          mov rax, s_407
+          mov rax, s_405
           push rax
           ; 412 get pointer to buffer
           mov rax, buf__text
@@ -65872,7 +65910,7 @@ elif_0x00000000000001cc:
           mov rax, s_59
           push rax
           ; 413 push string
-          mov rax, s_466
+          mov rax, s_407
           push rax
           ; 413 get pointer to buffer
           mov rax, buf__text
@@ -65898,63 +65936,28 @@ elif_0x00000000000001cc:
           pop rbx
           pop rbx
           pop rbx
-          ; 410 jump
-          jmp end_0x0000000000000194
-          ; 410 label
-elif_0x00000000000001cd: 
-          ; 414 duplicate
-          pop rax
-          push rax
-          push rax
-          ; 414 push integer
-          mov rax, 0
-          push rax
-          ; 414 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 414 dereference integer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 414 push integer
-          mov rax, 40
-          push rax
-          ; 414 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
-          push rax
-          ; 414 start of if-block
-          pop rax
-          test rax, rax
-          jz elif_0x00000000000001ce
-          ; 415 push string
+          ; 414 push string
           mov rax, s_59
           push rax
-          ; 415 push string
-          mov rax, s_405
+          ; 414 push string
+          mov rax, s_466
           push rax
-          ; 415 get pointer to buffer
+          ; 414 get pointer to buffer
           mov rax, buf__text
           push rax
-          ; 415 push string
+          ; 414 push string
           mov rax, s_395
           push rax
-          ; 415 push integer
-          mov rax, 415
+          ; 414 push integer
+          mov rax, 414
           push rax
-          ; 415 push string
+          ; 414 push string
           mov rax, s_400
           push rax
-          ; 415 push boolean
+          ; 414 push boolean
           mov rax, 1
           push rax
-          ; 415 call
+          ; 414 call
           call fn__append
           pop rbx
           pop rbx
@@ -65963,11 +65966,46 @@ elif_0x00000000000001cd:
           pop rbx
           pop rbx
           pop rbx
+          ; 411 jump
+          jmp end_0x0000000000000194
+          ; 411 label
+elif_0x00000000000001ce: 
+          ; 415 duplicate
+          pop rax
+          push rax
+          push rax
+          ; 415 push integer
+          mov rax, 0
+          push rax
+          ; 415 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 415 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 415 push integer
+          mov rax, 41
+          push rax
+          ; 415 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
+          push rax
+          ; 415 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x00000000000001cf
           ; 416 push string
           mov rax, s_59
           push rax
           ; 416 push string
-          mov rax, s_407
+          mov rax, s_409
           push rax
           ; 416 get pointer to buffer
           mov rax, buf__text
@@ -65997,7 +66035,7 @@ elif_0x00000000000001cd:
           mov rax, s_59
           push rax
           ; 417 push string
-          mov rax, s_466
+          mov rax, s_405
           push rax
           ; 417 get pointer to buffer
           mov rax, buf__text
@@ -66023,46 +66061,41 @@ elif_0x00000000000001cd:
           pop rbx
           pop rbx
           pop rbx
-          ; 414 jump
-          jmp end_0x0000000000000194
-          ; 414 label
-elif_0x00000000000001ce: 
-          ; 418 duplicate
-          pop rax
+          ; 418 push string
+          mov rax, s_59
           push rax
+          ; 418 push string
+          mov rax, s_467
+          push rax
+          ; 418 get pointer to buffer
+          mov rax, buf__text
+          push rax
+          ; 418 push string
+          mov rax, s_395
           push rax
           ; 418 push integer
-          mov rax, 0
+          mov rax, 418
           push rax
-          ; 418 add
-          pop rax
+          ; 418 push string
+          mov rax, s_400
+          push rax
+          ; 418 push boolean
+          mov rax, 1
+          push rax
+          ; 418 call
+          call fn__append
           pop rbx
-          add rbx, rax
-          push rbx
-          ; 418 dereference integer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 418 push integer
-          mov rax, 41
-          push rax
-          ; 418 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
-          push rax
-          ; 418 start of if-block
-          pop rax
-          test rax, rax
-          jz elif_0x00000000000001cf
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
           ; 419 push string
           mov rax, s_59
           push rax
           ; 419 push string
-          mov rax, s_409
+          mov rax, s_406
           push rax
           ; 419 get pointer to buffer
           mov rax, buf__text
@@ -66088,41 +66121,46 @@ elif_0x00000000000001ce:
           pop rbx
           pop rbx
           pop rbx
-          ; 420 push string
-          mov rax, s_59
+          ; 415 jump
+          jmp end_0x0000000000000194
+          ; 415 label
+elif_0x00000000000001cf: 
+          ; 420 duplicate
+          pop rax
           push rax
-          ; 420 push string
-          mov rax, s_405
-          push rax
-          ; 420 get pointer to buffer
-          mov rax, buf__text
-          push rax
-          ; 420 push string
-          mov rax, s_395
           push rax
           ; 420 push integer
-          mov rax, 420
+          mov rax, 0
           push rax
-          ; 420 push string
-          mov rax, s_400
+          ; 420 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 420 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 420 push integer
+          mov rax, 42
           push rax
-          ; 420 push boolean
-          mov rax, 1
+          ; 420 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
           push rax
-          ; 420 call
-          call fn__append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
+          ; 420 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x00000000000001d0
           ; 421 push string
           mov rax, s_59
           push rax
           ; 421 push string
-          mov rax, s_467
+          mov rax, s_409
           push rax
           ; 421 get pointer to buffer
           mov rax, buf__text
@@ -66152,7 +66190,7 @@ elif_0x00000000000001ce:
           mov rax, s_59
           push rax
           ; 422 push string
-          mov rax, s_406
+          mov rax, s_405
           push rax
           ; 422 get pointer to buffer
           mov rax, buf__text
@@ -66178,46 +66216,41 @@ elif_0x00000000000001ce:
           pop rbx
           pop rbx
           pop rbx
-          ; 418 jump
-          jmp end_0x0000000000000194
-          ; 418 label
-elif_0x00000000000001cf: 
-          ; 423 duplicate
-          pop rax
+          ; 423 push string
+          mov rax, s_59
           push rax
+          ; 423 push string
+          mov rax, s_468
+          push rax
+          ; 423 get pointer to buffer
+          mov rax, buf__text
+          push rax
+          ; 423 push string
+          mov rax, s_395
           push rax
           ; 423 push integer
-          mov rax, 0
+          mov rax, 423
           push rax
-          ; 423 add
-          pop rax
+          ; 423 push string
+          mov rax, s_400
+          push rax
+          ; 423 push boolean
+          mov rax, 1
+          push rax
+          ; 423 call
+          call fn__append
           pop rbx
-          add rbx, rax
-          push rbx
-          ; 423 dereference integer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 423 push integer
-          mov rax, 42
-          push rax
-          ; 423 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
-          push rax
-          ; 423 start of if-block
-          pop rax
-          test rax, rax
-          jz elif_0x00000000000001d0
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
           ; 424 push string
           mov rax, s_59
           push rax
           ; 424 push string
-          mov rax, s_409
+          mov rax, s_406
           push rax
           ; 424 get pointer to buffer
           mov rax, buf__text
@@ -66243,41 +66276,46 @@ elif_0x00000000000001cf:
           pop rbx
           pop rbx
           pop rbx
-          ; 425 push string
-          mov rax, s_59
+          ; 420 jump
+          jmp end_0x0000000000000194
+          ; 420 label
+elif_0x00000000000001d0: 
+          ; 425 duplicate
+          pop rax
           push rax
-          ; 425 push string
-          mov rax, s_405
-          push rax
-          ; 425 get pointer to buffer
-          mov rax, buf__text
-          push rax
-          ; 425 push string
-          mov rax, s_395
           push rax
           ; 425 push integer
-          mov rax, 425
+          mov rax, 0
           push rax
-          ; 425 push string
-          mov rax, s_400
+          ; 425 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 425 dereference integer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 425 push integer
+          mov rax, 47
           push rax
-          ; 425 push boolean
-          mov rax, 1
+          ; 425 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
           push rax
-          ; 425 call
-          call fn__append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
+          ; 425 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x00000000000001d1
           ; 426 push string
           mov rax, s_59
           push rax
           ; 426 push string
-          mov rax, s_468
+          mov rax, s_405
           push rax
           ; 426 get pointer to buffer
           mov rax, buf__text
@@ -66307,7 +66345,7 @@ elif_0x00000000000001cf:
           mov rax, s_59
           push rax
           ; 427 push string
-          mov rax, s_406
+          mov rax, s_453
           push rax
           ; 427 get pointer to buffer
           mov rax, buf__text
@@ -66333,50 +66371,41 @@ elif_0x00000000000001cf:
           pop rbx
           pop rbx
           pop rbx
-          ; 423 jump
-          jmp end_0x0000000000000194
-          ; 423 label
-elif_0x00000000000001d0: 
-          ; 428 duplicate
-          pop rax
+          ; 428 get pointer to buffer
+          mov rax, buf__textbuffer
           push rax
-          push rax
-          ; 428 push integer
-          mov rax, 0
-          push rax
-          ; 428 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 428 dereference integer
+          ; 428 dereference pointer
           pop rax
           mov rbx, [rax]
           push rbx
+          ; 428 push string
+          mov rax, s_395
+          push rax
           ; 428 push integer
-          mov rax, 47
+          mov rax, 428
           push rax
-          ; 428 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
+          ; 428 push string
+          mov rax, s_400
           push rax
-          ; 428 start of if-block
+          ; 428 push boolean
+          mov rax, 1
+          push rax
+          ; 428 call
+          call fn_textbuffer_clear
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 429 push string
+          mov rax, s_454
+          push rax
+          ; 429 swap
           pop rax
-          test rax, rax
-          jz elif_0x00000000000001d1
-          ; 429 push string
-          mov rax, s_59
+          pop rbx
           push rax
-          ; 429 push string
-          mov rax, s_405
-          push rax
-          ; 429 get pointer to buffer
-          mov rax, buf__text
-          push rax
+          push rbx
           ; 429 push string
           mov rax, s_395
           push rax
@@ -66390,23 +66419,37 @@ elif_0x00000000000001d0:
           mov rax, 1
           push rax
           ; 429 call
-          call fn__append
+          call fn_textbuffer_append
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
-          pop rbx
-          ; 430 push string
-          mov rax, s_59
           push rax
-          ; 430 push string
-          mov rax, s_453
+          ; 430 over
+          pop rax
+          pop rbx
+          push rbx
           push rax
-          ; 430 get pointer to buffer
-          mov rax, buf__text
+          push rbx
+          ; 430 push integer
+          mov rax, 8
           push rax
+          ; 430 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 430 dereference pointer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 430 swap
+          pop rax
+          pop rbx
+          push rax
+          push rbx
           ; 430 push string
           mov rax, s_395
           push rax
@@ -66420,20 +66463,21 @@ elif_0x00000000000001d0:
           mov rax, 1
           push rax
           ; 430 call
-          call fn__append
+          call fn_textbuffer_append
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
-          pop rbx
-          ; 431 get pointer to buffer
-          mov rax, buf__textbuffer
           push rax
-          ; 431 dereference pointer
+          ; 431 push string
+          mov rax, s_469
+          push rax
+          ; 431 swap
           pop rax
-          mov rbx, [rax]
+          pop rbx
+          push rax
           push rbx
           ; 431 push string
           mov rax, s_395
@@ -66448,7 +66492,8 @@ elif_0x00000000000001d0:
           mov rax, 1
           push rax
           ; 431 call
-          call fn_textbuffer_clear
+          call fn_textbuffer_append
+          pop rbx
           pop rbx
           pop rbx
           pop rbx
@@ -66456,13 +66501,25 @@ elif_0x00000000000001d0:
           pop rbx
           push rax
           ; 432 push string
-          mov rax, s_454
+          mov rax, s_59
           push rax
-          ; 432 swap
+          ; 432 over
           pop rax
           pop rbx
+          push rbx
           push rax
           push rbx
+          ; 432 push integer
+          mov rax, 16
+          push rax
+          ; 432 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 432 get pointer to buffer
+          mov rax, buf__text
+          push rax
           ; 432 push string
           mov rax, s_395
           push rax
@@ -66476,107 +66533,63 @@ elif_0x00000000000001d0:
           mov rax, 1
           push rax
           ; 432 call
-          call fn_textbuffer_append
+          call fn__append
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
+          pop rbx
+          ; 433 get pointer to buffer
+          mov rax, buf__textbuffer
           push rax
-          ; 433 over
+          ; 433 set pointer value
           pop rax
           pop rbx
-          push rbx
+          mov [rax], rbx
+          ; 425 jump
+          jmp end_0x0000000000000194
+          ; 425 label
+elif_0x00000000000001d1: 
+          ; 434 duplicate
+          pop rax
           push rax
-          push rbx
-          ; 433 push integer
-          mov rax, 8
           push rax
-          ; 433 add
+          ; 434 push integer
+          mov rax, 0
+          push rax
+          ; 434 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 433 dereference pointer
+          ; 434 dereference integer
           pop rax
           mov rbx, [rax]
           push rbx
-          ; 433 swap
-          pop rax
-          pop rbx
-          push rax
-          push rbx
-          ; 433 push string
-          mov rax, s_395
-          push rax
-          ; 433 push integer
-          mov rax, 433
-          push rax
-          ; 433 push string
-          mov rax, s_400
-          push rax
-          ; 433 push boolean
-          mov rax, 1
-          push rax
-          ; 433 call
-          call fn_textbuffer_append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 434 push string
-          mov rax, s_469
-          push rax
-          ; 434 swap
-          pop rax
-          pop rbx
-          push rax
-          push rbx
-          ; 434 push string
-          mov rax, s_395
-          push rax
           ; 434 push integer
-          mov rax, 434
+          mov rax, 46
           push rax
-          ; 434 push string
-          mov rax, s_400
+          ; 434 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
           push rax
-          ; 434 push boolean
-          mov rax, 1
-          push rax
-          ; 434 call
-          call fn_textbuffer_append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 435 push string
-          mov rax, s_59
-          push rax
-          ; 435 over
+          ; 434 start of if-block
           pop rax
-          pop rbx
-          push rbx
-          push rax
-          push rbx
-          ; 435 push integer
-          mov rax, 16
-          push rax
-          ; 435 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
+          test rax, rax
+          jz elif_0x00000000000001d2
           ; 435 get pointer to buffer
-          mov rax, buf__text
+          mov rax, buf__textbuffer
           push rax
+          ; 435 dereference pointer
+          pop rax
+          mov rbx, [rax]
+          push rbx
           ; 435 push string
           mov rax, s_395
           push rax
@@ -66590,63 +66603,106 @@ elif_0x00000000000001d0:
           mov rax, 1
           push rax
           ; 435 call
-          call fn__append
+          call fn_textbuffer_clear
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
-          pop rbx
-          pop rbx
-          ; 436 get pointer to buffer
-          mov rax, buf__textbuffer
           push rax
-          ; 436 set pointer value
+          ; 436 push string
+          mov rax, s_455
+          push rax
+          ; 436 swap
           pop rax
           pop rbx
-          mov [rax], rbx
-          ; 428 jump
-          jmp end_0x0000000000000194
-          ; 428 label
-elif_0x00000000000001d1: 
-          ; 437 duplicate
+          push rax
+          push rbx
+          ; 436 push string
+          mov rax, s_395
+          push rax
+          ; 436 push integer
+          mov rax, 436
+          push rax
+          ; 436 push string
+          mov rax, s_400
+          push rax
+          ; 436 push boolean
+          mov rax, 1
+          push rax
+          ; 436 call
+          call fn_textbuffer_append
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 437 over
           pop rax
+          pop rbx
+          push rbx
           push rax
-          push rax
+          push rbx
           ; 437 push integer
-          mov rax, 0
+          mov rax, 8
           push rax
           ; 437 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 437 dereference integer
+          ; 437 dereference pointer
           pop rax
           mov rbx, [rax]
           push rbx
+          ; 437 swap
+          pop rax
+          pop rbx
+          push rax
+          push rbx
+          ; 437 push string
+          mov rax, s_395
+          push rax
           ; 437 push integer
-          mov rax, 46
+          mov rax, 437
           push rax
-          ; 437 is equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmove rax, rbx
+          ; 437 push string
+          mov rax, s_400
           push rax
-          ; 437 start of if-block
+          ; 437 push boolean
+          mov rax, 1
+          push rax
+          ; 437 call
+          call fn_textbuffer_append
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 438 push string
+          mov rax, s_59
+          push rax
+          ; 438 over
           pop rax
-          test rax, rax
-          jz elif_0x00000000000001d2
-          ; 438 get pointer to buffer
-          mov rax, buf__textbuffer
-          push rax
-          ; 438 dereference pointer
-          pop rax
-          mov rbx, [rax]
+          pop rbx
           push rbx
+          push rax
+          push rbx
+          ; 438 push integer
+          mov rax, 16
+          push rax
+          ; 438 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 438 get pointer to buffer
+          mov rax, buf__text
+          push rax
           ; 438 push string
           mov rax, s_395
           push rax
@@ -66660,21 +66716,14 @@ elif_0x00000000000001d1:
           mov rax, 1
           push rax
           ; 438 call
-          call fn_textbuffer_clear
+          call fn__append
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
-          push rax
-          ; 439 push string
-          mov rax, s_455
-          push rax
-          ; 439 swap
-          pop rax
           pop rbx
-          push rax
-          push rbx
+          pop rbx
           ; 439 push string
           mov rax, s_395
           push rax
@@ -66688,60 +66737,12 @@ elif_0x00000000000001d1:
           mov rax, 1
           push rax
           ; 439 call
-          call fn_textbuffer_append
+          call fn_textbuffer_clear
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
-          pop rbx
-          push rax
-          ; 440 over
-          pop rax
-          pop rbx
-          push rbx
-          push rax
-          push rbx
-          ; 440 push integer
-          mov rax, 8
-          push rax
-          ; 440 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 440 dereference pointer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 440 swap
-          pop rax
-          pop rbx
-          push rax
-          push rbx
-          ; 440 push string
-          mov rax, s_395
-          push rax
-          ; 440 push integer
-          mov rax, 440
-          push rax
-          ; 440 push string
-          mov rax, s_400
-          push rax
-          ; 440 push boolean
-          mov rax, 1
-          push rax
-          ; 440 call
-          call fn_textbuffer_append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 441 push string
-          mov rax, s_59
           push rax
           ; 441 over
           pop rax
@@ -66750,16 +66751,22 @@ elif_0x00000000000001d1:
           push rax
           push rbx
           ; 441 push integer
-          mov rax, 16
+          mov rax, 8
           push rax
           ; 441 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 441 get pointer to buffer
-          mov rax, buf__text
+          ; 441 dereference pointer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 441 swap
+          pop rax
+          pop rbx
           push rax
+          push rbx
           ; 441 push string
           mov rax, s_395
           push rax
@@ -66773,14 +66780,22 @@ elif_0x00000000000001d1:
           mov rax, 1
           push rax
           ; 441 call
-          call fn__append
+          call fn_textbuffer_append
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
+          push rax
+          ; 442 push string
+          mov rax, s_470
+          push rax
+          ; 442 swap
+          pop rax
           pop rbx
+          push rax
+          push rbx
           ; 442 push string
           mov rax, s_395
           push rax
@@ -66794,104 +66809,71 @@ elif_0x00000000000001d1:
           mov rax, 1
           push rax
           ; 442 call
-          call fn_textbuffer_clear
+          call fn_textbuffer_append
+          pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           push rax
-          ; 444 over
+          ; 443 duplicate
           pop rax
-          pop rbx
-          push rbx
           push rax
-          push rbx
-          ; 444 push integer
-          mov rax, 8
           push rax
-          ; 444 add
+          ; 443 push integer
+          mov rax, 16
+          push rax
+          ; 443 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 444 dereference pointer
+          ; 443 push string
+          mov rax, s_59
+          push rax
+          ; 443 get pointer to buffer
+          mov rax, buf__text
+          push rax
+          ; 443 push string
+          mov rax, s_395
+          push rax
+          ; 443 push integer
+          mov rax, 443
+          push rax
+          ; 443 push string
+          mov rax, s_400
+          push rax
+          ; 443 push boolean
+          mov rax, 1
+          push rax
+          ; 443 call
+          call fn__append
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          ; 444 get pointer to buffer
+          mov rax, buf__textbuffer
+          push rax
+          ; 444 set pointer value
+          pop rax
+          pop rbx
+          mov [rax], rbx
+          ; 434 jump
+          jmp end_0x0000000000000194
+          ; 434 label
+elif_0x00000000000001d2: 
+          ; 446 get pointer to buffer
+          mov rax, buf__textbuffer
+          push rax
+          ; 446 dereference pointer
           pop rax
           mov rbx, [rax]
           push rbx
-          ; 444 swap
-          pop rax
-          pop rbx
-          push rax
-          push rbx
-          ; 444 push string
-          mov rax, s_395
-          push rax
-          ; 444 push integer
-          mov rax, 444
-          push rax
-          ; 444 push string
-          mov rax, s_400
-          push rax
-          ; 444 push boolean
-          mov rax, 1
-          push rax
-          ; 444 call
-          call fn_textbuffer_append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 445 push string
-          mov rax, s_470
-          push rax
-          ; 445 swap
-          pop rax
-          pop rbx
-          push rax
-          push rbx
-          ; 445 push string
-          mov rax, s_395
-          push rax
-          ; 445 push integer
-          mov rax, 445
-          push rax
-          ; 445 push string
-          mov rax, s_400
-          push rax
-          ; 445 push boolean
-          mov rax, 1
-          push rax
-          ; 445 call
-          call fn_textbuffer_append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 446 duplicate
-          pop rax
-          push rax
-          push rax
-          ; 446 push integer
-          mov rax, 16
-          push rax
-          ; 446 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 446 push string
-          mov rax, s_59
-          push rax
-          ; 446 get pointer to buffer
-          mov rax, buf__text
-          push rax
           ; 446 push string
           mov rax, s_395
           push rax
@@ -66905,31 +66887,113 @@ elif_0x00000000000001d1:
           mov rax, 1
           push rax
           ; 446 call
-          call fn__append
+          call fn_textbuffer_clear
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
-          pop rbx
-          pop rbx
-          ; 447 get pointer to buffer
-          mov rax, buf__textbuffer
           push rax
-          ; 447 set pointer value
+          ; 447 push string
+          mov rax, s_471
+          push rax
+          ; 447 swap
           pop rax
           pop rbx
-          mov [rax], rbx
-          ; 437 jump
-          jmp end_0x0000000000000194
-          ; 437 label
-elif_0x00000000000001d2: 
-          ; 449 get pointer to buffer
-          mov rax, buf__textbuffer
           push rax
-          ; 449 dereference pointer
+          push rbx
+          ; 447 push string
+          mov rax, s_395
+          push rax
+          ; 447 push integer
+          mov rax, 447
+          push rax
+          ; 447 push string
+          mov rax, s_400
+          push rax
+          ; 447 push boolean
+          mov rax, 1
+          push rax
+          ; 447 call
+          call fn_textbuffer_append
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 448 over
+          pop rax
+          pop rbx
+          push rbx
+          push rax
+          push rbx
+          ; 448 push integer
+          mov rax, 0
+          push rax
+          ; 448 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 448 dereference integer
           pop rax
           mov rbx, [rax]
+          push rbx
+          ; 448 push string
+          mov rax, s_395
+          push rax
+          ; 448 push integer
+          mov rax, 448
+          push rax
+          ; 448 push string
+          mov rax, s_400
+          push rax
+          ; 448 push boolean
+          mov rax, 1
+          push rax
+          ; 448 call
+          call fn_opcode_to_str
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 448 swap
+          pop rax
+          pop rbx
+          push rax
+          push rbx
+          ; 448 push string
+          mov rax, s_395
+          push rax
+          ; 448 push integer
+          mov rax, 448
+          push rax
+          ; 448 push string
+          mov rax, s_400
+          push rax
+          ; 448 push boolean
+          mov rax, 1
+          push rax
+          ; 448 call
+          call fn_textbuffer_append
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 449 push string
+          mov rax, s_7
+          push rax
+          ; 449 swap
+          pop rax
+          pop rbx
+          push rax
           push rbx
           ; 449 push string
           mov rax, s_395
@@ -66944,20 +67008,25 @@ elif_0x00000000000001d2:
           mov rax, 1
           push rax
           ; 449 call
-          call fn_textbuffer_clear
+          call fn_textbuffer_append
+          pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           push rax
-          ; 450 push string
-          mov rax, s_471
+          ; 450 duplicate
+          pop rax
           push rax
-          ; 450 swap
+          push rax
+          ; 450 push integer
+          mov rax, 16
+          push rax
+          ; 450 add
           pop rax
           pop rbx
-          push rax
+          add rbx, rax
           push rbx
           ; 450 push string
           mov rax, s_395
@@ -66972,165 +67041,129 @@ elif_0x00000000000001d2:
           mov rax, 1
           push rax
           ; 450 call
-          call fn_textbuffer_append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 451 over
-          pop rax
-          pop rbx
-          push rbx
-          push rax
-          push rbx
-          ; 451 push integer
-          mov rax, 0
-          push rax
-          ; 451 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 451 dereference integer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 451 push string
-          mov rax, s_395
-          push rax
-          ; 451 push integer
-          mov rax, 451
-          push rax
-          ; 451 push string
-          mov rax, s_400
-          push rax
-          ; 451 push boolean
-          mov rax, 1
-          push rax
-          ; 451 call
-          call fn_opcode_to_str
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 451 swap
-          pop rax
-          pop rbx
-          push rax
-          push rbx
-          ; 451 push string
-          mov rax, s_395
-          push rax
-          ; 451 push integer
-          mov rax, 451
-          push rax
-          ; 451 push string
-          mov rax, s_400
-          push rax
-          ; 451 push boolean
-          mov rax, 1
-          push rax
-          ; 451 call
-          call fn_textbuffer_append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 452 push string
-          mov rax, s_7
-          push rax
-          ; 452 swap
-          pop rax
-          pop rbx
-          push rax
-          push rbx
-          ; 452 push string
-          mov rax, s_395
-          push rax
-          ; 452 push integer
-          mov rax, 452
-          push rax
-          ; 452 push string
-          mov rax, s_400
-          push rax
-          ; 452 push boolean
-          mov rax, 1
-          push rax
-          ; 452 call
-          call fn_textbuffer_append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 453 duplicate
-          pop rax
-          push rax
-          push rax
-          ; 453 push integer
-          mov rax, 16
-          push rax
-          ; 453 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 453 push string
-          mov rax, s_395
-          push rax
-          ; 453 push integer
-          mov rax, 453
-          push rax
-          ; 453 push string
-          mov rax, s_400
-          push rax
-          ; 453 push boolean
-          mov rax, 1
-          push rax
-          ; 453 call
           call fn_raise
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
-          ; 454 get pointer to buffer
+          ; 451 get pointer to buffer
           mov rax, buf__textbuffer
           push rax
-          ; 454 set pointer value
+          ; 451 set pointer value
           pop rax
           pop rbx
           mov [rax], rbx
-          ; 449 label
+          ; 446 label
 end_0x0000000000000194: 
-          ; 456 drop
+          ; 453 drop
           pop rax
-          ; 457 push integer
+          ; 454 push integer
           mov rax, 1
           push rax
-          ; 457 add
+          ; 454 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 70 end of while-loop
+          ; 67 end of while-loop
           jmp while_0x0000000000000038
 while_0x0000000000000038_end: 
-          ; 460 push string
+          ; 457 push string
           mov rax, s_472
           push rax
+          ; 457 push string
+          mov rax, s_59
+          push rax
+          ; 457 get pointer to buffer
+          mov rax, buf__text
+          push rax
+          ; 457 push string
+          mov rax, s_395
+          push rax
+          ; 457 push integer
+          mov rax, 457
+          push rax
+          ; 457 push string
+          mov rax, s_400
+          push rax
+          ; 457 push boolean
+          mov rax, 1
+          push rax
+          ; 457 call
+          call fn__append
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          ; 458 push string
+          mov rax, s_59
+          push rax
+          ; 458 push string
+          mov rax, s_473
+          push rax
+          ; 458 get pointer to buffer
+          mov rax, buf__text
+          push rax
+          ; 458 push string
+          mov rax, s_395
+          push rax
+          ; 458 push integer
+          mov rax, 458
+          push rax
+          ; 458 push string
+          mov rax, s_400
+          push rax
+          ; 458 push boolean
+          mov rax, 1
+          push rax
+          ; 458 call
+          call fn__append
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          ; 459 push string
+          mov rax, s_59
+          push rax
+          ; 459 push string
+          mov rax, s_406
+          push rax
+          ; 459 get pointer to buffer
+          mov rax, buf__text
+          push rax
+          ; 459 push string
+          mov rax, s_395
+          push rax
+          ; 459 push integer
+          mov rax, 459
+          push rax
+          ; 459 push string
+          mov rax, s_400
+          push rax
+          ; 459 push boolean
+          mov rax, 1
+          push rax
+          ; 459 call
+          call fn__append
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
           ; 460 push string
           mov rax, s_59
+          push rax
+          ; 460 push string
+          mov rax, s_406
           push rax
           ; 460 get pointer to buffer
           mov rax, buf__text
@@ -67160,7 +67193,7 @@ while_0x0000000000000038_end:
           mov rax, s_59
           push rax
           ; 461 push string
-          mov rax, s_473
+          mov rax, s_406
           push rax
           ; 461 get pointer to buffer
           mov rax, buf__text
@@ -67220,7 +67253,7 @@ while_0x0000000000000038_end:
           mov rax, s_59
           push rax
           ; 463 push string
-          mov rax, s_406
+          mov rax, s_474
           push rax
           ; 463 get pointer to buffer
           mov rax, buf__text
@@ -67247,10 +67280,10 @@ while_0x0000000000000038_end:
           pop rbx
           pop rbx
           ; 464 push string
-          mov rax, s_59
+          mov rax, s_470
           push rax
           ; 464 push string
-          mov rax, s_406
+          mov rax, s_59
           push rax
           ; 464 get pointer to buffer
           mov rax, buf__text
@@ -67280,7 +67313,7 @@ while_0x0000000000000038_end:
           mov rax, s_59
           push rax
           ; 465 push string
-          mov rax, s_406
+          mov rax, s_475
           push rax
           ; 465 get pointer to buffer
           mov rax, buf__text
@@ -67310,7 +67343,7 @@ while_0x0000000000000038_end:
           mov rax, s_59
           push rax
           ; 466 push string
-          mov rax, s_474
+          mov rax, s_476
           push rax
           ; 466 get pointer to buffer
           mov rax, buf__text
@@ -67337,10 +67370,10 @@ while_0x0000000000000038_end:
           pop rbx
           pop rbx
           ; 467 push string
-          mov rax, s_470
+          mov rax, s_59
           push rax
           ; 467 push string
-          mov rax, s_59
+          mov rax, s_208
           push rax
           ; 467 get pointer to buffer
           mov rax, buf__text
@@ -67366,98 +67399,23 @@ while_0x0000000000000038_end:
           pop rbx
           pop rbx
           pop rbx
-          ; 468 push string
-          mov rax, s_59
-          push rax
-          ; 468 push string
-          mov rax, s_475
-          push rax
-          ; 468 get pointer to buffer
-          mov rax, buf__text
-          push rax
-          ; 468 push string
-          mov rax, s_395
-          push rax
-          ; 468 push integer
-          mov rax, 468
-          push rax
-          ; 468 push string
-          mov rax, s_400
-          push rax
-          ; 468 push boolean
-          mov rax, 1
-          push rax
-          ; 468 call
-          call fn__append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          ; 469 push string
-          mov rax, s_59
-          push rax
-          ; 469 push string
-          mov rax, s_476
-          push rax
-          ; 469 get pointer to buffer
-          mov rax, buf__text
-          push rax
-          ; 469 push string
-          mov rax, s_395
-          push rax
-          ; 469 push integer
-          mov rax, 469
-          push rax
-          ; 469 push string
-          mov rax, s_400
-          push rax
-          ; 469 push boolean
-          mov rax, 1
-          push rax
-          ; 469 call
-          call fn__append
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          ; 470 push string
-          mov rax, s_59
-          push rax
-          ; 470 push string
-          mov rax, s_208
-          push rax
           ; 470 get pointer to buffer
           mov rax, buf__text
           push rax
-          ; 470 push string
-          mov rax, s_395
+          ; 470 dereference pointer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 471 push integer
+          mov rax, 16
           push rax
-          ; 470 push integer
-          mov rax, 470
-          push rax
-          ; 470 push string
-          mov rax, s_400
-          push rax
-          ; 470 push boolean
-          mov rax, 1
-          push rax
-          ; 470 call
-          call fn__append
+          ; 471 add
+          pop rax
           pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
+          add rbx, rax
+          push rbx
           ; 473 get pointer to buffer
-          mov rax, buf__text
+          mov rax, buf__data
           push rax
           ; 473 dereference pointer
           pop rax
@@ -67471,34 +67429,19 @@ while_0x0000000000000038_end:
           pop rbx
           add rbx, rax
           push rbx
-          ; 476 get pointer to buffer
-          mov rax, buf__data
-          push rax
-          ; 476 dereference pointer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 477 push integer
-          mov rax, 16
-          push rax
-          ; 477 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 477 push string
+          ; 474 push string
           mov rax, s_395
           push rax
-          ; 477 push integer
-          mov rax, 477
+          ; 474 push integer
+          mov rax, 474
           push rax
-          ; 477 push string
+          ; 474 push string
           mov rax, s_400
           push rax
-          ; 477 push boolean
+          ; 474 push boolean
           mov rax, 1
           push rax
-          ; 477 call
+          ; 474 call
           call fn_concat
           pop rbx
           pop rbx
@@ -67507,65 +67450,29 @@ while_0x0000000000000038_end:
           pop rbx
           pop rbx
           push rax
-          ; 479 get pointer to buffer
-          mov rax, buf__bss
-          push rax
-          ; 479 dereference pointer
-          pop rax
-          mov rbx, [rax]
-          push rbx
-          ; 480 push integer
-          mov rax, 16
-          push rax
-          ; 480 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 480 push string
-          mov rax, s_395
-          push rax
-          ; 480 push integer
-          mov rax, 480
-          push rax
-          ; 480 push string
-          mov rax, s_400
-          push rax
-          ; 480 push boolean
-          mov rax, 1
-          push rax
-          ; 480 call
-          call fn_concat
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          pop rbx
-          push rax
-          ; 480 get argument
+          ; 474 get argument
           mov rax, rbp
           add rax, 48
           mov rbx, [rax]
           push rbx
-          ; 480 swap
+          ; 474 swap
           pop rax
           pop rbx
           push rax
           push rbx
-          ; 480 push string
+          ; 474 push string
           mov rax, s_395
           push rax
-          ; 480 push integer
-          mov rax, 480
+          ; 474 push integer
+          mov rax, 474
           push rax
-          ; 480 push string
+          ; 474 push string
           mov rax, s_400
           push rax
-          ; 480 push boolean
+          ; 474 push boolean
           mov rax, 1
           push rax
-          ; 480 call
+          ; 474 call
           call fn_write
           pop rbx
           pop rbx
@@ -67573,11 +67480,11 @@ while_0x0000000000000038_end:
           pop rbx
           pop rbx
           pop rbx
-          ; 52 restore frame
+          ; 51 restore frame
           pop rax
           mov rsp, rbp
           pop rbp
-          ; 52 return
+          ; 51 return
           ret
           ; 10 create buffer
           ; 11 create buffer
@@ -70596,6 +70503,7 @@ _end:
           mov rax, 60
           syscall
           segment readable writeable
+buf__itos: rb 21 
 s_1: db 48, 0 
 s_2: db 108, 105, 98, 47, 99, 111, 114, 101, 46, 98, 98, 0 
 s_3: db 116, 114, 97, 99, 101, 98, 97, 99, 107, 0 
@@ -70619,12 +70527,19 @@ s_20: db 82, 84, 95, 83, 73, 71, 82, 69, 84, 85, 82, 78, 32, 115, 104, 111, 117,
 s_21: db 114, 116, 95, 115, 105, 103, 114, 101, 116, 117, 114, 110, 0 
 s_22: db 67, 111, 117, 108, 100, 32, 110, 111, 116, 32, 115, 101, 116, 32, 116, 104, 101, 32, 116, 105, 109, 101, 114, 10, 0 
 s_23: db 115, 101, 116, 105, 116, 105, 109, 101, 114, 0 
+buf__sigaction: rb 32 
 s_24: db 115, 101, 116, 117, 112, 95, 115, 105, 103, 110, 97, 108, 95, 104, 97, 110, 100, 108, 101, 114, 0 
+buf__itimerval: rb 32 
 s_25: db 115, 101, 116, 95, 116, 105, 109, 101, 114, 0 
 s_26: db 47, 100, 101, 118, 47, 110, 117, 108, 108, 0 
 s_27: db 101, 120, 101, 99, 95, 115, 105, 108, 101, 110, 116, 0 
 s_28: db 108, 105, 98, 47, 115, 116, 100, 46, 98, 98, 0 
 s_29: db 115, 116, 114, 101, 113, 0 
+buf_current_page: rb 8 
+buf_root_page: rb 8 
+buf_VERIFY_MEMORY: rb 1 
+buf_DUMP_MEMORY: rb 1 
+buf__vm_buf: rb 19 
 s_30: db 86, 101, 114, 105, 102, 121, 105, 110, 103, 32, 109, 101, 109, 111, 114, 121, 46, 46, 10, 0 
 s_31: db 118, 101, 114, 105, 102, 121, 95, 109, 101, 109, 111, 114, 121, 0 
 s_32: db 42, 32, 80, 97, 103, 101, 58, 32, 0 
@@ -70685,6 +70600,7 @@ s_86: db 99, 111, 110, 99, 97, 116, 102, 114, 0
 s_87: db 99, 111, 110, 99, 97, 116, 102, 0 
 s_88: db 85, 110, 97, 98, 108, 101, 32, 116, 111, 32, 99, 111, 110, 118, 101, 114, 116, 32, 115, 116, 114, 105, 110, 103, 32, 116, 111, 32, 105, 110, 116, 101, 103, 101, 114, 58, 32, 0 
 s_89: db 115, 116, 111, 105, 0 
+buf__read_file_buffer: rb 513 
 s_90: db 114, 101, 97, 100, 95, 102, 105, 108, 101, 0 
 s_91: db 115, 117, 98, 115, 116, 114, 105, 110, 103, 0 
 s_92: db 99, 104, 111, 112, 95, 102, 105, 114, 115, 116, 0 
@@ -70719,6 +70635,10 @@ s_120: db 68, 105, 99, 116, 32, 115, 104, 111, 117, 108, 100, 32, 104, 97, 118, 
 s_121: db 100, 105, 99, 116, 95, 102, 101, 116, 99, 104, 0 
 s_122: db 68, 105, 99, 116, 32, 115, 104, 111, 117, 108, 100, 32, 104, 97, 118, 101, 32, 98, 117, 99, 107, 101, 116, 115, 0 
 s_123: db 100, 105, 99, 116, 95, 105, 110, 115, 101, 114, 116, 0 
+buf__args: rb 8 
+buf__posargs: rb 8 
+buf__kwargs: rb 8 
+buf__flags: rb 8 
 s_124: db 108, 105, 98, 47, 115, 116, 100, 47, 97, 114, 103, 112, 97, 114, 115, 101, 46, 98, 98, 0 
 s_125: db 97, 114, 103, 112, 97, 114, 115, 101, 95, 105, 110, 105, 116, 0 
 s_126: db 85, 78, 75, 78, 79, 87, 78, 0 
@@ -70741,6 +70661,8 @@ s_142: db 45, 0
 s_143: db 45, 45, 104, 101, 108, 112, 0 
 s_144: db 45, 104, 0 
 s_145: db 83, 69, 84, 0 
+buf__profiler_stack: rb 8 
+buf__profiler_lock: rb 1 
 s_146: db 108, 105, 98, 47, 115, 116, 100, 47, 112, 114, 111, 102, 105, 108, 101, 114, 46, 98, 98, 0 
 s_147: db 95, 112, 114, 111, 102, 105, 108, 101, 114, 95, 115, 105, 103, 110, 97, 108, 95, 104, 97, 110, 100, 108, 101, 114, 0 
 s_148: db 87, 97, 114, 110, 105, 110, 103, 58, 32, 112, 114, 111, 102, 105, 108, 101, 114, 32, 108, 111, 99, 107, 32, 105, 115, 32, 115, 101, 116, 10, 0 
@@ -70809,6 +70731,7 @@ s_210: db 115, 116, 97, 114, 116, 32, 111, 102, 32, 119, 104, 105, 108, 101, 45,
 s_211: db 85, 110, 107, 110, 111, 119, 110, 32, 111, 112, 99, 111, 100, 101, 0 
 s_212: db 115, 114, 99, 47, 111, 112, 99, 111, 100, 101, 115, 46, 98, 98, 0 
 s_213: db 111, 112, 99, 111, 100, 101, 95, 116, 111, 95, 115, 116, 114, 0 
+buf__opcode: rb 24 
 s_214: db 99, 114, 101, 97, 116, 101, 95, 111, 112, 99, 111, 100, 101, 0 
 s_215: db 78, 117, 109, 98, 101, 114, 32, 111, 102, 32, 111, 112, 99, 111, 100, 101, 115, 58, 32, 0 
 s_216: db 100, 117, 109, 112, 95, 111, 112, 99, 111, 100, 101, 115, 0 
@@ -70829,6 +70752,7 @@ s_230: db 105, 110, 116, 0
 s_231: db 112, 116, 114, 0 
 s_232: db 118, 111, 105, 100, 0 
 s_233: db 85, 110, 107, 110, 111, 119, 110, 32, 116, 121, 112, 101, 58, 32, 0 
+buf__argument: rb 24 
 s_234: db 115, 114, 99, 47, 102, 117, 110, 99, 116, 105, 111, 110, 115, 46, 98, 98, 0 
 s_235: db 99, 114, 101, 97, 116, 101, 95, 102, 117, 110, 99, 116, 105, 111, 110, 0 
 s_236: db 102, 117, 110, 99, 116, 105, 111, 110, 95, 97, 100, 100, 95, 97, 114, 103, 117, 109, 101, 110, 116, 0 
@@ -70856,10 +70780,13 @@ s_257: db 69, 78, 68, 0
 s_258: db 85, 110, 107, 110, 111, 119, 110, 32, 116, 111, 107, 101, 110, 32, 116, 121, 112, 101, 0 
 s_259: db 115, 114, 99, 47, 116, 111, 107, 101, 110, 115, 46, 98, 98, 0 
 s_260: db 116, 111, 107, 101, 110, 95, 116, 111, 95, 115, 116, 114, 0 
+buf__token: rb 24 
 s_261: db 99, 114, 101, 97, 116, 101, 95, 116, 111, 107, 101, 110, 0 
 s_262: db 78, 117, 109, 98, 101, 114, 32, 111, 102, 32, 116, 111, 107, 101, 110, 115, 58, 32, 0 
 s_263: db 100, 117, 109, 112, 95, 116, 111, 107, 101, 110, 115, 0 
 s_264: db 84, 111, 107, 101, 110, 115, 58, 10, 0 
+buf__indent_stack: rb 8 
+buf__at_start: rb 1 
 s_265: db 115, 114, 99, 47, 108, 101, 120, 101, 114, 46, 98, 98, 0 
 s_266: db 95, 116, 111, 107, 101, 110, 105, 122, 101, 0 
 s_267: db 73, 110, 100, 101, 110, 116, 32, 115, 116, 97, 99, 107, 32, 115, 104, 111, 117, 108, 100, 32, 104, 97, 118, 101, 32, 105, 116, 101, 109, 115, 10, 0 
@@ -70912,6 +70839,16 @@ s_313: db 95, 95, 103, 101, 116, 95, 97, 114, 103, 0
 s_314: db 95, 95, 114, 101, 115, 116, 111, 114, 101, 95, 102, 114, 97, 109, 101, 0 
 s_315: db 85, 110, 101, 120, 112, 101, 99, 116, 101, 100, 32, 99, 104, 97, 114, 97, 99, 116, 101, 114, 58, 32, 0 
 s_316: db 116, 111, 107, 101, 110, 105, 122, 101, 0 
+buf_functions: rb 8 
+buf__if_index: rb 8 
+buf__while_index: rb 8 
+buf__type_stack: rb 8 
+buf__buffers: rb 8 
+buf__constants: rb 8 
+buf__opcodes: rb 8 
+buf__files: rb 8 
+buf__current_function: rb 8 
+buf__is_inline: rb 1 
 s_317: db 115, 114, 99, 47, 112, 97, 114, 115, 101, 114, 46, 98, 98, 0 
 s_318: db 95, 99, 117, 114, 114, 101, 110, 116, 95, 102, 117, 110, 99, 116, 105, 111, 110, 95, 99, 111, 110, 116, 97, 105, 110, 115, 95, 97, 114, 103, 0 
 s_319: db 95, 112, 101, 101, 107, 95, 110, 101, 120, 116, 95, 116, 111, 107, 101, 110, 0 
@@ -70990,6 +70927,12 @@ s_391: db 85, 110, 101, 120, 112, 101, 99, 116, 101, 100, 32, 101, 110, 100, 32,
 s_392: db 76, 97, 115, 116, 32, 116, 111, 107, 101, 110, 32, 115, 104, 111, 117, 108, 100, 32, 98, 101, 32, 114, 101, 116, 117, 114, 110, 95, 111, 110, 0 
 s_393: db 95, 112, 97, 114, 115, 101, 95, 99, 111, 114, 101, 95, 102, 117, 110, 99, 116, 105, 111, 110, 115, 0 
 s_394: db 112, 97, 114, 115, 101, 0 
+buf__text: rb 8 
+buf__data: rb 8 
+buf__string_index: rb 8 
+buf__textbuffer: rb 8 
+buf__string_labels: rb 8 
+buf__format_buffer: rb 1024 
 s_395: db 115, 114, 99, 47, 103, 101, 110, 101, 114, 97, 116, 111, 114, 46, 98, 98, 0 
 s_396: db 95, 102, 111, 114, 109, 97, 116, 0 
 s_397: db 95, 97, 112, 112, 101, 110, 100, 0 
@@ -71072,6 +71015,14 @@ s_473: db 120, 111, 114, 32, 114, 97, 120, 44, 32, 114, 97, 120, 0
 s_474: db 99, 97, 108, 108, 32, 102, 110, 95, 115, 116, 97, 114, 116, 0 
 s_475: db 109, 111, 118, 32, 114, 100, 105, 44, 32, 114, 97, 120, 0 
 s_476: db 109, 111, 118, 32, 114, 97, 120, 44, 32, 54, 48, 0 
+buf_SHOULD_RUN: rb 1 
+buf_DUMP_TOKENS: rb 1 
+buf_DUMP_OPCODES: rb 1 
+buf_ENABLE_PROFILER: rb 1 
+buf_FORMAT: rb 8 
+buf_KEEP_ASSEMBLY: rb 1 
+buf_SILENT: rb 1 
+buf_input_file: rb 8 
 s_477: db 98, 111, 98, 97, 46, 98, 98, 0 
 s_478: db 112, 97, 114, 115, 101, 95, 97, 114, 103, 117, 109, 101, 110, 116, 115, 0 
 s_479: db 45, 114, 0 
@@ -71106,49 +71057,3 @@ s_507: db 47, 117, 115, 114, 47, 98, 105, 110, 47, 102, 97, 115, 109, 0
 s_508: db 102, 97, 115, 109, 0 
 s_509: db 46, 47, 0 
 s_510: db 85, 110, 107, 110, 111, 119, 110, 32, 102, 111, 114, 109, 97, 116, 10, 0 
-          segment readable writeable
-buf__itos: rb 21 
-buf__sigaction: rb 32 
-buf__itimerval: rb 32 
-buf_current_page: rb 8 
-buf_root_page: rb 8 
-buf_VERIFY_MEMORY: rb 1 
-buf_DUMP_MEMORY: rb 1 
-buf__vm_buf: rb 19 
-buf__read_file_buffer: rb 513 
-buf__args: rb 8 
-buf__posargs: rb 8 
-buf__kwargs: rb 8 
-buf__flags: rb 8 
-buf__profiler_stack: rb 8 
-buf__profiler_lock: rb 1 
-buf__opcode: rb 24 
-buf__argument: rb 24 
-buf__token: rb 24 
-buf__indent_stack: rb 8 
-buf__at_start: rb 1 
-buf_functions: rb 8 
-buf__if_index: rb 8 
-buf__while_index: rb 8 
-buf__type_stack: rb 8 
-buf__buffers: rb 8 
-buf__constants: rb 8 
-buf__opcodes: rb 8 
-buf__files: rb 8 
-buf__current_function: rb 8 
-buf__is_inline: rb 1 
-buf__text: rb 8 
-buf__data: rb 8 
-buf__bss: rb 8 
-buf__string_index: rb 8 
-buf__textbuffer: rb 8 
-buf__string_labels: rb 8 
-buf__format_buffer: rb 1024 
-buf_SHOULD_RUN: rb 1 
-buf_DUMP_TOKENS: rb 1 
-buf_DUMP_OPCODES: rb 1 
-buf_ENABLE_PROFILER: rb 1 
-buf_FORMAT: rb 8 
-buf_KEEP_ASSEMBLY: rb 1 
-buf_SILENT: rb 1 
-buf_input_file: rb 8 
