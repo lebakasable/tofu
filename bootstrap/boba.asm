@@ -70491,6 +70491,26 @@ end_0x00000000000001dd:
           pop rbx
           pop rbx
           push rax
+          ; 160 push string
+          mov rax, s_477
+          push rax
+          ; 160 push integer
+          mov rax, 160
+          push rax
+          ; 160 push string
+          mov rax, s_501
+          push rax
+          ; 160 push boolean
+          mov rax, 1
+          push rax
+          ; 160 call
+          call fn_log_cmd
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
           ; 160 push integer
           mov rax, 24
           push rax
