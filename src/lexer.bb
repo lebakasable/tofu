@@ -354,7 +354,7 @@ to _tokenize: ptr source, ptr tokens -> ptr
                 swap 1 + swap 1 +
             true _at_start setb
         else
-            over NULL syntax_error
+            over over 1 substring "Unexpected character: " swap concat syntax_error
     drop
 
     while _indent_stack derefp list_peek_int 0 !=

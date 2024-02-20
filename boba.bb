@@ -43,6 +43,16 @@ to parse_arguments: ptr argv, int argc -> ptr
     argv argc argparse_parse_args
 
 
+to log_cmd: ptr args -> ptr
+    "[CMD] " puts
+    0 while dup args list.len + derefi 1 - <
+        dup 0 > if
+            " " puts
+        dup args list_fetch_ptr puts
+        1 +
+    drop "\n" puts args
+
+
 to start: ptr argv, int argc -> int
     # Parse arguments
     argv argc parse_arguments
@@ -78,6 +88,8 @@ to start: ptr argv, int argc -> int
     # Free args object
     swap free
 
+    "[INFO] Compiling " puts dup puts "\n" puts
+
     # Tokenize file
     dup read_file
     tokenize
@@ -101,32 +113,33 @@ to start: ptr argv, int argc -> int
         profiler_dump
     elif FORMAT derefi FORMAT_LINUX_X86_64 =
         # Generate code
-        input_file derefp ".asm" concat 'w' open
+        input_file derefp ".asm" concat
+        "[INFO] Generating " puts dup puts "\n" puts
+
+        'w' open
         generate_code_x86_64_linux
 
         "/usr/bin/rm"
         8 new_list
-        "rm"     swap list_append_ptr
+        "rm"              swap list_append_ptr
+        "-f"              swap list_append_ptr
         input_file derefp swap list_append_ptr
         NULL swap list_append_ptr
-        list.items +
-        exec_silent
+        list.items + exec_silent
 
         "/usr/bin/fasm"
         8 new_list
-        "fasm"     swap list_append_ptr
+        "fasm"                          swap list_append_ptr
         input_file derefp ".asm" concat swap list_append_ptr
         NULL swap list_append_ptr
-        list.items +
-        exec_silent
+        log_cmd list.items + exec_silent
 
         SHOULD_RUN derefb if
             input_file derefp
             8 new_list
             "./" input_file derefp concat swap list_append_ptr
             NULL swap list_append_ptr
-            list.items +
-            exec
+            log_cmd list.items + exec
 
         KEEP_ASSEMBLY derefb false = if
             "/usr/bin/rm"
@@ -134,8 +147,7 @@ to start: ptr argv, int argc -> int
             "rm"                            swap list_append_ptr
             input_file derefp ".asm" concat swap list_append_ptr
             NULL swap list_append_ptr
-            list.items +
-            exec
+            list.items + exec
     else
         drop "Unknown format\n" raise
 
