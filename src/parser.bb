@@ -1022,3 +1022,7 @@ to parse: ptr filename, ptr tokens -> ptr
     8 malloc
     TOKEN_END _parse
     swap free
+
+    "start" functions derefp dict_fetch NULL = if
+        "Compilation error: Program requires `start` function\n" error
+        1 exit

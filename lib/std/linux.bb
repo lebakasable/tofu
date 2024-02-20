@@ -24,6 +24,7 @@ const SYS_WAIT4         61
 const O_RDONLY      0
 const O_WRONLY      1
 const O_CREAT       64
+const O_TRUNC       512
 const PROT_READ     1
 const PROT_WRITE    2
 const MAP_PRIVATE   2
@@ -87,7 +88,7 @@ to open: ptr filename, char mode -> int
     mode 'r' = if
         O_RDONLY or
     mode 'w' = if
-        O_WRONLY or O_CREAT or
+        O_WRONLY or O_CREAT or O_TRUNC or
 
     511
     SYS_OPEN

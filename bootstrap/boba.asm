@@ -1,6 +1,6 @@
 format ELF64 executable 
+segment readable executable 
           entry _start
-          segment readable executable
           ; 5 function definition
 fn_strlen: 
           push rbp
@@ -577,18 +577,13 @@ while_0x0000000000000003_end:
           pop rbp
           ; 45 return
           ret
-          ; 43 function definition
+          ; 44 function definition
 fn_write: 
           push rbp
           mov rbp, rsp
-          ; 45 get argument
-          mov rax, rbp
-          add rax, 56
-          mov rbx, [rax]
-          push rbx
           ; 46 get argument
           mov rax, rbp
-          add rax, 48
+          add rax, 56
           mov rbx, [rax]
           push rbx
           ; 47 get argument
@@ -596,19 +591,24 @@ fn_write:
           add rax, 48
           mov rbx, [rax]
           push rbx
-          ; 47 push string
+          ; 48 get argument
+          mov rax, rbp
+          add rax, 48
+          mov rbx, [rax]
+          push rbx
+          ; 48 push string
           mov rax, s_8
           push rax
-          ; 47 push integer
-          mov rax, 47
+          ; 48 push integer
+          mov rax, 48
           push rax
-          ; 47 push string
+          ; 48 push string
           mov rax, s_9
           push rax
-          ; 47 push boolean
+          ; 48 push boolean
           mov rax, 1
           push rax
-          ; 47 call
+          ; 48 call
           call fn_strlen
           pop rbx
           pop rbx
@@ -616,47 +616,47 @@ fn_write:
           pop rbx
           pop rbx
           push rax
-          ; 48 push integer
+          ; 49 push integer
           mov rax, 1
           push rax
-          ; 49 syscall
+          ; 50 syscall
           pop rax
           pop rdx
           pop rsi
           pop rdi
           syscall
           push rax
-          ; 44 restore frame
+          ; 45 restore frame
           pop rax
           mov rsp, rbp
           pop rbp
-          ; 44 return
+          ; 45 return
           ret
-          ; 52 function definition
+          ; 53 function definition
 fn_puts:  
           push rbp
           mov rbp, rsp
-          ; 54 push integer
+          ; 55 push integer
           mov rax, 1
           push rax
-          ; 55 get argument
+          ; 56 get argument
           mov rax, rbp
           add rax, 48
           mov rbx, [rax]
           push rbx
-          ; 56 push string
+          ; 57 push string
           mov rax, s_8
           push rax
-          ; 56 push integer
-          mov rax, 56
+          ; 57 push integer
+          mov rax, 57
           push rax
-          ; 56 push string
+          ; 57 push string
           mov rax, s_10
           push rax
-          ; 56 push boolean
+          ; 57 push boolean
           mov rax, 1
           push rax
-          ; 56 call
+          ; 57 call
           call fn_write
           pop rbx
           pop rbx
@@ -664,37 +664,37 @@ fn_puts:
           pop rbx
           pop rbx
           pop rbx
-          ; 53 restore frame
+          ; 54 restore frame
           pop rax
           mov rsp, rbp
           pop rbp
-          ; 53 return
+          ; 54 return
           ret
-          ; 59 function definition
+          ; 60 function definition
 fn_error: 
           push rbp
           mov rbp, rsp
-          ; 61 push integer
+          ; 62 push integer
           mov rax, 2
           push rax
-          ; 62 get argument
+          ; 63 get argument
           mov rax, rbp
           add rax, 48
           mov rbx, [rax]
           push rbx
-          ; 63 push string
+          ; 64 push string
           mov rax, s_8
           push rax
-          ; 63 push integer
-          mov rax, 63
+          ; 64 push integer
+          mov rax, 64
           push rax
-          ; 63 push string
+          ; 64 push string
           mov rax, s_11
           push rax
-          ; 63 push boolean
+          ; 64 push boolean
           mov rax, 1
           push rax
-          ; 63 call
+          ; 64 call
           call fn_write
           pop rbx
           pop rbx
@@ -702,82 +702,82 @@ fn_error:
           pop rbx
           pop rbx
           pop rbx
-          ; 60 restore frame
+          ; 61 restore frame
           pop rax
           mov rsp, rbp
           pop rbp
-          ; 60 return
+          ; 61 return
           ret
-          ; 66 function definition
+          ; 67 function definition
 fn_exit:  
           push rbp
           mov rbp, rsp
-          ; 68 get argument
+          ; 69 get argument
           mov rax, rbp
           add rax, 48
           mov rbx, [rax]
           push rbx
-          ; 68 push integer
+          ; 69 push integer
           mov rax, 60
           push rax
-          ; 68 syscall
+          ; 69 syscall
           pop rax
           pop rdi
           syscall
           push rax
-          ; 67 restore frame
+          ; 68 restore frame
           pop rax
           mov rsp, rbp
           pop rbp
-          ; 67 return
+          ; 68 return
           ret
-          ; 71 function definition
+          ; 72 function definition
 fn_raise: 
           push rbp
           mov rbp, rsp
-          ; 73 get argument
+          ; 74 get argument
           mov rax, rbp
           add rax, 48
           mov rbx, [rax]
           push rbx
-          ; 73 push string
+          ; 74 push string
           mov rax, s_8
           push rax
-          ; 73 push integer
-          mov rax, 73
+          ; 74 push integer
+          mov rax, 74
           push rax
-          ; 73 push string
+          ; 74 push string
           mov rax, s_12
           push rax
-          ; 73 push boolean
+          ; 74 push boolean
           mov rax, 1
           push rax
-          ; 73 call
+          ; 74 call
           call fn_traceback
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
-          ; 72 restore frame
+          ; 73 restore frame
           pop rax
           mov rsp, rbp
           pop rbp
-          ; 72 return
+          ; 73 return
           ret
-          ; 76 function definition
+          ; 77 function definition
 fn_assert: 
           push rbp
           mov rbp, rsp
-          ; 78 get argument
+          ; 79 get argument
           mov rax, rbp
           add rax, 56
           mov rbx, [rax]
           push rbx
-          ; 78 push boolean
+          ; 79 push boolean
           mov rax, 0
           push rax
-          ; 78 is equal?
+          ; 79 is equal?
           mov rax, 0
           mov rbx, 1
           pop rcx
@@ -785,68 +785,68 @@ fn_assert:
           cmp rdx, rcx
           cmove rax, rbx
           push rax
-          ; 78 start of if-block
+          ; 79 start of if-block
           pop rax
           test rax, rax
           jz if_0x0000000000000002
-          ; 79 get argument
+          ; 80 get argument
           mov rax, rbp
           add rax, 48
           mov rbx, [rax]
           push rbx
-          ; 79 push string
+          ; 80 push string
           mov rax, s_8
           push rax
-          ; 79 push integer
-          mov rax, 79
+          ; 80 push integer
+          mov rax, 80
           push rax
-          ; 79 push string
+          ; 80 push string
           mov rax, s_13
           push rax
-          ; 79 push boolean
+          ; 80 push boolean
           mov rax, 1
           push rax
-          ; 79 call
+          ; 80 call
           call fn_traceback
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
-          ; 79 jump
+          ; 80 jump
           jmp end_0x0000000000000002
-          ; 79 label
+          ; 80 label
 if_0x0000000000000002: 
-          ; 79 label
+          ; 80 label
 end_0x0000000000000002: 
-          ; 77 restore frame
+          ; 78 restore frame
           pop rax
           mov rsp, rbp
           pop rbp
-          ; 77 return
+          ; 78 return
           ret
-          ; 82 function definition
+          ; 83 function definition
 fn_open:  
           push rbp
           mov rbp, rsp
-          ; 84 get argument
+          ; 85 get argument
           mov rax, rbp
           add rax, 56
           mov rbx, [rax]
           push rbx
-          ; 85 push integer
+          ; 86 push integer
           mov rax, 0
           push rax
-          ; 87 get argument
+          ; 88 get argument
           mov rax, rbp
           add rax, 48
           mov rbx, [rax]
           push rbx
-          ; 87 push character
+          ; 88 push character
           mov rax, 114
           mov rax, 114
           push rax
-          ; 87 is equal?
+          ; 88 is equal?
           mov rax, 0
           mov rbx, 1
           pop rcx
@@ -854,34 +854,34 @@ fn_open:
           cmp rdx, rcx
           cmove rax, rbx
           push rax
-          ; 87 start of if-block
+          ; 88 start of if-block
           pop rax
           test rax, rax
           jz if_0x0000000000000003
-          ; 88 push integer
+          ; 89 push integer
           mov rax, 0
           push rax
-          ; 88 bitwise or
+          ; 89 bitwise or
           pop rax
           pop rbx
           or rbx, rax
           push rbx
-          ; 88 jump
+          ; 89 jump
           jmp end_0x0000000000000003
-          ; 88 label
+          ; 89 label
 if_0x0000000000000003: 
-          ; 88 label
+          ; 89 label
 end_0x0000000000000003: 
-          ; 89 get argument
+          ; 90 get argument
           mov rax, rbp
           add rax, 48
           mov rbx, [rax]
           push rbx
-          ; 89 push character
+          ; 90 push character
           mov rax, 119
           mov rax, 119
           push rax
-          ; 89 is equal?
+          ; 90 is equal?
           mov rax, 0
           mov rbx, 1
           pop rcx
@@ -889,53 +889,61 @@ end_0x0000000000000003:
           cmp rdx, rcx
           cmove rax, rbx
           push rax
-          ; 89 start of if-block
+          ; 90 start of if-block
           pop rax
           test rax, rax
           jz if_0x0000000000000004
-          ; 90 push integer
+          ; 91 push integer
           mov rax, 1
           push rax
-          ; 90 bitwise or
+          ; 91 bitwise or
           pop rax
           pop rbx
           or rbx, rax
           push rbx
-          ; 90 push integer
+          ; 91 push integer
           mov rax, 64
           push rax
-          ; 90 bitwise or
+          ; 91 bitwise or
           pop rax
           pop rbx
           or rbx, rax
           push rbx
-          ; 90 jump
+          ; 91 push integer
+          mov rax, 512
+          push rax
+          ; 91 bitwise or
+          pop rax
+          pop rbx
+          or rbx, rax
+          push rbx
+          ; 91 jump
           jmp end_0x0000000000000004
-          ; 90 label
+          ; 91 label
 if_0x0000000000000004: 
-          ; 90 label
+          ; 91 label
 end_0x0000000000000004: 
-          ; 92 push integer
+          ; 93 push integer
           mov rax, 511
           push rax
-          ; 93 push integer
+          ; 94 push integer
           mov rax, 2
           push rax
-          ; 94 syscall
+          ; 95 syscall
           pop rax
           pop rdx
           pop rsi
           pop rdi
           syscall
           push rax
-          ; 96 duplicate
+          ; 97 duplicate
           pop rax
           push rax
           push rax
-          ; 96 push integer
+          ; 97 push integer
           mov rax, 0
           push rax
-          ; 96 is less?
+          ; 97 is less?
           mov rax, 0
           mov rbx, 1
           pop rcx
@@ -943,106 +951,106 @@ end_0x0000000000000004:
           cmp rdx, rcx
           cmovl rax, rbx
           push rax
-          ; 96 start of if-block
+          ; 97 start of if-block
           pop rax
           test rax, rax
           jz if_0x0000000000000005
-          ; 97 push string
+          ; 98 push string
           mov rax, s_14
           push rax
-          ; 97 push string
+          ; 98 push string
           mov rax, s_8
           push rax
-          ; 97 push integer
-          mov rax, 97
+          ; 98 push integer
+          mov rax, 98
           push rax
-          ; 97 push string
+          ; 98 push string
           mov rax, s_15
           push rax
-          ; 97 push boolean
+          ; 98 push boolean
           mov rax, 1
           push rax
-          ; 97 call
+          ; 98 call
           call fn_raise
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
-          ; 97 jump
+          ; 98 jump
           jmp end_0x0000000000000005
-          ; 97 label
+          ; 98 label
 if_0x0000000000000005: 
-          ; 97 label
+          ; 98 label
 end_0x0000000000000005: 
-          ; 83 restore frame
+          ; 84 restore frame
           pop rax
           mov rsp, rbp
           pop rbp
-          ; 83 return
+          ; 84 return
           ret
-          ; 99 function definition
+          ; 100 function definition
 fn_close: 
           push rbp
           mov rbp, rsp
-          ; 100 get argument
+          ; 101 get argument
           mov rax, rbp
           add rax, 48
           mov rbx, [rax]
           push rbx
-          ; 100 push integer
+          ; 101 push integer
           mov rax, 3
           push rax
-          ; 100 syscall
+          ; 101 syscall
           pop rax
           pop rdi
           syscall
           push rax
-          ; 100 drop
+          ; 101 drop
           pop rax
-          ; 100 restore frame
+          ; 101 restore frame
           pop rax
           mov rsp, rbp
           pop rbp
-          ; 100 return
+          ; 101 return
           ret
-          ; 102 function definition
+          ; 103 function definition
 fn_read:  
           push rbp
           mov rbp, rsp
-          ; 104 get argument
+          ; 105 get argument
           mov rax, rbp
           add rax, 64
           mov rbx, [rax]
           push rbx
-          ; 104 get argument
+          ; 105 get argument
           mov rax, rbp
           add rax, 56
           mov rbx, [rax]
           push rbx
-          ; 104 get argument
+          ; 105 get argument
           mov rax, rbp
           add rax, 48
           mov rbx, [rax]
           push rbx
-          ; 104 push integer
+          ; 105 push integer
           mov rax, 0
           push rax
-          ; 104 syscall
+          ; 105 syscall
           pop rax
           pop rdx
           pop rsi
           pop rdi
           syscall
           push rax
-          ; 105 duplicate
+          ; 106 duplicate
           pop rax
           push rax
           push rax
-          ; 105 push integer
+          ; 106 push integer
           mov rax, 0
           push rax
-          ; 105 is less?
+          ; 106 is less?
           mov rax, 0
           mov rbx, 1
           pop rcx
@@ -1050,72 +1058,72 @@ fn_read:
           cmp rdx, rcx
           cmovl rax, rbx
           push rax
-          ; 105 start of if-block
+          ; 106 start of if-block
           pop rax
           test rax, rax
           jz if_0x0000000000000006
-          ; 106 push string
+          ; 107 push string
           mov rax, s_16
           push rax
-          ; 106 push string
+          ; 107 push string
           mov rax, s_8
           push rax
-          ; 106 push integer
-          mov rax, 106
+          ; 107 push integer
+          mov rax, 107
           push rax
-          ; 106 push string
+          ; 107 push string
           mov rax, s_17
           push rax
-          ; 106 push boolean
+          ; 107 push boolean
           mov rax, 1
           push rax
-          ; 106 call
+          ; 107 call
           call fn_raise
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
-          ; 106 jump
+          ; 107 jump
           jmp end_0x0000000000000006
-          ; 106 label
+          ; 107 label
 if_0x0000000000000006: 
-          ; 106 label
+          ; 107 label
 end_0x0000000000000006: 
-          ; 103 restore frame
+          ; 104 restore frame
           pop rax
           mov rsp, rbp
           pop rbp
-          ; 103 return
+          ; 104 return
           ret
-          ; 109 function definition
+          ; 110 function definition
 fn_rt_sigaction: 
           push rbp
           mov rbp, rsp
-          ; 111 get argument
+          ; 112 get argument
           mov rax, rbp
           add rax, 72
           mov rbx, [rax]
           push rbx
-          ; 111 get argument
+          ; 112 get argument
           mov rax, rbp
           add rax, 64
           mov rbx, [rax]
           push rbx
-          ; 111 get argument
+          ; 112 get argument
           mov rax, rbp
           add rax, 56
           mov rbx, [rax]
           push rbx
-          ; 111 get argument
+          ; 112 get argument
           mov rax, rbp
           add rax, 48
           mov rbx, [rax]
           push rbx
-          ; 111 push integer
+          ; 112 push integer
           mov rax, 13
           push rax
-          ; 111 syscall
+          ; 112 syscall
           pop rax
           pop r10
           pop rdx
@@ -1123,14 +1131,14 @@ fn_rt_sigaction:
           pop rdi
           syscall
           push rax
-          ; 112 duplicate
+          ; 113 duplicate
           pop rax
           push rax
           push rax
-          ; 112 push integer
+          ; 113 push integer
           mov rax, 0
           push rax
-          ; 112 is not equal?
+          ; 113 is not equal?
           mov rax, 0
           mov rbx, 1
           pop rcx
@@ -1138,114 +1146,114 @@ fn_rt_sigaction:
           cmp rdx, rcx
           cmovne rax, rbx
           push rax
-          ; 112 start of if-block
+          ; 113 start of if-block
           pop rax
           test rax, rax
           jz if_0x0000000000000007
-          ; 113 push string
+          ; 114 push string
           mov rax, s_18
           push rax
-          ; 113 push string
+          ; 114 push string
           mov rax, s_8
           push rax
-          ; 113 push integer
-          mov rax, 113
+          ; 114 push integer
+          mov rax, 114
           push rax
-          ; 113 push string
+          ; 114 push string
           mov rax, s_19
           push rax
-          ; 113 push boolean
+          ; 114 push boolean
           mov rax, 1
           push rax
-          ; 113 call
+          ; 114 call
           call fn_raise
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
-          ; 113 jump
+          ; 114 jump
           jmp end_0x0000000000000007
-          ; 113 label
+          ; 114 label
 if_0x0000000000000007: 
-          ; 113 label
+          ; 114 label
 end_0x0000000000000007: 
-          ; 110 restore frame
+          ; 111 restore frame
           pop rax
           mov rsp, rbp
           pop rbp
-          ; 110 return
+          ; 111 return
           ret
-          ; 116 label
+          ; 117 label
 fn_rt_sigreturn: 
-          ; 118 push integer
+          ; 119 push integer
           mov rax, 15
           push rax
-          ; 118 syscall
+          ; 119 syscall
           pop rax
           syscall
           push rax
-          ; 119 push string
+          ; 120 push string
           mov rax, s_20
           push rax
-          ; 119 push string
+          ; 120 push string
           mov rax, s_8
           push rax
-          ; 119 push integer
-          mov rax, 119
+          ; 120 push integer
+          mov rax, 120
           push rax
-          ; 119 push string
+          ; 120 push string
           mov rax, s_21
           push rax
-          ; 119 push boolean
+          ; 120 push boolean
           mov rax, 1
           push rax
-          ; 119 call
+          ; 120 call
           call fn_raise
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
-          ; 117 return
+          ; 118 return
           ret
-          ; 129 function definition
+          ; 130 function definition
 fn_setitimer: 
           push rbp
           mov rbp, rsp
-          ; 131 get argument
+          ; 132 get argument
           mov rax, rbp
           add rax, 64
           mov rbx, [rax]
           push rbx
-          ; 131 get argument
+          ; 132 get argument
           mov rax, rbp
           add rax, 56
           mov rbx, [rax]
           push rbx
-          ; 131 get argument
+          ; 132 get argument
           mov rax, rbp
           add rax, 48
           mov rbx, [rax]
           push rbx
-          ; 131 push integer
+          ; 132 push integer
           mov rax, 38
           push rax
-          ; 131 syscall
+          ; 132 syscall
           pop rax
           pop rdx
           pop rsi
           pop rdi
           syscall
           push rax
-          ; 132 duplicate
+          ; 133 duplicate
           pop rax
           push rax
           push rax
-          ; 132 push integer
+          ; 133 push integer
           mov rax, 0
           push rax
-          ; 132 is not equal?
+          ; 133 is not equal?
           mov rax, 0
           mov rbx, 1
           pop rcx
@@ -1253,96 +1261,96 @@ fn_setitimer:
           cmp rdx, rcx
           cmovne rax, rbx
           push rax
-          ; 132 start of if-block
+          ; 133 start of if-block
           pop rax
           test rax, rax
           jz if_0x0000000000000008
-          ; 133 push string
+          ; 134 push string
           mov rax, s_22
           push rax
-          ; 133 push string
+          ; 134 push string
           mov rax, s_8
           push rax
-          ; 133 push integer
-          mov rax, 133
+          ; 134 push integer
+          mov rax, 134
           push rax
-          ; 133 push string
+          ; 134 push string
           mov rax, s_23
           push rax
-          ; 133 push boolean
+          ; 134 push boolean
           mov rax, 1
           push rax
-          ; 133 call
+          ; 134 call
           call fn_raise
           pop rbx
           pop rbx
           pop rbx
           pop rbx
           pop rbx
-          ; 133 jump
+          ; 134 jump
           jmp end_0x0000000000000008
-          ; 133 label
+          ; 134 label
 if_0x0000000000000008: 
-          ; 133 label
+          ; 134 label
 end_0x0000000000000008: 
-          ; 130 restore frame
+          ; 131 restore frame
           pop rax
           mov rsp, rbp
           pop rbp
-          ; 130 return
+          ; 131 return
           ret
-          ; 145 create buffer
-          ; 147 function definition
+          ; 146 create buffer
+          ; 148 function definition
 fn_setup_signal_handler: 
           push rbp
           mov rbp, rsp
-          ; 149 get argument
+          ; 150 get argument
           mov rax, rbp
           add rax, 56
           mov rbx, [rax]
           push rbx
-          ; 149 get pointer to buffer
-          mov rax, buf__sigaction
-          push rax
-          ; 149 push integer
-          mov rax, 0
-          push rax
-          ; 149 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 149 set pointer value
-          pop rax
-          pop rbx
-          mov [rax], rbx
-          ; 150 push integer
-          mov rax, 0
-          push rax
           ; 150 get pointer to buffer
           mov rax, buf__sigaction
           push rax
           ; 150 push integer
-          mov rax, 24
+          mov rax, 0
           push rax
           ; 150 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 150 set integer value
+          ; 150 set pointer value
           pop rax
           pop rbx
           mov [rax], rbx
-          ; 152 get argument
+          ; 151 push integer
+          mov rax, 0
+          push rax
+          ; 151 get pointer to buffer
+          mov rax, buf__sigaction
+          push rax
+          ; 151 push integer
+          mov rax, 24
+          push rax
+          ; 151 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 151 set integer value
+          pop rax
+          pop rbx
+          mov [rax], rbx
+          ; 153 get argument
           mov rax, rbp
           add rax, 48
           mov rbx, [rax]
           push rbx
-          ; 152 push integer
+          ; 153 push integer
           mov rax, 0
           push rax
-          ; 152 is equal?
+          ; 153 is equal?
           mov rax, 0
           mov rbx, 1
           pop rcx
@@ -1350,28 +1358,10 @@ fn_setup_signal_handler:
           cmp rdx, rcx
           cmove rax, rbx
           push rax
-          ; 152 start of if-block
+          ; 153 start of if-block
           pop rax
           test rax, rax
           jz if_0x0000000000000009
-          ; 153 push integer
-          mov rax, 0
-          push rax
-          ; 153 get pointer to buffer
-          mov rax, buf__sigaction
-          push rax
-          ; 153 push integer
-          mov rax, 8
-          push rax
-          ; 153 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 153 set integer value
-          pop rax
-          pop rbx
-          mov [rax], rbx
           ; 154 push integer
           mov rax, 0
           push rax
@@ -1379,96 +1369,114 @@ fn_setup_signal_handler:
           mov rax, buf__sigaction
           push rax
           ; 154 push integer
-          mov rax, 16
+          mov rax, 8
           push rax
           ; 154 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 154 set pointer value
+          ; 154 set integer value
           pop rax
           pop rbx
           mov [rax], rbx
-          ; 153 jump
-          jmp end_0x0000000000000009
-          ; 153 label
-if_0x0000000000000009: 
-          ; 156 push integer
-          mov rax, 4
+          ; 155 push integer
+          mov rax, 0
           push rax
-          ; 156 push integer
-          mov rax, 67108864
-          push rax
-          ; 156 bitwise or
-          pop rax
-          pop rbx
-          or rbx, rax
-          push rbx
-          ; 157 get pointer to buffer
+          ; 155 get pointer to buffer
           mov rax, buf__sigaction
           push rax
-          ; 157 push integer
-          mov rax, 8
+          ; 155 push integer
+          mov rax, 16
           push rax
-          ; 157 add
+          ; 155 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 157 set integer value
+          ; 155 set pointer value
           pop rax
           pop rbx
           mov [rax], rbx
-          ; 158 get argument
-          mov rax, rbp
-          add rax, 48
-          mov rbx, [rax]
+          ; 154 jump
+          jmp end_0x0000000000000009
+          ; 154 label
+if_0x0000000000000009: 
+          ; 157 push integer
+          mov rax, 4
+          push rax
+          ; 157 push integer
+          mov rax, 67108864
+          push rax
+          ; 157 bitwise or
+          pop rax
+          pop rbx
+          or rbx, rax
           push rbx
           ; 158 get pointer to buffer
           mov rax, buf__sigaction
           push rax
           ; 158 push integer
-          mov rax, 16
+          mov rax, 8
           push rax
           ; 158 add
           pop rax
           pop rbx
           add rbx, rax
           push rbx
-          ; 158 set pointer value
+          ; 158 set integer value
           pop rax
           pop rbx
           mov [rax], rbx
-          ; 156 label
+          ; 159 get argument
+          mov rax, rbp
+          add rax, 48
+          mov rbx, [rax]
+          push rbx
+          ; 159 get pointer to buffer
+          mov rax, buf__sigaction
+          push rax
+          ; 159 push integer
+          mov rax, 16
+          push rax
+          ; 159 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 159 set pointer value
+          pop rax
+          pop rbx
+          mov [rax], rbx
+          ; 157 label
 end_0x0000000000000009: 
-          ; 160 get argument
+          ; 161 get argument
           mov rax, rbp
           add rax, 64
           mov rbx, [rax]
           push rbx
-          ; 160 get pointer to buffer
+          ; 161 get pointer to buffer
           mov rax, buf__sigaction
           push rax
-          ; 160 push integer
+          ; 161 push integer
           mov rax, 0
           push rax
-          ; 160 push integer
+          ; 161 push integer
           mov rax, 8
           push rax
-          ; 160 push string
+          ; 161 push string
           mov rax, s_8
           push rax
-          ; 160 push integer
-          mov rax, 160
+          ; 161 push integer
+          mov rax, 161
           push rax
-          ; 160 push string
+          ; 161 push string
           mov rax, s_24
           push rax
-          ; 160 push boolean
+          ; 161 push boolean
           mov rax, 1
           push rax
-          ; 160 call
+          ; 161 call
           call fn_rt_sigaction
           pop rbx
           pop rbx
@@ -1479,48 +1487,20 @@ end_0x0000000000000009:
           pop rbx
           pop rbx
           push rax
-          ; 148 restore frame
+          ; 149 restore frame
           pop rax
           mov rsp, rbp
           pop rbp
-          ; 148 return
+          ; 149 return
           ret
-          ; 163 create buffer
-          ; 165 function definition
+          ; 164 create buffer
+          ; 166 function definition
 fn_set_timer: 
           push rbp
           mov rbp, rsp
-          ; 167 get argument
-          mov rax, rbp
-          add rax, 72
-          mov rbx, [rax]
-          push rbx
-          ; 167 get pointer to buffer
-          mov rax, buf__itimerval
-          push rax
-          ; 167 push integer
-          mov rax, 0
-          push rax
-          ; 167 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 167 push integer
-          mov rax, 0
-          push rax
-          ; 167 add
-          pop rax
-          pop rbx
-          add rbx, rax
-          push rbx
-          ; 167 set integer value
-          pop rax
-          pop rbx
-          mov [rax], rbx
           ; 168 get argument
           mov rax, rbp
-          add rax, 64
+          add rax, 72
           mov rbx, [rax]
           push rbx
           ; 168 get pointer to buffer
@@ -1535,7 +1515,7 @@ fn_set_timer:
           add rbx, rax
           push rbx
           ; 168 push integer
-          mov rax, 8
+          mov rax, 0
           push rax
           ; 168 add
           pop rax
@@ -1548,14 +1528,14 @@ fn_set_timer:
           mov [rax], rbx
           ; 169 get argument
           mov rax, rbp
-          add rax, 72
+          add rax, 64
           mov rbx, [rax]
           push rbx
           ; 169 get pointer to buffer
           mov rax, buf__itimerval
           push rax
           ; 169 push integer
-          mov rax, 16
+          mov rax, 0
           push rax
           ; 169 add
           pop rax
@@ -1563,7 +1543,7 @@ fn_set_timer:
           add rbx, rax
           push rbx
           ; 169 push integer
-          mov rax, 0
+          mov rax, 8
           push rax
           ; 169 add
           pop rax
@@ -1576,7 +1556,7 @@ fn_set_timer:
           mov [rax], rbx
           ; 170 get argument
           mov rax, rbp
-          add rax, 64
+          add rax, 72
           mov rbx, [rax]
           push rbx
           ; 170 get pointer to buffer
@@ -1591,7 +1571,7 @@ fn_set_timer:
           add rbx, rax
           push rbx
           ; 170 push integer
-          mov rax, 8
+          mov rax, 0
           push rax
           ; 170 add
           pop rax
@@ -1602,28 +1582,56 @@ fn_set_timer:
           pop rax
           pop rbx
           mov [rax], rbx
-          ; 172 push integer
-          mov rax, 0
-          push rax
-          ; 172 get pointer to buffer
+          ; 171 get argument
+          mov rax, rbp
+          add rax, 64
+          mov rbx, [rax]
+          push rbx
+          ; 171 get pointer to buffer
           mov rax, buf__itimerval
           push rax
-          ; 172 push integer
+          ; 171 push integer
+          mov rax, 16
+          push rax
+          ; 171 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 171 push integer
+          mov rax, 8
+          push rax
+          ; 171 add
+          pop rax
+          pop rbx
+          add rbx, rax
+          push rbx
+          ; 171 set integer value
+          pop rax
+          pop rbx
+          mov [rax], rbx
+          ; 173 push integer
           mov rax, 0
           push rax
-          ; 172 push string
+          ; 173 get pointer to buffer
+          mov rax, buf__itimerval
+          push rax
+          ; 173 push integer
+          mov rax, 0
+          push rax
+          ; 173 push string
           mov rax, s_8
           push rax
-          ; 172 push integer
-          mov rax, 172
+          ; 173 push integer
+          mov rax, 173
           push rax
-          ; 172 push string
+          ; 173 push string
           mov rax, s_25
           push rax
-          ; 172 push boolean
+          ; 173 push boolean
           mov rax, 1
           push rax
-          ; 172 call
+          ; 173 call
           call fn_setitimer
           pop rbx
           pop rbx
@@ -1633,31 +1641,31 @@ fn_set_timer:
           pop rbx
           pop rbx
           push rax
-          ; 166 restore frame
+          ; 167 restore frame
           pop rax
           mov rsp, rbp
           pop rbp
-          ; 166 return
+          ; 167 return
           ret
-          ; 175 function definition
+          ; 176 function definition
 fn_exec:  
           push rbp
           mov rbp, rsp
-          ; 176 push integer
+          ; 177 push integer
           mov rax, 57
           push rax
-          ; 176 syscall
+          ; 177 syscall
           pop rax
           syscall
           push rax
-          ; 178 duplicate
+          ; 179 duplicate
           pop rax
           push rax
           push rax
-          ; 178 push integer
+          ; 179 push integer
           mov rax, 0
           push rax
-          ; 178 is equal?
+          ; 179 is equal?
           mov rax, 0
           mov rbx, 1
           pop rcx
@@ -1665,58 +1673,39 @@ fn_exec:
           cmp rdx, rcx
           cmove rax, rbx
           push rax
-          ; 178 start of if-block
+          ; 179 start of if-block
           pop rax
           test rax, rax
           jz if_0x000000000000000a
-          ; 179 get argument
+          ; 180 get argument
           mov rax, rbp
           add rax, 56
           mov rbx, [rax]
           push rbx
-          ; 180 get argument
+          ; 181 get argument
           mov rax, rbp
           add rax, 48
           mov rbx, [rax]
           push rbx
-          ; 181 push integer
+          ; 182 push integer
           mov rax, 0
           push rax
-          ; 182 push integer
+          ; 183 push integer
           mov rax, 59
           push rax
-          ; 183 syscall
+          ; 184 syscall
           pop rax
           pop rdx
           pop rsi
           pop rdi
           syscall
           push rax
-          ; 183 drop
+          ; 184 drop
           pop rax
-          ; 179 jump
+          ; 180 jump
           jmp end_0x000000000000000a
-          ; 179 label
+          ; 180 label
 if_0x000000000000000a: 
-          ; 184 duplicate
-          pop rax
-          push rax
-          push rax
-          ; 184 push integer
-          mov rax, 0
-          push rax
-          ; 184 is greater?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmovg rax, rbx
-          push rax
-          ; 184 start of if-block
-          pop rax
-          test rax, rax
-          jz elif_0x000000000000000b
           ; 185 duplicate
           pop rax
           push rax
@@ -1724,16 +1713,35 @@ if_0x000000000000000a:
           ; 185 push integer
           mov rax, 0
           push rax
-          ; 185 push integer
+          ; 185 is greater?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmovg rax, rbx
+          push rax
+          ; 185 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x000000000000000b
+          ; 186 duplicate
+          pop rax
+          push rax
+          push rax
+          ; 186 push integer
           mov rax, 0
           push rax
-          ; 185 push integer
+          ; 186 push integer
           mov rax, 0
           push rax
-          ; 185 push integer
+          ; 186 push integer
+          mov rax, 0
+          push rax
+          ; 186 push integer
           mov rax, 61
           push rax
-          ; 185 syscall
+          ; 186 syscall
           pop rax
           pop r10
           pop rdx
@@ -1741,39 +1749,39 @@ if_0x000000000000000a:
           pop rdi
           syscall
           push rax
-          ; 185 drop
+          ; 186 drop
           pop rax
-          ; 184 jump
+          ; 185 jump
           jmp end_0x000000000000000a
-          ; 184 label
+          ; 185 label
 elif_0x000000000000000b: 
-          ; 184 label
+          ; 185 label
 end_0x000000000000000a: 
-          ; 176 restore frame
+          ; 177 restore frame
           pop rax
           mov rsp, rbp
           pop rbp
-          ; 176 return
+          ; 177 return
           ret
-          ; 188 function definition
+          ; 189 function definition
 fn_exec_silent: 
           push rbp
           mov rbp, rsp
-          ; 189 push integer
+          ; 190 push integer
           mov rax, 57
           push rax
-          ; 189 syscall
+          ; 190 syscall
           pop rax
           syscall
           push rax
-          ; 191 duplicate
+          ; 192 duplicate
           pop rax
           push rax
           push rax
-          ; 191 push integer
+          ; 192 push integer
           mov rax, 0
           push rax
-          ; 191 is equal?
+          ; 192 is equal?
           mov rax, 0
           mov rbx, 1
           pop rcx
@@ -1781,30 +1789,30 @@ fn_exec_silent:
           cmp rdx, rcx
           cmove rax, rbx
           push rax
-          ; 191 start of if-block
+          ; 192 start of if-block
           pop rax
           test rax, rax
           jz if_0x000000000000000c
-          ; 192 push string
+          ; 193 push string
           mov rax, s_26
           push rax
-          ; 192 push character
+          ; 193 push character
           mov rax, 114
           mov rax, 114
           push rax
-          ; 192 push string
+          ; 193 push string
           mov rax, s_8
           push rax
-          ; 192 push integer
-          mov rax, 192
+          ; 193 push integer
+          mov rax, 193
           push rax
-          ; 192 push string
+          ; 193 push string
           mov rax, s_27
           push rax
-          ; 192 push boolean
+          ; 193 push boolean
           mov rax, 1
           push rax
-          ; 192 call
+          ; 193 call
           call fn_open
           pop rbx
           pop rbx
@@ -1813,68 +1821,49 @@ fn_exec_silent:
           pop rbx
           pop rbx
           push rax
-          ; 193 push integer
+          ; 194 push integer
           mov rax, 1
           push rax
-          ; 194 push integer
+          ; 195 push integer
           mov rax, 33
           push rax
-          ; 194 syscall
+          ; 195 syscall
           pop rax
           pop rsi
           pop rdi
           syscall
           push rax
-          ; 195 drop
+          ; 196 drop
           pop rax
-          ; 197 get argument
+          ; 198 get argument
           mov rax, rbp
           add rax, 56
           mov rbx, [rax]
           push rbx
-          ; 198 get argument
+          ; 199 get argument
           mov rax, rbp
           add rax, 48
           mov rbx, [rax]
           push rbx
-          ; 199 push integer
+          ; 200 push integer
           mov rax, 0
           push rax
-          ; 200 push integer
+          ; 201 push integer
           mov rax, 59
           push rax
-          ; 201 syscall
+          ; 202 syscall
           pop rax
           pop rdx
           pop rsi
           pop rdi
           syscall
           push rax
-          ; 201 drop
+          ; 202 drop
           pop rax
-          ; 192 jump
+          ; 193 jump
           jmp end_0x000000000000000c
-          ; 192 label
+          ; 193 label
 if_0x000000000000000c: 
-          ; 202 duplicate
-          pop rax
-          push rax
-          push rax
-          ; 202 push integer
-          mov rax, 0
-          push rax
-          ; 202 is greater?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmovg rax, rbx
-          push rax
-          ; 202 start of if-block
-          pop rax
-          test rax, rax
-          jz elif_0x000000000000000d
           ; 203 duplicate
           pop rax
           push rax
@@ -1882,16 +1871,35 @@ if_0x000000000000000c:
           ; 203 push integer
           mov rax, 0
           push rax
-          ; 203 push integer
+          ; 203 is greater?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmovg rax, rbx
+          push rax
+          ; 203 start of if-block
+          pop rax
+          test rax, rax
+          jz elif_0x000000000000000d
+          ; 204 duplicate
+          pop rax
+          push rax
+          push rax
+          ; 204 push integer
           mov rax, 0
           push rax
-          ; 203 push integer
+          ; 204 push integer
           mov rax, 0
           push rax
-          ; 203 push integer
+          ; 204 push integer
+          mov rax, 0
+          push rax
+          ; 204 push integer
           mov rax, 61
           push rax
-          ; 203 syscall
+          ; 204 syscall
           pop rax
           pop r10
           pop rdx
@@ -1899,192 +1907,163 @@ if_0x000000000000000c:
           pop rdi
           syscall
           push rax
-          ; 203 drop
+          ; 204 drop
           pop rax
-          ; 202 jump
+          ; 203 jump
           jmp end_0x000000000000000c
-          ; 202 label
+          ; 203 label
 elif_0x000000000000000d: 
-          ; 202 label
+          ; 203 label
 end_0x000000000000000c: 
-          ; 189 restore frame
+          ; 190 restore frame
           pop rax
           mov rsp, rbp
           pop rbp
-          ; 189 return
+          ; 190 return
           ret
-          ; 211 function definition
+          ; 212 function definition
 fn_socket: 
           push rbp
           mov rbp, rsp
-          ; 212 get argument
+          ; 213 get argument
           mov rax, rbp
           add rax, 64
           mov rbx, [rax]
           push rbx
-          ; 212 get argument
+          ; 213 get argument
           mov rax, rbp
           add rax, 56
           mov rbx, [rax]
           push rbx
-          ; 212 get argument
+          ; 213 get argument
           mov rax, rbp
           add rax, 48
           mov rbx, [rax]
           push rbx
-          ; 212 push integer
+          ; 213 push integer
           mov rax, 41
           push rax
-          ; 212 syscall
+          ; 213 syscall
           pop rax
           pop rdx
           pop rsi
           pop rdi
           syscall
           push rax
-          ; 212 restore frame
+          ; 213 restore frame
           pop rax
           mov rsp, rbp
           pop rbp
-          ; 212 return
+          ; 213 return
           ret
-          ; 214 function definition
+          ; 215 function definition
 fn_accept: 
           push rbp
           mov rbp, rsp
-          ; 215 get argument
+          ; 216 get argument
           mov rax, rbp
           add rax, 64
           mov rbx, [rax]
           push rbx
-          ; 215 get argument
+          ; 216 get argument
           mov rax, rbp
           add rax, 56
           mov rbx, [rax]
           push rbx
-          ; 215 get argument
+          ; 216 get argument
           mov rax, rbp
           add rax, 48
           mov rbx, [rax]
           push rbx
-          ; 215 push integer
+          ; 216 push integer
           mov rax, 43
           push rax
-          ; 215 syscall
+          ; 216 syscall
           pop rax
           pop rdx
           pop rsi
           pop rdi
           syscall
           push rax
-          ; 215 restore frame
+          ; 216 restore frame
           pop rax
           mov rsp, rbp
           pop rbp
-          ; 215 return
+          ; 216 return
           ret
-          ; 217 function definition
+          ; 218 function definition
 fn_bind:  
           push rbp
           mov rbp, rsp
-          ; 218 get argument
+          ; 219 get argument
           mov rax, rbp
           add rax, 64
           mov rbx, [rax]
           push rbx
-          ; 218 get argument
+          ; 219 get argument
           mov rax, rbp
           add rax, 56
           mov rbx, [rax]
           push rbx
-          ; 218 get argument
+          ; 219 get argument
           mov rax, rbp
           add rax, 48
           mov rbx, [rax]
           push rbx
-          ; 218 push integer
+          ; 219 push integer
           mov rax, 49
           push rax
-          ; 218 syscall
+          ; 219 syscall
           pop rax
           pop rdx
           pop rsi
           pop rdi
           syscall
           push rax
-          ; 218 restore frame
+          ; 219 restore frame
           pop rax
           mov rsp, rbp
           pop rbp
-          ; 218 return
+          ; 219 return
           ret
-          ; 220 function definition
+          ; 221 function definition
 fn_listen: 
           push rbp
           mov rbp, rsp
-          ; 221 get argument
+          ; 222 get argument
           mov rax, rbp
           add rax, 56
           mov rbx, [rax]
           push rbx
-          ; 221 get argument
+          ; 222 get argument
           mov rax, rbp
           add rax, 48
           mov rbx, [rax]
           push rbx
-          ; 221 push integer
+          ; 222 push integer
           mov rax, 50
           push rax
-          ; 221 syscall
+          ; 222 syscall
           pop rax
           pop rsi
           pop rdi
           syscall
           push rax
-          ; 221 restore frame
+          ; 222 restore frame
           pop rax
           mov rsp, rbp
           pop rbp
-          ; 221 return
+          ; 222 return
           ret
-          ; 223 function definition
+          ; 224 function definition
 fn_htons: 
           push rbp
           mov rbp, rsp
-          ; 224 get argument
-          mov rax, rbp
-          add rax, 48
-          mov rbx, [rax]
-          push rbx
-          ; 224 push integer
-          mov rax, 255
-          push rax
-          ; 224 bitwise and
-          pop rax
-          pop rbx
-          and rbx, rax
-          push rbx
-          ; 224 push integer
-          mov rax, 8
-          push rax
-          ; 224 shift left
-          pop rcx
-          pop rax
-          shl rax, cl
-          push rax
           ; 225 get argument
           mov rax, rbp
           add rax, 48
           mov rbx, [rax]
           push rbx
-          ; 225 push integer
-          mov rax, 8
-          push rax
-          ; 225 shift right
-          pop rcx
-          pop rax
-          shr rax, cl
-          push rax
           ; 225 push integer
           mov rax, 255
           push rax
@@ -2093,16 +2072,45 @@ fn_htons:
           pop rbx
           and rbx, rax
           push rbx
-          ; 226 bitwise or
+          ; 225 push integer
+          mov rax, 8
+          push rax
+          ; 225 shift left
+          pop rcx
+          pop rax
+          shl rax, cl
+          push rax
+          ; 226 get argument
+          mov rax, rbp
+          add rax, 48
+          mov rbx, [rax]
+          push rbx
+          ; 226 push integer
+          mov rax, 8
+          push rax
+          ; 226 shift right
+          pop rcx
+          pop rax
+          shr rax, cl
+          push rax
+          ; 226 push integer
+          mov rax, 255
+          push rax
+          ; 226 bitwise and
+          pop rax
+          pop rbx
+          and rbx, rax
+          push rbx
+          ; 227 bitwise or
           pop rax
           pop rbx
           or rbx, rax
           push rbx
-          ; 224 restore frame
+          ; 225 restore frame
           pop rax
           mov rsp, rbp
           pop rbp
-          ; 224 return
+          ; 225 return
           ret
           ; 10 function definition
 fn_NULL:  
@@ -55352,6 +55360,118 @@ end_0x0000000000000193:
           pop rbx
           pop rbx
           pop rbx
+          ; 1026 push string
+          mov rax, s_395
+          push rax
+          ; 1026 get pointer to buffer
+          mov rax, buf_functions
+          push rax
+          ; 1026 dereference pointer
+          pop rax
+          mov rbx, [rax]
+          push rbx
+          ; 1026 push string
+          mov rax, s_317
+          push rax
+          ; 1026 push integer
+          mov rax, 1026
+          push rax
+          ; 1026 push string
+          mov rax, s_394
+          push rax
+          ; 1026 push boolean
+          mov rax, 1
+          push rax
+          ; 1026 call
+          call fn_dict_fetch
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 1026 push string
+          mov rax, s_317
+          push rax
+          ; 1026 push integer
+          mov rax, 1026
+          push rax
+          ; 1026 push string
+          mov rax, s_394
+          push rax
+          ; 1026 push boolean
+          mov rax, 1
+          push rax
+          ; 1026 call
+          call fn_NULL
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          push rax
+          ; 1026 is equal?
+          mov rax, 0
+          mov rbx, 1
+          pop rcx
+          pop rdx
+          cmp rdx, rcx
+          cmove rax, rbx
+          push rax
+          ; 1026 start of if-block
+          pop rax
+          test rax, rax
+          jz if_0x0000000000000194
+          ; 1027 push string
+          mov rax, s_396
+          push rax
+          ; 1027 push string
+          mov rax, s_317
+          push rax
+          ; 1027 push integer
+          mov rax, 1027
+          push rax
+          ; 1027 push string
+          mov rax, s_394
+          push rax
+          ; 1027 push boolean
+          mov rax, 1
+          push rax
+          ; 1027 call
+          call fn_error
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          ; 1028 push integer
+          mov rax, 1
+          push rax
+          ; 1028 push string
+          mov rax, s_317
+          push rax
+          ; 1028 push integer
+          mov rax, 1028
+          push rax
+          ; 1028 push string
+          mov rax, s_394
+          push rax
+          ; 1028 push boolean
+          mov rax, 1
+          push rax
+          ; 1028 call
+          call fn_exit
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          pop rbx
+          ; 1027 jump
+          jmp end_0x0000000000000194
+          ; 1027 label
+if_0x0000000000000194: 
+          ; 1027 label
+end_0x0000000000000194: 
           ; 990 restore frame
           pop rax
           mov rsp, rbp
@@ -55377,13 +55497,13 @@ fn__format:
           mov rax, buf__format_buffer
           push rax
           ; 19 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 19 push integer
           mov rax, 19
           push rax
           ; 19 push string
-          mov rax, s_396
+          mov rax, s_398
           push rax
           ; 19 push boolean
           mov rax, 1
@@ -55405,13 +55525,13 @@ fn__format:
           mov rbx, [rax]
           push rbx
           ; 20 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 20 push integer
           mov rax, 20
           push rax
           ; 20 push string
-          mov rax, s_396
+          mov rax, s_398
           push rax
           ; 20 push boolean
           mov rax, 1
@@ -55528,13 +55648,13 @@ while_0x0000000000000037_end:
           add rbx, rax
           push rbx
           ; 26 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 26 push integer
           mov rax, 26
           push rax
           ; 26 push string
-          mov rax, s_396
+          mov rax, s_398
           push rax
           ; 26 push boolean
           mov rax, 1
@@ -55556,13 +55676,13 @@ while_0x0000000000000037_end:
           mov rbx, [rax]
           push rbx
           ; 27 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 27 push integer
           mov rax, 27
           push rax
           ; 27 push string
-          mov rax, s_396
+          mov rax, s_398
           push rax
           ; 27 push boolean
           mov rax, 1
@@ -55646,13 +55766,13 @@ fn__append:
           mov rbx, [rax]
           push rbx
           ; 35 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 35 push integer
           mov rax, 35
           push rax
           ; 35 push string
-          mov rax, s_397
+          mov rax, s_399
           push rax
           ; 35 push boolean
           mov rax, 1
@@ -55676,13 +55796,13 @@ fn__append:
           mov rbx, [rax]
           push rbx
           ; 36 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 36 push integer
           mov rax, 36
           push rax
           ; 36 push string
-          mov rax, s_397
+          mov rax, s_399
           push rax
           ; 36 push boolean
           mov rax, 1
@@ -55723,13 +55843,13 @@ fn__append_opcode_info:
           mov rbx, [rax]
           push rbx
           ; 41 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 41 push integer
           mov rax, 41
           push rax
           ; 41 push string
-          mov rax, s_398
+          mov rax, s_400
           push rax
           ; 41 push boolean
           mov rax, 1
@@ -55743,7 +55863,7 @@ fn__append_opcode_info:
           pop rbx
           push rax
           ; 42 push string
-          mov rax, s_399
+          mov rax, s_401
           push rax
           ; 42 swap
           pop rax
@@ -55751,13 +55871,13 @@ fn__append_opcode_info:
           push rax
           push rbx
           ; 42 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 42 push integer
           mov rax, 42
           push rax
           ; 42 push string
-          mov rax, s_398
+          mov rax, s_400
           push rax
           ; 42 push boolean
           mov rax, 1
@@ -55777,13 +55897,13 @@ fn__append_opcode_info:
           mov rbx, [rax]
           push rbx
           ; 43 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 43 push integer
           mov rax, 43
           push rax
           ; 43 push string
-          mov rax, s_398
+          mov rax, s_400
           push rax
           ; 43 push boolean
           mov rax, 1
@@ -55802,13 +55922,13 @@ fn__append_opcode_info:
           push rax
           push rbx
           ; 43 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 43 push integer
           mov rax, 43
           push rax
           ; 43 push string
-          mov rax, s_398
+          mov rax, s_400
           push rax
           ; 43 push boolean
           mov rax, 1
@@ -55831,13 +55951,13 @@ fn__append_opcode_info:
           push rax
           push rbx
           ; 44 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 44 push integer
           mov rax, 44
           push rax
           ; 44 push string
-          mov rax, s_398
+          mov rax, s_400
           push rax
           ; 44 push boolean
           mov rax, 1
@@ -55857,13 +55977,13 @@ fn__append_opcode_info:
           mov rbx, [rax]
           push rbx
           ; 45 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 45 push integer
           mov rax, 45
           push rax
           ; 45 push string
-          mov rax, s_398
+          mov rax, s_400
           push rax
           ; 45 push boolean
           mov rax, 1
@@ -55882,13 +56002,13 @@ fn__append_opcode_info:
           push rax
           push rbx
           ; 45 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 45 push integer
           mov rax, 45
           push rax
           ; 45 push string
-          mov rax, s_398
+          mov rax, s_400
           push rax
           ; 45 push boolean
           mov rax, 1
@@ -55923,13 +56043,13 @@ fn__append_opcode_info:
           mov rax, buf__text
           push rax
           ; 46 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 46 push integer
           mov rax, 46
           push rax
           ; 46 push string
-          mov rax, s_398
+          mov rax, s_400
           push rax
           ; 46 push boolean
           mov rax, 1
@@ -55964,13 +56084,13 @@ fn_generate_code_x86_64_linux:
           mov rax, 512000
           push rax
           ; 54 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 54 push integer
           mov rax, 54
           push rax
           ; 54 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 54 push boolean
           mov rax, 1
@@ -55994,13 +56114,13 @@ fn_generate_code_x86_64_linux:
           mov rax, 512000
           push rax
           ; 55 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 55 push integer
           mov rax, 55
           push rax
           ; 55 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 55 push boolean
           mov rax, 1
@@ -56021,13 +56141,13 @@ fn_generate_code_x86_64_linux:
           pop rbx
           mov [rax], rbx
           ; 56 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 56 push integer
           mov rax, 56
           push rax
           ; 56 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 56 push boolean
           mov rax, 1
@@ -56057,13 +56177,13 @@ fn_generate_code_x86_64_linux:
           pop rbx
           mov [rax], rbx
           ; 58 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 58 push integer
           mov rax, 58
           push rax
           ; 58 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 58 push boolean
           mov rax, 1
@@ -56083,7 +56203,7 @@ fn_generate_code_x86_64_linux:
           pop rbx
           mov [rax], rbx
           ; 60 push string
-          mov rax, s_401
+          mov rax, s_403
           push rax
           ; 60 push string
           mov rax, s_59
@@ -56092,13 +56212,13 @@ fn_generate_code_x86_64_linux:
           mov rax, buf__text
           push rax
           ; 60 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 60 push integer
           mov rax, 60
           push rax
           ; 60 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 60 push boolean
           mov rax, 1
@@ -56113,22 +56233,22 @@ fn_generate_code_x86_64_linux:
           pop rbx
           pop rbx
           ; 61 push string
-          mov rax, s_59
+          mov rax, s_404
           push rax
           ; 61 push string
-          mov rax, s_402
+          mov rax, s_59
           push rax
           ; 61 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 61 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 61 push integer
           mov rax, 61
           push rax
           ; 61 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 61 push boolean
           mov rax, 1
@@ -56146,19 +56266,19 @@ fn_generate_code_x86_64_linux:
           mov rax, s_59
           push rax
           ; 62 push string
-          mov rax, s_403
+          mov rax, s_405
           push rax
           ; 62 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 62 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 62 push integer
           mov rax, 62
           push rax
           ; 62 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 62 push boolean
           mov rax, 1
@@ -56173,22 +56293,22 @@ fn_generate_code_x86_64_linux:
           pop rbx
           pop rbx
           ; 63 push string
-          mov rax, s_59
+          mov rax, s_406
           push rax
           ; 63 push string
-          mov rax, s_404
+          mov rax, s_59
           push rax
           ; 63 get pointer to buffer
           mov rax, buf__data
           push rax
           ; 63 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 63 push integer
           mov rax, 63
           push rax
           ; 63 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 63 push boolean
           mov rax, 1
@@ -56250,13 +56370,13 @@ while_0x0000000000000038:
           mov rbx, [rax]
           push rbx
           ; 68 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 68 push integer
           mov rax, 68
           push rax
           ; 68 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 68 push boolean
           mov rax, 1
@@ -56305,13 +56425,13 @@ while_0x0000000000000038:
           mov rbx, [rax]
           push rbx
           ; 73 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 73 push integer
           mov rax, 73
           push rax
           ; 73 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 73 push boolean
           mov rax, 1
@@ -56354,24 +56474,24 @@ while_0x0000000000000038:
           ; 75 start of if-block
           pop rax
           test rax, rax
-          jz if_0x0000000000000194
+          jz if_0x0000000000000195
           ; 76 push string
           mov rax, s_59
           push rax
           ; 76 push string
-          mov rax, s_405
+          mov rax, s_407
           push rax
           ; 76 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 76 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 76 push integer
           mov rax, 76
           push rax
           ; 76 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 76 push boolean
           mov rax, 1
@@ -56389,19 +56509,19 @@ while_0x0000000000000038:
           mov rax, s_59
           push rax
           ; 77 push string
-          mov rax, s_406
+          mov rax, s_408
           push rax
           ; 77 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 77 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 77 push integer
           mov rax, 77
           push rax
           ; 77 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 77 push boolean
           mov rax, 1
@@ -56419,19 +56539,19 @@ while_0x0000000000000038:
           mov rax, s_59
           push rax
           ; 78 push string
-          mov rax, s_406
+          mov rax, s_408
           push rax
           ; 78 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 78 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 78 push integer
           mov rax, 78
           push rax
           ; 78 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 78 push boolean
           mov rax, 1
@@ -56446,9 +56566,9 @@ while_0x0000000000000038:
           pop rbx
           pop rbx
           ; 76 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 76 label
-if_0x0000000000000194: 
+if_0x0000000000000195: 
           ; 79 duplicate
           pop rax
           push rax
@@ -56479,24 +56599,24 @@ if_0x0000000000000194:
           ; 79 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x0000000000000195
+          jz elif_0x0000000000000196
           ; 80 push string
           mov rax, s_59
           push rax
           ; 80 push string
-          mov rax, s_405
+          mov rax, s_407
           push rax
           ; 80 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 80 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 80 push integer
           mov rax, 80
           push rax
           ; 80 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 80 push boolean
           mov rax, 1
@@ -56511,9 +56631,9 @@ if_0x0000000000000194:
           pop rbx
           pop rbx
           ; 79 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 79 label
-elif_0x0000000000000195: 
+elif_0x0000000000000196: 
           ; 81 duplicate
           pop rax
           push rax
@@ -56544,24 +56664,24 @@ elif_0x0000000000000195:
           ; 81 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x0000000000000196
+          jz elif_0x0000000000000197
           ; 82 push string
           mov rax, s_59
           push rax
           ; 82 push string
-          mov rax, s_405
+          mov rax, s_407
           push rax
           ; 82 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 82 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 82 push integer
           mov rax, 82
           push rax
           ; 82 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 82 push boolean
           mov rax, 1
@@ -56579,19 +56699,19 @@ elif_0x0000000000000195:
           mov rax, s_59
           push rax
           ; 83 push string
-          mov rax, s_407
+          mov rax, s_409
           push rax
           ; 83 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 83 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 83 push integer
           mov rax, 83
           push rax
           ; 83 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 83 push boolean
           mov rax, 1
@@ -56609,19 +56729,19 @@ elif_0x0000000000000195:
           mov rax, s_59
           push rax
           ; 84 push string
-          mov rax, s_406
+          mov rax, s_408
           push rax
           ; 84 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 84 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 84 push integer
           mov rax, 84
           push rax
           ; 84 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 84 push boolean
           mov rax, 1
@@ -56639,19 +56759,19 @@ elif_0x0000000000000195:
           mov rax, s_59
           push rax
           ; 85 push string
-          mov rax, s_408
+          mov rax, s_410
           push rax
           ; 85 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 85 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 85 push integer
           mov rax, 85
           push rax
           ; 85 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 85 push boolean
           mov rax, 1
@@ -56666,9 +56786,9 @@ elif_0x0000000000000195:
           pop rbx
           pop rbx
           ; 81 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 81 label
-elif_0x0000000000000196: 
+elif_0x0000000000000197: 
           ; 86 duplicate
           pop rax
           push rax
@@ -56699,24 +56819,24 @@ elif_0x0000000000000196:
           ; 86 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x0000000000000197
+          jz elif_0x0000000000000198
           ; 87 push string
           mov rax, s_59
           push rax
           ; 87 push string
-          mov rax, s_405
+          mov rax, s_407
           push rax
           ; 87 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 87 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 87 push integer
           mov rax, 87
           push rax
           ; 87 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 87 push boolean
           mov rax, 1
@@ -56734,19 +56854,19 @@ elif_0x0000000000000196:
           mov rax, s_59
           push rax
           ; 88 push string
-          mov rax, s_407
+          mov rax, s_409
           push rax
           ; 88 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 88 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 88 push integer
           mov rax, 88
           push rax
           ; 88 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 88 push boolean
           mov rax, 1
@@ -56764,19 +56884,19 @@ elif_0x0000000000000196:
           mov rax, s_59
           push rax
           ; 89 push string
-          mov rax, s_408
+          mov rax, s_410
           push rax
           ; 89 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 89 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 89 push integer
           mov rax, 89
           push rax
           ; 89 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 89 push boolean
           mov rax, 1
@@ -56794,19 +56914,19 @@ elif_0x0000000000000196:
           mov rax, s_59
           push rax
           ; 90 push string
-          mov rax, s_406
+          mov rax, s_408
           push rax
           ; 90 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 90 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 90 push integer
           mov rax, 90
           push rax
           ; 90 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 90 push boolean
           mov rax, 1
@@ -56824,19 +56944,19 @@ elif_0x0000000000000196:
           mov rax, s_59
           push rax
           ; 91 push string
-          mov rax, s_408
+          mov rax, s_410
           push rax
           ; 91 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 91 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 91 push integer
           mov rax, 91
           push rax
           ; 91 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 91 push boolean
           mov rax, 1
@@ -56851,9 +56971,9 @@ elif_0x0000000000000196:
           pop rbx
           pop rbx
           ; 86 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 86 label
-elif_0x0000000000000197: 
+elif_0x0000000000000198: 
           ; 92 duplicate
           pop rax
           push rax
@@ -56884,24 +57004,24 @@ elif_0x0000000000000197:
           ; 92 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x0000000000000198
+          jz elif_0x0000000000000199
           ; 93 push string
           mov rax, s_59
           push rax
           ; 93 push string
-          mov rax, s_405
+          mov rax, s_407
           push rax
           ; 93 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 93 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 93 push integer
           mov rax, 93
           push rax
           ; 93 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 93 push boolean
           mov rax, 1
@@ -56919,19 +57039,19 @@ elif_0x0000000000000197:
           mov rax, s_59
           push rax
           ; 94 push string
-          mov rax, s_407
+          mov rax, s_409
           push rax
           ; 94 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 94 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 94 push integer
           mov rax, 94
           push rax
           ; 94 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 94 push boolean
           mov rax, 1
@@ -56949,19 +57069,19 @@ elif_0x0000000000000197:
           mov rax, s_59
           push rax
           ; 95 push string
-          mov rax, s_409
+          mov rax, s_411
           push rax
           ; 95 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 95 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 95 push integer
           mov rax, 95
           push rax
           ; 95 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 95 push boolean
           mov rax, 1
@@ -56979,19 +57099,19 @@ elif_0x0000000000000197:
           mov rax, s_59
           push rax
           ; 96 push string
-          mov rax, s_408
+          mov rax, s_410
           push rax
           ; 96 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 96 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 96 push integer
           mov rax, 96
           push rax
           ; 96 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 96 push boolean
           mov rax, 1
@@ -57009,19 +57129,19 @@ elif_0x0000000000000197:
           mov rax, s_59
           push rax
           ; 97 push string
-          mov rax, s_406
+          mov rax, s_408
           push rax
           ; 97 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 97 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 97 push integer
           mov rax, 97
           push rax
           ; 97 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 97 push boolean
           mov rax, 1
@@ -57039,19 +57159,19 @@ elif_0x0000000000000197:
           mov rax, s_59
           push rax
           ; 98 push string
-          mov rax, s_410
+          mov rax, s_412
           push rax
           ; 98 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 98 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 98 push integer
           mov rax, 98
           push rax
           ; 98 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 98 push boolean
           mov rax, 1
@@ -57066,9 +57186,9 @@ elif_0x0000000000000197:
           pop rbx
           pop rbx
           ; 92 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 92 label
-elif_0x0000000000000198: 
+elif_0x0000000000000199: 
           ; 99 duplicate
           pop rax
           push rax
@@ -57099,7 +57219,7 @@ elif_0x0000000000000198:
           ; 99 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x0000000000000199
+          jz elif_0x000000000000019a
           ; 100 get pointer to buffer
           mov rax, buf__textbuffer
           push rax
@@ -57108,13 +57228,13 @@ elif_0x0000000000000198:
           mov rbx, [rax]
           push rbx
           ; 100 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 100 push integer
           mov rax, 100
           push rax
           ; 100 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 100 push boolean
           mov rax, 1
@@ -57128,7 +57248,7 @@ elif_0x0000000000000198:
           pop rbx
           push rax
           ; 101 push string
-          mov rax, s_411
+          mov rax, s_413
           push rax
           ; 101 swap
           pop rax
@@ -57136,13 +57256,13 @@ elif_0x0000000000000198:
           push rax
           push rbx
           ; 101 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 101 push integer
           mov rax, 101
           push rax
           ; 101 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 101 push boolean
           mov rax, 1
@@ -57180,13 +57300,13 @@ elif_0x0000000000000198:
           push rax
           push rbx
           ; 102 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 102 push integer
           mov rax, 102
           push rax
           ; 102 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 102 push boolean
           mov rax, 1
@@ -57221,13 +57341,13 @@ elif_0x0000000000000198:
           mov rax, buf__text
           push rax
           ; 103 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 103 push integer
           mov rax, 103
           push rax
           ; 103 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 103 push boolean
           mov rax, 1
@@ -57245,19 +57365,19 @@ elif_0x0000000000000198:
           mov rax, s_59
           push rax
           ; 104 push string
-          mov rax, s_406
+          mov rax, s_408
           push rax
           ; 104 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 104 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 104 push integer
           mov rax, 104
           push rax
           ; 104 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 104 push boolean
           mov rax, 1
@@ -57279,9 +57399,9 @@ elif_0x0000000000000198:
           pop rbx
           mov [rax], rbx
           ; 99 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 99 label
-elif_0x0000000000000199: 
+elif_0x000000000000019a: 
           ; 106 duplicate
           pop rax
           push rax
@@ -57312,7 +57432,7 @@ elif_0x0000000000000199:
           ; 106 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x000000000000019a
+          jz elif_0x000000000000019b
           ; 107 get pointer to buffer
           mov rax, buf__textbuffer
           push rax
@@ -57321,13 +57441,13 @@ elif_0x0000000000000199:
           mov rbx, [rax]
           push rbx
           ; 107 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 107 push integer
           mov rax, 107
           push rax
           ; 107 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 107 push boolean
           mov rax, 1
@@ -57341,7 +57461,7 @@ elif_0x0000000000000199:
           pop rbx
           push rax
           ; 108 push string
-          mov rax, s_411
+          mov rax, s_413
           push rax
           ; 108 swap
           pop rax
@@ -57349,13 +57469,13 @@ elif_0x0000000000000199:
           push rax
           push rbx
           ; 108 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 108 push integer
           mov rax, 108
           push rax
           ; 108 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 108 push boolean
           mov rax, 1
@@ -57393,13 +57513,13 @@ elif_0x0000000000000199:
           push rax
           push rbx
           ; 109 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 109 push integer
           mov rax, 109
           push rax
           ; 109 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 109 push boolean
           mov rax, 1
@@ -57434,13 +57554,13 @@ elif_0x0000000000000199:
           mov rax, buf__text
           push rax
           ; 110 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 110 push integer
           mov rax, 110
           push rax
           ; 110 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 110 push boolean
           mov rax, 1
@@ -57458,19 +57578,19 @@ elif_0x0000000000000199:
           mov rax, s_59
           push rax
           ; 111 push string
-          mov rax, s_406
+          mov rax, s_408
           push rax
           ; 111 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 111 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 111 push integer
           mov rax, 111
           push rax
           ; 111 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 111 push boolean
           mov rax, 1
@@ -57492,9 +57612,9 @@ elif_0x0000000000000199:
           pop rbx
           mov [rax], rbx
           ; 106 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 106 label
-elif_0x000000000000019a: 
+elif_0x000000000000019b: 
           ; 113 duplicate
           pop rax
           push rax
@@ -57525,7 +57645,7 @@ elif_0x000000000000019a:
           ; 113 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x000000000000019b
+          jz elif_0x000000000000019c
           ; 114 get pointer to buffer
           mov rax, buf__textbuffer
           push rax
@@ -57534,13 +57654,13 @@ elif_0x000000000000019a:
           mov rbx, [rax]
           push rbx
           ; 114 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 114 push integer
           mov rax, 114
           push rax
           ; 114 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 114 push boolean
           mov rax, 1
@@ -57554,7 +57674,7 @@ elif_0x000000000000019a:
           pop rbx
           push rax
           ; 115 push string
-          mov rax, s_411
+          mov rax, s_413
           push rax
           ; 115 swap
           pop rax
@@ -57562,13 +57682,13 @@ elif_0x000000000000019a:
           push rax
           push rbx
           ; 115 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 115 push integer
           mov rax, 115
           push rax
           ; 115 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 115 push boolean
           mov rax, 1
@@ -57606,13 +57726,13 @@ elif_0x000000000000019a:
           mov bl, [rax]
           push rbx
           ; 116 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 116 push integer
           mov rax, 116
           push rax
           ; 116 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 116 push boolean
           mov rax, 1
@@ -57631,13 +57751,13 @@ elif_0x000000000000019a:
           push rax
           push rbx
           ; 116 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 116 push integer
           mov rax, 116
           push rax
           ; 116 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 116 push boolean
           mov rax, 1
@@ -57672,13 +57792,13 @@ elif_0x000000000000019a:
           mov rax, buf__text
           push rax
           ; 116 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 116 push integer
           mov rax, 116
           push rax
           ; 116 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 116 push boolean
           mov rax, 1
@@ -57713,13 +57833,13 @@ elif_0x000000000000019a:
           mov rax, buf__text
           push rax
           ; 117 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 117 push integer
           mov rax, 117
           push rax
           ; 117 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 117 push boolean
           mov rax, 1
@@ -57737,19 +57857,19 @@ elif_0x000000000000019a:
           mov rax, s_59
           push rax
           ; 118 push string
-          mov rax, s_406
+          mov rax, s_408
           push rax
           ; 118 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 118 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 118 push integer
           mov rax, 118
           push rax
           ; 118 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 118 push boolean
           mov rax, 1
@@ -57771,9 +57891,9 @@ elif_0x000000000000019a:
           pop rbx
           mov [rax], rbx
           ; 113 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 113 label
-elif_0x000000000000019b: 
+elif_0x000000000000019c: 
           ; 120 duplicate
           pop rax
           push rax
@@ -57804,7 +57924,7 @@ elif_0x000000000000019b:
           ; 120 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x000000000000019c
+          jz elif_0x000000000000019d
           ; 122 duplicate
           pop rax
           push rax
@@ -57829,13 +57949,13 @@ elif_0x000000000000019b:
           mov rbx, [rax]
           push rbx
           ; 122 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 122 push integer
           mov rax, 122
           push rax
           ; 122 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 122 push boolean
           mov rax, 1
@@ -57850,13 +57970,13 @@ elif_0x000000000000019b:
           pop rbx
           push rax
           ; 123 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 123 push integer
           mov rax, 123
           push rax
           ; 123 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 123 push boolean
           mov rax, 1
@@ -57879,7 +57999,7 @@ elif_0x000000000000019b:
           ; 123 start of if-block
           pop rax
           test rax, rax
-          jz if_0x000000000000019d
+          jz if_0x000000000000019e
           ; 125 get pointer to buffer
           mov rax, buf__string_index
           push rax
@@ -57907,13 +58027,13 @@ elif_0x000000000000019b:
           pop rbx
           mov [rax], rbx
           ; 129 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 129 push integer
           mov rax, 129
           push rax
           ; 129 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 129 push boolean
           mov rax, 1
@@ -57931,13 +58051,13 @@ elif_0x000000000000019b:
           push rax
           push rax
           ; 130 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 130 push integer
           mov rax, 130
           push rax
           ; 130 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 130 push boolean
           mov rax, 1
@@ -57959,13 +58079,13 @@ elif_0x000000000000019b:
           add rbx, rax
           push rbx
           ; 130 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 130 push integer
           mov rax, 130
           push rax
           ; 130 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 130 push boolean
           mov rax, 1
@@ -57979,7 +58099,7 @@ elif_0x000000000000019b:
           pop rbx
           push rax
           ; 131 push string
-          mov rax, s_412
+          mov rax, s_414
           push rax
           ; 131 over
           pop rax
@@ -57988,13 +58108,13 @@ elif_0x000000000000019b:
           push rax
           push rbx
           ; 131 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 131 push integer
           mov rax, 131
           push rax
           ; 131 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 131 push boolean
           mov rax, 1
@@ -58031,13 +58151,13 @@ elif_0x000000000000019b:
           add rbx, rax
           push rbx
           ; 132 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 132 push integer
           mov rax, 132
           push rax
           ; 132 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 132 push boolean
           mov rax, 1
@@ -58091,13 +58211,13 @@ elif_0x000000000000019b:
           mov rbx, [rax]
           push rbx
           ; 136 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 136 push integer
           mov rax, 136
           push rax
           ; 136 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 136 push boolean
           mov rax, 1
@@ -58127,13 +58247,13 @@ elif_0x000000000000019b:
           mov rbx, [rax]
           push rbx
           ; 139 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 139 push integer
           mov rax, 139
           push rax
           ; 139 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 139 push boolean
           mov rax, 1
@@ -58172,13 +58292,13 @@ elif_0x000000000000019b:
           mov rbx, [rax]
           push rbx
           ; 141 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 141 push integer
           mov rax, 141
           push rax
           ; 141 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 141 push boolean
           mov rax, 1
@@ -58198,13 +58318,13 @@ elif_0x000000000000019b:
           push rax
           push rbx
           ; 141 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 141 push integer
           mov rax, 141
           push rax
           ; 141 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 141 push boolean
           mov rax, 1
@@ -58219,7 +58339,7 @@ elif_0x000000000000019b:
           pop rbx
           push rax
           ; 142 push string
-          mov rax, s_413
+          mov rax, s_415
           push rax
           ; 142 swap
           pop rax
@@ -58227,13 +58347,13 @@ elif_0x000000000000019b:
           push rax
           push rbx
           ; 142 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 142 push integer
           mov rax, 142
           push rax
           ; 142 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 142 push boolean
           mov rax, 1
@@ -58282,13 +58402,13 @@ while_0x0000000000000039:
           push rax
           push rbx
           ; 147 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 147 push integer
           mov rax, 147
           push rax
           ; 147 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 147 push boolean
           mov rax, 1
@@ -58342,9 +58462,9 @@ while_0x0000000000000039:
           ; 148 start of if-block
           pop rax
           test rax, rax
-          jz if_0x000000000000019e
+          jz if_0x000000000000019f
           ; 149 push string
-          mov rax, s_414
+          mov rax, s_416
           push rax
           ; 149 get pointer to buffer
           mov rax, buf__textbuffer
@@ -58354,13 +58474,13 @@ while_0x0000000000000039:
           mov rbx, [rax]
           push rbx
           ; 149 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 149 push integer
           mov rax, 149
           push rax
           ; 149 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 149 push boolean
           mov rax, 1
@@ -58382,11 +58502,11 @@ while_0x0000000000000039:
           pop rbx
           mov [rax], rbx
           ; 149 jump
-          jmp end_0x000000000000019e
+          jmp end_0x000000000000019f
           ; 149 label
-if_0x000000000000019e: 
+if_0x000000000000019f: 
           ; 149 label
-end_0x000000000000019e: 
+end_0x000000000000019f: 
           ; 150 over
           pop rax
           pop rbx
@@ -58428,7 +58548,7 @@ end_0x000000000000019e:
           ; 151 start of if-block
           pop rax
           test rax, rax
-          jz if_0x000000000000019f
+          jz if_0x00000000000001a0
           ; 152 push integer
           mov rax, 1
           push rax
@@ -58461,9 +58581,9 @@ end_0x000000000000019e:
           ; 153 start of if-block
           pop rax
           test rax, rax
-          jz if_0x00000000000001a0
+          jz if_0x00000000000001a1
           ; 154 push string
-          mov rax, s_415
+          mov rax, s_417
           push rax
           ; 154 get pointer to buffer
           mov rax, buf__textbuffer
@@ -58473,13 +58593,13 @@ end_0x000000000000019e:
           mov rbx, [rax]
           push rbx
           ; 154 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 154 push integer
           mov rax, 154
           push rax
           ; 154 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 154 push boolean
           mov rax, 1
@@ -58501,9 +58621,9 @@ end_0x000000000000019e:
           pop rbx
           mov [rax], rbx
           ; 154 jump
-          jmp end_0x00000000000001a0
+          jmp end_0x00000000000001a1
           ; 154 label
-if_0x00000000000001a0: 
+if_0x00000000000001a1: 
           ; 155 duplicate
           pop rax
           push rax
@@ -58523,9 +58643,9 @@ if_0x00000000000001a0:
           ; 155 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001a1
+          jz elif_0x00000000000001a2
           ; 156 push string
-          mov rax, s_416
+          mov rax, s_418
           push rax
           ; 156 get pointer to buffer
           mov rax, buf__textbuffer
@@ -58535,13 +58655,13 @@ if_0x00000000000001a0:
           mov rbx, [rax]
           push rbx
           ; 156 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 156 push integer
           mov rax, 156
           push rax
           ; 156 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 156 push boolean
           mov rax, 1
@@ -58563,9 +58683,9 @@ if_0x00000000000001a0:
           pop rbx
           mov [rax], rbx
           ; 155 jump
-          jmp end_0x00000000000001a0
+          jmp end_0x00000000000001a1
           ; 155 label
-elif_0x00000000000001a1: 
+elif_0x00000000000001a2: 
           ; 157 duplicate
           pop rax
           push rax
@@ -58585,9 +58705,9 @@ elif_0x00000000000001a1:
           ; 157 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001a2
+          jz elif_0x00000000000001a3
           ; 158 push string
-          mov rax, s_417
+          mov rax, s_419
           push rax
           ; 158 get pointer to buffer
           mov rax, buf__textbuffer
@@ -58597,13 +58717,13 @@ elif_0x00000000000001a1:
           mov rbx, [rax]
           push rbx
           ; 158 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 158 push integer
           mov rax, 158
           push rax
           ; 158 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 158 push boolean
           mov rax, 1
@@ -58625,9 +58745,9 @@ elif_0x00000000000001a1:
           pop rbx
           mov [rax], rbx
           ; 157 jump
-          jmp end_0x00000000000001a0
+          jmp end_0x00000000000001a1
           ; 157 label
-elif_0x00000000000001a2: 
+elif_0x00000000000001a3: 
           ; 159 duplicate
           pop rax
           push rax
@@ -58647,7 +58767,7 @@ elif_0x00000000000001a2:
           ; 159 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001a3
+          jz elif_0x00000000000001a4
           ; 160 push string
           mov rax, s_1
           push rax
@@ -58659,13 +58779,13 @@ elif_0x00000000000001a2:
           mov rbx, [rax]
           push rbx
           ; 160 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 160 push integer
           mov rax, 160
           push rax
           ; 160 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 160 push boolean
           mov rax, 1
@@ -58687,9 +58807,9 @@ elif_0x00000000000001a2:
           pop rbx
           mov [rax], rbx
           ; 159 jump
-          jmp end_0x00000000000001a0
+          jmp end_0x00000000000001a1
           ; 159 label
-elif_0x00000000000001a3: 
+elif_0x00000000000001a4: 
           ; 161 duplicate
           pop rax
           push rax
@@ -58709,9 +58829,9 @@ elif_0x00000000000001a3:
           ; 161 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001a4
+          jz elif_0x00000000000001a5
           ; 162 push string
-          mov rax, s_418
+          mov rax, s_420
           push rax
           ; 162 get pointer to buffer
           mov rax, buf__textbuffer
@@ -58721,13 +58841,13 @@ elif_0x00000000000001a3:
           mov rbx, [rax]
           push rbx
           ; 162 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 162 push integer
           mov rax, 162
           push rax
           ; 162 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 162 push boolean
           mov rax, 1
@@ -58749,20 +58869,20 @@ elif_0x00000000000001a3:
           pop rbx
           mov [rax], rbx
           ; 161 jump
-          jmp end_0x00000000000001a0
+          jmp end_0x00000000000001a1
           ; 161 label
-elif_0x00000000000001a4: 
+elif_0x00000000000001a5: 
           ; 164 push string
-          mov rax, s_419
+          mov rax, s_421
           push rax
           ; 164 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 164 push integer
           mov rax, 164
           push rax
           ; 164 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 164 push boolean
           mov rax, 1
@@ -58775,7 +58895,7 @@ elif_0x00000000000001a4:
           pop rbx
           pop rbx
           ; 164 label
-end_0x00000000000001a0: 
+end_0x00000000000001a1: 
           ; 165 drop
           pop rax
           ; 166 push integer
@@ -58787,22 +58907,22 @@ end_0x00000000000001a0:
           add rbx, rax
           push rbx
           ; 152 jump
-          jmp end_0x000000000000019f
+          jmp end_0x00000000000001a0
           ; 152 label
-if_0x000000000000019f: 
+if_0x00000000000001a0: 
           ; 168 dereference character
           pop rax
           xor rbx, rbx
           mov bl, [rax]
           push rbx
           ; 168 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 168 push integer
           mov rax, 168
           push rax
           ; 168 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 168 push boolean
           mov rax, 1
@@ -58823,13 +58943,13 @@ if_0x000000000000019f:
           mov rbx, [rax]
           push rbx
           ; 168 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 168 push integer
           mov rax, 168
           push rax
           ; 168 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 168 push boolean
           mov rax, 1
@@ -58851,7 +58971,7 @@ if_0x000000000000019f:
           pop rbx
           mov [rax], rbx
           ; 168 label
-end_0x000000000000019f: 
+end_0x00000000000001a0: 
           ; 169 push integer
           mov rax, 1
           push rax
@@ -58896,9 +59016,9 @@ while_0x0000000000000039_end:
           ; 174 start of if-block
           pop rax
           test rax, rax
-          jz if_0x00000000000001a5
+          jz if_0x00000000000001a6
           ; 175 push string
-          mov rax, s_420
+          mov rax, s_422
           push rax
           ; 175 swap
           pop rax
@@ -58906,13 +59026,13 @@ while_0x0000000000000039_end:
           push rax
           push rbx
           ; 175 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 175 push integer
           mov rax, 175
           push rax
           ; 175 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 175 push boolean
           mov rax, 1
@@ -58927,9 +59047,9 @@ while_0x0000000000000039_end:
           pop rbx
           push rax
           ; 175 jump
-          jmp end_0x00000000000001a5
+          jmp end_0x00000000000001a6
           ; 175 label
-if_0x00000000000001a5: 
+if_0x00000000000001a6: 
           ; 177 push string
           mov rax, s_1
           push rax
@@ -58939,13 +59059,13 @@ if_0x00000000000001a5:
           push rax
           push rbx
           ; 177 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 177 push integer
           mov rax, 177
           push rax
           ; 177 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 177 push boolean
           mov rax, 1
@@ -58960,7 +59080,7 @@ if_0x00000000000001a5:
           pop rbx
           push rax
           ; 177 label
-end_0x00000000000001a5: 
+end_0x00000000000001a6: 
           ; 179 duplicate
           pop rax
           push rax
@@ -58980,13 +59100,13 @@ end_0x00000000000001a5:
           mov rax, buf__data
           push rax
           ; 179 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 179 push integer
           mov rax, 179
           push rax
           ; 179 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 179 push boolean
           mov rax, 1
@@ -59008,11 +59128,11 @@ end_0x00000000000001a5:
           pop rbx
           mov [rax], rbx
           ; 124 jump
-          jmp end_0x000000000000019d
+          jmp end_0x000000000000019e
           ; 124 label
-if_0x000000000000019d: 
+if_0x000000000000019e: 
           ; 124 label
-end_0x000000000000019d: 
+end_0x000000000000019e: 
           ; 182 duplicate
           pop rax
           push rax
@@ -59037,13 +59157,13 @@ end_0x000000000000019d:
           mov rbx, [rax]
           push rbx
           ; 182 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 182 push integer
           mov rax, 182
           push rax
           ; 182 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 182 push boolean
           mov rax, 1
@@ -59058,13 +59178,13 @@ end_0x000000000000019d:
           pop rbx
           push rax
           ; 182 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 182 push integer
           mov rax, 182
           push rax
           ; 182 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 182 push boolean
           mov rax, 1
@@ -59085,16 +59205,16 @@ end_0x000000000000019d:
           cmovne rax, rbx
           push rax
           ; 183 push string
-          mov rax, s_421
+          mov rax, s_423
           push rax
           ; 183 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 183 push integer
           mov rax, 183
           push rax
           ; 183 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 183 push boolean
           mov rax, 1
@@ -59115,13 +59235,13 @@ end_0x000000000000019d:
           mov rbx, [rax]
           push rbx
           ; 185 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 185 push integer
           mov rax, 185
           push rax
           ; 185 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 185 push boolean
           mov rax, 1
@@ -59135,7 +59255,7 @@ end_0x000000000000019d:
           pop rbx
           push rax
           ; 186 push string
-          mov rax, s_411
+          mov rax, s_413
           push rax
           ; 186 swap
           pop rax
@@ -59143,13 +59263,13 @@ end_0x000000000000019d:
           push rax
           push rbx
           ; 186 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 186 push integer
           mov rax, 186
           push rax
           ; 186 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 186 push boolean
           mov rax, 1
@@ -59189,13 +59309,13 @@ end_0x000000000000019d:
           mov rbx, [rax]
           push rbx
           ; 188 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 188 push integer
           mov rax, 188
           push rax
           ; 188 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 188 push boolean
           mov rax, 1
@@ -59215,13 +59335,13 @@ end_0x000000000000019d:
           push rax
           push rbx
           ; 188 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 188 push integer
           mov rax, 188
           push rax
           ; 188 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 188 push boolean
           mov rax, 1
@@ -59256,13 +59376,13 @@ end_0x000000000000019d:
           mov rax, buf__text
           push rax
           ; 189 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 189 push integer
           mov rax, 189
           push rax
           ; 189 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 189 push boolean
           mov rax, 1
@@ -59280,19 +59400,19 @@ end_0x000000000000019d:
           mov rax, s_59
           push rax
           ; 190 push string
-          mov rax, s_406
+          mov rax, s_408
           push rax
           ; 190 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 190 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 190 push integer
           mov rax, 190
           push rax
           ; 190 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 190 push boolean
           mov rax, 1
@@ -59314,9 +59434,9 @@ end_0x000000000000019d:
           pop rbx
           mov [rax], rbx
           ; 120 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 120 label
-elif_0x000000000000019c: 
+elif_0x000000000000019d: 
           ; 192 duplicate
           pop rax
           push rax
@@ -59347,7 +59467,7 @@ elif_0x000000000000019c:
           ; 192 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001a6
+          jz elif_0x00000000000001a7
           ; 193 get pointer to buffer
           mov rax, buf__textbuffer
           push rax
@@ -59356,13 +59476,13 @@ elif_0x000000000000019c:
           mov rbx, [rax]
           push rbx
           ; 193 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 193 push integer
           mov rax, 193
           push rax
           ; 193 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 193 push boolean
           mov rax, 1
@@ -59384,13 +59504,13 @@ elif_0x000000000000019c:
           push rax
           push rbx
           ; 194 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 194 push integer
           mov rax, 194
           push rax
           ; 194 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 194 push boolean
           mov rax, 1
@@ -59428,13 +59548,13 @@ elif_0x000000000000019c:
           push rax
           push rbx
           ; 195 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 195 push integer
           mov rax, 195
           push rax
           ; 195 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 195 push boolean
           mov rax, 1
@@ -59449,7 +59569,7 @@ elif_0x000000000000019c:
           pop rbx
           push rax
           ; 196 push string
-          mov rax, s_422
+          mov rax, s_424
           push rax
           ; 196 swap
           pop rax
@@ -59457,13 +59577,13 @@ elif_0x000000000000019c:
           push rax
           push rbx
           ; 196 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 196 push integer
           mov rax, 196
           push rax
           ; 196 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 196 push boolean
           mov rax, 1
@@ -59496,13 +59616,13 @@ elif_0x000000000000019c:
           mov rax, buf__text
           push rax
           ; 197 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 197 push integer
           mov rax, 197
           push rax
           ; 197 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 197 push boolean
           mov rax, 1
@@ -59520,19 +59640,19 @@ elif_0x000000000000019c:
           mov rax, s_59
           push rax
           ; 198 push string
-          mov rax, s_423
+          mov rax, s_425
           push rax
           ; 198 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 198 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 198 push integer
           mov rax, 198
           push rax
           ; 198 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 198 push boolean
           mov rax, 1
@@ -59550,19 +59670,19 @@ elif_0x000000000000019c:
           mov rax, s_59
           push rax
           ; 199 push string
-          mov rax, s_424
+          mov rax, s_426
           push rax
           ; 199 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 199 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 199 push integer
           mov rax, 199
           push rax
           ; 199 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 199 push boolean
           mov rax, 1
@@ -59584,9 +59704,9 @@ elif_0x000000000000019c:
           pop rbx
           mov [rax], rbx
           ; 192 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 192 label
-elif_0x00000000000001a6: 
+elif_0x00000000000001a7: 
           ; 201 duplicate
           pop rax
           push rax
@@ -59617,7 +59737,7 @@ elif_0x00000000000001a6:
           ; 201 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001a7
+          jz elif_0x00000000000001a8
           ; 202 get pointer to buffer
           mov rax, buf__textbuffer
           push rax
@@ -59626,13 +59746,13 @@ elif_0x00000000000001a6:
           mov rbx, [rax]
           push rbx
           ; 202 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 202 push integer
           mov rax, 202
           push rax
           ; 202 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 202 push boolean
           mov rax, 1
@@ -59646,7 +59766,7 @@ elif_0x00000000000001a6:
           pop rbx
           push rax
           ; 203 push string
-          mov rax, s_425
+          mov rax, s_427
           push rax
           ; 203 swap
           pop rax
@@ -59654,13 +59774,13 @@ elif_0x00000000000001a6:
           push rax
           push rbx
           ; 203 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 203 push integer
           mov rax, 203
           push rax
           ; 203 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 203 push boolean
           mov rax, 1
@@ -59698,13 +59818,13 @@ elif_0x00000000000001a6:
           push rax
           push rbx
           ; 204 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 204 push integer
           mov rax, 204
           push rax
           ; 204 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 204 push boolean
           mov rax, 1
@@ -59739,13 +59859,13 @@ elif_0x00000000000001a6:
           mov rax, buf__text
           push rax
           ; 205 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 205 push integer
           mov rax, 205
           push rax
           ; 205 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 205 push boolean
           mov rax, 1
@@ -59790,13 +59910,13 @@ elif_0x00000000000001a6:
           mov rbx, [rax]
           push rbx
           ; 208 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 208 push integer
           mov rax, 208
           push rax
           ; 208 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 208 push boolean
           mov rax, 1
@@ -59875,19 +59995,19 @@ while_0x000000000000003a:
           mov rax, s_59
           push rax
           ; 211 push string
-          mov rax, s_407
+          mov rax, s_409
           push rax
           ; 211 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 211 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 211 push integer
           mov rax, 211
           push rax
           ; 211 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 211 push boolean
           mov rax, 1
@@ -59940,24 +60060,24 @@ while_0x000000000000003a_end:
           ; 214 start of if-block
           pop rax
           test rax, rax
-          jz if_0x00000000000001a8
+          jz if_0x00000000000001a9
           ; 215 push string
           mov rax, s_59
           push rax
           ; 215 push string
-          mov rax, s_406
+          mov rax, s_408
           push rax
           ; 215 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 215 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 215 push integer
           mov rax, 215
           push rax
           ; 215 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 215 push boolean
           mov rax, 1
@@ -59972,15 +60092,15 @@ while_0x000000000000003a_end:
           pop rbx
           pop rbx
           ; 215 jump
-          jmp end_0x00000000000001a8
+          jmp end_0x00000000000001a9
           ; 215 label
-if_0x00000000000001a8: 
+if_0x00000000000001a9: 
           ; 215 label
-end_0x00000000000001a8: 
+end_0x00000000000001a9: 
           ; 201 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 201 label
-elif_0x00000000000001a7: 
+elif_0x00000000000001a8: 
           ; 216 duplicate
           pop rax
           push rax
@@ -60011,24 +60131,24 @@ elif_0x00000000000001a7:
           ; 216 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001a9
+          jz elif_0x00000000000001aa
           ; 217 push string
           mov rax, s_59
           push rax
           ; 217 push string
-          mov rax, s_426
+          mov rax, s_428
           push rax
           ; 217 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 217 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 217 push integer
           mov rax, 217
           push rax
           ; 217 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 217 push boolean
           mov rax, 1
@@ -60050,13 +60170,13 @@ elif_0x00000000000001a7:
           mov rbx, [rax]
           push rbx
           ; 218 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 218 push integer
           mov rax, 218
           push rax
           ; 218 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 218 push boolean
           mov rax, 1
@@ -60070,7 +60190,7 @@ elif_0x00000000000001a7:
           pop rbx
           push rax
           ; 219 push string
-          mov rax, s_427
+          mov rax, s_429
           push rax
           ; 219 swap
           pop rax
@@ -60078,13 +60198,13 @@ elif_0x00000000000001a7:
           push rax
           push rbx
           ; 219 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 219 push integer
           mov rax, 219
           push rax
           ; 219 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 219 push boolean
           mov rax, 1
@@ -60122,13 +60242,13 @@ elif_0x00000000000001a7:
           push rax
           push rbx
           ; 220 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 220 push integer
           mov rax, 220
           push rax
           ; 220 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 220 push boolean
           mov rax, 1
@@ -60163,13 +60283,13 @@ elif_0x00000000000001a7:
           mov rax, buf__text
           push rax
           ; 221 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 221 push integer
           mov rax, 221
           push rax
           ; 221 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 221 push boolean
           mov rax, 1
@@ -60194,19 +60314,19 @@ elif_0x00000000000001a7:
           mov rax, s_59
           push rax
           ; 223 push string
-          mov rax, s_428
+          mov rax, s_430
           push rax
           ; 223 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 223 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 223 push integer
           mov rax, 223
           push rax
           ; 223 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 223 push boolean
           mov rax, 1
@@ -60224,19 +60344,19 @@ elif_0x00000000000001a7:
           mov rax, s_59
           push rax
           ; 224 push string
-          mov rax, s_408
+          mov rax, s_410
           push rax
           ; 224 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 224 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 224 push integer
           mov rax, 224
           push rax
           ; 224 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 224 push boolean
           mov rax, 1
@@ -60251,9 +60371,9 @@ elif_0x00000000000001a7:
           pop rbx
           pop rbx
           ; 216 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 216 label
-elif_0x00000000000001a9: 
+elif_0x00000000000001aa: 
           ; 225 duplicate
           pop rax
           push rax
@@ -60284,24 +60404,24 @@ elif_0x00000000000001a9:
           ; 225 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001aa
+          jz elif_0x00000000000001ab
           ; 226 push string
           mov rax, s_59
           push rax
           ; 226 push string
-          mov rax, s_405
+          mov rax, s_407
           push rax
           ; 226 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 226 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 226 push integer
           mov rax, 226
           push rax
           ; 226 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 226 push boolean
           mov rax, 1
@@ -60319,19 +60439,19 @@ elif_0x00000000000001a9:
           mov rax, s_59
           push rax
           ; 227 push string
-          mov rax, s_407
+          mov rax, s_409
           push rax
           ; 227 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 227 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 227 push integer
           mov rax, 227
           push rax
           ; 227 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 227 push boolean
           mov rax, 1
@@ -60349,19 +60469,19 @@ elif_0x00000000000001a9:
           mov rax, s_59
           push rax
           ; 228 push string
-          mov rax, s_429
+          mov rax, s_431
           push rax
           ; 228 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 228 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 228 push integer
           mov rax, 228
           push rax
           ; 228 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 228 push boolean
           mov rax, 1
@@ -60379,19 +60499,19 @@ elif_0x00000000000001a9:
           mov rax, s_59
           push rax
           ; 229 push string
-          mov rax, s_408
+          mov rax, s_410
           push rax
           ; 229 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 229 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 229 push integer
           mov rax, 229
           push rax
           ; 229 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 229 push boolean
           mov rax, 1
@@ -60406,9 +60526,9 @@ elif_0x00000000000001a9:
           pop rbx
           pop rbx
           ; 225 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 225 label
-elif_0x00000000000001aa: 
+elif_0x00000000000001ab: 
           ; 230 duplicate
           pop rax
           push rax
@@ -60439,24 +60559,24 @@ elif_0x00000000000001aa:
           ; 230 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001ab
+          jz elif_0x00000000000001ac
           ; 231 push string
           mov rax, s_59
           push rax
           ; 231 push string
-          mov rax, s_405
+          mov rax, s_407
           push rax
           ; 231 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 231 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 231 push integer
           mov rax, 231
           push rax
           ; 231 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 231 push boolean
           mov rax, 1
@@ -60474,19 +60594,19 @@ elif_0x00000000000001aa:
           mov rax, s_59
           push rax
           ; 232 push string
-          mov rax, s_407
+          mov rax, s_409
           push rax
           ; 232 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 232 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 232 push integer
           mov rax, 232
           push rax
           ; 232 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 232 push boolean
           mov rax, 1
@@ -60504,19 +60624,19 @@ elif_0x00000000000001aa:
           mov rax, s_59
           push rax
           ; 233 push string
-          mov rax, s_430
+          mov rax, s_432
           push rax
           ; 233 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 233 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 233 push integer
           mov rax, 233
           push rax
           ; 233 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 233 push boolean
           mov rax, 1
@@ -60534,19 +60654,19 @@ elif_0x00000000000001aa:
           mov rax, s_59
           push rax
           ; 234 push string
-          mov rax, s_408
+          mov rax, s_410
           push rax
           ; 234 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 234 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 234 push integer
           mov rax, 234
           push rax
           ; 234 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 234 push boolean
           mov rax, 1
@@ -60561,9 +60681,9 @@ elif_0x00000000000001aa:
           pop rbx
           pop rbx
           ; 230 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 230 label
-elif_0x00000000000001ab: 
+elif_0x00000000000001ac: 
           ; 235 duplicate
           pop rax
           push rax
@@ -60594,24 +60714,24 @@ elif_0x00000000000001ab:
           ; 235 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001ac
+          jz elif_0x00000000000001ad
           ; 236 push string
           mov rax, s_59
           push rax
           ; 236 push string
-          mov rax, s_405
+          mov rax, s_407
           push rax
           ; 236 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 236 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 236 push integer
           mov rax, 236
           push rax
           ; 236 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 236 push boolean
           mov rax, 1
@@ -60629,19 +60749,19 @@ elif_0x00000000000001ab:
           mov rax, s_59
           push rax
           ; 237 push string
-          mov rax, s_407
+          mov rax, s_409
           push rax
           ; 237 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 237 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 237 push integer
           mov rax, 237
           push rax
           ; 237 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 237 push boolean
           mov rax, 1
@@ -60659,19 +60779,19 @@ elif_0x00000000000001ab:
           mov rax, s_59
           push rax
           ; 238 push string
-          mov rax, s_431
+          mov rax, s_433
           push rax
           ; 238 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 238 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 238 push integer
           mov rax, 238
           push rax
           ; 238 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 238 push boolean
           mov rax, 1
@@ -60689,19 +60809,19 @@ elif_0x00000000000001ab:
           mov rax, s_59
           push rax
           ; 239 push string
-          mov rax, s_408
+          mov rax, s_410
           push rax
           ; 239 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 239 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 239 push integer
           mov rax, 239
           push rax
           ; 239 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 239 push boolean
           mov rax, 1
@@ -60716,9 +60836,9 @@ elif_0x00000000000001ab:
           pop rbx
           pop rbx
           ; 235 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 235 label
-elif_0x00000000000001ac: 
+elif_0x00000000000001ad: 
           ; 240 duplicate
           pop rax
           push rax
@@ -60749,24 +60869,24 @@ elif_0x00000000000001ac:
           ; 240 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001ad
+          jz elif_0x00000000000001ae
           ; 241 push string
           mov rax, s_59
           push rax
           ; 241 push string
-          mov rax, s_432
+          mov rax, s_434
           push rax
           ; 241 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 241 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 241 push integer
           mov rax, 241
           push rax
           ; 241 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 241 push boolean
           mov rax, 1
@@ -60784,19 +60904,19 @@ elif_0x00000000000001ac:
           mov rax, s_59
           push rax
           ; 242 push string
-          mov rax, s_407
+          mov rax, s_409
           push rax
           ; 242 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 242 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 242 push integer
           mov rax, 242
           push rax
           ; 242 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 242 push boolean
           mov rax, 1
@@ -60814,19 +60934,19 @@ elif_0x00000000000001ac:
           mov rax, s_59
           push rax
           ; 243 push string
-          mov rax, s_405
+          mov rax, s_407
           push rax
           ; 243 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 243 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 243 push integer
           mov rax, 243
           push rax
           ; 243 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 243 push boolean
           mov rax, 1
@@ -60844,19 +60964,19 @@ elif_0x00000000000001ac:
           mov rax, s_59
           push rax
           ; 244 push string
-          mov rax, s_433
+          mov rax, s_435
           push rax
           ; 244 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 244 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 244 push integer
           mov rax, 244
           push rax
           ; 244 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 244 push boolean
           mov rax, 1
@@ -60874,19 +60994,19 @@ elif_0x00000000000001ac:
           mov rax, s_59
           push rax
           ; 245 push string
-          mov rax, s_406
+          mov rax, s_408
           push rax
           ; 245 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 245 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 245 push integer
           mov rax, 245
           push rax
           ; 245 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 245 push boolean
           mov rax, 1
@@ -60901,9 +61021,9 @@ elif_0x00000000000001ac:
           pop rbx
           pop rbx
           ; 240 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 240 label
-elif_0x00000000000001ad: 
+elif_0x00000000000001ae: 
           ; 246 duplicate
           pop rax
           push rax
@@ -60934,24 +61054,24 @@ elif_0x00000000000001ad:
           ; 246 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001ae
+          jz elif_0x00000000000001af
           ; 247 push string
           mov rax, s_59
           push rax
           ; 247 push string
-          mov rax, s_432
+          mov rax, s_434
           push rax
           ; 247 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 247 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 247 push integer
           mov rax, 247
           push rax
           ; 247 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 247 push boolean
           mov rax, 1
@@ -60969,19 +61089,19 @@ elif_0x00000000000001ad:
           mov rax, s_59
           push rax
           ; 248 push string
-          mov rax, s_407
+          mov rax, s_409
           push rax
           ; 248 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 248 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 248 push integer
           mov rax, 248
           push rax
           ; 248 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 248 push boolean
           mov rax, 1
@@ -60999,19 +61119,19 @@ elif_0x00000000000001ad:
           mov rax, s_59
           push rax
           ; 249 push string
-          mov rax, s_405
+          mov rax, s_407
           push rax
           ; 249 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 249 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 249 push integer
           mov rax, 249
           push rax
           ; 249 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 249 push boolean
           mov rax, 1
@@ -61029,19 +61149,19 @@ elif_0x00000000000001ad:
           mov rax, s_59
           push rax
           ; 250 push string
-          mov rax, s_433
+          mov rax, s_435
           push rax
           ; 250 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 250 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 250 push integer
           mov rax, 250
           push rax
           ; 250 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 250 push boolean
           mov rax, 1
@@ -61059,19 +61179,19 @@ elif_0x00000000000001ad:
           mov rax, s_59
           push rax
           ; 251 push string
-          mov rax, s_434
+          mov rax, s_436
           push rax
           ; 251 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 251 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 251 push integer
           mov rax, 251
           push rax
           ; 251 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 251 push boolean
           mov rax, 1
@@ -61086,9 +61206,9 @@ elif_0x00000000000001ad:
           pop rbx
           pop rbx
           ; 246 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 246 label
-elif_0x00000000000001ae: 
+elif_0x00000000000001af: 
           ; 252 duplicate
           pop rax
           push rax
@@ -61119,24 +61239,24 @@ elif_0x00000000000001ae:
           ; 252 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001af
+          jz elif_0x00000000000001b0
           ; 253 push string
           mov rax, s_59
           push rax
           ; 253 push string
-          mov rax, s_405
+          mov rax, s_407
           push rax
           ; 253 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 253 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 253 push integer
           mov rax, 253
           push rax
           ; 253 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 253 push boolean
           mov rax, 1
@@ -61154,19 +61274,19 @@ elif_0x00000000000001ae:
           mov rax, s_59
           push rax
           ; 254 push string
-          mov rax, s_435
+          mov rax, s_437
           push rax
           ; 254 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 254 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 254 push integer
           mov rax, 254
           push rax
           ; 254 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 254 push boolean
           mov rax, 1
@@ -61184,19 +61304,19 @@ elif_0x00000000000001ae:
           mov rax, s_59
           push rax
           ; 255 push string
-          mov rax, s_436
+          mov rax, s_438
           push rax
           ; 255 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 255 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 255 push integer
           mov rax, 255
           push rax
           ; 255 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 255 push boolean
           mov rax, 1
@@ -61211,9 +61331,9 @@ elif_0x00000000000001ae:
           pop rbx
           pop rbx
           ; 252 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 252 label
-elif_0x00000000000001af: 
+elif_0x00000000000001b0: 
           ; 256 duplicate
           pop rax
           push rax
@@ -61244,24 +61364,24 @@ elif_0x00000000000001af:
           ; 256 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001b0
+          jz elif_0x00000000000001b1
           ; 257 push string
           mov rax, s_59
           push rax
           ; 257 push string
-          mov rax, s_437
+          mov rax, s_439
           push rax
           ; 257 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 257 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 257 push integer
           mov rax, 257
           push rax
           ; 257 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 257 push boolean
           mov rax, 1
@@ -61276,9 +61396,9 @@ elif_0x00000000000001af:
           pop rbx
           pop rbx
           ; 256 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 256 label
-elif_0x00000000000001b0: 
+elif_0x00000000000001b1: 
           ; 258 duplicate
           pop rax
           push rax
@@ -61309,24 +61429,24 @@ elif_0x00000000000001b0:
           ; 258 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001b1
+          jz elif_0x00000000000001b2
           ; 259 push string
           mov rax, s_59
           push rax
           ; 259 push string
-          mov rax, s_405
+          mov rax, s_407
           push rax
           ; 259 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 259 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 259 push integer
           mov rax, 259
           push rax
           ; 259 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 259 push boolean
           mov rax, 1
@@ -61344,19 +61464,19 @@ elif_0x00000000000001b0:
           mov rax, s_59
           push rax
           ; 260 push string
-          mov rax, s_407
+          mov rax, s_409
           push rax
           ; 260 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 260 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 260 push integer
           mov rax, 260
           push rax
           ; 260 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 260 push boolean
           mov rax, 1
@@ -61374,19 +61494,19 @@ elif_0x00000000000001b0:
           mov rax, s_59
           push rax
           ; 261 push string
-          mov rax, s_438
+          mov rax, s_440
           push rax
           ; 261 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 261 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 261 push integer
           mov rax, 261
           push rax
           ; 261 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 261 push boolean
           mov rax, 1
@@ -61404,19 +61524,19 @@ elif_0x00000000000001b0:
           mov rax, s_59
           push rax
           ; 262 push string
-          mov rax, s_408
+          mov rax, s_410
           push rax
           ; 262 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 262 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 262 push integer
           mov rax, 262
           push rax
           ; 262 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 262 push boolean
           mov rax, 1
@@ -61431,9 +61551,9 @@ elif_0x00000000000001b0:
           pop rbx
           pop rbx
           ; 258 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 258 label
-elif_0x00000000000001b1: 
+elif_0x00000000000001b2: 
           ; 263 duplicate
           pop rax
           push rax
@@ -61464,24 +61584,24 @@ elif_0x00000000000001b1:
           ; 263 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001b2
+          jz elif_0x00000000000001b3
           ; 264 push string
           mov rax, s_59
           push rax
           ; 264 push string
-          mov rax, s_405
+          mov rax, s_407
           push rax
           ; 264 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 264 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 264 push integer
           mov rax, 264
           push rax
           ; 264 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 264 push boolean
           mov rax, 1
@@ -61499,19 +61619,19 @@ elif_0x00000000000001b1:
           mov rax, s_59
           push rax
           ; 265 push string
-          mov rax, s_407
+          mov rax, s_409
           push rax
           ; 265 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 265 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 265 push integer
           mov rax, 265
           push rax
           ; 265 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 265 push boolean
           mov rax, 1
@@ -61529,19 +61649,19 @@ elif_0x00000000000001b1:
           mov rax, s_59
           push rax
           ; 266 push string
-          mov rax, s_439
+          mov rax, s_441
           push rax
           ; 266 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 266 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 266 push integer
           mov rax, 266
           push rax
           ; 266 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 266 push boolean
           mov rax, 1
@@ -61559,19 +61679,19 @@ elif_0x00000000000001b1:
           mov rax, s_59
           push rax
           ; 267 push string
-          mov rax, s_408
+          mov rax, s_410
           push rax
           ; 267 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 267 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 267 push integer
           mov rax, 267
           push rax
           ; 267 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 267 push boolean
           mov rax, 1
@@ -61586,9 +61706,9 @@ elif_0x00000000000001b1:
           pop rbx
           pop rbx
           ; 263 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 263 label
-elif_0x00000000000001b2: 
+elif_0x00000000000001b3: 
           ; 268 duplicate
           pop rax
           push rax
@@ -61619,7 +61739,7 @@ elif_0x00000000000001b2:
           ; 268 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001b3
+          jz elif_0x00000000000001b4
           ; 269 get pointer to buffer
           mov rax, buf__textbuffer
           push rax
@@ -61628,13 +61748,13 @@ elif_0x00000000000001b2:
           mov rbx, [rax]
           push rbx
           ; 269 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 269 push integer
           mov rax, 269
           push rax
           ; 269 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 269 push boolean
           mov rax, 1
@@ -61648,7 +61768,7 @@ elif_0x00000000000001b2:
           pop rbx
           push rax
           ; 270 push string
-          mov rax, s_440
+          mov rax, s_442
           push rax
           ; 270 swap
           pop rax
@@ -61656,13 +61776,13 @@ elif_0x00000000000001b2:
           push rax
           push rbx
           ; 270 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 270 push integer
           mov rax, 270
           push rax
           ; 270 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 270 push boolean
           mov rax, 1
@@ -61700,13 +61820,13 @@ elif_0x00000000000001b2:
           push rax
           push rbx
           ; 271 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 271 push integer
           mov rax, 271
           push rax
           ; 271 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 271 push boolean
           mov rax, 1
@@ -61741,13 +61861,13 @@ elif_0x00000000000001b2:
           mov rax, buf__text
           push rax
           ; 272 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 272 push integer
           mov rax, 272
           push rax
           ; 272 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 272 push boolean
           mov rax, 1
@@ -61765,19 +61885,19 @@ elif_0x00000000000001b2:
           mov rax, s_59
           push rax
           ; 273 push string
-          mov rax, s_406
+          mov rax, s_408
           push rax
           ; 273 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 273 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 273 push integer
           mov rax, 273
           push rax
           ; 273 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 273 push boolean
           mov rax, 1
@@ -61799,9 +61919,9 @@ elif_0x00000000000001b2:
           pop rbx
           mov [rax], rbx
           ; 268 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 268 label
-elif_0x00000000000001b3: 
+elif_0x00000000000001b4: 
           ; 275 duplicate
           pop rax
           push rax
@@ -61832,7 +61952,7 @@ elif_0x00000000000001b3:
           ; 275 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001b4
+          jz elif_0x00000000000001b5
           ; 276 get pointer to buffer
           mov rax, buf__textbuffer
           push rax
@@ -61841,13 +61961,13 @@ elif_0x00000000000001b3:
           mov rbx, [rax]
           push rbx
           ; 276 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 276 push integer
           mov rax, 276
           push rax
           ; 276 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 276 push boolean
           mov rax, 1
@@ -61861,7 +61981,7 @@ elif_0x00000000000001b3:
           pop rbx
           push rax
           ; 277 push string
-          mov rax, s_441
+          mov rax, s_443
           push rax
           ; 277 swap
           pop rax
@@ -61869,13 +61989,13 @@ elif_0x00000000000001b3:
           push rax
           push rbx
           ; 277 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 277 push integer
           mov rax, 277
           push rax
           ; 277 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 277 push boolean
           mov rax, 1
@@ -61925,13 +62045,13 @@ elif_0x00000000000001b3:
           push rax
           push rbx
           ; 279 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 279 push integer
           mov rax, 279
           push rax
           ; 279 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 279 push boolean
           mov rax, 1
@@ -61946,7 +62066,7 @@ elif_0x00000000000001b3:
           pop rbx
           push rax
           ; 280 push string
-          mov rax, s_442
+          mov rax, s_444
           push rax
           ; 280 swap
           pop rax
@@ -61954,13 +62074,13 @@ elif_0x00000000000001b3:
           push rax
           push rbx
           ; 280 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 280 push integer
           mov rax, 280
           push rax
           ; 280 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 280 push boolean
           mov rax, 1
@@ -62010,13 +62130,13 @@ elif_0x00000000000001b3:
           push rax
           push rbx
           ; 282 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 282 push integer
           mov rax, 282
           push rax
           ; 282 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 282 push boolean
           mov rax, 1
@@ -62049,13 +62169,13 @@ elif_0x00000000000001b3:
           mov rax, buf__data
           push rax
           ; 284 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 284 push integer
           mov rax, 284
           push rax
           ; 284 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 284 push boolean
           mov rax, 1
@@ -62077,9 +62197,9 @@ elif_0x00000000000001b3:
           pop rbx
           mov [rax], rbx
           ; 275 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 275 label
-elif_0x00000000000001b4: 
+elif_0x00000000000001b5: 
           ; 286 duplicate
           pop rax
           push rax
@@ -62110,24 +62230,24 @@ elif_0x00000000000001b4:
           ; 286 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001b5
+          jz elif_0x00000000000001b6
           ; 287 push string
           mov rax, s_59
           push rax
           ; 287 push string
-          mov rax, s_443
+          mov rax, s_445
           push rax
           ; 287 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 287 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 287 push integer
           mov rax, 287
           push rax
           ; 287 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 287 push boolean
           mov rax, 1
@@ -62145,19 +62265,19 @@ elif_0x00000000000001b4:
           mov rax, s_59
           push rax
           ; 288 push string
-          mov rax, s_444
+          mov rax, s_446
           push rax
           ; 288 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 288 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 288 push integer
           mov rax, 288
           push rax
           ; 288 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 288 push boolean
           mov rax, 1
@@ -62175,19 +62295,19 @@ elif_0x00000000000001b4:
           mov rax, s_59
           push rax
           ; 289 push string
-          mov rax, s_409
+          mov rax, s_411
           push rax
           ; 289 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 289 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 289 push integer
           mov rax, 289
           push rax
           ; 289 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 289 push boolean
           mov rax, 1
@@ -62205,19 +62325,19 @@ elif_0x00000000000001b4:
           mov rax, s_59
           push rax
           ; 290 push string
-          mov rax, s_445
+          mov rax, s_447
           push rax
           ; 290 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 290 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 290 push integer
           mov rax, 290
           push rax
           ; 290 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 290 push boolean
           mov rax, 1
@@ -62235,19 +62355,19 @@ elif_0x00000000000001b4:
           mov rax, s_59
           push rax
           ; 291 push string
-          mov rax, s_446
+          mov rax, s_448
           push rax
           ; 291 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 291 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 291 push integer
           mov rax, 291
           push rax
           ; 291 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 291 push boolean
           mov rax, 1
@@ -62265,19 +62385,19 @@ elif_0x00000000000001b4:
           mov rax, s_59
           push rax
           ; 292 push string
-          mov rax, s_447
+          mov rax, s_449
           push rax
           ; 292 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 292 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 292 push integer
           mov rax, 292
           push rax
           ; 292 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 292 push boolean
           mov rax, 1
@@ -62295,19 +62415,19 @@ elif_0x00000000000001b4:
           mov rax, s_59
           push rax
           ; 293 push string
-          mov rax, s_406
+          mov rax, s_408
           push rax
           ; 293 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 293 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 293 push integer
           mov rax, 293
           push rax
           ; 293 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 293 push boolean
           mov rax, 1
@@ -62322,9 +62442,9 @@ elif_0x00000000000001b4:
           pop rbx
           pop rbx
           ; 286 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 286 label
-elif_0x00000000000001b5: 
+elif_0x00000000000001b6: 
           ; 294 duplicate
           pop rax
           push rax
@@ -62355,24 +62475,24 @@ elif_0x00000000000001b5:
           ; 294 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001b6
+          jz elif_0x00000000000001b7
           ; 295 push string
           mov rax, s_59
           push rax
           ; 295 push string
-          mov rax, s_443
+          mov rax, s_445
           push rax
           ; 295 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 295 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 295 push integer
           mov rax, 295
           push rax
           ; 295 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 295 push boolean
           mov rax, 1
@@ -62390,19 +62510,19 @@ elif_0x00000000000001b5:
           mov rax, s_59
           push rax
           ; 296 push string
-          mov rax, s_444
+          mov rax, s_446
           push rax
           ; 296 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 296 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 296 push integer
           mov rax, 296
           push rax
           ; 296 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 296 push boolean
           mov rax, 1
@@ -62420,19 +62540,19 @@ elif_0x00000000000001b5:
           mov rax, s_59
           push rax
           ; 297 push string
-          mov rax, s_409
+          mov rax, s_411
           push rax
           ; 297 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 297 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 297 push integer
           mov rax, 297
           push rax
           ; 297 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 297 push boolean
           mov rax, 1
@@ -62450,19 +62570,19 @@ elif_0x00000000000001b5:
           mov rax, s_59
           push rax
           ; 298 push string
-          mov rax, s_445
+          mov rax, s_447
           push rax
           ; 298 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 298 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 298 push integer
           mov rax, 298
           push rax
           ; 298 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 298 push boolean
           mov rax, 1
@@ -62480,19 +62600,19 @@ elif_0x00000000000001b5:
           mov rax, s_59
           push rax
           ; 299 push string
-          mov rax, s_446
+          mov rax, s_448
           push rax
           ; 299 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 299 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 299 push integer
           mov rax, 299
           push rax
           ; 299 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 299 push boolean
           mov rax, 1
@@ -62510,19 +62630,19 @@ elif_0x00000000000001b5:
           mov rax, s_59
           push rax
           ; 300 push string
-          mov rax, s_448
+          mov rax, s_450
           push rax
           ; 300 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 300 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 300 push integer
           mov rax, 300
           push rax
           ; 300 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 300 push boolean
           mov rax, 1
@@ -62540,19 +62660,19 @@ elif_0x00000000000001b5:
           mov rax, s_59
           push rax
           ; 301 push string
-          mov rax, s_406
+          mov rax, s_408
           push rax
           ; 301 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 301 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 301 push integer
           mov rax, 301
           push rax
           ; 301 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 301 push boolean
           mov rax, 1
@@ -62567,9 +62687,9 @@ elif_0x00000000000001b5:
           pop rbx
           pop rbx
           ; 294 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 294 label
-elif_0x00000000000001b6: 
+elif_0x00000000000001b7: 
           ; 302 duplicate
           pop rax
           push rax
@@ -62600,24 +62720,24 @@ elif_0x00000000000001b6:
           ; 302 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001b7
+          jz elif_0x00000000000001b8
           ; 303 push string
           mov rax, s_59
           push rax
           ; 303 push string
-          mov rax, s_443
+          mov rax, s_445
           push rax
           ; 303 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 303 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 303 push integer
           mov rax, 303
           push rax
           ; 303 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 303 push boolean
           mov rax, 1
@@ -62635,19 +62755,19 @@ elif_0x00000000000001b6:
           mov rax, s_59
           push rax
           ; 304 push string
-          mov rax, s_444
+          mov rax, s_446
           push rax
           ; 304 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 304 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 304 push integer
           mov rax, 304
           push rax
           ; 304 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 304 push boolean
           mov rax, 1
@@ -62665,19 +62785,19 @@ elif_0x00000000000001b6:
           mov rax, s_59
           push rax
           ; 305 push string
-          mov rax, s_409
+          mov rax, s_411
           push rax
           ; 305 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 305 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 305 push integer
           mov rax, 305
           push rax
           ; 305 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 305 push boolean
           mov rax, 1
@@ -62695,19 +62815,19 @@ elif_0x00000000000001b6:
           mov rax, s_59
           push rax
           ; 306 push string
-          mov rax, s_445
+          mov rax, s_447
           push rax
           ; 306 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 306 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 306 push integer
           mov rax, 306
           push rax
           ; 306 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 306 push boolean
           mov rax, 1
@@ -62725,19 +62845,19 @@ elif_0x00000000000001b6:
           mov rax, s_59
           push rax
           ; 307 push string
-          mov rax, s_446
+          mov rax, s_448
           push rax
           ; 307 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 307 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 307 push integer
           mov rax, 307
           push rax
           ; 307 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 307 push boolean
           mov rax, 1
@@ -62755,19 +62875,19 @@ elif_0x00000000000001b6:
           mov rax, s_59
           push rax
           ; 308 push string
-          mov rax, s_449
+          mov rax, s_451
           push rax
           ; 308 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 308 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 308 push integer
           mov rax, 308
           push rax
           ; 308 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 308 push boolean
           mov rax, 1
@@ -62785,19 +62905,19 @@ elif_0x00000000000001b6:
           mov rax, s_59
           push rax
           ; 309 push string
-          mov rax, s_406
+          mov rax, s_408
           push rax
           ; 309 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 309 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 309 push integer
           mov rax, 309
           push rax
           ; 309 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 309 push boolean
           mov rax, 1
@@ -62812,9 +62932,9 @@ elif_0x00000000000001b6:
           pop rbx
           pop rbx
           ; 302 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 302 label
-elif_0x00000000000001b7: 
+elif_0x00000000000001b8: 
           ; 310 duplicate
           pop rax
           push rax
@@ -62845,24 +62965,24 @@ elif_0x00000000000001b7:
           ; 310 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001b8
+          jz elif_0x00000000000001b9
           ; 311 push string
           mov rax, s_59
           push rax
           ; 311 push string
-          mov rax, s_443
+          mov rax, s_445
           push rax
           ; 311 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 311 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 311 push integer
           mov rax, 311
           push rax
           ; 311 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 311 push boolean
           mov rax, 1
@@ -62880,19 +63000,19 @@ elif_0x00000000000001b7:
           mov rax, s_59
           push rax
           ; 312 push string
-          mov rax, s_444
+          mov rax, s_446
           push rax
           ; 312 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 312 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 312 push integer
           mov rax, 312
           push rax
           ; 312 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 312 push boolean
           mov rax, 1
@@ -62910,19 +63030,19 @@ elif_0x00000000000001b7:
           mov rax, s_59
           push rax
           ; 313 push string
-          mov rax, s_409
+          mov rax, s_411
           push rax
           ; 313 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 313 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 313 push integer
           mov rax, 313
           push rax
           ; 313 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 313 push boolean
           mov rax, 1
@@ -62940,19 +63060,19 @@ elif_0x00000000000001b7:
           mov rax, s_59
           push rax
           ; 314 push string
-          mov rax, s_445
+          mov rax, s_447
           push rax
           ; 314 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 314 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 314 push integer
           mov rax, 314
           push rax
           ; 314 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 314 push boolean
           mov rax, 1
@@ -62970,19 +63090,19 @@ elif_0x00000000000001b7:
           mov rax, s_59
           push rax
           ; 315 push string
-          mov rax, s_446
+          mov rax, s_448
           push rax
           ; 315 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 315 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 315 push integer
           mov rax, 315
           push rax
           ; 315 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 315 push boolean
           mov rax, 1
@@ -63000,19 +63120,19 @@ elif_0x00000000000001b7:
           mov rax, s_59
           push rax
           ; 316 push string
-          mov rax, s_450
+          mov rax, s_452
           push rax
           ; 316 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 316 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 316 push integer
           mov rax, 316
           push rax
           ; 316 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 316 push boolean
           mov rax, 1
@@ -63030,19 +63150,19 @@ elif_0x00000000000001b7:
           mov rax, s_59
           push rax
           ; 317 push string
-          mov rax, s_406
+          mov rax, s_408
           push rax
           ; 317 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 317 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 317 push integer
           mov rax, 317
           push rax
           ; 317 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 317 push boolean
           mov rax, 1
@@ -63057,9 +63177,9 @@ elif_0x00000000000001b7:
           pop rbx
           pop rbx
           ; 310 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 310 label
-elif_0x00000000000001b8: 
+elif_0x00000000000001b9: 
           ; 318 duplicate
           pop rax
           push rax
@@ -63090,24 +63210,24 @@ elif_0x00000000000001b8:
           ; 318 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001b9
+          jz elif_0x00000000000001ba
           ; 319 push string
           mov rax, s_59
           push rax
           ; 319 push string
-          mov rax, s_443
+          mov rax, s_445
           push rax
           ; 319 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 319 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 319 push integer
           mov rax, 319
           push rax
           ; 319 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 319 push boolean
           mov rax, 1
@@ -63125,19 +63245,19 @@ elif_0x00000000000001b8:
           mov rax, s_59
           push rax
           ; 320 push string
-          mov rax, s_444
+          mov rax, s_446
           push rax
           ; 320 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 320 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 320 push integer
           mov rax, 320
           push rax
           ; 320 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 320 push boolean
           mov rax, 1
@@ -63155,19 +63275,19 @@ elif_0x00000000000001b8:
           mov rax, s_59
           push rax
           ; 321 push string
-          mov rax, s_409
+          mov rax, s_411
           push rax
           ; 321 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 321 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 321 push integer
           mov rax, 321
           push rax
           ; 321 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 321 push boolean
           mov rax, 1
@@ -63185,19 +63305,19 @@ elif_0x00000000000001b8:
           mov rax, s_59
           push rax
           ; 322 push string
-          mov rax, s_445
+          mov rax, s_447
           push rax
           ; 322 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 322 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 322 push integer
           mov rax, 322
           push rax
           ; 322 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 322 push boolean
           mov rax, 1
@@ -63215,19 +63335,19 @@ elif_0x00000000000001b8:
           mov rax, s_59
           push rax
           ; 323 push string
-          mov rax, s_446
+          mov rax, s_448
           push rax
           ; 323 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 323 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 323 push integer
           mov rax, 323
           push rax
           ; 323 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 323 push boolean
           mov rax, 1
@@ -63245,19 +63365,19 @@ elif_0x00000000000001b8:
           mov rax, s_59
           push rax
           ; 324 push string
-          mov rax, s_451
+          mov rax, s_453
           push rax
           ; 324 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 324 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 324 push integer
           mov rax, 324
           push rax
           ; 324 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 324 push boolean
           mov rax, 1
@@ -63275,19 +63395,19 @@ elif_0x00000000000001b8:
           mov rax, s_59
           push rax
           ; 325 push string
-          mov rax, s_406
+          mov rax, s_408
           push rax
           ; 325 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 325 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 325 push integer
           mov rax, 325
           push rax
           ; 325 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 325 push boolean
           mov rax, 1
@@ -63302,9 +63422,9 @@ elif_0x00000000000001b8:
           pop rbx
           pop rbx
           ; 318 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 318 label
-elif_0x00000000000001b9: 
+elif_0x00000000000001ba: 
           ; 326 duplicate
           pop rax
           push rax
@@ -63335,24 +63455,24 @@ elif_0x00000000000001b9:
           ; 326 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001ba
+          jz elif_0x00000000000001bb
           ; 327 push string
           mov rax, s_59
           push rax
           ; 327 push string
-          mov rax, s_443
+          mov rax, s_445
           push rax
           ; 327 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 327 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 327 push integer
           mov rax, 327
           push rax
           ; 327 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 327 push boolean
           mov rax, 1
@@ -63370,19 +63490,19 @@ elif_0x00000000000001b9:
           mov rax, s_59
           push rax
           ; 328 push string
-          mov rax, s_444
+          mov rax, s_446
           push rax
           ; 328 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 328 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 328 push integer
           mov rax, 328
           push rax
           ; 328 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 328 push boolean
           mov rax, 1
@@ -63400,19 +63520,19 @@ elif_0x00000000000001b9:
           mov rax, s_59
           push rax
           ; 329 push string
-          mov rax, s_409
+          mov rax, s_411
           push rax
           ; 329 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 329 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 329 push integer
           mov rax, 329
           push rax
           ; 329 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 329 push boolean
           mov rax, 1
@@ -63430,19 +63550,19 @@ elif_0x00000000000001b9:
           mov rax, s_59
           push rax
           ; 330 push string
-          mov rax, s_445
+          mov rax, s_447
           push rax
           ; 330 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 330 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 330 push integer
           mov rax, 330
           push rax
           ; 330 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 330 push boolean
           mov rax, 1
@@ -63460,19 +63580,19 @@ elif_0x00000000000001b9:
           mov rax, s_59
           push rax
           ; 331 push string
-          mov rax, s_446
+          mov rax, s_448
           push rax
           ; 331 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 331 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 331 push integer
           mov rax, 331
           push rax
           ; 331 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 331 push boolean
           mov rax, 1
@@ -63490,19 +63610,19 @@ elif_0x00000000000001b9:
           mov rax, s_59
           push rax
           ; 332 push string
-          mov rax, s_452
+          mov rax, s_454
           push rax
           ; 332 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 332 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 332 push integer
           mov rax, 332
           push rax
           ; 332 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 332 push boolean
           mov rax, 1
@@ -63520,19 +63640,19 @@ elif_0x00000000000001b9:
           mov rax, s_59
           push rax
           ; 333 push string
-          mov rax, s_406
+          mov rax, s_408
           push rax
           ; 333 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 333 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 333 push integer
           mov rax, 333
           push rax
           ; 333 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 333 push boolean
           mov rax, 1
@@ -63547,9 +63667,9 @@ elif_0x00000000000001b9:
           pop rbx
           pop rbx
           ; 326 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 326 label
-elif_0x00000000000001ba: 
+elif_0x00000000000001bb: 
           ; 334 duplicate
           pop rax
           push rax
@@ -63580,24 +63700,24 @@ elif_0x00000000000001ba:
           ; 334 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001bb
+          jz elif_0x00000000000001bc
           ; 335 push string
           mov rax, s_59
           push rax
           ; 335 push string
-          mov rax, s_405
+          mov rax, s_407
           push rax
           ; 335 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 335 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 335 push integer
           mov rax, 335
           push rax
           ; 335 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 335 push boolean
           mov rax, 1
@@ -63615,19 +63735,19 @@ elif_0x00000000000001ba:
           mov rax, s_59
           push rax
           ; 336 push string
-          mov rax, s_453
+          mov rax, s_455
           push rax
           ; 336 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 336 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 336 push integer
           mov rax, 336
           push rax
           ; 336 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 336 push boolean
           mov rax, 1
@@ -63649,13 +63769,13 @@ elif_0x00000000000001ba:
           mov rbx, [rax]
           push rbx
           ; 337 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 337 push integer
           mov rax, 337
           push rax
           ; 337 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 337 push boolean
           mov rax, 1
@@ -63669,7 +63789,7 @@ elif_0x00000000000001ba:
           pop rbx
           push rax
           ; 338 push string
-          mov rax, s_454
+          mov rax, s_456
           push rax
           ; 338 swap
           pop rax
@@ -63677,13 +63797,13 @@ elif_0x00000000000001ba:
           push rax
           push rbx
           ; 338 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 338 push integer
           mov rax, 338
           push rax
           ; 338 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 338 push boolean
           mov rax, 1
@@ -63721,13 +63841,13 @@ elif_0x00000000000001ba:
           push rax
           push rbx
           ; 339 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 339 push integer
           mov rax, 339
           push rax
           ; 339 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 339 push boolean
           mov rax, 1
@@ -63762,13 +63882,13 @@ elif_0x00000000000001ba:
           mov rax, buf__text
           push rax
           ; 340 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 340 push integer
           mov rax, 340
           push rax
           ; 340 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 340 push boolean
           mov rax, 1
@@ -63790,9 +63910,9 @@ elif_0x00000000000001ba:
           pop rbx
           mov [rax], rbx
           ; 334 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 334 label
-elif_0x00000000000001bb: 
+elif_0x00000000000001bc: 
           ; 342 duplicate
           pop rax
           push rax
@@ -63823,7 +63943,7 @@ elif_0x00000000000001bb:
           ; 342 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001bc
+          jz elif_0x00000000000001bd
           ; 343 get pointer to buffer
           mov rax, buf__textbuffer
           push rax
@@ -63832,13 +63952,13 @@ elif_0x00000000000001bb:
           mov rbx, [rax]
           push rbx
           ; 343 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 343 push integer
           mov rax, 343
           push rax
           ; 343 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 343 push boolean
           mov rax, 1
@@ -63875,13 +63995,13 @@ elif_0x00000000000001bb:
           push rax
           push rbx
           ; 344 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 344 push integer
           mov rax, 344
           push rax
           ; 344 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 344 push boolean
           mov rax, 1
@@ -63896,7 +64016,7 @@ elif_0x00000000000001bb:
           pop rbx
           push rax
           ; 345 push string
-          mov rax, s_422
+          mov rax, s_424
           push rax
           ; 345 swap
           pop rax
@@ -63904,13 +64024,13 @@ elif_0x00000000000001bb:
           push rax
           push rbx
           ; 345 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 345 push integer
           mov rax, 345
           push rax
           ; 345 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 345 push boolean
           mov rax, 1
@@ -63943,13 +64063,13 @@ elif_0x00000000000001bb:
           mov rax, buf__text
           push rax
           ; 346 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 346 push integer
           mov rax, 346
           push rax
           ; 346 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 346 push boolean
           mov rax, 1
@@ -63971,9 +64091,9 @@ elif_0x00000000000001bb:
           pop rbx
           mov [rax], rbx
           ; 342 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 342 label
-elif_0x00000000000001bc: 
+elif_0x00000000000001bd: 
           ; 348 duplicate
           pop rax
           push rax
@@ -64004,7 +64124,7 @@ elif_0x00000000000001bc:
           ; 348 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001bd
+          jz elif_0x00000000000001be
           ; 349 get pointer to buffer
           mov rax, buf__textbuffer
           push rax
@@ -64013,13 +64133,13 @@ elif_0x00000000000001bc:
           mov rbx, [rax]
           push rbx
           ; 349 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 349 push integer
           mov rax, 349
           push rax
           ; 349 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 349 push boolean
           mov rax, 1
@@ -64033,7 +64153,7 @@ elif_0x00000000000001bc:
           pop rbx
           push rax
           ; 350 push string
-          mov rax, s_455
+          mov rax, s_457
           push rax
           ; 350 swap
           pop rax
@@ -64041,13 +64161,13 @@ elif_0x00000000000001bc:
           push rax
           push rbx
           ; 350 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 350 push integer
           mov rax, 350
           push rax
           ; 350 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 350 push boolean
           mov rax, 1
@@ -64085,13 +64205,13 @@ elif_0x00000000000001bc:
           push rax
           push rbx
           ; 351 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 351 push integer
           mov rax, 351
           push rax
           ; 351 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 351 push boolean
           mov rax, 1
@@ -64126,13 +64246,13 @@ elif_0x00000000000001bc:
           mov rax, buf__text
           push rax
           ; 352 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 352 push integer
           mov rax, 352
           push rax
           ; 352 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 352 push boolean
           mov rax, 1
@@ -64154,9 +64274,9 @@ elif_0x00000000000001bc:
           pop rbx
           mov [rax], rbx
           ; 348 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 348 label
-elif_0x00000000000001bd: 
+elif_0x00000000000001be: 
           ; 354 duplicate
           pop rax
           push rax
@@ -64187,24 +64307,24 @@ elif_0x00000000000001bd:
           ; 354 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001be
+          jz elif_0x00000000000001bf
           ; 355 push string
           mov rax, s_59
           push rax
           ; 355 push string
-          mov rax, s_405
+          mov rax, s_407
           push rax
           ; 355 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 355 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 355 push integer
           mov rax, 355
           push rax
           ; 355 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 355 push boolean
           mov rax, 1
@@ -64235,13 +64355,13 @@ elif_0x00000000000001bd:
           mov rbx, [rax]
           push rbx
           ; 356 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 356 push integer
           mov rax, 356
           push rax
           ; 356 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 356 push boolean
           mov rax, 1
@@ -64272,18 +64392,18 @@ elif_0x00000000000001bd:
           ; 357 start of if-block
           pop rax
           test rax, rax
-          jz if_0x00000000000001bf
+          jz if_0x00000000000001c0
           ; 358 push string
-          mov rax, s_456
+          mov rax, s_458
           push rax
           ; 358 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 358 push integer
           mov rax, 358
           push rax
           ; 358 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 358 push boolean
           mov rax, 1
@@ -64296,11 +64416,11 @@ elif_0x00000000000001bd:
           pop rbx
           pop rbx
           ; 358 jump
-          jmp end_0x00000000000001bf
+          jmp end_0x00000000000001c0
           ; 358 label
-if_0x00000000000001bf: 
+if_0x00000000000001c0: 
           ; 358 label
-end_0x00000000000001bf: 
+end_0x00000000000001c0: 
           ; 359 duplicate
           pop rax
           push rax
@@ -64319,24 +64439,24 @@ end_0x00000000000001bf:
           ; 359 start of if-block
           pop rax
           test rax, rax
-          jz if_0x00000000000001c0
+          jz if_0x00000000000001c1
           ; 360 push string
           mov rax, s_59
           push rax
           ; 360 push string
-          mov rax, s_457
+          mov rax, s_459
           push rax
           ; 360 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 360 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 360 push integer
           mov rax, 360
           push rax
           ; 360 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 360 push boolean
           mov rax, 1
@@ -64351,11 +64471,11 @@ end_0x00000000000001bf:
           pop rbx
           pop rbx
           ; 360 jump
-          jmp end_0x00000000000001c0
+          jmp end_0x00000000000001c1
           ; 360 label
-if_0x00000000000001c0: 
+if_0x00000000000001c1: 
           ; 360 label
-end_0x00000000000001c0: 
+end_0x00000000000001c1: 
           ; 361 duplicate
           pop rax
           push rax
@@ -64374,24 +64494,24 @@ end_0x00000000000001c0:
           ; 361 start of if-block
           pop rax
           test rax, rax
-          jz if_0x00000000000001c1
+          jz if_0x00000000000001c2
           ; 362 push string
           mov rax, s_59
           push rax
           ; 362 push string
-          mov rax, s_458
+          mov rax, s_460
           push rax
           ; 362 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 362 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 362 push integer
           mov rax, 362
           push rax
           ; 362 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 362 push boolean
           mov rax, 1
@@ -64406,11 +64526,11 @@ end_0x00000000000001c0:
           pop rbx
           pop rbx
           ; 362 jump
-          jmp end_0x00000000000001c1
+          jmp end_0x00000000000001c2
           ; 362 label
-if_0x00000000000001c1: 
+if_0x00000000000001c2: 
           ; 362 label
-end_0x00000000000001c1: 
+end_0x00000000000001c2: 
           ; 363 duplicate
           pop rax
           push rax
@@ -64429,24 +64549,24 @@ end_0x00000000000001c1:
           ; 363 start of if-block
           pop rax
           test rax, rax
-          jz if_0x00000000000001c2
+          jz if_0x00000000000001c3
           ; 364 push string
           mov rax, s_59
           push rax
           ; 364 push string
-          mov rax, s_459
+          mov rax, s_461
           push rax
           ; 364 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 364 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 364 push integer
           mov rax, 364
           push rax
           ; 364 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 364 push boolean
           mov rax, 1
@@ -64461,11 +64581,11 @@ end_0x00000000000001c1:
           pop rbx
           pop rbx
           ; 364 jump
-          jmp end_0x00000000000001c2
+          jmp end_0x00000000000001c3
           ; 364 label
-if_0x00000000000001c2: 
+if_0x00000000000001c3: 
           ; 364 label
-end_0x00000000000001c2: 
+end_0x00000000000001c3: 
           ; 365 duplicate
           pop rax
           push rax
@@ -64484,24 +64604,24 @@ end_0x00000000000001c2:
           ; 365 start of if-block
           pop rax
           test rax, rax
-          jz if_0x00000000000001c3
+          jz if_0x00000000000001c4
           ; 366 push string
           mov rax, s_59
           push rax
           ; 366 push string
-          mov rax, s_445
+          mov rax, s_447
           push rax
           ; 366 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 366 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 366 push integer
           mov rax, 366
           push rax
           ; 366 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 366 push boolean
           mov rax, 1
@@ -64516,11 +64636,11 @@ end_0x00000000000001c2:
           pop rbx
           pop rbx
           ; 366 jump
-          jmp end_0x00000000000001c3
+          jmp end_0x00000000000001c4
           ; 366 label
-if_0x00000000000001c3: 
+if_0x00000000000001c4: 
           ; 366 label
-end_0x00000000000001c3: 
+end_0x00000000000001c4: 
           ; 367 duplicate
           pop rax
           push rax
@@ -64539,24 +64659,24 @@ end_0x00000000000001c3:
           ; 367 start of if-block
           pop rax
           test rax, rax
-          jz if_0x00000000000001c4
+          jz if_0x00000000000001c5
           ; 368 push string
           mov rax, s_59
           push rax
           ; 368 push string
-          mov rax, s_460
+          mov rax, s_462
           push rax
           ; 368 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 368 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 368 push integer
           mov rax, 368
           push rax
           ; 368 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 368 push boolean
           mov rax, 1
@@ -64571,11 +64691,11 @@ end_0x00000000000001c3:
           pop rbx
           pop rbx
           ; 368 jump
-          jmp end_0x00000000000001c4
+          jmp end_0x00000000000001c5
           ; 368 label
-if_0x00000000000001c4: 
+if_0x00000000000001c5: 
           ; 368 label
-end_0x00000000000001c4: 
+end_0x00000000000001c5: 
           ; 369 duplicate
           pop rax
           push rax
@@ -64594,24 +64714,24 @@ end_0x00000000000001c4:
           ; 369 start of if-block
           pop rax
           test rax, rax
-          jz if_0x00000000000001c5
+          jz if_0x00000000000001c6
           ; 370 push string
           mov rax, s_59
           push rax
           ; 370 push string
-          mov rax, s_461
+          mov rax, s_463
           push rax
           ; 370 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 370 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 370 push integer
           mov rax, 370
           push rax
           ; 370 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 370 push boolean
           mov rax, 1
@@ -64626,11 +64746,11 @@ end_0x00000000000001c4:
           pop rbx
           pop rbx
           ; 370 jump
-          jmp end_0x00000000000001c5
+          jmp end_0x00000000000001c6
           ; 370 label
-if_0x00000000000001c5: 
+if_0x00000000000001c6: 
           ; 370 label
-end_0x00000000000001c5: 
+end_0x00000000000001c6: 
           ; 371 drop
           pop rax
           ; 372 push string
@@ -64643,13 +64763,13 @@ end_0x00000000000001c5:
           mov rax, buf__text
           push rax
           ; 372 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 372 push integer
           mov rax, 372
           push rax
           ; 372 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 372 push boolean
           mov rax, 1
@@ -64667,19 +64787,19 @@ end_0x00000000000001c5:
           mov rax, s_59
           push rax
           ; 373 push string
-          mov rax, s_406
+          mov rax, s_408
           push rax
           ; 373 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 373 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 373 push integer
           mov rax, 373
           push rax
           ; 373 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 373 push boolean
           mov rax, 1
@@ -64694,9 +64814,9 @@ end_0x00000000000001c5:
           pop rbx
           pop rbx
           ; 354 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 354 label
-elif_0x00000000000001be: 
+elif_0x00000000000001bf: 
           ; 374 duplicate
           pop rax
           push rax
@@ -64727,7 +64847,7 @@ elif_0x00000000000001be:
           ; 374 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001c6
+          jz elif_0x00000000000001c7
           ; 375 get pointer to buffer
           mov rax, buf__textbuffer
           push rax
@@ -64736,13 +64856,13 @@ elif_0x00000000000001be:
           mov rbx, [rax]
           push rbx
           ; 375 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 375 push integer
           mov rax, 375
           push rax
           ; 375 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 375 push boolean
           mov rax, 1
@@ -64756,7 +64876,7 @@ elif_0x00000000000001be:
           pop rbx
           push rax
           ; 376 push string
-          mov rax, s_462
+          mov rax, s_464
           push rax
           ; 376 swap
           pop rax
@@ -64764,13 +64884,13 @@ elif_0x00000000000001be:
           push rax
           push rbx
           ; 376 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 376 push integer
           mov rax, 376
           push rax
           ; 376 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 376 push boolean
           mov rax, 1
@@ -64808,13 +64928,13 @@ elif_0x00000000000001be:
           push rax
           push rbx
           ; 377 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 377 push integer
           mov rax, 377
           push rax
           ; 377 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 377 push boolean
           mov rax, 1
@@ -64849,13 +64969,13 @@ elif_0x00000000000001be:
           mov rax, buf__text
           push rax
           ; 378 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 378 push integer
           mov rax, 378
           push rax
           ; 378 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 378 push boolean
           mov rax, 1
@@ -64873,19 +64993,19 @@ elif_0x00000000000001be:
           mov rax, s_59
           push rax
           ; 379 push string
-          mov rax, s_406
+          mov rax, s_408
           push rax
           ; 379 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 379 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 379 push integer
           mov rax, 379
           push rax
           ; 379 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 379 push boolean
           mov rax, 1
@@ -64907,9 +65027,9 @@ elif_0x00000000000001be:
           pop rbx
           mov [rax], rbx
           ; 374 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 374 label
-elif_0x00000000000001c6: 
+elif_0x00000000000001c7: 
           ; 381 duplicate
           pop rax
           push rax
@@ -64940,24 +65060,24 @@ elif_0x00000000000001c6:
           ; 381 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001c7
+          jz elif_0x00000000000001c8
           ; 382 push string
           mov rax, s_59
           push rax
           ; 382 push string
-          mov rax, s_405
+          mov rax, s_407
           push rax
           ; 382 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 382 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 382 push integer
           mov rax, 382
           push rax
           ; 382 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 382 push boolean
           mov rax, 1
@@ -64975,19 +65095,19 @@ elif_0x00000000000001c6:
           mov rax, s_59
           push rax
           ; 383 push string
-          mov rax, s_463
+          mov rax, s_465
           push rax
           ; 383 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 383 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 383 push integer
           mov rax, 383
           push rax
           ; 383 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 383 push boolean
           mov rax, 1
@@ -65005,19 +65125,19 @@ elif_0x00000000000001c6:
           mov rax, s_59
           push rax
           ; 384 push string
-          mov rax, s_464
+          mov rax, s_466
           push rax
           ; 384 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 384 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 384 push integer
           mov rax, 384
           push rax
           ; 384 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 384 push boolean
           mov rax, 1
@@ -65035,19 +65155,19 @@ elif_0x00000000000001c6:
           mov rax, s_59
           push rax
           ; 385 push string
-          mov rax, s_408
+          mov rax, s_410
           push rax
           ; 385 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 385 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 385 push integer
           mov rax, 385
           push rax
           ; 385 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 385 push boolean
           mov rax, 1
@@ -65062,9 +65182,9 @@ elif_0x00000000000001c6:
           pop rbx
           pop rbx
           ; 381 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 381 label
-elif_0x00000000000001c7: 
+elif_0x00000000000001c8: 
           ; 386 duplicate
           pop rax
           push rax
@@ -65095,24 +65215,24 @@ elif_0x00000000000001c7:
           ; 386 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001c8
+          jz elif_0x00000000000001c9
           ; 387 push string
           mov rax, s_59
           push rax
           ; 387 push string
-          mov rax, s_405
+          mov rax, s_407
           push rax
           ; 387 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 387 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 387 push integer
           mov rax, 387
           push rax
           ; 387 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 387 push boolean
           mov rax, 1
@@ -65130,19 +65250,19 @@ elif_0x00000000000001c7:
           mov rax, s_59
           push rax
           ; 388 push string
-          mov rax, s_463
+          mov rax, s_465
           push rax
           ; 388 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 388 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 388 push integer
           mov rax, 388
           push rax
           ; 388 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 388 push boolean
           mov rax, 1
@@ -65160,19 +65280,19 @@ elif_0x00000000000001c7:
           mov rax, s_59
           push rax
           ; 389 push string
-          mov rax, s_464
+          mov rax, s_466
           push rax
           ; 389 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 389 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 389 push integer
           mov rax, 389
           push rax
           ; 389 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 389 push boolean
           mov rax, 1
@@ -65190,19 +65310,19 @@ elif_0x00000000000001c7:
           mov rax, s_59
           push rax
           ; 390 push string
-          mov rax, s_408
+          mov rax, s_410
           push rax
           ; 390 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 390 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 390 push integer
           mov rax, 390
           push rax
           ; 390 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 390 push boolean
           mov rax, 1
@@ -65217,9 +65337,9 @@ elif_0x00000000000001c7:
           pop rbx
           pop rbx
           ; 386 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 386 label
-elif_0x00000000000001c8: 
+elif_0x00000000000001c9: 
           ; 391 duplicate
           pop rax
           push rax
@@ -65250,24 +65370,24 @@ elif_0x00000000000001c8:
           ; 391 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001c9
+          jz elif_0x00000000000001ca
           ; 392 push string
           mov rax, s_59
           push rax
           ; 392 push string
-          mov rax, s_405
+          mov rax, s_407
           push rax
           ; 392 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 392 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 392 push integer
           mov rax, 392
           push rax
           ; 392 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 392 push boolean
           mov rax, 1
@@ -65285,19 +65405,19 @@ elif_0x00000000000001c8:
           mov rax, s_59
           push rax
           ; 393 push string
-          mov rax, s_428
+          mov rax, s_430
           push rax
           ; 393 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 393 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 393 push integer
           mov rax, 393
           push rax
           ; 393 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 393 push boolean
           mov rax, 1
@@ -65315,19 +65435,19 @@ elif_0x00000000000001c8:
           mov rax, s_59
           push rax
           ; 394 push string
-          mov rax, s_408
+          mov rax, s_410
           push rax
           ; 394 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 394 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 394 push integer
           mov rax, 394
           push rax
           ; 394 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 394 push boolean
           mov rax, 1
@@ -65342,9 +65462,9 @@ elif_0x00000000000001c8:
           pop rbx
           pop rbx
           ; 391 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 391 label
-elif_0x00000000000001c9: 
+elif_0x00000000000001ca: 
           ; 395 duplicate
           pop rax
           push rax
@@ -65375,24 +65495,24 @@ elif_0x00000000000001c9:
           ; 395 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001ca
+          jz elif_0x00000000000001cb
           ; 396 push string
           mov rax, s_59
           push rax
           ; 396 push string
-          mov rax, s_405
+          mov rax, s_407
           push rax
           ; 396 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 396 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 396 push integer
           mov rax, 396
           push rax
           ; 396 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 396 push boolean
           mov rax, 1
@@ -65410,19 +65530,19 @@ elif_0x00000000000001c9:
           mov rax, s_59
           push rax
           ; 397 push string
-          mov rax, s_428
+          mov rax, s_430
           push rax
           ; 397 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 397 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 397 push integer
           mov rax, 397
           push rax
           ; 397 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 397 push boolean
           mov rax, 1
@@ -65440,19 +65560,19 @@ elif_0x00000000000001c9:
           mov rax, s_59
           push rax
           ; 398 push string
-          mov rax, s_408
+          mov rax, s_410
           push rax
           ; 398 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 398 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 398 push integer
           mov rax, 398
           push rax
           ; 398 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 398 push boolean
           mov rax, 1
@@ -65467,9 +65587,9 @@ elif_0x00000000000001c9:
           pop rbx
           pop rbx
           ; 395 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 395 label
-elif_0x00000000000001ca: 
+elif_0x00000000000001cb: 
           ; 399 duplicate
           pop rax
           push rax
@@ -65500,24 +65620,24 @@ elif_0x00000000000001ca:
           ; 399 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001cb
+          jz elif_0x00000000000001cc
           ; 400 push string
           mov rax, s_59
           push rax
           ; 400 push string
-          mov rax, s_405
+          mov rax, s_407
           push rax
           ; 400 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 400 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 400 push integer
           mov rax, 400
           push rax
           ; 400 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 400 push boolean
           mov rax, 1
@@ -65535,19 +65655,19 @@ elif_0x00000000000001ca:
           mov rax, s_59
           push rax
           ; 401 push string
-          mov rax, s_407
+          mov rax, s_409
           push rax
           ; 401 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 401 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 401 push integer
           mov rax, 401
           push rax
           ; 401 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 401 push boolean
           mov rax, 1
@@ -65565,19 +65685,19 @@ elif_0x00000000000001ca:
           mov rax, s_59
           push rax
           ; 402 push string
-          mov rax, s_465
+          mov rax, s_467
           push rax
           ; 402 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 402 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 402 push integer
           mov rax, 402
           push rax
           ; 402 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 402 push boolean
           mov rax, 1
@@ -65592,9 +65712,9 @@ elif_0x00000000000001ca:
           pop rbx
           pop rbx
           ; 399 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 399 label
-elif_0x00000000000001cb: 
+elif_0x00000000000001cc: 
           ; 403 duplicate
           pop rax
           push rax
@@ -65625,24 +65745,24 @@ elif_0x00000000000001cb:
           ; 403 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001cc
+          jz elif_0x00000000000001cd
           ; 404 push string
           mov rax, s_59
           push rax
           ; 404 push string
-          mov rax, s_405
+          mov rax, s_407
           push rax
           ; 404 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 404 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 404 push integer
           mov rax, 404
           push rax
           ; 404 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 404 push boolean
           mov rax, 1
@@ -65660,19 +65780,19 @@ elif_0x00000000000001cb:
           mov rax, s_59
           push rax
           ; 405 push string
-          mov rax, s_407
+          mov rax, s_409
           push rax
           ; 405 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 405 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 405 push integer
           mov rax, 405
           push rax
           ; 405 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 405 push boolean
           mov rax, 1
@@ -65690,19 +65810,19 @@ elif_0x00000000000001cb:
           mov rax, s_59
           push rax
           ; 406 push string
-          mov rax, s_465
+          mov rax, s_467
           push rax
           ; 406 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 406 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 406 push integer
           mov rax, 406
           push rax
           ; 406 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 406 push boolean
           mov rax, 1
@@ -65717,9 +65837,9 @@ elif_0x00000000000001cb:
           pop rbx
           pop rbx
           ; 403 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 403 label
-elif_0x00000000000001cc: 
+elif_0x00000000000001cd: 
           ; 407 duplicate
           pop rax
           push rax
@@ -65750,24 +65870,24 @@ elif_0x00000000000001cc:
           ; 407 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001cd
+          jz elif_0x00000000000001ce
           ; 408 push string
           mov rax, s_59
           push rax
           ; 408 push string
-          mov rax, s_405
+          mov rax, s_407
           push rax
           ; 408 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 408 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 408 push integer
           mov rax, 408
           push rax
           ; 408 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 408 push boolean
           mov rax, 1
@@ -65785,19 +65905,19 @@ elif_0x00000000000001cc:
           mov rax, s_59
           push rax
           ; 409 push string
-          mov rax, s_407
+          mov rax, s_409
           push rax
           ; 409 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 409 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 409 push integer
           mov rax, 409
           push rax
           ; 409 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 409 push boolean
           mov rax, 1
@@ -65815,19 +65935,19 @@ elif_0x00000000000001cc:
           mov rax, s_59
           push rax
           ; 410 push string
-          mov rax, s_466
+          mov rax, s_468
           push rax
           ; 410 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 410 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 410 push integer
           mov rax, 410
           push rax
           ; 410 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 410 push boolean
           mov rax, 1
@@ -65842,9 +65962,9 @@ elif_0x00000000000001cc:
           pop rbx
           pop rbx
           ; 407 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 407 label
-elif_0x00000000000001cd: 
+elif_0x00000000000001ce: 
           ; 411 duplicate
           pop rax
           push rax
@@ -65875,24 +65995,24 @@ elif_0x00000000000001cd:
           ; 411 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001ce
+          jz elif_0x00000000000001cf
           ; 412 push string
           mov rax, s_59
           push rax
           ; 412 push string
-          mov rax, s_405
+          mov rax, s_407
           push rax
           ; 412 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 412 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 412 push integer
           mov rax, 412
           push rax
           ; 412 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 412 push boolean
           mov rax, 1
@@ -65910,19 +66030,19 @@ elif_0x00000000000001cd:
           mov rax, s_59
           push rax
           ; 413 push string
-          mov rax, s_407
+          mov rax, s_409
           push rax
           ; 413 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 413 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 413 push integer
           mov rax, 413
           push rax
           ; 413 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 413 push boolean
           mov rax, 1
@@ -65940,19 +66060,19 @@ elif_0x00000000000001cd:
           mov rax, s_59
           push rax
           ; 414 push string
-          mov rax, s_466
+          mov rax, s_468
           push rax
           ; 414 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 414 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 414 push integer
           mov rax, 414
           push rax
           ; 414 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 414 push boolean
           mov rax, 1
@@ -65967,9 +66087,9 @@ elif_0x00000000000001cd:
           pop rbx
           pop rbx
           ; 411 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 411 label
-elif_0x00000000000001ce: 
+elif_0x00000000000001cf: 
           ; 415 duplicate
           pop rax
           push rax
@@ -66000,24 +66120,24 @@ elif_0x00000000000001ce:
           ; 415 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001cf
+          jz elif_0x00000000000001d0
           ; 416 push string
           mov rax, s_59
           push rax
           ; 416 push string
-          mov rax, s_409
+          mov rax, s_411
           push rax
           ; 416 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 416 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 416 push integer
           mov rax, 416
           push rax
           ; 416 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 416 push boolean
           mov rax, 1
@@ -66035,19 +66155,19 @@ elif_0x00000000000001ce:
           mov rax, s_59
           push rax
           ; 417 push string
-          mov rax, s_405
+          mov rax, s_407
           push rax
           ; 417 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 417 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 417 push integer
           mov rax, 417
           push rax
           ; 417 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 417 push boolean
           mov rax, 1
@@ -66065,19 +66185,19 @@ elif_0x00000000000001ce:
           mov rax, s_59
           push rax
           ; 418 push string
-          mov rax, s_467
+          mov rax, s_469
           push rax
           ; 418 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 418 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 418 push integer
           mov rax, 418
           push rax
           ; 418 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 418 push boolean
           mov rax, 1
@@ -66095,19 +66215,19 @@ elif_0x00000000000001ce:
           mov rax, s_59
           push rax
           ; 419 push string
-          mov rax, s_406
+          mov rax, s_408
           push rax
           ; 419 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 419 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 419 push integer
           mov rax, 419
           push rax
           ; 419 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 419 push boolean
           mov rax, 1
@@ -66122,9 +66242,9 @@ elif_0x00000000000001ce:
           pop rbx
           pop rbx
           ; 415 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 415 label
-elif_0x00000000000001cf: 
+elif_0x00000000000001d0: 
           ; 420 duplicate
           pop rax
           push rax
@@ -66155,24 +66275,24 @@ elif_0x00000000000001cf:
           ; 420 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001d0
+          jz elif_0x00000000000001d1
           ; 421 push string
           mov rax, s_59
           push rax
           ; 421 push string
-          mov rax, s_409
+          mov rax, s_411
           push rax
           ; 421 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 421 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 421 push integer
           mov rax, 421
           push rax
           ; 421 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 421 push boolean
           mov rax, 1
@@ -66190,19 +66310,19 @@ elif_0x00000000000001cf:
           mov rax, s_59
           push rax
           ; 422 push string
-          mov rax, s_405
+          mov rax, s_407
           push rax
           ; 422 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 422 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 422 push integer
           mov rax, 422
           push rax
           ; 422 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 422 push boolean
           mov rax, 1
@@ -66220,19 +66340,19 @@ elif_0x00000000000001cf:
           mov rax, s_59
           push rax
           ; 423 push string
-          mov rax, s_468
+          mov rax, s_470
           push rax
           ; 423 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 423 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 423 push integer
           mov rax, 423
           push rax
           ; 423 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 423 push boolean
           mov rax, 1
@@ -66250,19 +66370,19 @@ elif_0x00000000000001cf:
           mov rax, s_59
           push rax
           ; 424 push string
-          mov rax, s_406
+          mov rax, s_408
           push rax
           ; 424 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 424 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 424 push integer
           mov rax, 424
           push rax
           ; 424 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 424 push boolean
           mov rax, 1
@@ -66277,9 +66397,9 @@ elif_0x00000000000001cf:
           pop rbx
           pop rbx
           ; 420 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 420 label
-elif_0x00000000000001d0: 
+elif_0x00000000000001d1: 
           ; 425 duplicate
           pop rax
           push rax
@@ -66310,24 +66430,24 @@ elif_0x00000000000001d0:
           ; 425 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001d1
+          jz elif_0x00000000000001d2
           ; 426 push string
           mov rax, s_59
           push rax
           ; 426 push string
-          mov rax, s_405
+          mov rax, s_407
           push rax
           ; 426 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 426 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 426 push integer
           mov rax, 426
           push rax
           ; 426 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 426 push boolean
           mov rax, 1
@@ -66345,19 +66465,19 @@ elif_0x00000000000001d0:
           mov rax, s_59
           push rax
           ; 427 push string
-          mov rax, s_453
+          mov rax, s_455
           push rax
           ; 427 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 427 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 427 push integer
           mov rax, 427
           push rax
           ; 427 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 427 push boolean
           mov rax, 1
@@ -66379,13 +66499,13 @@ elif_0x00000000000001d0:
           mov rbx, [rax]
           push rbx
           ; 428 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 428 push integer
           mov rax, 428
           push rax
           ; 428 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 428 push boolean
           mov rax, 1
@@ -66399,7 +66519,7 @@ elif_0x00000000000001d0:
           pop rbx
           push rax
           ; 429 push string
-          mov rax, s_454
+          mov rax, s_456
           push rax
           ; 429 swap
           pop rax
@@ -66407,13 +66527,13 @@ elif_0x00000000000001d0:
           push rax
           push rbx
           ; 429 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 429 push integer
           mov rax, 429
           push rax
           ; 429 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 429 push boolean
           mov rax, 1
@@ -66451,13 +66571,13 @@ elif_0x00000000000001d0:
           push rax
           push rbx
           ; 430 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 430 push integer
           mov rax, 430
           push rax
           ; 430 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 430 push boolean
           mov rax, 1
@@ -66472,7 +66592,7 @@ elif_0x00000000000001d0:
           pop rbx
           push rax
           ; 431 push string
-          mov rax, s_469
+          mov rax, s_471
           push rax
           ; 431 swap
           pop rax
@@ -66480,13 +66600,13 @@ elif_0x00000000000001d0:
           push rax
           push rbx
           ; 431 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 431 push integer
           mov rax, 431
           push rax
           ; 431 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 431 push boolean
           mov rax, 1
@@ -66521,13 +66641,13 @@ elif_0x00000000000001d0:
           mov rax, buf__text
           push rax
           ; 432 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 432 push integer
           mov rax, 432
           push rax
           ; 432 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 432 push boolean
           mov rax, 1
@@ -66549,9 +66669,9 @@ elif_0x00000000000001d0:
           pop rbx
           mov [rax], rbx
           ; 425 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 425 label
-elif_0x00000000000001d1: 
+elif_0x00000000000001d2: 
           ; 434 duplicate
           pop rax
           push rax
@@ -66582,7 +66702,7 @@ elif_0x00000000000001d1:
           ; 434 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001d2
+          jz elif_0x00000000000001d3
           ; 435 get pointer to buffer
           mov rax, buf__textbuffer
           push rax
@@ -66591,13 +66711,13 @@ elif_0x00000000000001d1:
           mov rbx, [rax]
           push rbx
           ; 435 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 435 push integer
           mov rax, 435
           push rax
           ; 435 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 435 push boolean
           mov rax, 1
@@ -66611,7 +66731,7 @@ elif_0x00000000000001d1:
           pop rbx
           push rax
           ; 436 push string
-          mov rax, s_455
+          mov rax, s_457
           push rax
           ; 436 swap
           pop rax
@@ -66619,13 +66739,13 @@ elif_0x00000000000001d1:
           push rax
           push rbx
           ; 436 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 436 push integer
           mov rax, 436
           push rax
           ; 436 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 436 push boolean
           mov rax, 1
@@ -66663,13 +66783,13 @@ elif_0x00000000000001d1:
           push rax
           push rbx
           ; 437 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 437 push integer
           mov rax, 437
           push rax
           ; 437 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 437 push boolean
           mov rax, 1
@@ -66704,13 +66824,13 @@ elif_0x00000000000001d1:
           mov rax, buf__text
           push rax
           ; 438 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 438 push integer
           mov rax, 438
           push rax
           ; 438 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 438 push boolean
           mov rax, 1
@@ -66725,13 +66845,13 @@ elif_0x00000000000001d1:
           pop rbx
           pop rbx
           ; 439 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 439 push integer
           mov rax, 439
           push rax
           ; 439 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 439 push boolean
           mov rax, 1
@@ -66768,13 +66888,13 @@ elif_0x00000000000001d1:
           push rax
           push rbx
           ; 441 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 441 push integer
           mov rax, 441
           push rax
           ; 441 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 441 push boolean
           mov rax, 1
@@ -66789,7 +66909,7 @@ elif_0x00000000000001d1:
           pop rbx
           push rax
           ; 442 push string
-          mov rax, s_470
+          mov rax, s_472
           push rax
           ; 442 swap
           pop rax
@@ -66797,13 +66917,13 @@ elif_0x00000000000001d1:
           push rax
           push rbx
           ; 442 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 442 push integer
           mov rax, 442
           push rax
           ; 442 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 442 push boolean
           mov rax, 1
@@ -66836,13 +66956,13 @@ elif_0x00000000000001d1:
           mov rax, buf__text
           push rax
           ; 443 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 443 push integer
           mov rax, 443
           push rax
           ; 443 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 443 push boolean
           mov rax, 1
@@ -66864,9 +66984,9 @@ elif_0x00000000000001d1:
           pop rbx
           mov [rax], rbx
           ; 434 jump
-          jmp end_0x0000000000000194
+          jmp end_0x0000000000000195
           ; 434 label
-elif_0x00000000000001d2: 
+elif_0x00000000000001d3: 
           ; 446 get pointer to buffer
           mov rax, buf__textbuffer
           push rax
@@ -66875,13 +66995,13 @@ elif_0x00000000000001d2:
           mov rbx, [rax]
           push rbx
           ; 446 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 446 push integer
           mov rax, 446
           push rax
           ; 446 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 446 push boolean
           mov rax, 1
@@ -66895,7 +67015,7 @@ elif_0x00000000000001d2:
           pop rbx
           push rax
           ; 447 push string
-          mov rax, s_471
+          mov rax, s_473
           push rax
           ; 447 swap
           pop rax
@@ -66903,13 +67023,13 @@ elif_0x00000000000001d2:
           push rax
           push rbx
           ; 447 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 447 push integer
           mov rax, 447
           push rax
           ; 447 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 447 push boolean
           mov rax, 1
@@ -66942,13 +67062,13 @@ elif_0x00000000000001d2:
           mov rbx, [rax]
           push rbx
           ; 448 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 448 push integer
           mov rax, 448
           push rax
           ; 448 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 448 push boolean
           mov rax, 1
@@ -66967,13 +67087,13 @@ elif_0x00000000000001d2:
           push rax
           push rbx
           ; 448 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 448 push integer
           mov rax, 448
           push rax
           ; 448 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 448 push boolean
           mov rax, 1
@@ -66996,13 +67116,13 @@ elif_0x00000000000001d2:
           push rax
           push rbx
           ; 449 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 449 push integer
           mov rax, 449
           push rax
           ; 449 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 449 push boolean
           mov rax, 1
@@ -67029,13 +67149,13 @@ elif_0x00000000000001d2:
           add rbx, rax
           push rbx
           ; 450 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 450 push integer
           mov rax, 450
           push rax
           ; 450 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 450 push boolean
           mov rax, 1
@@ -67055,7 +67175,7 @@ elif_0x00000000000001d2:
           pop rbx
           mov [rax], rbx
           ; 446 label
-end_0x0000000000000194: 
+end_0x0000000000000195: 
           ; 453 drop
           pop rax
           ; 454 push integer
@@ -67070,7 +67190,7 @@ end_0x0000000000000194:
           jmp while_0x0000000000000038
 while_0x0000000000000038_end: 
           ; 457 push string
-          mov rax, s_472
+          mov rax, s_474
           push rax
           ; 457 push string
           mov rax, s_59
@@ -67079,13 +67199,13 @@ while_0x0000000000000038_end:
           mov rax, buf__text
           push rax
           ; 457 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 457 push integer
           mov rax, 457
           push rax
           ; 457 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 457 push boolean
           mov rax, 1
@@ -67103,19 +67223,19 @@ while_0x0000000000000038_end:
           mov rax, s_59
           push rax
           ; 458 push string
-          mov rax, s_473
+          mov rax, s_475
           push rax
           ; 458 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 458 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 458 push integer
           mov rax, 458
           push rax
           ; 458 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 458 push boolean
           mov rax, 1
@@ -67133,19 +67253,19 @@ while_0x0000000000000038_end:
           mov rax, s_59
           push rax
           ; 459 push string
-          mov rax, s_406
+          mov rax, s_408
           push rax
           ; 459 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 459 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 459 push integer
           mov rax, 459
           push rax
           ; 459 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 459 push boolean
           mov rax, 1
@@ -67163,19 +67283,19 @@ while_0x0000000000000038_end:
           mov rax, s_59
           push rax
           ; 460 push string
-          mov rax, s_406
+          mov rax, s_408
           push rax
           ; 460 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 460 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 460 push integer
           mov rax, 460
           push rax
           ; 460 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 460 push boolean
           mov rax, 1
@@ -67193,19 +67313,19 @@ while_0x0000000000000038_end:
           mov rax, s_59
           push rax
           ; 461 push string
-          mov rax, s_406
+          mov rax, s_408
           push rax
           ; 461 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 461 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 461 push integer
           mov rax, 461
           push rax
           ; 461 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 461 push boolean
           mov rax, 1
@@ -67223,19 +67343,19 @@ while_0x0000000000000038_end:
           mov rax, s_59
           push rax
           ; 462 push string
-          mov rax, s_406
+          mov rax, s_408
           push rax
           ; 462 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 462 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 462 push integer
           mov rax, 462
           push rax
           ; 462 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 462 push boolean
           mov rax, 1
@@ -67253,19 +67373,19 @@ while_0x0000000000000038_end:
           mov rax, s_59
           push rax
           ; 463 push string
-          mov rax, s_474
+          mov rax, s_476
           push rax
           ; 463 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 463 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 463 push integer
           mov rax, 463
           push rax
           ; 463 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 463 push boolean
           mov rax, 1
@@ -67280,7 +67400,7 @@ while_0x0000000000000038_end:
           pop rbx
           pop rbx
           ; 464 push string
-          mov rax, s_470
+          mov rax, s_472
           push rax
           ; 464 push string
           mov rax, s_59
@@ -67289,13 +67409,13 @@ while_0x0000000000000038_end:
           mov rax, buf__text
           push rax
           ; 464 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 464 push integer
           mov rax, 464
           push rax
           ; 464 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 464 push boolean
           mov rax, 1
@@ -67313,19 +67433,19 @@ while_0x0000000000000038_end:
           mov rax, s_59
           push rax
           ; 465 push string
-          mov rax, s_475
+          mov rax, s_477
           push rax
           ; 465 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 465 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 465 push integer
           mov rax, 465
           push rax
           ; 465 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 465 push boolean
           mov rax, 1
@@ -67343,19 +67463,19 @@ while_0x0000000000000038_end:
           mov rax, s_59
           push rax
           ; 466 push string
-          mov rax, s_476
+          mov rax, s_478
           push rax
           ; 466 get pointer to buffer
           mov rax, buf__text
           push rax
           ; 466 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 466 push integer
           mov rax, 466
           push rax
           ; 466 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 466 push boolean
           mov rax, 1
@@ -67379,13 +67499,13 @@ while_0x0000000000000038_end:
           mov rax, buf__text
           push rax
           ; 467 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 467 push integer
           mov rax, 467
           push rax
           ; 467 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 467 push boolean
           mov rax, 1
@@ -67430,13 +67550,13 @@ while_0x0000000000000038_end:
           add rbx, rax
           push rbx
           ; 474 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 474 push integer
           mov rax, 474
           push rax
           ; 474 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 474 push boolean
           mov rax, 1
@@ -67461,13 +67581,13 @@ while_0x0000000000000038_end:
           push rax
           push rbx
           ; 474 push string
-          mov rax, s_395
+          mov rax, s_397
           push rax
           ; 474 push integer
           mov rax, 474
           push rax
           ; 474 push string
-          mov rax, s_400
+          mov rax, s_402
           push rax
           ; 474 push boolean
           mov rax, 1
@@ -67499,13 +67619,13 @@ fn_parse_arguments:
           push rbp
           mov rbp, rsp
           ; 23 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 23 push integer
           mov rax, 23
           push rax
           ; 23 push string
-          mov rax, s_478
+          mov rax, s_480
           push rax
           ; 23 push boolean
           mov rax, 1
@@ -67517,22 +67637,22 @@ fn_parse_arguments:
           pop rbx
           pop rbx
           ; 25 push string
-          mov rax, s_479
+          mov rax, s_481
           push rax
           ; 25 push integer
           mov rax, 1
           push rax
           ; 25 push string
-          mov rax, s_480
+          mov rax, s_482
           push rax
           ; 26 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 26 push integer
           mov rax, 26
           push rax
           ; 26 push string
-          mov rax, s_478
+          mov rax, s_480
           push rax
           ; 26 push boolean
           mov rax, 1
@@ -67547,22 +67667,22 @@ fn_parse_arguments:
           pop rbx
           pop rbx
           ; 27 push string
-          mov rax, s_481
+          mov rax, s_483
           push rax
           ; 27 push integer
           mov rax, 2
           push rax
           ; 27 push string
-          mov rax, s_482
+          mov rax, s_484
           push rax
           ; 28 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 28 push integer
           mov rax, 28
           push rax
           ; 28 push string
-          mov rax, s_478
+          mov rax, s_480
           push rax
           ; 28 push boolean
           mov rax, 1
@@ -67577,22 +67697,22 @@ fn_parse_arguments:
           pop rbx
           pop rbx
           ; 29 push string
-          mov rax, s_483
+          mov rax, s_485
           push rax
           ; 29 push integer
           mov rax, 1
           push rax
           ; 29 push string
-          mov rax, s_484
+          mov rax, s_486
           push rax
           ; 30 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 30 push integer
           mov rax, 30
           push rax
           ; 30 push string
-          mov rax, s_478
+          mov rax, s_480
           push rax
           ; 30 push boolean
           mov rax, 1
@@ -67607,22 +67727,22 @@ fn_parse_arguments:
           pop rbx
           pop rbx
           ; 31 push string
-          mov rax, s_485
+          mov rax, s_487
           push rax
           ; 31 push integer
           mov rax, 1
           push rax
           ; 31 push string
-          mov rax, s_486
+          mov rax, s_488
           push rax
           ; 32 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 32 push integer
           mov rax, 32
           push rax
           ; 32 push string
-          mov rax, s_478
+          mov rax, s_480
           push rax
           ; 32 push boolean
           mov rax, 1
@@ -67637,22 +67757,22 @@ fn_parse_arguments:
           pop rbx
           pop rbx
           ; 33 push string
-          mov rax, s_487
+          mov rax, s_489
           push rax
           ; 33 push integer
           mov rax, 1
           push rax
           ; 33 push string
-          mov rax, s_488
+          mov rax, s_490
           push rax
           ; 34 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 34 push integer
           mov rax, 34
           push rax
           ; 34 push string
-          mov rax, s_478
+          mov rax, s_480
           push rax
           ; 34 push boolean
           mov rax, 1
@@ -67667,22 +67787,22 @@ fn_parse_arguments:
           pop rbx
           pop rbx
           ; 35 push string
-          mov rax, s_489
+          mov rax, s_491
           push rax
           ; 35 push integer
           mov rax, 1
           push rax
           ; 35 push string
-          mov rax, s_490
+          mov rax, s_492
           push rax
           ; 36 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 36 push integer
           mov rax, 36
           push rax
           ; 36 push string
-          mov rax, s_478
+          mov rax, s_480
           push rax
           ; 36 push boolean
           mov rax, 1
@@ -67697,22 +67817,22 @@ fn_parse_arguments:
           pop rbx
           pop rbx
           ; 37 push string
-          mov rax, s_491
+          mov rax, s_493
           push rax
           ; 37 push integer
           mov rax, 1
           push rax
           ; 37 push string
-          mov rax, s_492
+          mov rax, s_494
           push rax
           ; 38 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 38 push integer
           mov rax, 38
           push rax
           ; 38 push string
-          mov rax, s_478
+          mov rax, s_480
           push rax
           ; 38 push boolean
           mov rax, 1
@@ -67727,22 +67847,22 @@ fn_parse_arguments:
           pop rbx
           pop rbx
           ; 39 push string
-          mov rax, s_493
+          mov rax, s_495
           push rax
           ; 39 push integer
           mov rax, 1
           push rax
           ; 39 push string
-          mov rax, s_494
+          mov rax, s_496
           push rax
           ; 40 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 40 push integer
           mov rax, 40
           push rax
           ; 40 push string
-          mov rax, s_478
+          mov rax, s_480
           push rax
           ; 40 push boolean
           mov rax, 1
@@ -67757,22 +67877,22 @@ fn_parse_arguments:
           pop rbx
           pop rbx
           ; 41 push string
-          mov rax, s_495
+          mov rax, s_497
           push rax
           ; 41 push integer
           mov rax, 1
           push rax
           ; 41 push string
-          mov rax, s_496
+          mov rax, s_498
           push rax
           ; 42 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 42 push integer
           mov rax, 42
           push rax
           ; 42 push string
-          mov rax, s_478
+          mov rax, s_480
           push rax
           ; 42 push boolean
           mov rax, 1
@@ -67787,22 +67907,22 @@ fn_parse_arguments:
           pop rbx
           pop rbx
           ; 43 push string
-          mov rax, s_497
+          mov rax, s_499
           push rax
           ; 43 push integer
           mov rax, 0
           push rax
           ; 43 push string
-          mov rax, s_498
+          mov rax, s_500
           push rax
           ; 44 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 44 push integer
           mov rax, 44
           push rax
           ; 44 push string
-          mov rax, s_478
+          mov rax, s_480
           push rax
           ; 44 push boolean
           mov rax, 1
@@ -67827,13 +67947,13 @@ fn_parse_arguments:
           mov rbx, [rax]
           push rbx
           ; 46 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 46 push integer
           mov rax, 46
           push rax
           ; 46 push string
-          mov rax, s_478
+          mov rax, s_480
           push rax
           ; 46 push boolean
           mov rax, 1
@@ -67879,18 +67999,18 @@ fn_log_cmd:
           ; 50 start of if-block
           pop rax
           test rax, rax
-          jz if_0x00000000000001d3
+          jz if_0x00000000000001d4
           ; 51 push string
-          mov rax, s_499
+          mov rax, s_501
           push rax
           ; 51 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 51 push integer
           mov rax, 51
           push rax
           ; 51 push string
-          mov rax, s_500
+          mov rax, s_502
           push rax
           ; 51 push boolean
           mov rax, 1
@@ -67966,18 +68086,18 @@ while_0x000000000000003b:
           ; 53 start of if-block
           pop rax
           test rax, rax
-          jz if_0x00000000000001d4
+          jz if_0x00000000000001d5
           ; 54 push string
           mov rax, s_134
           push rax
           ; 54 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 54 push integer
           mov rax, 54
           push rax
           ; 54 push string
-          mov rax, s_500
+          mov rax, s_502
           push rax
           ; 54 push boolean
           mov rax, 1
@@ -67990,11 +68110,11 @@ while_0x000000000000003b:
           pop rbx
           pop rbx
           ; 54 jump
-          jmp end_0x00000000000001d4
+          jmp end_0x00000000000001d5
           ; 54 label
-if_0x00000000000001d4: 
+if_0x00000000000001d5: 
           ; 54 label
-end_0x00000000000001d4: 
+end_0x00000000000001d5: 
           ; 55 duplicate
           pop rax
           push rax
@@ -68005,13 +68125,13 @@ end_0x00000000000001d4:
           mov rbx, [rax]
           push rbx
           ; 55 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 55 push integer
           mov rax, 55
           push rax
           ; 55 push string
-          mov rax, s_500
+          mov rax, s_502
           push rax
           ; 55 push boolean
           mov rax, 1
@@ -68026,13 +68146,13 @@ end_0x00000000000001d4:
           pop rbx
           push rax
           ; 55 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 55 push integer
           mov rax, 55
           push rax
           ; 55 push string
-          mov rax, s_500
+          mov rax, s_502
           push rax
           ; 55 push boolean
           mov rax, 1
@@ -68061,13 +68181,13 @@ while_0x000000000000003b_end:
           mov rax, s_7
           push rax
           ; 57 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 57 push integer
           mov rax, 57
           push rax
           ; 57 push string
-          mov rax, s_500
+          mov rax, s_502
           push rax
           ; 57 push boolean
           mov rax, 1
@@ -68085,16 +68205,16 @@ while_0x000000000000003b_end:
           mov rbx, [rax]
           push rbx
           ; 51 jump
-          jmp end_0x00000000000001d3
+          jmp end_0x00000000000001d4
           ; 51 label
-if_0x00000000000001d3: 
+if_0x00000000000001d4: 
           ; 59 get argument
           mov rax, rbp
           add rax, 48
           mov rbx, [rax]
           push rbx
           ; 59 label
-end_0x00000000000001d3: 
+end_0x00000000000001d4: 
           ; 50 restore frame
           pop rax
           mov rsp, rbp
@@ -68116,13 +68236,13 @@ fn_start:
           mov rbx, [rax]
           push rbx
           ; 64 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 64 push integer
           mov rax, 64
           push rax
           ; 64 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 64 push boolean
           mov rax, 1
@@ -68137,7 +68257,7 @@ fn_start:
           pop rbx
           push rax
           ; 66 push string
-          mov rax, s_481
+          mov rax, s_483
           push rax
           ; 66 over
           pop rax
@@ -68158,13 +68278,13 @@ fn_start:
           mov rbx, [rax]
           push rbx
           ; 66 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 66 push integer
           mov rax, 66
           push rax
           ; 66 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 66 push boolean
           mov rax, 1
@@ -68195,13 +68315,13 @@ fn_start:
           push rax
           push rax
           ; 67 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 67 push integer
           mov rax, 67
           push rax
           ; 67 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 67 push boolean
           mov rax, 1
@@ -68224,7 +68344,7 @@ fn_start:
           ; 67 start of if-block
           pop rax
           test rax, rax
-          jz if_0x00000000000001d5
+          jz if_0x00000000000001d6
           ; 68 drop
           pop rax
           ; 68 push integer
@@ -68238,17 +68358,17 @@ fn_start:
           pop rbx
           mov [rax], rbx
           ; 68 jump
-          jmp end_0x00000000000001d5
+          jmp end_0x00000000000001d6
           ; 68 label
-if_0x00000000000001d5: 
+if_0x00000000000001d6: 
           ; 70 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 70 push integer
           mov rax, 70
           push rax
           ; 70 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 70 push boolean
           mov rax, 1
@@ -68269,9 +68389,9 @@ if_0x00000000000001d5:
           pop rbx
           mov [rax], rbx
           ; 70 label
-end_0x00000000000001d5: 
+end_0x00000000000001d6: 
           ; 72 push string
-          mov rax, s_479
+          mov rax, s_481
           push rax
           ; 72 over
           pop rax
@@ -68292,13 +68412,13 @@ end_0x00000000000001d5:
           mov rbx, [rax]
           push rbx
           ; 72 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 72 push integer
           mov rax, 72
           push rax
           ; 72 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 72 push boolean
           mov rax, 1
@@ -68325,13 +68445,13 @@ end_0x00000000000001d5:
           mov rbx, [rax]
           push rbx
           ; 72 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 72 push integer
           mov rax, 72
           push rax
           ; 72 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 72 push boolean
           mov rax, 1
@@ -68359,7 +68479,7 @@ end_0x00000000000001d5:
           pop rbx
           mov [rax], bl
           ; 74 push string
-          mov rax, s_483
+          mov rax, s_485
           push rax
           ; 74 over
           pop rax
@@ -68380,13 +68500,13 @@ end_0x00000000000001d5:
           mov rbx, [rax]
           push rbx
           ; 74 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 74 push integer
           mov rax, 74
           push rax
           ; 74 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 74 push boolean
           mov rax, 1
@@ -68413,13 +68533,13 @@ end_0x00000000000001d5:
           mov rbx, [rax]
           push rbx
           ; 74 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 74 push integer
           mov rax, 74
           push rax
           ; 74 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 74 push boolean
           mov rax, 1
@@ -68447,7 +68567,7 @@ end_0x00000000000001d5:
           pop rbx
           mov [rax], bl
           ; 76 push string
-          mov rax, s_485
+          mov rax, s_487
           push rax
           ; 76 over
           pop rax
@@ -68468,13 +68588,13 @@ end_0x00000000000001d5:
           mov rbx, [rax]
           push rbx
           ; 76 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 76 push integer
           mov rax, 76
           push rax
           ; 76 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 76 push boolean
           mov rax, 1
@@ -68501,13 +68621,13 @@ end_0x00000000000001d5:
           mov rbx, [rax]
           push rbx
           ; 76 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 76 push integer
           mov rax, 76
           push rax
           ; 76 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 76 push boolean
           mov rax, 1
@@ -68535,7 +68655,7 @@ end_0x00000000000001d5:
           pop rbx
           mov [rax], bl
           ; 78 push string
-          mov rax, s_487
+          mov rax, s_489
           push rax
           ; 78 over
           pop rax
@@ -68556,13 +68676,13 @@ end_0x00000000000001d5:
           mov rbx, [rax]
           push rbx
           ; 78 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 78 push integer
           mov rax, 78
           push rax
           ; 78 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 78 push boolean
           mov rax, 1
@@ -68589,13 +68709,13 @@ end_0x00000000000001d5:
           mov rbx, [rax]
           push rbx
           ; 78 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 78 push integer
           mov rax, 78
           push rax
           ; 78 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 78 push boolean
           mov rax, 1
@@ -68623,7 +68743,7 @@ end_0x00000000000001d5:
           pop rbx
           mov [rax], bl
           ; 80 push string
-          mov rax, s_489
+          mov rax, s_491
           push rax
           ; 80 over
           pop rax
@@ -68644,13 +68764,13 @@ end_0x00000000000001d5:
           mov rbx, [rax]
           push rbx
           ; 80 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 80 push integer
           mov rax, 80
           push rax
           ; 80 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 80 push boolean
           mov rax, 1
@@ -68677,13 +68797,13 @@ end_0x00000000000001d5:
           mov rbx, [rax]
           push rbx
           ; 80 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 80 push integer
           mov rax, 80
           push rax
           ; 80 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 80 push boolean
           mov rax, 1
@@ -68711,7 +68831,7 @@ end_0x00000000000001d5:
           pop rbx
           mov [rax], bl
           ; 82 push string
-          mov rax, s_491
+          mov rax, s_493
           push rax
           ; 82 over
           pop rax
@@ -68732,13 +68852,13 @@ end_0x00000000000001d5:
           mov rbx, [rax]
           push rbx
           ; 82 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 82 push integer
           mov rax, 82
           push rax
           ; 82 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 82 push boolean
           mov rax, 1
@@ -68765,13 +68885,13 @@ end_0x00000000000001d5:
           mov rbx, [rax]
           push rbx
           ; 82 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 82 push integer
           mov rax, 82
           push rax
           ; 82 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 82 push boolean
           mov rax, 1
@@ -68799,7 +68919,7 @@ end_0x00000000000001d5:
           pop rbx
           mov [rax], bl
           ; 84 push string
-          mov rax, s_493
+          mov rax, s_495
           push rax
           ; 84 over
           pop rax
@@ -68820,13 +68940,13 @@ end_0x00000000000001d5:
           mov rbx, [rax]
           push rbx
           ; 84 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 84 push integer
           mov rax, 84
           push rax
           ; 84 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 84 push boolean
           mov rax, 1
@@ -68853,13 +68973,13 @@ end_0x00000000000001d5:
           mov rbx, [rax]
           push rbx
           ; 84 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 84 push integer
           mov rax, 84
           push rax
           ; 84 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 84 push boolean
           mov rax, 1
@@ -68887,7 +69007,7 @@ end_0x00000000000001d5:
           pop rbx
           mov [rax], bl
           ; 86 push string
-          mov rax, s_495
+          mov rax, s_497
           push rax
           ; 86 over
           pop rax
@@ -68908,13 +69028,13 @@ end_0x00000000000001d5:
           mov rbx, [rax]
           push rbx
           ; 86 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 86 push integer
           mov rax, 86
           push rax
           ; 86 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 86 push boolean
           mov rax, 1
@@ -68941,13 +69061,13 @@ end_0x00000000000001d5:
           mov rbx, [rax]
           push rbx
           ; 86 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 86 push integer
           mov rax, 86
           push rax
           ; 86 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 86 push boolean
           mov rax, 1
@@ -68985,15 +69105,15 @@ end_0x00000000000001d5:
           ; 89 start of if-block
           pop rax
           test rax, rax
-          jz if_0x00000000000001d6
+          jz if_0x00000000000001d7
           ; 91 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 91 push integer
           mov rax, 91
           push rax
           ; 91 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 91 push boolean
           mov rax, 1
@@ -69005,11 +69125,11 @@ end_0x00000000000001d5:
           pop rbx
           pop rbx
           ; 90 jump
-          jmp end_0x00000000000001d6
+          jmp end_0x00000000000001d7
           ; 90 label
-if_0x00000000000001d6: 
+if_0x00000000000001d7: 
           ; 90 label
-end_0x00000000000001d6: 
+end_0x00000000000001d7: 
           ; 94 push integer
           mov rax, 0
           push rax
@@ -69032,13 +69152,13 @@ end_0x00000000000001d6:
           mov rbx, [rax]
           push rbx
           ; 94 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 94 push integer
           mov rax, 94
           push rax
           ; 94 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 94 push boolean
           mov rax, 1
@@ -69058,13 +69178,13 @@ end_0x00000000000001d6:
           push rax
           push rbx
           ; 97 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 97 push integer
           mov rax, 97
           push rax
           ; 97 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 97 push boolean
           mov rax, 1
@@ -69098,18 +69218,18 @@ end_0x00000000000001d6:
           ; 99 start of if-block
           pop rax
           test rax, rax
-          jz if_0x00000000000001d7
+          jz if_0x00000000000001d8
           ; 100 push string
-          mov rax, s_502
+          mov rax, s_503
           push rax
           ; 100 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 100 push integer
           mov rax, 100
           push rax
           ; 100 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 100 push boolean
           mov rax, 1
@@ -69126,13 +69246,13 @@ end_0x00000000000001d6:
           push rax
           push rax
           ; 100 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 100 push integer
           mov rax, 100
           push rax
           ; 100 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 100 push boolean
           mov rax, 1
@@ -69148,13 +69268,13 @@ end_0x00000000000001d6:
           mov rax, s_7
           push rax
           ; 100 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 100 push integer
           mov rax, 100
           push rax
           ; 100 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 100 push boolean
           mov rax, 1
@@ -69167,23 +69287,23 @@ end_0x00000000000001d6:
           pop rbx
           pop rbx
           ; 100 jump
-          jmp end_0x00000000000001d7
+          jmp end_0x00000000000001d8
           ; 100 label
-if_0x00000000000001d7: 
+if_0x00000000000001d8: 
           ; 100 label
-end_0x00000000000001d7: 
+end_0x00000000000001d8: 
           ; 103 duplicate
           pop rax
           push rax
           push rax
           ; 103 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 103 push integer
           mov rax, 103
           push rax
           ; 103 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 103 push boolean
           mov rax, 1
@@ -69197,13 +69317,13 @@ end_0x00000000000001d7:
           pop rbx
           push rax
           ; 104 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 104 push integer
           mov rax, 104
           push rax
           ; 104 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 104 push boolean
           mov rax, 1
@@ -69227,19 +69347,19 @@ end_0x00000000000001d7:
           ; 106 start of if-block
           pop rax
           test rax, rax
-          jz if_0x00000000000001d8
+          jz if_0x00000000000001d9
           ; 107 duplicate
           pop rax
           push rax
           push rax
           ; 107 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 107 push integer
           mov rax, 107
           push rax
           ; 107 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 107 push boolean
           mov rax, 1
@@ -69252,11 +69372,11 @@ end_0x00000000000001d7:
           pop rbx
           pop rbx
           ; 107 jump
-          jmp end_0x00000000000001d8
+          jmp end_0x00000000000001d9
           ; 107 label
-if_0x00000000000001d8: 
+if_0x00000000000001d9: 
           ; 107 label
-end_0x00000000000001d8: 
+end_0x00000000000001d9: 
           ; 110 over
           pop rax
           pop rbx
@@ -69269,13 +69389,13 @@ end_0x00000000000001d8:
           push rax
           push rbx
           ; 110 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 110 push integer
           mov rax, 110
           push rax
           ; 110 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 110 push boolean
           mov rax, 1
@@ -69299,13 +69419,13 @@ end_0x00000000000001d8:
           push rax
           push rax
           ; 113 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 113 push integer
           mov rax, 113
           push rax
           ; 113 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 113 push boolean
           mov rax, 1
@@ -69327,13 +69447,13 @@ end_0x00000000000001d8:
           sub rbx, rax
           push rbx
           ; 113 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 113 push integer
           mov rax, 113
           push rax
           ; 113 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 113 push boolean
           mov rax, 1
@@ -69365,19 +69485,19 @@ end_0x00000000000001d8:
           ; 116 start of if-block
           pop rax
           test rax, rax
-          jz if_0x00000000000001d9
+          jz if_0x00000000000001da
           ; 117 duplicate
           pop rax
           push rax
           push rax
           ; 117 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 117 push integer
           mov rax, 117
           push rax
           ; 117 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 117 push boolean
           mov rax, 1
@@ -69390,11 +69510,11 @@ end_0x00000000000001d8:
           pop rbx
           pop rbx
           ; 117 jump
-          jmp end_0x00000000000001d9
+          jmp end_0x00000000000001da
           ; 117 label
-if_0x00000000000001d9: 
+if_0x00000000000001da: 
           ; 117 label
-end_0x00000000000001d9: 
+end_0x00000000000001da: 
           ; 119 get pointer to buffer
           mov rax, buf_ENABLE_PROFILER
           push rax
@@ -69406,17 +69526,17 @@ end_0x00000000000001d9:
           ; 119 start of if-block
           pop rax
           test rax, rax
-          jz if_0x00000000000001da
+          jz if_0x00000000000001db
           ; 121 drop
           pop rax
           ; 122 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 122 push integer
           mov rax, 122
           push rax
           ; 122 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 122 push boolean
           mov rax, 1
@@ -69428,9 +69548,9 @@ end_0x00000000000001d9:
           pop rbx
           pop rbx
           ; 120 jump
-          jmp end_0x00000000000001da
+          jmp end_0x00000000000001db
           ; 120 label
-if_0x00000000000001da: 
+if_0x00000000000001db: 
           ; 123 get pointer to buffer
           mov rax, buf_FORMAT
           push rax
@@ -69452,7 +69572,7 @@ if_0x00000000000001da:
           ; 123 start of if-block
           pop rax
           test rax, rax
-          jz elif_0x00000000000001db
+          jz elif_0x00000000000001dc
           ; 125 get pointer to buffer
           mov rax, buf_input_file
           push rax
@@ -69461,16 +69581,16 @@ if_0x00000000000001da:
           mov rbx, [rax]
           push rbx
           ; 125 push string
-          mov rax, s_503
+          mov rax, s_504
           push rax
           ; 125 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 125 push integer
           mov rax, 125
           push rax
           ; 125 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 125 push boolean
           mov rax, 1
@@ -69506,18 +69626,18 @@ if_0x00000000000001da:
           ; 126 start of if-block
           pop rax
           test rax, rax
-          jz if_0x00000000000001dc
+          jz if_0x00000000000001dd
           ; 127 push string
-          mov rax, s_504
+          mov rax, s_505
           push rax
           ; 127 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 127 push integer
           mov rax, 127
           push rax
           ; 127 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 127 push boolean
           mov rax, 1
@@ -69534,13 +69654,13 @@ if_0x00000000000001da:
           push rax
           push rax
           ; 127 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 127 push integer
           mov rax, 127
           push rax
           ; 127 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 127 push boolean
           mov rax, 1
@@ -69556,13 +69676,13 @@ if_0x00000000000001da:
           mov rax, s_7
           push rax
           ; 127 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 127 push integer
           mov rax, 127
           push rax
           ; 127 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 127 push boolean
           mov rax, 1
@@ -69575,23 +69695,23 @@ if_0x00000000000001da:
           pop rbx
           pop rbx
           ; 127 jump
-          jmp end_0x00000000000001dc
+          jmp end_0x00000000000001dd
           ; 127 label
-if_0x00000000000001dc: 
+if_0x00000000000001dd: 
           ; 127 label
-end_0x00000000000001dc: 
+end_0x00000000000001dd: 
           ; 129 push character
           mov rax, 119
           mov rax, 119
           push rax
           ; 129 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 129 push integer
           mov rax, 129
           push rax
           ; 129 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 129 push boolean
           mov rax, 1
@@ -69606,13 +69726,13 @@ end_0x00000000000001dc:
           pop rbx
           push rax
           ; 130 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 130 push integer
           mov rax, 130
           push rax
           ; 130 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 130 push boolean
           mov rax, 1
@@ -69626,19 +69746,19 @@ end_0x00000000000001dc:
           pop rbx
           pop rbx
           ; 132 push string
-          mov rax, s_505
+          mov rax, s_506
           push rax
           ; 133 push integer
           mov rax, 8
           push rax
           ; 133 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 133 push integer
           mov rax, 133
           push rax
           ; 133 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 133 push boolean
           mov rax, 1
@@ -69652,7 +69772,7 @@ end_0x00000000000001dc:
           pop rbx
           push rax
           ; 134 push string
-          mov rax, s_506
+          mov rax, s_507
           push rax
           ; 134 swap
           pop rax
@@ -69660,13 +69780,13 @@ end_0x00000000000001dc:
           push rax
           push rbx
           ; 134 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 134 push integer
           mov rax, 134
           push rax
           ; 134 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 134 push boolean
           mov rax, 1
@@ -69681,7 +69801,7 @@ end_0x00000000000001dc:
           pop rbx
           push rax
           ; 135 push string
-          mov rax, s_481
+          mov rax, s_483
           push rax
           ; 135 swap
           pop rax
@@ -69689,13 +69809,13 @@ end_0x00000000000001dc:
           push rax
           push rbx
           ; 135 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 135 push integer
           mov rax, 135
           push rax
           ; 135 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 135 push boolean
           mov rax, 1
@@ -69722,13 +69842,13 @@ end_0x00000000000001dc:
           push rax
           push rbx
           ; 136 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 136 push integer
           mov rax, 136
           push rax
           ; 136 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 136 push boolean
           mov rax, 1
@@ -69743,13 +69863,13 @@ end_0x00000000000001dc:
           pop rbx
           push rax
           ; 137 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 137 push integer
           mov rax, 137
           push rax
           ; 137 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 137 push boolean
           mov rax, 1
@@ -69767,13 +69887,13 @@ end_0x00000000000001dc:
           push rax
           push rbx
           ; 137 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 137 push integer
           mov rax, 137
           push rax
           ; 137 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 137 push boolean
           mov rax, 1
@@ -69796,13 +69916,13 @@ end_0x00000000000001dc:
           add rbx, rax
           push rbx
           ; 138 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 138 push integer
           mov rax, 138
           push rax
           ; 138 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 138 push boolean
           mov rax, 1
@@ -69816,19 +69936,19 @@ end_0x00000000000001dc:
           pop rbx
           pop rbx
           ; 140 push string
-          mov rax, s_507
+          mov rax, s_508
           push rax
           ; 141 push integer
           mov rax, 8
           push rax
           ; 141 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 141 push integer
           mov rax, 141
           push rax
           ; 141 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 141 push boolean
           mov rax, 1
@@ -69842,7 +69962,7 @@ end_0x00000000000001dc:
           pop rbx
           push rax
           ; 142 push string
-          mov rax, s_508
+          mov rax, s_509
           push rax
           ; 142 swap
           pop rax
@@ -69850,13 +69970,13 @@ end_0x00000000000001dc:
           push rax
           push rbx
           ; 142 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 142 push integer
           mov rax, 142
           push rax
           ; 142 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 142 push boolean
           mov rax, 1
@@ -69878,16 +69998,16 @@ end_0x00000000000001dc:
           mov rbx, [rax]
           push rbx
           ; 143 push string
-          mov rax, s_503
+          mov rax, s_504
           push rax
           ; 143 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 143 push integer
           mov rax, 143
           push rax
           ; 143 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 143 push boolean
           mov rax, 1
@@ -69907,13 +70027,13 @@ end_0x00000000000001dc:
           push rax
           push rbx
           ; 143 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 143 push integer
           mov rax, 143
           push rax
           ; 143 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 143 push boolean
           mov rax, 1
@@ -69928,13 +70048,13 @@ end_0x00000000000001dc:
           pop rbx
           push rax
           ; 144 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 144 push integer
           mov rax, 144
           push rax
           ; 144 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 144 push boolean
           mov rax, 1
@@ -69952,13 +70072,13 @@ end_0x00000000000001dc:
           push rax
           push rbx
           ; 144 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 144 push integer
           mov rax, 144
           push rax
           ; 144 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 144 push boolean
           mov rax, 1
@@ -69973,13 +70093,13 @@ end_0x00000000000001dc:
           pop rbx
           push rax
           ; 145 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 145 push integer
           mov rax, 145
           push rax
           ; 145 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 145 push boolean
           mov rax, 1
@@ -70001,13 +70121,13 @@ end_0x00000000000001dc:
           add rbx, rax
           push rbx
           ; 145 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 145 push integer
           mov rax, 145
           push rax
           ; 145 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 145 push boolean
           mov rax, 1
@@ -70031,7 +70151,7 @@ end_0x00000000000001dc:
           ; 147 start of if-block
           pop rax
           test rax, rax
-          jz if_0x00000000000001dd
+          jz if_0x00000000000001de
           ; 148 get pointer to buffer
           mov rax, buf_input_file
           push rax
@@ -70043,13 +70163,13 @@ end_0x00000000000001dc:
           mov rax, 8
           push rax
           ; 149 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 149 push integer
           mov rax, 149
           push rax
           ; 149 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 149 push boolean
           mov rax, 1
@@ -70063,7 +70183,7 @@ end_0x00000000000001dc:
           pop rbx
           push rax
           ; 150 push string
-          mov rax, s_509
+          mov rax, s_510
           push rax
           ; 150 get pointer to buffer
           mov rax, buf_input_file
@@ -70073,13 +70193,13 @@ end_0x00000000000001dc:
           mov rbx, [rax]
           push rbx
           ; 150 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 150 push integer
           mov rax, 150
           push rax
           ; 150 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 150 push boolean
           mov rax, 1
@@ -70099,13 +70219,13 @@ end_0x00000000000001dc:
           push rax
           push rbx
           ; 150 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 150 push integer
           mov rax, 150
           push rax
           ; 150 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 150 push boolean
           mov rax, 1
@@ -70120,13 +70240,13 @@ end_0x00000000000001dc:
           pop rbx
           push rax
           ; 151 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 151 push integer
           mov rax, 151
           push rax
           ; 151 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 151 push boolean
           mov rax, 1
@@ -70144,13 +70264,13 @@ end_0x00000000000001dc:
           push rax
           push rbx
           ; 151 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 151 push integer
           mov rax, 151
           push rax
           ; 151 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 151 push boolean
           mov rax, 1
@@ -70165,13 +70285,13 @@ end_0x00000000000001dc:
           pop rbx
           push rax
           ; 152 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 152 push integer
           mov rax, 152
           push rax
           ; 152 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 152 push boolean
           mov rax, 1
@@ -70193,13 +70313,13 @@ end_0x00000000000001dc:
           add rbx, rax
           push rbx
           ; 152 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 152 push integer
           mov rax, 152
           push rax
           ; 152 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 152 push boolean
           mov rax, 1
@@ -70213,11 +70333,11 @@ end_0x00000000000001dc:
           pop rbx
           pop rbx
           ; 148 jump
-          jmp end_0x00000000000001dd
+          jmp end_0x00000000000001de
           ; 148 label
-if_0x00000000000001dd: 
+if_0x00000000000001de: 
           ; 148 label
-end_0x00000000000001dd: 
+end_0x00000000000001de: 
           ; 154 get pointer to buffer
           mov rax, buf_KEEP_ASSEMBLY
           push rax
@@ -70240,21 +70360,21 @@ end_0x00000000000001dd:
           ; 154 start of if-block
           pop rax
           test rax, rax
-          jz if_0x00000000000001de
+          jz if_0x00000000000001df
           ; 155 push string
-          mov rax, s_505
+          mov rax, s_506
           push rax
           ; 156 push integer
           mov rax, 8
           push rax
           ; 156 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 156 push integer
           mov rax, 156
           push rax
           ; 156 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 156 push boolean
           mov rax, 1
@@ -70268,7 +70388,7 @@ end_0x00000000000001dd:
           pop rbx
           push rax
           ; 157 push string
-          mov rax, s_506
+          mov rax, s_507
           push rax
           ; 157 swap
           pop rax
@@ -70276,13 +70396,13 @@ end_0x00000000000001dd:
           push rax
           push rbx
           ; 157 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 157 push integer
           mov rax, 157
           push rax
           ; 157 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 157 push boolean
           mov rax, 1
@@ -70304,16 +70424,16 @@ end_0x00000000000001dd:
           mov rbx, [rax]
           push rbx
           ; 158 push string
-          mov rax, s_503
+          mov rax, s_504
           push rax
           ; 158 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 158 push integer
           mov rax, 158
           push rax
           ; 158 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 158 push boolean
           mov rax, 1
@@ -70333,13 +70453,13 @@ end_0x00000000000001dd:
           push rax
           push rbx
           ; 158 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 158 push integer
           mov rax, 158
           push rax
           ; 158 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 158 push boolean
           mov rax, 1
@@ -70354,13 +70474,13 @@ end_0x00000000000001dd:
           pop rbx
           push rax
           ; 159 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 159 push integer
           mov rax, 159
           push rax
           ; 159 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 159 push boolean
           mov rax, 1
@@ -70378,13 +70498,13 @@ end_0x00000000000001dd:
           push rax
           push rbx
           ; 159 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 159 push integer
           mov rax, 159
           push rax
           ; 159 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 159 push boolean
           mov rax, 1
@@ -70399,13 +70519,13 @@ end_0x00000000000001dd:
           pop rbx
           push rax
           ; 160 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 160 push integer
           mov rax, 160
           push rax
           ; 160 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 160 push boolean
           mov rax, 1
@@ -70427,13 +70547,13 @@ end_0x00000000000001dd:
           add rbx, rax
           push rbx
           ; 160 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 160 push integer
           mov rax, 160
           push rax
           ; 160 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 160 push boolean
           mov rax, 1
@@ -70447,28 +70567,28 @@ end_0x00000000000001dd:
           pop rbx
           pop rbx
           ; 155 jump
-          jmp end_0x00000000000001de
+          jmp end_0x00000000000001df
           ; 155 label
-if_0x00000000000001de: 
+if_0x00000000000001df: 
           ; 155 label
-end_0x00000000000001de: 
+end_0x00000000000001df: 
           ; 123 jump
-          jmp end_0x00000000000001da
+          jmp end_0x00000000000001db
           ; 123 label
-elif_0x00000000000001db: 
+elif_0x00000000000001dc: 
           ; 162 drop
           pop rax
           ; 162 push string
-          mov rax, s_510
+          mov rax, s_511
           push rax
           ; 162 push string
-          mov rax, s_477
+          mov rax, s_479
           push rax
           ; 162 push integer
           mov rax, 162
           push rax
           ; 162 push string
-          mov rax, s_501
+          mov rax, s_395
           push rax
           ; 162 push boolean
           mov rax, 1
@@ -70481,7 +70601,7 @@ elif_0x00000000000001db:
           pop rbx
           pop rbx
           ; 162 label
-end_0x00000000000001da: 
+end_0x00000000000001db: 
           ; 164 push integer
           mov rax, 0
           push rax
@@ -70502,7 +70622,7 @@ _end:
           mov rdi, rax
           mov rax, 60
           syscall
-          segment readable writeable
+segment readable writeable 
 buf__itos: rb 21 
 s_1: db 48, 0 
 s_2: db 108, 105, 98, 47, 99, 111, 114, 101, 46, 98, 98, 0 
@@ -70927,94 +71047,96 @@ s_391: db 85, 110, 101, 120, 112, 101, 99, 116, 101, 100, 32, 101, 110, 100, 32,
 s_392: db 76, 97, 115, 116, 32, 116, 111, 107, 101, 110, 32, 115, 104, 111, 117, 108, 100, 32, 98, 101, 32, 114, 101, 116, 117, 114, 110, 95, 111, 110, 0 
 s_393: db 95, 112, 97, 114, 115, 101, 95, 99, 111, 114, 101, 95, 102, 117, 110, 99, 116, 105, 111, 110, 115, 0 
 s_394: db 112, 97, 114, 115, 101, 0 
+s_395: db 115, 116, 97, 114, 116, 0 
+s_396: db 67, 111, 109, 112, 105, 108, 97, 116, 105, 111, 110, 32, 101, 114, 114, 111, 114, 58, 32, 80, 114, 111, 103, 114, 97, 109, 32, 114, 101, 113, 117, 105, 114, 101, 115, 32, 96, 115, 116, 97, 114, 116, 96, 32, 102, 117, 110, 99, 116, 105, 111, 110, 10, 0 
 buf__text: rb 8 
 buf__data: rb 8 
 buf__string_index: rb 8 
 buf__textbuffer: rb 8 
 buf__string_labels: rb 8 
 buf__format_buffer: rb 1024 
-s_395: db 115, 114, 99, 47, 103, 101, 110, 101, 114, 97, 116, 111, 114, 46, 98, 98, 0 
-s_396: db 95, 102, 111, 114, 109, 97, 116, 0 
-s_397: db 95, 97, 112, 112, 101, 110, 100, 0 
-s_398: db 95, 97, 112, 112, 101, 110, 100, 95, 111, 112, 99, 111, 100, 101, 95, 105, 110, 102, 111, 0 
-s_399: db 59, 32, 0 
-s_400: db 103, 101, 110, 101, 114, 97, 116, 101, 95, 99, 111, 100, 101, 95, 120, 56, 54, 95, 54, 52, 95, 108, 105, 110, 117, 120, 0 
-s_401: db 102, 111, 114, 109, 97, 116, 32, 69, 76, 70, 54, 52, 32, 101, 120, 101, 99, 117, 116, 97, 98, 108, 101, 0 
-s_402: db 101, 110, 116, 114, 121, 32, 95, 115, 116, 97, 114, 116, 0 
-s_403: db 115, 101, 103, 109, 101, 110, 116, 32, 114, 101, 97, 100, 97, 98, 108, 101, 32, 101, 120, 101, 99, 117, 116, 97, 98, 108, 101, 0 
-s_404: db 115, 101, 103, 109, 101, 110, 116, 32, 114, 101, 97, 100, 97, 98, 108, 101, 32, 119, 114, 105, 116, 101, 97, 98, 108, 101, 0 
-s_405: db 112, 111, 112, 32, 114, 97, 120, 0 
-s_406: db 112, 117, 115, 104, 32, 114, 97, 120, 0 
-s_407: db 112, 111, 112, 32, 114, 98, 120, 0 
-s_408: db 112, 117, 115, 104, 32, 114, 98, 120, 0 
-s_409: db 112, 111, 112, 32, 114, 99, 120, 0 
-s_410: db 112, 117, 115, 104, 32, 114, 99, 120, 0 
-s_411: db 109, 111, 118, 32, 114, 97, 120, 44, 32, 0 
-s_412: db 115, 95, 0 
-s_413: db 58, 32, 100, 98, 32, 0 
-s_414: db 44, 32, 0 
-s_415: db 49, 48, 0 
-s_416: db 49, 51, 0 
-s_417: db 57, 50, 0 
-s_418: db 51, 52, 0 
-s_419: db 85, 110, 107, 110, 111, 119, 110, 32, 101, 115, 99, 97, 112, 101, 32, 115, 101, 113, 117, 101, 110, 99, 101, 0 
-s_420: db 44, 32, 48, 0 
-s_421: db 83, 116, 114, 105, 110, 103, 32, 115, 104, 111, 117, 108, 100, 32, 104, 97, 118, 101, 32, 108, 97, 98, 101, 108, 0 
-s_422: db 58, 0 
-s_423: db 112, 117, 115, 104, 32, 114, 98, 112, 0 
-s_424: db 109, 111, 118, 32, 114, 98, 112, 44, 32, 114, 115, 112, 0 
-s_425: db 99, 97, 108, 108, 32, 102, 110, 95, 0 
-s_426: db 109, 111, 118, 32, 114, 97, 120, 44, 32, 114, 98, 112, 0 
-s_427: db 97, 100, 100, 32, 114, 97, 120, 44, 32, 0 
-s_428: db 109, 111, 118, 32, 114, 98, 120, 44, 32, 91, 114, 97, 120, 93, 0 
-s_429: db 97, 100, 100, 32, 114, 98, 120, 44, 32, 114, 97, 120, 0 
-s_430: db 115, 117, 98, 32, 114, 98, 120, 44, 32, 114, 97, 120, 0 
-s_431: db 105, 109, 117, 108, 32, 114, 98, 120, 44, 32, 114, 97, 120, 0 
-s_432: db 120, 111, 114, 32, 114, 100, 120, 44, 32, 114, 100, 120, 0 
-s_433: db 100, 105, 118, 32, 114, 98, 120, 0 
-s_434: db 112, 117, 115, 104, 32, 114, 100, 120, 0 
-s_435: db 109, 111, 118, 32, 114, 115, 112, 44, 32, 114, 98, 112, 0 
-s_436: db 112, 111, 112, 32, 114, 98, 112, 0 
-s_437: db 114, 101, 116, 0 
-s_438: db 97, 110, 100, 32, 114, 98, 120, 44, 32, 114, 97, 120, 0 
-s_439: db 111, 114, 32, 114, 98, 120, 44, 32, 114, 97, 120, 0 
-s_440: db 109, 111, 118, 32, 114, 97, 120, 44, 32, 98, 117, 102, 95, 0 
-s_441: db 98, 117, 102, 95, 0 
-s_442: db 58, 32, 114, 98, 32, 0 
-s_443: db 109, 111, 118, 32, 114, 97, 120, 44, 32, 48, 0 
-s_444: db 109, 111, 118, 32, 114, 98, 120, 44, 32, 49, 0 
-s_445: db 112, 111, 112, 32, 114, 100, 120, 0 
-s_446: db 99, 109, 112, 32, 114, 100, 120, 44, 32, 114, 99, 120, 0 
-s_447: db 99, 109, 111, 118, 101, 32, 114, 97, 120, 44, 32, 114, 98, 120, 0 
-s_448: db 99, 109, 111, 118, 110, 101, 32, 114, 97, 120, 44, 32, 114, 98, 120, 0 
-s_449: db 99, 109, 111, 118, 103, 101, 32, 114, 97, 120, 44, 32, 114, 98, 120, 0 
-s_450: db 99, 109, 111, 118, 103, 32, 114, 97, 120, 44, 32, 114, 98, 120, 0 
-s_451: db 99, 109, 111, 118, 108, 101, 32, 114, 97, 120, 44, 32, 114, 98, 120, 0 
-s_452: db 99, 109, 111, 118, 108, 32, 114, 97, 120, 44, 32, 114, 98, 120, 0 
-s_453: db 116, 101, 115, 116, 32, 114, 97, 120, 44, 32, 114, 97, 120, 0 
-s_454: db 106, 122, 32, 0 
-s_455: db 106, 109, 112, 32, 0 
-s_456: db 83, 121, 115, 99, 97, 108, 108, 32, 115, 104, 111, 117, 108, 100, 32, 104, 97, 118, 101, 32, 49, 45, 54, 32, 97, 114, 103, 117, 109, 101, 110, 116, 115, 0 
-s_457: db 112, 111, 112, 32, 114, 57, 0 
-s_458: db 112, 111, 112, 32, 114, 56, 0 
-s_459: db 112, 111, 112, 32, 114, 49, 48, 0 
-s_460: db 112, 111, 112, 32, 114, 115, 105, 0 
-s_461: db 112, 111, 112, 32, 114, 100, 105, 0 
-s_462: db 109, 111, 118, 32, 114, 97, 120, 44, 32, 102, 110, 95, 0 
-s_463: db 120, 111, 114, 32, 114, 98, 120, 44, 32, 114, 98, 120, 0 
-s_464: db 109, 111, 118, 32, 98, 108, 44, 32, 91, 114, 97, 120, 93, 0 
-s_465: db 109, 111, 118, 32, 91, 114, 97, 120, 93, 44, 32, 98, 108, 0 
-s_466: db 109, 111, 118, 32, 91, 114, 97, 120, 93, 44, 32, 114, 98, 120, 0 
-s_467: db 115, 104, 108, 32, 114, 97, 120, 44, 32, 99, 108, 0 
-s_468: db 115, 104, 114, 32, 114, 97, 120, 44, 32, 99, 108, 0 
-s_469: db 95, 101, 110, 100, 0 
-s_470: db 95, 101, 110, 100, 58, 0 
-s_471: db 85, 110, 107, 110, 111, 119, 110, 32, 111, 112, 99, 111, 100, 101, 58, 32, 0 
-s_472: db 95, 115, 116, 97, 114, 116, 58, 0 
-s_473: db 120, 111, 114, 32, 114, 97, 120, 44, 32, 114, 97, 120, 0 
-s_474: db 99, 97, 108, 108, 32, 102, 110, 95, 115, 116, 97, 114, 116, 0 
-s_475: db 109, 111, 118, 32, 114, 100, 105, 44, 32, 114, 97, 120, 0 
-s_476: db 109, 111, 118, 32, 114, 97, 120, 44, 32, 54, 48, 0 
+s_397: db 115, 114, 99, 47, 103, 101, 110, 101, 114, 97, 116, 111, 114, 46, 98, 98, 0 
+s_398: db 95, 102, 111, 114, 109, 97, 116, 0 
+s_399: db 95, 97, 112, 112, 101, 110, 100, 0 
+s_400: db 95, 97, 112, 112, 101, 110, 100, 95, 111, 112, 99, 111, 100, 101, 95, 105, 110, 102, 111, 0 
+s_401: db 59, 32, 0 
+s_402: db 103, 101, 110, 101, 114, 97, 116, 101, 95, 99, 111, 100, 101, 95, 120, 56, 54, 95, 54, 52, 95, 108, 105, 110, 117, 120, 0 
+s_403: db 102, 111, 114, 109, 97, 116, 32, 69, 76, 70, 54, 52, 32, 101, 120, 101, 99, 117, 116, 97, 98, 108, 101, 0 
+s_404: db 115, 101, 103, 109, 101, 110, 116, 32, 114, 101, 97, 100, 97, 98, 108, 101, 32, 101, 120, 101, 99, 117, 116, 97, 98, 108, 101, 0 
+s_405: db 101, 110, 116, 114, 121, 32, 95, 115, 116, 97, 114, 116, 0 
+s_406: db 115, 101, 103, 109, 101, 110, 116, 32, 114, 101, 97, 100, 97, 98, 108, 101, 32, 119, 114, 105, 116, 101, 97, 98, 108, 101, 0 
+s_407: db 112, 111, 112, 32, 114, 97, 120, 0 
+s_408: db 112, 117, 115, 104, 32, 114, 97, 120, 0 
+s_409: db 112, 111, 112, 32, 114, 98, 120, 0 
+s_410: db 112, 117, 115, 104, 32, 114, 98, 120, 0 
+s_411: db 112, 111, 112, 32, 114, 99, 120, 0 
+s_412: db 112, 117, 115, 104, 32, 114, 99, 120, 0 
+s_413: db 109, 111, 118, 32, 114, 97, 120, 44, 32, 0 
+s_414: db 115, 95, 0 
+s_415: db 58, 32, 100, 98, 32, 0 
+s_416: db 44, 32, 0 
+s_417: db 49, 48, 0 
+s_418: db 49, 51, 0 
+s_419: db 57, 50, 0 
+s_420: db 51, 52, 0 
+s_421: db 85, 110, 107, 110, 111, 119, 110, 32, 101, 115, 99, 97, 112, 101, 32, 115, 101, 113, 117, 101, 110, 99, 101, 0 
+s_422: db 44, 32, 48, 0 
+s_423: db 83, 116, 114, 105, 110, 103, 32, 115, 104, 111, 117, 108, 100, 32, 104, 97, 118, 101, 32, 108, 97, 98, 101, 108, 0 
+s_424: db 58, 0 
+s_425: db 112, 117, 115, 104, 32, 114, 98, 112, 0 
+s_426: db 109, 111, 118, 32, 114, 98, 112, 44, 32, 114, 115, 112, 0 
+s_427: db 99, 97, 108, 108, 32, 102, 110, 95, 0 
+s_428: db 109, 111, 118, 32, 114, 97, 120, 44, 32, 114, 98, 112, 0 
+s_429: db 97, 100, 100, 32, 114, 97, 120, 44, 32, 0 
+s_430: db 109, 111, 118, 32, 114, 98, 120, 44, 32, 91, 114, 97, 120, 93, 0 
+s_431: db 97, 100, 100, 32, 114, 98, 120, 44, 32, 114, 97, 120, 0 
+s_432: db 115, 117, 98, 32, 114, 98, 120, 44, 32, 114, 97, 120, 0 
+s_433: db 105, 109, 117, 108, 32, 114, 98, 120, 44, 32, 114, 97, 120, 0 
+s_434: db 120, 111, 114, 32, 114, 100, 120, 44, 32, 114, 100, 120, 0 
+s_435: db 100, 105, 118, 32, 114, 98, 120, 0 
+s_436: db 112, 117, 115, 104, 32, 114, 100, 120, 0 
+s_437: db 109, 111, 118, 32, 114, 115, 112, 44, 32, 114, 98, 112, 0 
+s_438: db 112, 111, 112, 32, 114, 98, 112, 0 
+s_439: db 114, 101, 116, 0 
+s_440: db 97, 110, 100, 32, 114, 98, 120, 44, 32, 114, 97, 120, 0 
+s_441: db 111, 114, 32, 114, 98, 120, 44, 32, 114, 97, 120, 0 
+s_442: db 109, 111, 118, 32, 114, 97, 120, 44, 32, 98, 117, 102, 95, 0 
+s_443: db 98, 117, 102, 95, 0 
+s_444: db 58, 32, 114, 98, 32, 0 
+s_445: db 109, 111, 118, 32, 114, 97, 120, 44, 32, 48, 0 
+s_446: db 109, 111, 118, 32, 114, 98, 120, 44, 32, 49, 0 
+s_447: db 112, 111, 112, 32, 114, 100, 120, 0 
+s_448: db 99, 109, 112, 32, 114, 100, 120, 44, 32, 114, 99, 120, 0 
+s_449: db 99, 109, 111, 118, 101, 32, 114, 97, 120, 44, 32, 114, 98, 120, 0 
+s_450: db 99, 109, 111, 118, 110, 101, 32, 114, 97, 120, 44, 32, 114, 98, 120, 0 
+s_451: db 99, 109, 111, 118, 103, 101, 32, 114, 97, 120, 44, 32, 114, 98, 120, 0 
+s_452: db 99, 109, 111, 118, 103, 32, 114, 97, 120, 44, 32, 114, 98, 120, 0 
+s_453: db 99, 109, 111, 118, 108, 101, 32, 114, 97, 120, 44, 32, 114, 98, 120, 0 
+s_454: db 99, 109, 111, 118, 108, 32, 114, 97, 120, 44, 32, 114, 98, 120, 0 
+s_455: db 116, 101, 115, 116, 32, 114, 97, 120, 44, 32, 114, 97, 120, 0 
+s_456: db 106, 122, 32, 0 
+s_457: db 106, 109, 112, 32, 0 
+s_458: db 83, 121, 115, 99, 97, 108, 108, 32, 115, 104, 111, 117, 108, 100, 32, 104, 97, 118, 101, 32, 49, 45, 54, 32, 97, 114, 103, 117, 109, 101, 110, 116, 115, 0 
+s_459: db 112, 111, 112, 32, 114, 57, 0 
+s_460: db 112, 111, 112, 32, 114, 56, 0 
+s_461: db 112, 111, 112, 32, 114, 49, 48, 0 
+s_462: db 112, 111, 112, 32, 114, 115, 105, 0 
+s_463: db 112, 111, 112, 32, 114, 100, 105, 0 
+s_464: db 109, 111, 118, 32, 114, 97, 120, 44, 32, 102, 110, 95, 0 
+s_465: db 120, 111, 114, 32, 114, 98, 120, 44, 32, 114, 98, 120, 0 
+s_466: db 109, 111, 118, 32, 98, 108, 44, 32, 91, 114, 97, 120, 93, 0 
+s_467: db 109, 111, 118, 32, 91, 114, 97, 120, 93, 44, 32, 98, 108, 0 
+s_468: db 109, 111, 118, 32, 91, 114, 97, 120, 93, 44, 32, 114, 98, 120, 0 
+s_469: db 115, 104, 108, 32, 114, 97, 120, 44, 32, 99, 108, 0 
+s_470: db 115, 104, 114, 32, 114, 97, 120, 44, 32, 99, 108, 0 
+s_471: db 95, 101, 110, 100, 0 
+s_472: db 95, 101, 110, 100, 58, 0 
+s_473: db 85, 110, 107, 110, 111, 119, 110, 32, 111, 112, 99, 111, 100, 101, 58, 32, 0 
+s_474: db 95, 115, 116, 97, 114, 116, 58, 0 
+s_475: db 120, 111, 114, 32, 114, 97, 120, 44, 32, 114, 97, 120, 0 
+s_476: db 99, 97, 108, 108, 32, 102, 110, 95, 115, 116, 97, 114, 116, 0 
+s_477: db 109, 111, 118, 32, 114, 100, 105, 44, 32, 114, 97, 120, 0 
+s_478: db 109, 111, 118, 32, 114, 97, 120, 44, 32, 54, 48, 0 
 buf_SHOULD_RUN: rb 1 
 buf_DUMP_TOKENS: rb 1 
 buf_DUMP_OPCODES: rb 1 
@@ -71023,37 +71145,36 @@ buf_FORMAT: rb 8
 buf_KEEP_ASSEMBLY: rb 1 
 buf_SILENT: rb 1 
 buf_input_file: rb 8 
-s_477: db 98, 111, 98, 97, 46, 98, 98, 0 
-s_478: db 112, 97, 114, 115, 101, 95, 97, 114, 103, 117, 109, 101, 110, 116, 115, 0 
-s_479: db 45, 114, 0 
-s_480: db 82, 117, 110, 32, 116, 104, 101, 32, 103, 101, 110, 101, 114, 97, 116, 101, 100, 32, 101, 120, 101, 99, 117, 116, 97, 98, 108, 101, 0 
-s_481: db 45, 102, 0 
-s_482: db 83, 101, 116, 32, 116, 104, 101, 32, 111, 117, 116, 112, 117, 116, 32, 102, 111, 114, 109, 97, 116, 32, 40, 100, 101, 102, 97, 117, 108, 116, 58, 32, 108, 105, 110, 117, 120, 95, 120, 56, 54, 95, 54, 52, 41, 0 
-s_483: db 45, 112, 0 
-s_484: db 69, 110, 97, 98, 108, 101, 32, 116, 104, 101, 32, 112, 114, 111, 102, 105, 108, 101, 114, 0 
-s_485: db 45, 115, 0 
-s_486: db 68, 111, 32, 110, 111, 116, 32, 112, 114, 105, 110, 116, 32, 105, 110, 102, 111, 114, 109, 97, 116, 105, 111, 110, 32, 108, 111, 103, 115, 0 
-s_487: db 45, 45, 118, 101, 114, 105, 102, 121, 45, 109, 101, 109, 111, 114, 121, 0 
-s_488: db 86, 101, 114, 105, 102, 121, 32, 116, 104, 101, 32, 100, 121, 110, 97, 109, 105, 99, 97, 108, 108, 121, 32, 97, 108, 108, 111, 99, 97, 116, 101, 100, 32, 109, 101, 109, 111, 114, 121, 0 
-s_489: db 45, 45, 100, 117, 109, 112, 45, 109, 101, 109, 111, 114, 121, 0 
-s_490: db 80, 114, 105, 110, 116, 32, 116, 104, 101, 32, 100, 121, 110, 97, 109, 105, 99, 97, 108, 108, 121, 32, 97, 108, 108, 111, 99, 97, 116, 101, 100, 32, 109, 101, 109, 111, 114, 121, 0 
-s_491: db 45, 45, 100, 117, 109, 112, 45, 116, 111, 107, 101, 110, 115, 0 
-s_492: db 80, 114, 105, 110, 116, 32, 116, 104, 101, 32, 116, 111, 107, 101, 110, 115, 0 
-s_493: db 45, 45, 100, 117, 109, 112, 45, 111, 112, 99, 111, 100, 101, 115, 0 
-s_494: db 80, 114, 105, 110, 116, 32, 116, 104, 101, 32, 111, 112, 99, 111, 100, 101, 115, 0 
-s_495: db 45, 97, 0 
-s_496: db 75, 101, 101, 112, 32, 116, 104, 101, 32, 103, 101, 110, 101, 114, 97, 116, 101, 100, 32, 97, 115, 115, 101, 109, 98, 108, 121, 32, 99, 111, 100, 101, 0 
-s_497: db 102, 105, 108, 101, 110, 97, 109, 101, 0 
-s_498: db 83, 111, 117, 114, 99, 101, 32, 99, 111, 100, 101, 32, 102, 105, 108, 101, 110, 97, 109, 101, 0 
-s_499: db 91, 67, 77, 68, 93, 32, 0 
-s_500: db 108, 111, 103, 95, 99, 109, 100, 0 
-s_501: db 115, 116, 97, 114, 116, 0 
-s_502: db 91, 73, 78, 70, 79, 93, 32, 67, 111, 109, 112, 105, 108, 105, 110, 103, 32, 0 
-s_503: db 46, 97, 115, 109, 0 
-s_504: db 91, 73, 78, 70, 79, 93, 32, 71, 101, 110, 101, 114, 97, 116, 105, 110, 103, 32, 0 
-s_505: db 47, 117, 115, 114, 47, 98, 105, 110, 47, 114, 109, 0 
-s_506: db 114, 109, 0 
-s_507: db 47, 117, 115, 114, 47, 98, 105, 110, 47, 102, 97, 115, 109, 0 
-s_508: db 102, 97, 115, 109, 0 
-s_509: db 46, 47, 0 
-s_510: db 85, 110, 107, 110, 111, 119, 110, 32, 102, 111, 114, 109, 97, 116, 10, 0 
+s_479: db 98, 111, 98, 97, 46, 98, 98, 0 
+s_480: db 112, 97, 114, 115, 101, 95, 97, 114, 103, 117, 109, 101, 110, 116, 115, 0 
+s_481: db 45, 114, 0 
+s_482: db 82, 117, 110, 32, 116, 104, 101, 32, 103, 101, 110, 101, 114, 97, 116, 101, 100, 32, 101, 120, 101, 99, 117, 116, 97, 98, 108, 101, 0 
+s_483: db 45, 102, 0 
+s_484: db 83, 101, 116, 32, 116, 104, 101, 32, 111, 117, 116, 112, 117, 116, 32, 102, 111, 114, 109, 97, 116, 32, 40, 100, 101, 102, 97, 117, 108, 116, 58, 32, 108, 105, 110, 117, 120, 95, 120, 56, 54, 95, 54, 52, 41, 0 
+s_485: db 45, 112, 0 
+s_486: db 69, 110, 97, 98, 108, 101, 32, 116, 104, 101, 32, 112, 114, 111, 102, 105, 108, 101, 114, 0 
+s_487: db 45, 115, 0 
+s_488: db 68, 111, 32, 110, 111, 116, 32, 112, 114, 105, 110, 116, 32, 105, 110, 102, 111, 114, 109, 97, 116, 105, 111, 110, 32, 108, 111, 103, 115, 0 
+s_489: db 45, 45, 118, 101, 114, 105, 102, 121, 45, 109, 101, 109, 111, 114, 121, 0 
+s_490: db 86, 101, 114, 105, 102, 121, 32, 116, 104, 101, 32, 100, 121, 110, 97, 109, 105, 99, 97, 108, 108, 121, 32, 97, 108, 108, 111, 99, 97, 116, 101, 100, 32, 109, 101, 109, 111, 114, 121, 0 
+s_491: db 45, 45, 100, 117, 109, 112, 45, 109, 101, 109, 111, 114, 121, 0 
+s_492: db 80, 114, 105, 110, 116, 32, 116, 104, 101, 32, 100, 121, 110, 97, 109, 105, 99, 97, 108, 108, 121, 32, 97, 108, 108, 111, 99, 97, 116, 101, 100, 32, 109, 101, 109, 111, 114, 121, 0 
+s_493: db 45, 45, 100, 117, 109, 112, 45, 116, 111, 107, 101, 110, 115, 0 
+s_494: db 80, 114, 105, 110, 116, 32, 116, 104, 101, 32, 116, 111, 107, 101, 110, 115, 0 
+s_495: db 45, 45, 100, 117, 109, 112, 45, 111, 112, 99, 111, 100, 101, 115, 0 
+s_496: db 80, 114, 105, 110, 116, 32, 116, 104, 101, 32, 111, 112, 99, 111, 100, 101, 115, 0 
+s_497: db 45, 97, 0 
+s_498: db 75, 101, 101, 112, 32, 116, 104, 101, 32, 103, 101, 110, 101, 114, 97, 116, 101, 100, 32, 97, 115, 115, 101, 109, 98, 108, 121, 32, 99, 111, 100, 101, 0 
+s_499: db 102, 105, 108, 101, 110, 97, 109, 101, 0 
+s_500: db 83, 111, 117, 114, 99, 101, 32, 99, 111, 100, 101, 32, 102, 105, 108, 101, 110, 97, 109, 101, 0 
+s_501: db 91, 67, 77, 68, 93, 32, 0 
+s_502: db 108, 111, 103, 95, 99, 109, 100, 0 
+s_503: db 91, 73, 78, 70, 79, 93, 32, 67, 111, 109, 112, 105, 108, 105, 110, 103, 32, 0 
+s_504: db 46, 97, 115, 109, 0 
+s_505: db 91, 73, 78, 70, 79, 93, 32, 71, 101, 110, 101, 114, 97, 116, 105, 110, 103, 32, 0 
+s_506: db 47, 117, 115, 114, 47, 98, 105, 110, 47, 114, 109, 0 
+s_507: db 114, 109, 0 
+s_508: db 47, 117, 115, 114, 47, 98, 105, 110, 47, 102, 97, 115, 109, 0 
+s_509: db 102, 97, 115, 109, 0 
+s_510: db 46, 47, 0 
+s_511: db 85, 110, 107, 110, 111, 119, 110, 32, 102, 111, 114, 109, 97, 116, 10, 0 
