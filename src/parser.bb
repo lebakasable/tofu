@@ -372,10 +372,18 @@ int return_on -> ptr
                 token.value + derefp
 
                 tokens token_index _get_next_token
-                dup token.type + derefi TOKEN_INT != if
+                dup token.type + derefi TOKEN_INT = if
+                    token.value + derefp
+                elif dup token.type + derefi TOKEN_IDENTIFIER =
+                    dup token.value + derefp _constants derefp dict_fetch
+                    dup NULL = if
+                        over dup token.line + derefi
+                        swap token.value + derefp
+                        "Unknown identifier: " swap concat syntax_error
+                    drop
+                else
                     dup token.line + derefi
                     "Expected integer as const value" syntax_error
-                token.value + derefp
 
                 _constants derefp dict_insert _constants setp
             elif dup token.value + derefp "derefb" streq
