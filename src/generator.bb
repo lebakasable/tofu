@@ -58,9 +58,9 @@ to generate_code_x86_64_linux: ptr opcodes, int fd -> void
     new_dict _string_labels setp
 
     "format ELF64 executable" ""      _text _append
+    "segment readable executable" ""  _text _append
     "" "entry _start"                 _text _append
-    "" "segment readable executable"  _text _append
-    "" "segment readable writeable"   _data _append
+    "segment readable writeable" ""   _data _append
 
     # Generate assembly
     0
