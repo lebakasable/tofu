@@ -81,7 +81,8 @@ If you wanna use the Boba compiler separately from its codebase, you only need t
 ### Editor Support
 
 For now, these editors have support for Boba:
-- [Tree-sitter](https://tree-sitter.github.io/) - [https://github.com/lebakasable/tree-sitter-boba](https://github.com/lebakasable/tree-sitter-boba/).
+- [Tree-sitter](https://tree-sitter.github.io/) - [https://github.com/lebakasable/tree-sitter-boba](https://github.com/lebakasable/tree-sitter-boba/),
+- [Vim](https://www.vim.org/) - [https://github.com/lebakasable/boba.vim](https://github.com/lebakasable/boba.vim).
 
 ## Language Reference
 
