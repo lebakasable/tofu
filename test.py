@@ -105,7 +105,7 @@ def run_test_for_file(file_path: str, stats: RunStats = RunStats()):
     error = False
 
     if tc is not None:
-        com = cmd_run_echoed(['./boba', '--run', '--silent', file_path,
+        com = cmd_run_echoed(['./boba', '-r', '-s', file_path,
                              *tc.argv], input=tc.stdin, capture_output=True)
         if com.returncode != tc.returncode or com.stdout != tc.stdout or com.stderr != tc.stderr:
             print('[ERROR] Unexpected output')
@@ -122,7 +122,7 @@ def run_test_for_file(file_path: str, stats: RunStats = RunStats()):
 
     else:
         print('[WARNING] Could not find any input/output data for %s. Ignoring testing. Only checking if it compiles.' % file_path)
-        com = cmd_run_echoed(['./boba', '--silent', file_path])
+        com = cmd_run_echoed(['./boba', '-s', file_path])
         if com.returncode != 0:
             error = True
             stats.failed += 1
@@ -166,7 +166,7 @@ def update_output_for_file(file_path: str):
     tc_path = file_path[:-3] + '.txt'
     tc = load_test_case(tc_path) or DEFAULT_TEST_CASE
 
-    output = cmd_run_echoed(['./boba', '--run', '--silent',
+    output = cmd_run_echoed(['./boba', '-r', '-s',
                             file_path, *tc.argv], input=tc.stdin, capture_output=True)
     print('[INFO] Saving output to %s' % tc_path)
     save_test_case(tc_path,

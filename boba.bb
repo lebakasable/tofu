@@ -22,13 +22,13 @@ to parse_arguments: ptr argv, int argc -> ptr
     # Returns an args object
     argparse_init
 
-    "--run" ARG_TYPE_FLAG "Run the generated executable"
+    "-r" ARG_TYPE_FLAG "Run the generated executable"
     argparse_add_argument
-    "--format" ARG_TYPE_OPTIONAL "Set the output format (default: linux_x86_64)"
+    "-f" ARG_TYPE_OPTIONAL "Set the output format (default: linux_x86_64)"
     argparse_add_argument
-    "--profiler" ARG_TYPE_FLAG "Enable the profiler"
+    "-p" ARG_TYPE_FLAG "Enable the profiler"
     argparse_add_argument
-    "--silent" ARG_TYPE_FLAG "Do not print information logs"
+    "-s" ARG_TYPE_FLAG "Do not print information logs"
     argparse_add_argument
     "--verify-memory" ARG_TYPE_FLAG "Verify the dynamically allocated memory"
     argparse_add_argument
@@ -38,7 +38,7 @@ to parse_arguments: ptr argv, int argc -> ptr
     argparse_add_argument
     "--dump-opcodes" ARG_TYPE_FLAG "Print the opcodes"
     argparse_add_argument
-    "--keep-assembly" ARG_TYPE_FLAG "Keep the generated assembly code"
+    "-a" ARG_TYPE_FLAG "Keep the generated assembly code"
     argparse_add_argument
     "filename" ARG_TYPE_POSITIONAL "Source code filename"
     argparse_add_argument
@@ -63,17 +63,17 @@ to start: ptr argv, int argc -> int
     # Parse arguments
     argv argc parse_arguments
 
-    "--format" over args.kwargs + derefp dict_fetch arg.value + derefp
+    "-f" over args.kwargs + derefp dict_fetch arg.value + derefp
     dup NULL = if
         drop FORMAT_LINUX_X86_64 FORMAT seti
     else
         str_to_format FORMAT seti
 
-    "--run" over args.kwargs + derefp dict_fetch arg.value + derefp NULL != \
+    "-r" over args.kwargs + derefp dict_fetch arg.value + derefp NULL != \
         SHOULD_RUN setb
-    "--profiler" over args.kwargs + derefp dict_fetch arg.value + derefp NULL != \
+    "-p" over args.kwargs + derefp dict_fetch arg.value + derefp NULL != \
         ENABLE_PROFILER setb
-    "--silent" over args.kwargs + derefp dict_fetch arg.value + derefp NULL != \
+    "-s" over args.kwargs + derefp dict_fetch arg.value + derefp NULL != \
         SILENT setb
     "--verify-memory" over args.kwargs + derefp dict_fetch arg.value + derefp NULL != \
         VERIFY_MEMORY setb
@@ -83,7 +83,7 @@ to start: ptr argv, int argc -> int
         DUMP_TOKENS setb
     "--dump-opcodes" over args.kwargs + derefp dict_fetch arg.value + derefp NULL != \
         DUMP_OPCODES setb
-    "--keep-assembly" over args.kwargs + derefp dict_fetch arg.value + derefp NULL != \
+    "-a" over args.kwargs + derefp dict_fetch arg.value + derefp NULL != \
         KEEP_ASSEMBLY setb
 
     ENABLE_PROFILER derefb if
