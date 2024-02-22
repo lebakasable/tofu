@@ -68188,24 +68188,13 @@ fn_log_cmd:
           push rbp
           mov rbp, rsp
           ; 50 get pointer to buffer
-          mov rax, buf_SILENT
+          mov rax, buf_VERBOSE
           push rax
           ; 50 dereference boolean
           pop rax
           xor rbx, rbx
           mov bl, [rax]
           push rbx
-          ; 50 push boolean
-          mov rax, 1
-          push rax
-          ; 50 is not equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmovne rax, rbx
-          push rax
           ; 50 start of if-block
           pop rax
           test rax, rax
@@ -68858,7 +68847,7 @@ end_0x00000000000001d8:
           cmovne rax, rbx
           push rax
           ; 77 get pointer to buffer
-          mov rax, buf_SILENT
+          mov rax, buf_VERBOSE
           push rax
           ; 77 set boolean value
           pop rax
@@ -69407,24 +69396,13 @@ end_0x00000000000001d9:
           pop rbx
           pop rbx
           ; 99 get pointer to buffer
-          mov rax, buf_SILENT
+          mov rax, buf_VERBOSE
           push rax
           ; 99 dereference boolean
           pop rax
           xor rbx, rbx
           mov bl, [rax]
           push rbx
-          ; 99 push boolean
-          mov rax, 1
-          push rax
-          ; 99 is not equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmovne rax, rbx
-          push rax
           ; 99 start of if-block
           pop rax
           test rax, rax
@@ -69815,24 +69793,13 @@ if_0x00000000000001dd:
           pop rbx
           push rax
           ; 126 get pointer to buffer
-          mov rax, buf_SILENT
+          mov rax, buf_VERBOSE
           push rax
           ; 126 dereference boolean
           pop rax
           xor rbx, rbx
           mov bl, [rax]
           push rbx
-          ; 126 push boolean
-          mov rax, 1
-          push rax
-          ; 126 is not equal?
-          mov rax, 0
-          mov rbx, 1
-          pop rcx
-          pop rdx
-          cmp rdx, rcx
-          cmovne rax, rbx
-          push rax
           ; 126 start of if-block
           pop rax
           test rax, rax
@@ -71333,7 +71300,7 @@ buf_DUMP_OPCODES: rb 1
 buf_ENABLE_PROFILER: rb 1 
 buf_FORMAT: rb 8 
 buf_KEEP_ASSEMBLY: rb 1 
-buf_SILENT: rb 1 
+buf_VERBOSE: rb 1 
 buf_input_file: rb 8 
 s_479: db 98, 111, 98, 97, 46, 98, 98, 0 
 s_480: db 112, 97, 114, 115, 101, 95, 97, 114, 103, 117, 109, 101, 110, 116, 115, 0 
@@ -71343,8 +71310,8 @@ s_483: db 45, 102, 0
 s_484: db 83, 101, 116, 32, 116, 104, 101, 32, 111, 117, 116, 112, 117, 116, 32, 102, 111, 114, 109, 97, 116, 32, 40, 100, 101, 102, 97, 117, 108, 116, 58, 32, 108, 105, 110, 117, 120, 95, 120, 56, 54, 95, 54, 52, 41, 0 
 s_485: db 45, 112, 0 
 s_486: db 69, 110, 97, 98, 108, 101, 32, 116, 104, 101, 32, 112, 114, 111, 102, 105, 108, 101, 114, 0 
-s_487: db 45, 115, 0 
-s_488: db 68, 111, 32, 110, 111, 116, 32, 112, 114, 105, 110, 116, 32, 105, 110, 102, 111, 114, 109, 97, 116, 105, 111, 110, 32, 108, 111, 103, 115, 0 
+s_487: db 45, 118, 0 
+s_488: db 80, 114, 105, 110, 116, 32, 105, 110, 102, 111, 114, 109, 97, 116, 105, 111, 110, 32, 108, 111, 103, 115, 0 
 s_489: db 45, 45, 118, 101, 114, 105, 102, 121, 45, 109, 101, 109, 111, 114, 121, 0 
 s_490: db 86, 101, 114, 105, 102, 121, 32, 116, 104, 101, 32, 100, 121, 110, 97, 109, 105, 99, 97, 108, 108, 121, 32, 97, 108, 108, 111, 99, 97, 116, 101, 100, 32, 109, 101, 109, 111, 114, 121, 0 
 s_491: db 45, 45, 100, 117, 109, 112, 45, 109, 101, 109, 111, 114, 121, 0 

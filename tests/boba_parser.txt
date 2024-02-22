@@ -4,5 +4,6 @@
 :i returncode 0
 :b stdout 0
 
-:b stderr 0
+:b stderr 53
+Compilation error: Program requires `start` function
 

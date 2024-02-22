@@ -13,7 +13,7 @@ buffer DUMP_OPCODES     1  # bool
 buffer ENABLE_PROFILER  1  # bool
 buffer FORMAT           8  # int
 buffer KEEP_ASSEMBLY    1  # bool
-buffer SILENT           1  # bool
+buffer VERBOSE          1  # bool
 
 buffer input_file 8 # ptr
 
@@ -28,7 +28,7 @@ to parse_arguments: ptr argv, int argc -> ptr
     argparse_add_argument
     "-p" ARG_TYPE_FLAG "Enable the profiler"
     argparse_add_argument
-    "-s" ARG_TYPE_FLAG "Do not print information logs"
+    "-v" ARG_TYPE_FLAG "Print information logs"
     argparse_add_argument
     "--verify-memory" ARG_TYPE_FLAG "Verify the dynamically allocated memory"
     argparse_add_argument
@@ -47,7 +47,7 @@ to parse_arguments: ptr argv, int argc -> ptr
 
 
 to log_cmd: ptr args -> ptr
-    SILENT derefb true != if
+    VERBOSE derefb if
         "[CMD] " puts
         0 while dup args list.len + derefi 1 - <
             dup 0 > if
@@ -73,8 +73,8 @@ to start: ptr argv, int argc -> int
         SHOULD_RUN setb
     "-p" over args.kwargs + derefp dict_fetch arg.value + derefp NULL != \
         ENABLE_PROFILER setb
-    "-s" over args.kwargs + derefp dict_fetch arg.value + derefp NULL != \
-        SILENT setb
+    "-v" over args.kwargs + derefp dict_fetch arg.value + derefp NULL != \
+        VERBOSE setb
     "--verify-memory" over args.kwargs + derefp dict_fetch arg.value + derefp NULL != \
         VERIFY_MEMORY setb
     "--dump-memory" over args.kwargs + derefp dict_fetch arg.value + derefp NULL != \
@@ -96,7 +96,7 @@ to start: ptr argv, int argc -> int
     # Free args object
     swap free
 
-    SILENT derefb true != if
+    VERBOSE derefb if
         "[INFO] Compiling " puts dup puts "\n" puts
 
     # Tokenize file
@@ -123,7 +123,7 @@ to start: ptr argv, int argc -> int
     elif FORMAT derefi FORMAT_LINUX_X86_64 =
         # Generate code
         input_file derefp ".asm" concat
-        SILENT derefb true != if
+        VERBOSE derefb if
             "[INFO] Generating " puts dup puts "\n" puts
 
         'w' open
