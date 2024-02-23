@@ -18,7 +18,7 @@ Since Tofu is self-hosted, you need to bootstrap it first. There are some pre-co
 First, you will need to install [FASM](https://flatassembler.net/) and make sure it's available in `$PATH`.
 
 ```bash
-$ fasm bootstrap/tofu.asm tofu
+$ fasm bootstrap/tofu-linux-x86_64.fasm tofu
 $ ./tofu tofu.tf
 $ ./tofu tofu.tf
 $ ./tofu tofu.tf
