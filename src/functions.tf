@@ -34,8 +34,8 @@ to create_function: ptr name -> ptr
 
 to function_add_argument: int type, ptr name, ptr func -> void
     # Adds an argument to a function
-    name                                          _argument argument.name + setp
-    type                                          _argument argument.type + seti
+    name                                          _argument argument.name  + setp
+    type                                          _argument argument.type  + seti
     func function.args + derefp list.len + derefi _argument argument.index + seti
 
     _argument

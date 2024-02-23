@@ -68,7 +68,7 @@ to generate_code_x86_64_linux: ptr opcodes, int fd -> void
         dup opcodes list_fetch
 
         # Add opcode info comment
-        dup opcode.line + derefi
+        dup  opcode.line   + derefi
         over opcode.opcode + derefi
         _append_opcode_info
 
@@ -113,7 +113,7 @@ to generate_code_x86_64_linux: ptr opcodes, int fd -> void
         elif dup opcode.opcode + derefi OPCODE_PUSH_CHAR =
             _textbuffer derefp textbuffer_clear
             "mov rax, " swap textbuffer_append
-            over opcode.operand + derefp derefc casti itos swap textbuffer_append            "" over textbuffer.content +  _text _append
+            over opcode.operand + derefp derefc casti itos swap textbuffer_append "" over textbuffer.content +  _text _append
             "" over textbuffer.content +  _text _append
             "" "push rax"                 _text _append
             _textbuffer setp
@@ -191,7 +191,7 @@ to generate_code_x86_64_linux: ptr opcodes, int fd -> void
             _textbuffer setp
         elif dup opcode.opcode + derefi OPCODE_FUNCTION =
             _textbuffer derefp textbuffer_clear
-            "fn_"                           swap textbuffer_append
+            "fn_"                         swap textbuffer_append
             over opcode.operand + derefp  swap textbuffer_append
             ":"                           swap textbuffer_append
             dup textbuffer.content + ""   _text _append
@@ -200,7 +200,7 @@ to generate_code_x86_64_linux: ptr opcodes, int fd -> void
             _textbuffer setp
         elif dup opcode.opcode + derefi OPCODE_CALL =
             _textbuffer derefp textbuffer_clear
-            "call fn_"                       swap textbuffer_append
+            "call fn_"                    swap textbuffer_append
             over opcode.operand + derefp  swap textbuffer_append
             "" over textbuffer.content +  _text _append
             _textbuffer setp
@@ -214,14 +214,14 @@ to generate_code_x86_64_linux: ptr opcodes, int fd -> void
             function.return_type + derefi TYPE_VOID != if
                 "" "push rax" _text _append
         elif dup opcode.opcode + derefi OPCODE_GET_ARG =
-            "" "mov rax, rbp"                                       _text _append
+            "" "mov rax, rbp"             _text _append
             _textbuffer derefp textbuffer_clear
             "add rax, "                   swap textbuffer_append
             over opcode.operand + derefp  swap textbuffer_append
-            "" over textbuffer.content +                            _text _append
+            "" over textbuffer.content +  _text _append
             _textbuffer setp
-            "" "mov rbx, [rax]"                                     _text _append
-            "" "push rbx"                                           _text _append
+            "" "mov rbx, [rax]"           _text _append
+            "" "push rbx"                 _text _append
         elif dup opcode.opcode + derefi OPCODE_ADD =
             "" "pop rax"      _text _append
             "" "pop rbx"      _text _append
@@ -332,8 +332,8 @@ to generate_code_x86_64_linux: ptr opcodes, int fd -> void
             "" "cmovl rax, rbx" _text _append
             "" "push rax"       _text _append
         elif dup opcode.opcode + derefi OPCODE_IF =
-            "" "pop rax"                                      _text _append
-            "" "test rax, rax"                                _text _append
+            "" "pop rax"                  _text _append
+            "" "test rax, rax"            _text _append
             _textbuffer derefp textbuffer_clear
             "jz "                         swap textbuffer_append
             over opcode.operand + derefp  swap textbuffer_append
