@@ -1,7 +1,7 @@
 <div align="center">
   <img src="assets/logo.svg" width="200" />
 
-# boba
+# tofu
 
 A low-level concatenative programming language.
 </div>
@@ -13,15 +13,15 @@ A low-level concatenative programming language.
 
 ### Bootstrapping
 
-Since Boba is self-hosted, you need to bootstrap it first. There are some pre-compiled assembly files in [bootstrap](./bootstrap/)] folder that you can use for that.
+Since Tofu is self-hosted, you need to bootstrap it first. There are some pre-compiled assembly files in [bootstrap](./bootstrap/)] folder that you can use for that.
 
 First, you will need to install [FASM](https://flatassembler.net/) and make sure it's available in `$PATH`.
 
 ```bash
-$ fasm bootstrap/boba.asm boba
-$ ./boba boba.bb
-$ ./boba boba.bb
-$ ./boba boba.bb
+$ fasm bootstrap/tofu.asm tofu
+$ ./tofu tofu.tf
+$ ./tofu tofu.tf
+$ ./tofu tofu.tf
 ...
 ```
 
@@ -30,12 +30,12 @@ $ ./boba boba.bb
 Compilation generates assembly code and compiles it with [FASM](https://flatassembler.net/). So make sure you have it available in your `$PATH`.
 
 ```bash
-$ cat hello.bb
+$ cat hello.tf
 import lib.std
 
 to start: -> void
   "Hello, World!\n" puts
-$ ./boba hello.bb
+$ ./tofu hello.tf
 ...
 ... compilation logs ...
 ...
@@ -59,10 +59,10 @@ To updated expected outputs of the programs run the `update` subcommand:
 $ ./test.py update
 ```
 
-To update expected command line arguments and stdin of a specific program run the `update input <path/to/program.bb>` subcommand:
+To update expected command line arguments and stdin of a specific program run the `update input <path/to/program.tf>` subcommand:
 
 ```bash
-$ ./test.py update input ./tests/argv.bb new cmd args
+$ ./test.py update input ./tests/argv.tf new cmd args
 [INFO] Provide the stdin for the test case. Press ^D when you are done...
 Hello, World
 ^D
@@ -73,16 +73,16 @@ For more info see `./test.py help`.
 
 ### Usage
 
-If you wanna use the Boba compiler separately from its codebase, you only need two things:
-- `boba` native executable - the compiler itself (see [Bootstrapping](#bootstrapping) for more info on how to get it),
+If you wanna use the Tofu compiler separately from its codebase, you only need two things:
+- `tofu` native executable - the compiler itself (see [Bootstrapping](#bootstrapping) for more info on how to get it),
 - [lib/](./lib/) - the standard library.
 
 
 ### Editor Support
 
-For now, these editors have support for Boba:
-- [Tree-sitter](https://tree-sitter.github.io/) - [https://github.com/lebakasable/tree-sitter-boba](https://github.com/lebakasable/tree-sitter-boba/),
-- [Vim](https://www.vim.org/) - [https://github.com/lebakasable/boba.vim](https://github.com/lebakasable/boba.vim).
+For now, these editors have support for Tofu:
+- [Tree-sitter](https://tree-sitter.github.io/) - [https://github.com/lebakasable/tree-sitter-tofu](https://github.com/lebakasable/tree-sitter-tofu/),
+- [Vim](https://www.vim.org/) - [https://github.com/lebakasable/tofu.vim](https://github.com/lebakasable/tofu.vim).
 
 ## Language Reference
 
@@ -233,7 +233,7 @@ while <condition>
 
 #### Import
 
-Include tokens of file `dir/files.bb`.
+Include tokens of file `dir/files.tf`.
 
 ```python
 import dir.file

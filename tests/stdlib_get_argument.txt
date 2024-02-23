@@ -8,7 +8,7 @@
 Could not parse arguments due to index error
 
 Traceback:
-lib/std/linux.bb, line 74 in raise
-lib/std/argparse.bb, line 48 in get_argument
-./tests/stdlib_get_argument.bb, line 4 in start
+lib/std/linux.tf, line 74 in raise
+lib/std/argparse.tf, line 48 in get_argument
+./tests/stdlib_get_argument.tf, line 4 in start
 

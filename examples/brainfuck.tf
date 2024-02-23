@@ -1,4 +1,4 @@
-# Rule 110 simulator written in Brainfuck, interpreted in Boba
+# Rule 110 simulator written in Brainfuck, interpreted in Tofu
 # Rule 110 source code: https://github.com/nootr/rule110
 
 import lib.std

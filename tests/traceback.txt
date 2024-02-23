@@ -7,8 +7,8 @@
 :b stderr 179
 Something went wrong
 Traceback:
-./tests/traceback.bb, line 2 in baz
-./tests/traceback.bb, line 5 in bar
-./tests/traceback.bb, line 8 in foo
-./tests/traceback.bb, line 11 in start
+./tests/traceback.tf, line 2 in baz
+./tests/traceback.tf, line 5 in bar
+./tests/traceback.tf, line 8 in foo
+./tests/traceback.tf, line 11 in start
 

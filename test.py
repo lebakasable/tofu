@@ -95,7 +95,7 @@ class RunStats:
 
 def run_test_for_file(file_path: str, stats: RunStats = RunStats()):
     assert path.isfile(file_path)
-    assert file_path.endswith('.bb')
+    assert file_path.endswith('.tf')
 
     print('[INFO] Testing %s' % file_path)
 
@@ -105,7 +105,7 @@ def run_test_for_file(file_path: str, stats: RunStats = RunStats()):
     error = False
 
     if tc is not None:
-        com = cmd_run_echoed(['./boba', '-r', file_path,
+        com = cmd_run_echoed(['./tofu', '-r', file_path,
                              *tc.argv], input=tc.stdin, capture_output=True)
         if com.returncode != tc.returncode or com.stdout != tc.stdout or com.stderr != tc.stderr:
             print('[ERROR] Unexpected output')
@@ -122,7 +122,7 @@ def run_test_for_file(file_path: str, stats: RunStats = RunStats()):
 
     else:
         print('[WARNING] Could not find any input/output data for %s. Ignoring testing. Only checking if it compiles.' % file_path)
-        com = cmd_run_echoed(['./boba', file_path])
+        com = cmd_run_echoed(['./tofu', file_path])
         if com.returncode != 0:
             error = True
             stats.failed += 1
@@ -135,7 +135,7 @@ def run_test_for_file(file_path: str, stats: RunStats = RunStats()):
 def run_test_for_folder(folder: str):
     stats = RunStats()
     for entry in os.scandir(folder):
-        if entry.is_file() and entry.path.endswith('.bb'):
+        if entry.is_file() and entry.path.endswith('.tf'):
             run_test_for_file(entry.path, stats)
     print()
     print('Failed: %d, Ignored: %d' % (stats.failed, stats.ignored))
@@ -148,7 +148,7 @@ def run_test_for_folder(folder: str):
 
 
 def update_input_for_file(file_path: str, argv: List[str]):
-    assert file_path.endswith('.bb')
+    assert file_path.endswith('.tf')
     tc_path = file_path[:-3] + '.txt'
     tc = load_test_case(tc_path) or DEFAULT_TEST_CASE
 
@@ -166,7 +166,7 @@ def update_output_for_file(file_path: str):
     tc_path = file_path[:-3] + '.txt'
     tc = load_test_case(tc_path) or DEFAULT_TEST_CASE
 
-    output = cmd_run_echoed(['./boba', '-r', 
+    output = cmd_run_echoed(['./tofu', '-r', 
                             file_path, *tc.argv], input=tc.stdin, capture_output=True)
     print('[INFO] Saving output to %s' % tc_path)
     save_test_case(tc_path,
@@ -176,7 +176,7 @@ def update_output_for_file(file_path: str):
 
 def update_output_for_folder(folder: str):
     for entry in os.scandir(folder):
-        if entry.is_file() and entry.path.endswith('.bb'):
+        if entry.is_file() and entry.path.endswith('.tf'):
             update_output_for_file(entry.path)
 
 
@@ -187,9 +187,9 @@ def usage(exe_name: str):
     print('  SUBCOMMAND:')
     print('    run [TARGET]')
     print(
-        '      Run the test on the [TARGET]. The [TARGET] is either a .bb file or ')
+        '      Run the test on the [TARGET]. The [TARGET] is either a .tf file or ')
     print(
-        '      folder with .bb files. The default [TARGET] is `./tests/`.')
+        '      folder with .tf files. The default [TARGET] is `./tests/`.')
     print()
     print('    update [SUBSUBCOMMAND]')
     print('      Update the input or output of the tests.')
@@ -198,13 +198,13 @@ def usage(exe_name: str):
     print('      SUBSUBCOMMAND:')
     print('        input <TARGET>')
     print('          Update the input of the <TARGET>. The <TARGET> can only be')
-    print('          a .bb file.')
+    print('          a .tf file.')
     print()
     print('        output [TARGET]')
     print(
-        '          Update the output of the [TARGET]. The [TARGET] is either a .bb')
+        '          Update the output of the [TARGET]. The [TARGET] is either a .tf')
     print(
-        '          file or folder with .bb files. The default [TARGET] is')
+        '          file or folder with .tf files. The default [TARGET] is')
     print('          `./tests/`')
     print()
     print('    help')

@@ -7,6 +7,6 @@
 :b stderr 99
 Foo bar baz
 Traceback:
-lib/std/linux.bb, line 74 in raise
-./tests/stdlib_raise.bb, line 4 in start
+lib/std/linux.tf, line 74 in raise
+./tests/stdlib_raise.tf, line 4 in start
 

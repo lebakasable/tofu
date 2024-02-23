@@ -7,6 +7,6 @@
 :b stderr 98
 OK
 Traceback:
-lib/std/linux.bb, line 80 in assert
-./tests/stdlib_assert_false.bb, line 4 in start
+lib/std/linux.tf, line 80 in assert
+./tests/stdlib_assert_false.tf, line 4 in start
 

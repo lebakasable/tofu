@@ -314,7 +314,7 @@ int return_on -> ptr
                     dup token.line + derefi
                     "Expected identifier after import keyword" syntax_error
 
-                dup token.value + derefp '.' '/' replace ".bb" concat
+                dup token.value + derefp '.' '/' replace ".tf" concat
                 dup _files derefp list_contains_string false = if
                     dup _files derefp list_append_ptr _files setp
                     # TODO: The malloc below is a memory leak, it could be fixed when we
@@ -985,7 +985,7 @@ int return_on -> ptr
 
 to _parse_core_functions: -> void
     # Parse the core functions
-    "lib/core.bb" dup
+    "lib/core.tf" dup
     read_file
     tokenize
     8 malloc dup 0 swap seti
